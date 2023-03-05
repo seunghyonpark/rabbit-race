@@ -11,8 +11,10 @@ import React, { useEffect, useState } from 'react'
 
 //@ts-ignore
 import { io } from "socket.io-client";
+
 // Bebas Neue
-let socket;
+//////let socket;
+
 export default function Songpa() {
     const [status, setStatus] = useState<any>();
     const [time, setTime] = useState<any>(0);

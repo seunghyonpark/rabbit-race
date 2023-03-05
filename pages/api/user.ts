@@ -19,6 +19,9 @@ export default async function handler(
     return;
   }
 
+  console.log("api user method", method);
+
+
   if (method === "create") {
     const { username, email, pass1, pass2, userToken, walletAddress } =
       req.body;
@@ -79,15 +82,25 @@ export default async function handler(
     res.status(200).json({ message: "User logged in", user: user });
   }
 
+
   if (method === "getOne") {
     const { userToken } = req.body;
     const user = await getUser(userToken);
+
     if (!user.success) {
       res.status(400).json({ message: user.message });
       return;
     }
+
+    //console.log("api user", user);
+
+    //const users = await getAllUsers();
+    //console.log("api users", users);
+
+
     res.status(200).json({ message: "User found", user: user });
   }
+
 
   if (method === "getAll") {
     const users = await getAllUsers();

@@ -18,7 +18,9 @@ export default function RootLayout({
                 <div className="bg-[#1f2029] relative font-bebasNeue">
                     <Chat />
                     <div className="w-full h-full min-h-[75vh]">
+                        
                         {children}
+                        
                     </div>
                     <footer>
                         <Footer />

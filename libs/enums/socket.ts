@@ -1,4 +1,5 @@
 enum SocketEnum {
-  id = "enter your bot socket url",
+  //id = "http://localhost:3005",
+  id = "https://songpa.herokuapp.com"
 }
 export default SocketEnum;

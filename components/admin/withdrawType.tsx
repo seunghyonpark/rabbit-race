@@ -53,7 +53,12 @@ export default function WithdrawType() {
             {data &&
                 <div className='flex flex-col items-center gap-3 border rounded-lg p-4 w-full'>
                     <h4>Withdraw Type</h4>
+                    {/*
                     <p>Current: <span className='text-green-500'> With {(data[0].requestType).toUpperCase()} Request</span></p>
+            */}
+
+                    <p>Current: <span className='text-green-500'> With {data[0]} Request</span></p>
+
                     <button onClick={changeWithdrawType} className='btn btn-md btn-primary'>Change</button>
                 </div>
             }
