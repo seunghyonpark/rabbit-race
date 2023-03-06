@@ -41,7 +41,7 @@ export default function MobilNavbar() {
                 </Link>
                 <div className='w-full p-2 flex items-center justify-end gap-3'>
                     {user && <Link
-                        href={"/hipodrom/deposit"}
+                        href={"/gameT2E/deposit"}
                         className={`text-[13px] text-[#dca709]`}
                     >
                         Deposit / Withdraw
@@ -54,7 +54,7 @@ export default function MobilNavbar() {
                     }
                     {
                         !user && <Link
-                            href={"/hipodrom/login"}
+                            href={"/gameT2E/login"}
                             className={`text-[13px] text-[#9293A6]  border-t-2 border-green-500 p-1`}
                         >
                             Sign In
@@ -62,7 +62,7 @@ export default function MobilNavbar() {
                     }
                     {
                         !user && <Link
-                            href={"/hipodrom/register"}
+                            href={"/gameT2E/register"}
                             className={`text-[13px] text-[#9293A6]  border-t-2 border-yellow-500 p-1`}
                         >
                             Sign Up

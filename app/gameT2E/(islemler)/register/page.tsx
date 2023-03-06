@@ -212,7 +212,7 @@ export default function RegisterPage() {
             .then((data) => {
                 if (data.status) {
                     handleClickSucc();
-                    router.push("/hipodrom/login");
+                    router.push("/gameT2E/login");
                 }
                 else {
                     setErrMsg(data.message);

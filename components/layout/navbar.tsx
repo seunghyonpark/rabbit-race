@@ -54,21 +54,28 @@ export default function Navbar() {
                     <div className="flex w-full bg-[#16181F] text-[11px] h-[30px] relative ">
                         <div className="marquee-container relative w-full">
                             <div className="marquee ">
+{/*
                                 <span>
                                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet culpa voluptates quis incidunt officiis optio fugiat voluptatum enim aliquid reprehenderit, praesentium repudiandae cum velit quos dicta eum quasi suscipit consectetur.
                                 </span>
+                */}
+
                             </div>
                             <div className="marquee marquee2 ">
+
+{/*                                
                                 <span>
                                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum perferendis eveniet inventore est velit ad modi ratione repellat doloremque dicta quod asperiores numquam dignissimos quo, reprehenderit ex rem nulla ipsam!
                                 </span>
+*/}
+
                             </div>
                         </div>
                     </div>
                     <div className="flex items-center justify-center w-full h-[50px] bg-[#24252F] px-3 ">
                         <div className="flex items-center w-full gap-7 text-[#9293A6] fill-[#9293A6] uppercase ">
                             {user && <Link
-                                href={"/hipodrom/deposit"}
+                                href={"/gameT2E/deposit"}
                                 className={`text-[13px] text-[#dca709]`}
                             >
                                 Deposit / Withdraw
@@ -83,7 +90,7 @@ export default function Navbar() {
                             }
                             {
                                 !user && <Link
-                                    href={"/hipodrom/login"}
+                                    href={"/gameT2E/login"}
                                     className={`text-[13px] text-[#9293A6]  border-t-2 border-green-500 p-1`}
                                 >
                                     Sign In
@@ -91,7 +98,7 @@ export default function Navbar() {
                             }
                             {
                                 !user && <Link
-                                    href={"/hipodrom/register"}
+                                    href={"/gameT2E/register"}
                                     className={`text-[13px] text-[#9293A6]  border-t-2 border-yellow-500 p-1`}
                                 >
                                     Sign Up
@@ -120,7 +127,7 @@ export default function Navbar() {
                                     onClick={() => {
                                         deleteCookie('user')
                                         getUser();
-                                        router.push('/hipodrom')
+                                        router.push('/gameT2E')
                                     }}
                                 >
                                     Log Out

@@ -45,7 +45,7 @@ export default function LoginPage() {
                     handleClickSucc();
                     setCookie("user", data.user.user.userToken);
                     setCookie("username", data.user.user.username);
-                    router.push("/hipodrom");
+                    router.push("/gameT2E");
                 }
             });
     };

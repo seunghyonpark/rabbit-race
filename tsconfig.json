@@ -36,7 +36,11 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "app/hipodrom/(islemler)/register",
-    "app/hipodrom/(islemler)/deposit"  
+    "app/hipodrom/(islemler)/deposit",
+    "app/gameT2E/(islemler)/register",
+    "app/gameT2E/(islemler)/deposit",
+    "app/gameP2E/(islemler)/register",
+    "app/gameP2E/(islemler)/deposit"  
   ],
   "exclude": [
     "node_modules"

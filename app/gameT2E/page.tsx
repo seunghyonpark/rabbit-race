@@ -36,7 +36,6 @@ export default function GameT2E() {
         socket.on('time', (data: any) => { setTime(data) })
         socket.on('horse1Orana', (data: any) => { setHorse1Oran(data) })
         socket.on('horse2Orana', (data: any) => { setHorse2Oran(data) })
-
     }
 
     
