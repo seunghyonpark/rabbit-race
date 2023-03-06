@@ -3,7 +3,7 @@ export default function Head() {
     <>
       <title>Cracle Games</title>
       <meta content="width=device-width, initial-scale=1" name="viewport" />
-      <meta name="description" content="powered by nuklabs" />
+      <meta name="description" content="powered by ❤️nuklabs❤️" />
 
       <meta property="og:type" content="website"></meta>
       <meta property="og:site_name" content="Cracle Games"></meta>
