@@ -43,7 +43,7 @@ export default function GameP2E() {
 
 
     // for test
-    setStatus(true);
+    //setStatus(true);
 
     
     return (
