@@ -15,7 +15,7 @@ import Image from 'next/image';
 import { io } from "socket.io-client";
 
 // Bebas Neue
-//////let socket;
+let socket;
 
 export default function GameT2E() {
     const [status, setStatus] = useState<any>();

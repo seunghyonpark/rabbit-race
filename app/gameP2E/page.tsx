@@ -13,7 +13,7 @@ import React, { useEffect, useState } from 'react'
 import { io } from "socket.io-client";
 
 // Bebas Neue
-//////let socket;
+let socket;
 
 export default function GameP2E() {
     const [status, setStatus] = useState<any>();
