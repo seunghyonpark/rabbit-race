@@ -41,6 +41,10 @@ export default function GameP2E() {
         socket.on('horse5Orana', (data: any) => { setHorse5Oran(data) })
     }
 
+
+    // for test
+    setStatus(true);
+
     
     return (
         <>
