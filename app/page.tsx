@@ -4,13 +4,17 @@ import Link from 'next/link';
 import Image from 'next/image';
 import YuruyenAt from '@/components/betEkrani/yuruyenAt';
 
+import Footer from "@/components/layout/footer";
+
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
 
   return (
+
     <main className={inter.className}>
+
       <div className="bg-[#0C0E1A] text-lg">
         <div className="w-full h-full flex flex-col ">
           <div className="flex">
@@ -18,24 +22,64 @@ export default function Home() {
               <div className='w-full h-5 lg:h-16'></div>
               <div style={{ minHeight: "calc(100vh - 12rem)" }}>
                 <div className="bg-center bg-no-repeat bg-contain bg-[url(/back.svg)] h-full">
-                  <div className="flex flex-col items-center justify-center gap-14 lg:py-10 bg-gradient-radial from-transparent via-[#0C0E1A] to-transparent bg-blend-difference h-full">
-                    <h1 className='text-white text-center w-full text-lg font-bebasNeue md:text-3xl'>Cracle Games</h1>
-                    
-                    <YuruyenAt time={null} horseSrc={'/at.json'} />
 
+                  <div className="
+                    flex flex-col items-center justify-center gap-14 lg:py-10 bg-gradient-radial from-transparent via-[#0C0E1A] to-transparent bg-blend-difference h-full
+                  ">
+                    <h1 className='text-white text-center w-full text-lg font-bebasNeue md:text-3xl'>Cracle Games</h1>
+
+
+                  <div className="border
+                    flex flex-col items-center justify-center gap-14 lg:py-10 bg-gradient-radial from-transparent via-[#0C0E1A] to-transparent bg-blend-difference h-full
+                  ">
+
+                    <Image src="/gameT2E.png" width={500} height={500} alt="gameT2E" />
+
+                  {/*
                     <Link href={"/hipodrom"} className="w-64 h-16 bg-gradient-to-r from-[#08FF08] to-[#008013] rounded-lg flex items-center justify-center">
                       <span className="text-gray-200 text-2xl ">Go To Hipodrom</span>
                     </Link>
-                    <Link href={"/songpa"} className="w-64 h-16 bg-gradient-to-r from-[#08FF08] to-[#008013] rounded-lg flex items-center justify-center">
-                      <span className="text-gray-200 text-2xl ">Go To Songpa</span>
+                  */}
+
+                    <p className='text-white text-center w-full text-lg font-bebasNeue md:text-3xl'>
+                      CRACLE T2E is a Long/Short trading game.<br></br>You can earn more $CRA by winning this game.
+                    </p>
+
+                    <Link href={"/gameT2E"} className="w-64 h-16 bg-gradient-to-r from-[#08FF08] to-[#008013] rounded-lg flex items-center justify-center">
+                      <span className="text-gray-200 text-2xl ">Play Now</span>
                     </Link>
                   </div>
+
+
+                  <div className="border
+                    flex flex-col items-center justify-center gap-14 lg:py-10 bg-gradient-radial from-transparent via-[#0C0E1A] to-transparent bg-blend-difference h-full
+                  ">
+                    <YuruyenAt time={null} horseSrc={'/at.json'} />
+                    <p className='text-white text-center w-full text-lg font-bebasNeue md:text-3xl'>
+                      CRACLE P2E is a XXX game.<br></br>You can earn more $CRA by playing this game.
+                    </p>
+                    <Link href={"/gameP2E"} className="w-64 h-16 bg-gradient-to-r from-[#08FF08] to-[#008013] rounded-lg flex items-center justify-center">
+                      <span className="text-gray-200 text-2xl ">Comming Soon</span>
+                    </Link>
+
+                  </div>
+
+
+                  </div>
+
+                  <footer>
+                    <Footer />
+                  </footer>
+
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+
+
     </main>
   )
 }

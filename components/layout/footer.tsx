@@ -10,7 +10,7 @@ export default function Footer() {
                     <Image src={"/logo.png"} width="100" height="50" alt="logo" />
                 </Link>
                 <div className='w-full flex flex-col '>
-                    <p>All Rights Reserved © 2023 John Doe </p>
+                    <p>All Rights Reserved © 2023 Cracle </p>
                 </div>
             </div>
         </>

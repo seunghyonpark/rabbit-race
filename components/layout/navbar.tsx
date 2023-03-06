@@ -44,7 +44,11 @@ export default function Navbar() {
                     <Link href={"/"} className="hover:opacity-50">
                         <Image src={"/logo.png"} alt="" width={150} height={20} />
                     </Link>
+
+                    {/*
                     <div className=" font-normal text-xs text-gray-200 tracking-widest">Change Your Life</div>
+                    */}
+
                 </div>
                 <div className="flex flex-col items-center justify-center w-full h-full">
                     <div className="flex w-full bg-[#16181F] text-[11px] h-[30px] relative ">

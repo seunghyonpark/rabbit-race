@@ -19,7 +19,7 @@ export default async function handler(
     return;
   }
 
-  console.log("api user method", method);
+  //console.log("api user method", method);
 
 
   if (method === "create") {

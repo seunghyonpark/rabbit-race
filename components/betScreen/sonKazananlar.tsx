@@ -28,7 +28,7 @@ export default function SonKazananlar() {
 
     return (
         <div className='absolute text-white right-5 top-20  bg-black/20 rounded-lg backdrop-blur-md p-5 hidden lg:flex flex-col gap-3 items-center justify-center'>
-            <h4 className=' border-b mb-2'>Last Race Winners</h4>
+            <h4 className=' border-b mb-2'>Last Long/Short Results</h4>
             {
                 sonKazananlar && sonKazananlar.placements.map((item: any,) => {
                     return (

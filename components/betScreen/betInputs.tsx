@@ -6,7 +6,7 @@ import { getCookie, hasCookie } from 'cookies-next';
 import React, { useEffect, useState } from 'react'
 import { FaCoins } from 'react-icons/fa'
 
-export default function BetInputs({ horse1, horse2, horse3, horse4, horse5 }: any) {
+export default function BetInputs({ horse1, horse2}: any) {
     const [user, setUser] = useState<IUser>()
     const [secilenAt, setSecilenAt] = useState<any>(null)
     const [betAmount, setBetAmount] = useState<any>(0)
@@ -80,6 +80,7 @@ export default function BetInputs({ horse1, horse2, horse3, horse4, horse5 }: an
                         className='input w-full pl-20' />
                     <button onClick={() => { setBetAmount(0) }} className='absolute right-5 z-10 btn btn-xs btn-outline border-gray-700'>Clear</button>
                 </div>
+
                 {/* //? Miktar Selector Buttons */}
                 <div className='grid grid-cols-4 content-center md:flex w-full gap-3 items-center justify-center text-white'>
                     <button
@@ -128,6 +129,7 @@ export default function BetInputs({ horse1, horse2, horse3, horse4, horse5 }: an
                         }}
                         className='btn btn-circle hidden md:block bg-[url(/cion.webp)] bg-contain bg-center bg-no-repeat text-black border'> Max </button>}
                 </div>
+                
                 {/* //? Horse Select Buttons */}
                 <div className='flex flex-col md:flex-row items-center justify-center w-full md:justify-around gap-3'>
                     <button onClick={() => { setSecilenAt(Horses.Horse1) }}
@@ -144,6 +146,8 @@ export default function BetInputs({ horse1, horse2, horse3, horse4, horse5 }: an
                             className={`btn border text-center border-white text-white p-1 btn-circle bg=[#333541] btn-xl w-20 h-20 ${secilenAt === Horses.Horse2 ? "bg=[#333541]" : secilenAt === 0 ? "bg=[#333541]" : "btn-ghost"}`}
                         >{Horses.Horse2} x{horse2}</button>
                     </div>
+
+{/*
                     <button onClick={() => { setSecilenAt(Horses.Horse3) }}
                         className={`btn hidden md:block border text-center border-white text-white p-1 btn-circle bg=[#333541] btn-xl w-20 h-20 ${secilenAt === Horses.Horse3 ? "bg=[#333541]" : secilenAt === 0 ? "bg=[#333541]" : "btn-ghost"}`}
                     >{Horses.Horse3} x{horse3}</button>
@@ -161,6 +165,9 @@ export default function BetInputs({ horse1, horse2, horse3, horse4, horse5 }: an
                     <button onClick={() => { setSecilenAt(Horses.Horse5) }}
                         className={`btn border text-center border-white text-white p-1 btn-circle bg=[#333541] btn-xl w-20 h-20 ${secilenAt === Horses.Horse5 ? "bg=[#333541]" : secilenAt === 0 ? "bg=[#333541]" : "btn-ghost"}`}
                     >{Horses.Horse5} x{horse5}</button>
+*/}
+
+
                 </div>
                 <button onClick={placeBet} className='btn btn-success mt-5 w-full'>Place Bet </button>
             </div>

@@ -13,12 +13,11 @@ import React, { useEffect, useState } from 'react'
 import { io } from "socket.io-client";
 
 // Bebas Neue
-let socket;
+//////let socket;
 
-export default function Hipodrom() {
+export default function GameP2E() {
     const [status, setStatus] = useState<any>();
     const [time, setTime] = useState<any>(0);
-    
     const [horse1Oran, setHorse1Oran] = useState<any>([]);
     const [horse2Oran, setHorse2Oran] = useState<any>([]);
     const [horse3Oran, setHorse3Oran] = useState<any>([]);
@@ -28,20 +27,12 @@ export default function Hipodrom() {
     useEffect(() => socketInitializer(), []);
 
     const socketInitializer = () => {
-        
-        console.log("socketInitializer==============");
-
         const socket = io(`${SocketEnum.id}`, {
             transports: ["websocket"],
         });
-
         socket.on("connect", () => {
-            console.log("socket connect");
         })
-        socket.on('status',(data: any) => {
-            setStatus(data);
-            console.log("socket status", data);
-        })
+        socket.on('status', (data: any) => { setStatus(data) })
         socket.on('time', (data: any) => { setTime(data) })
         socket.on('horse1Orana', (data: any) => { setHorse1Oran(data) })
         socket.on('horse2Orana', (data: any) => { setHorse2Oran(data) })
