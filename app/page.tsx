@@ -29,6 +29,24 @@ export default function Home() {
                     <h1 className='text-white text-center w-full text-lg font-bebasNeue md:text-3xl'>Cracle Games</h1>
 
 
+
+
+                  <div className="border border-gray-500 p-10 m-10 rounded-md
+                    flex flex-col items-center justify-center gap-14 lg:py-10 bg-gradient-radial from-transparent via-[#0C0E1A] to-transparent bg-blend-difference h-full
+                  ">
+
+                    <Image src="/mint_main.gif" width={500} height={500} alt="NFT" />
+
+                    <p className='text-white text-center w-full text-lg font-bebasNeue md:text-3xl'>
+                      Mint CRACLE Rabbit NFT.
+                    </p>
+                    <Link href={"https://nft.nuklabs.xyz/"} className="w-64 h-16 bg-gradient-to-r from-[#08FF08] to-[#008013] rounded-lg flex items-center justify-center">
+                      <span className="text-gray-200 text-2xl ">Mint Now</span>
+                    </Link>
+
+                  </div>
+
+
                   <div className="border border-gray-500 p-10 m-10 rounded-md
                     flex flex-col items-center justify-center gap-14 lg:py-10 bg-gradient-radial from-transparent via-[#0C0E1A] to-transparent bg-blend-difference h-full
                   ">
@@ -55,16 +73,27 @@ export default function Home() {
                     flex flex-col items-center justify-center gap-14 lg:py-10 bg-gradient-radial from-transparent via-[#0C0E1A] to-transparent bg-blend-difference h-full
                   ">
 
-                    {/*
-                    <YuruyenAt time={null} horseSrc={'/at.json'} />
-                */}
-
                     <Image src="/gameP2E.png" width={500} height={500} alt="gameP2E" />
 
                     <p className='text-white text-center w-full text-lg font-bebasNeue md:text-3xl'>
                       CRACLE P2E is a race horse game.<br></br>You can earn more $CRA by playing this game.
                     </p>
                     <Link href={"/gameP2E"} className="w-64 h-16 bg-gradient-to-r from-[#08FF08] to-[#008013] rounded-lg flex items-center justify-center">
+                      <span className="text-gray-200 text-2xl ">Comming Soon</span>
+                    </Link>
+
+                  </div>
+
+                  <div className="border border-gray-500 p-10 m-10 rounded-md
+                    flex flex-col items-center justify-center gap-14 lg:py-10 bg-gradient-radial from-transparent via-[#0C0E1A] to-transparent bg-blend-difference h-full
+                  ">
+
+                    <Image src="/gameClumsybird.png" width={500} height={500} alt="gameClumsybird" />
+
+                    <p className='text-white text-center w-full text-lg font-bebasNeue md:text-3xl'>
+                      Clumsy Bird is a casual game.<br></br>You can earn more $CRA by playing this game.
+                    </p>
+                    <Link href={"https://bird.nuklabs.xyz/"} className="w-64 h-16 bg-gradient-to-r from-[#08FF08] to-[#008013] rounded-lg flex items-center justify-center">
                       <span className="text-gray-200 text-2xl ">Comming Soon</span>
                     </Link>
 
