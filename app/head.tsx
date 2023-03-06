@@ -8,7 +8,6 @@ export default function Head() {
 
 
       <meta property="og:type" content="website"></meta>
-
       <meta property="og:site_name" content="Cracle Games"></meta>
       <meta property="og:title" content="GANGNAM"></meta>
       <meta property="og:description" content="Games powered by nuklabs"></meta>
@@ -16,12 +15,9 @@ export default function Head() {
       <meta property="og:image:width" content="1400"></meta>
       <meta property="og:image:height" content="1400"></meta>
 
-
-      <meta name="description" content="Games powered by nuklabs"></meta>
-
-      <meta name="twitter:card" content="summary_large_image"></meta> {/*telegram large image */}
+      <meta name="twitter:card" content="summary_large_image"></meta> 
       <meta name="twitter:image" content="/craclegames.png"></meta>
-
+  
 
 
 
