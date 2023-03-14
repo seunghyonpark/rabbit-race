@@ -236,14 +236,14 @@ export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any
                         <div
                             className={`flex items-center justify-center  bg-black h-[36px] text-center text-xl px-5 text-[#BA8E09] border border-[#BA8E09] `}
                         >
-                            <span>ETH/USDT BASE:</span>&nbsp;&nbsp;&nbsp; <span className="text-[#ffffff]">{betPrice}</span>
+                            <span>ENTRY PRICE(ETH):</span>&nbsp;&nbsp;&nbsp; <span className="text-[#ffffff]">{betPrice}</span>&nbsp;&nbsp;<span>USDT</span>
                         </div>
 
                         <div
                             className={`flex items-center justify-center  bg-black h-[36px] text-center text-xl px-5 text-[#BA8E09] border border-[#BA8E09] `}
                         >
 
-                            <span>ETH/USDT NOW:</span>&nbsp;&nbsp;&nbsp; <span className="text-[#ffffff]">{currentPrice}</span>
+                            <span>CURRENT PRICE(ETH):</span>&nbsp;&nbsp;&nbsp; <span className="text-[#ffffff]">{currentPrice}</span>&nbsp;&nbsp;<span>USDT</span>
                         </div>
                     </div>
 
