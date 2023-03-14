@@ -210,13 +210,14 @@ export default function Race() {
                         <div
                             className={`flex items-center justify-center  bg-black h-[36px] text-center text-xl px-5 text-[#BA8E09] border border-[#BA8E09] `}
                         >
-                            <span>Base ETH/USDT:</span>&nbsp;&nbsp;&nbsp; <span className="text-[#ffffff]">{basePrice}</span>
+                            <span>ETH/USDT BASE:</span>&nbsp;&nbsp;&nbsp; <span className="text-[#ffffff]">{basePrice}</span>
                         </div>
 
                         <div
                             className={`flex items-center justify-center  bg-black h-[36px] text-center text-xl px-5 text-[#BA8E09] border border-[#BA8E09] `}
                         >
-                            <span>Current ETH/USDT:</span>&nbsp;&nbsp;&nbsp; <span className="text-[#ffffff]">{currentPrice}</span>
+
+                            <span>ETH/USDT NOW:</span>&nbsp;&nbsp;&nbsp; <span className="text-[#ffffff]">{currentPrice}</span>
                         </div>
                     </div>
 

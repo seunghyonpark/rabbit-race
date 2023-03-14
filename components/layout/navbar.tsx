@@ -105,7 +105,7 @@ export default function Navbar() {
                                 </Link>
                             }
                             
-                            {
+                            {/*
                                 
                                 !user && <Link
                                     href={"/gameT2E/register"}
@@ -114,7 +114,7 @@ export default function Navbar() {
                                     Sign Up
                                 </Link>
                                 
-                            }
+                        */}
                             {
                                 user && <div
                                     // href={"/hipodrom/profile"}

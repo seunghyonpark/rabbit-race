@@ -23,11 +23,20 @@ export default function GameT2E() {
     const [horse1Oran, setHorse1Oran] = useState<any>([]);
     const [horse2Oran, setHorse2Oran] = useState<any>([]);
 
-    const [basePrice, setBasePrice] = useState<any>(1682.32);
+    const [currentPrice, setCurrentPrice] = useState<any>(1682.32);
 
 
 
     useEffect(() => socketInitializer(), []);
+
+
+    setTimeout(() => {
+
+        const price = 1682.32 + Math.random()*10;
+        setCurrentPrice(price.toFixed(2));
+
+    }, 400);
+
 
     const socketInitializer = () => {
 
@@ -79,8 +88,8 @@ export default function GameT2E() {
                         <Son20Oyun />
                 
 
-                        <div className="bg-center bg-no-repeat bg-contain bg-[url(/back.svg)] h-full ">
-                            <div className="flex flex-col items-center justify-center md:gap-14 md:py-10 bg-gradient-radial from-transparent via-[#0C0E1A] to-transparent bg-blend-difference h-full md:px-32">
+                        <div className="bg-center bg-no-repeat bg-contain bg-[url(/back.svg)] h-full">
+                            <div className="flex flex-col items-center justify-center md:gap-14 md:py-10 bg-gradient-radial from-transparent via-[#0C0E1A] to-transparent bg-blend-difference h-full md:px-32 mt-5">
                                 {/*
                                 <YuruyenAt time={time} horseSrc={'/at.json'} />
                                 */}
@@ -89,9 +98,9 @@ export default function GameT2E() {
 
 
                                 <div
-                                    className={`flex items-center justify-center  bg-black rounded-md h-[36px] text-center px-5 text-[#BA8E09] border border-[#BA8E09] mt-3`}
+                                    className={`flex items-center justify-center text-xl  bg-black rounded-md h-[36px] text-center px-5 text-[#BA8E09] border border-[#BA8E09] mt-5`}
                                 >
-                                   <span>ETH/USDT:</span>&nbsp;&nbsp;&nbsp; <span className="text-[#ffffff]">{basePrice}</span>
+                                   <span>ETH/USDT:</span>&nbsp;&nbsp;&nbsp; <span className="text-[#ffffff]">{currentPrice}</span>
                                 </div>
 
 
