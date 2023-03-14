@@ -50,6 +50,8 @@ export default function Race() {
         });
 
         socket.on('status', (data: any) => {
+
+            
             setStatus(data)
         })
 
