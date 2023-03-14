@@ -139,6 +139,7 @@ export default function BetInputs({ horse1, horse2 }: any) {
                     <button onClick={() => { setSecilenAt(Horses.Horse2) }}
                         className={`btn hidden md:block border text-center border-white text-white p-1 btn-circle bg=[#333541] btn-xl w-20 h-20 ${secilenAt === Horses.Horse2 ? "bg=[#333541]" : secilenAt === 0 ? "bg=[#333541]" : "btn-ghost"}`}
                     >{Horses.Horse2} x{horse2}</button>
+
                     <div className="space-x-10 md:hidden">
                         <button onClick={() => { setSecilenAt(Horses.Horse1) }}
                             className={`btn border text-center border-white text-white p-1 btn-circle bg=[#333541] btn-xl w-20 h-20 ${secilenAt === Horses.Horse1 ? "bg=[#333541]" : secilenAt === 0 ? "bg=[#333541]" : "btn-ghost"}`}
@@ -147,6 +148,8 @@ export default function BetInputs({ horse1, horse2 }: any) {
                             className={`btn border text-center border-white text-white p-1 btn-circle bg=[#333541] btn-xl w-20 h-20 ${secilenAt === Horses.Horse2 ? "bg=[#333541]" : secilenAt === 0 ? "bg=[#333541]" : "btn-ghost"}`}
                         >{Horses.Horse2} x{horse2}</button>
                     </div>
+
+                        {/*
                     <button onClick={() => { setSecilenAt(Horses.Horse3) }}
                         className={`btn hidden md:block border text-center border-white text-white p-1 btn-circle bg=[#333541] btn-xl w-20 h-20 ${secilenAt === Horses.Horse3 ? "bg=[#333541]" : secilenAt === 0 ? "bg=[#333541]" : "btn-ghost"}`}
                     >{Horses.Horse3} x{horse3}</button>
@@ -164,6 +167,9 @@ export default function BetInputs({ horse1, horse2 }: any) {
                     <button onClick={() => { setSecilenAt(Horses.Horse5) }}
                         className={`btn border text-center border-white text-white p-1 btn-circle bg=[#333541] btn-xl w-20 h-20 ${secilenAt === Horses.Horse5 ? "bg=[#333541]" : secilenAt === 0 ? "bg=[#333541]" : "btn-ghost"}`}
                     >{Horses.Horse5} x{horse5}</button>
+                    */}
+
+
                 </div>
                 <button onClick={placeBet} className='btn btn-success mt-5 w-full'>Place Bet </button>
             </div>
