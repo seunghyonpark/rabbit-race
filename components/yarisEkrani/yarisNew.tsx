@@ -176,14 +176,19 @@ export default function Race() {
                     </div>
 
 
-                    <div className="w-full h-14 "
+                    <div className="w-full h-24 mt-4 "
+                        style={{
+                                backgroundImage: `url('/crowd2.png')`,
+                                backgroundSize: "250px",
+                                backgroundRepeat: "repeat-x",
+                            }}
                     ></div>
 
-                   
                     <div className="w-full h-14 mt-4 "
                         style={{
                                 backgroundImage: `url('/lbank-logo.png')`,
-                                backgroundSize: "150px",
+                                backgroundSize: "250px",
+                                backgroundRepeat: "repeat-x",
                             }}
                     ></div>
                     
