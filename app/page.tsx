@@ -73,6 +73,8 @@ export default function Home() {
                   </div>
 
 
+{/*
+
                   <div className="border border-gray-500 p-10 m-10 rounded-md
                     flex flex-col items-center justify-center gap-14 lg:py-10 bg-gradient-radial from-transparent via-[#0C0E1A] to-transparent bg-blend-difference h-full
                   ">
@@ -87,6 +89,8 @@ export default function Home() {
                     </Link>
 
                   </div>
+                */}
+
 
                   <div className="border border-gray-500 p-10 m-10 rounded-md
                     flex flex-col items-center justify-center gap-14 lg:py-10 bg-gradient-radial from-transparent via-[#0C0E1A] to-transparent bg-blend-difference h-full
