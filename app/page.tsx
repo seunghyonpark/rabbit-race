@@ -73,13 +73,13 @@ export default function Home() {
                   </div>
 
 
-{/*
+
 
                   <div className="border border-gray-500 p-10 m-10 rounded-md
                     flex flex-col items-center justify-center gap-14 lg:py-10 bg-gradient-radial from-transparent via-[#0C0E1A] to-transparent bg-blend-difference h-full
                   ">
 
-                    <Image src="/gameP2E.png" width={500} height={500} alt="gameP2E" />
+                    <Image src="/gameP2E.jpg" width={500} height={500} alt="gameP2E" />
 
                     <p className='text-white text-center w-full text-lg font-bebasNeue md:text-3xl'>
                       CRACLE P2E is a race horse game.<br></br>You can earn more $CRA by playing this game.
@@ -89,7 +89,7 @@ export default function Home() {
                     </Link>
 
                   </div>
-                */}
+                
 
 
                   <div className="border border-gray-500 p-10 m-10 rounded-md
