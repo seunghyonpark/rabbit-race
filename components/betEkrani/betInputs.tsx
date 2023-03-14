@@ -6,9 +6,12 @@ import { getCookie, hasCookie } from 'cookies-next';
 import React, { useEffect, useState } from 'react'
 import { FaCoins } from 'react-icons/fa'
 
-export default function BetInputs({ horse1, horse2, horse3, horse4, horse5 }: any) {
+//export default function BetInputs({ horse1, horse2, horse3, horse4, horse5 }: any) {
+
+export default function BetInputs({ horse1, horse2 }: any) {
     const [user, setUser] = useState<IUser>()
     const [secilenAt, setSecilenAt] = useState<any>(null)
+    
     const [betAmount, setBetAmount] = useState<any>(0)
 
     const getUser = async () => {

@@ -25,6 +25,11 @@ export default function GameT2E() {
 
     const [currentPrice, setCurrentPrice] = useState<any>(1682.32);
 
+    const [basePrice, setBasePrice] = useState<any>(1682.32);
+    const [longShort, setlongShort] = useState<any>("Long");
+    
+    const [betAmount, setBetAmount] = useState<any>("");
+
 
 
     useEffect(() => socketInitializer(), []);
@@ -51,6 +56,10 @@ export default function GameT2E() {
         socket.on('status', (data: any) => {
             console.log("GameT2E socketInitializer status", data);
             setStatus(data);
+
+            if (data === true) {
+                setBasePrice(currentPrice);
+            } 
 
             //setStatus(true);
         });
@@ -112,6 +121,7 @@ export default function GameT2E() {
                         <BetInputs 
                             horse1={horse1Oran}
                             horse2={horse2Oran}
+
                         />
 
                         {/*
@@ -121,7 +131,7 @@ export default function GameT2E() {
                     </div>
                 )
                 :
-                < Race/>
+                < Race betPrice={basePrice} betLongShort={longShort} betAmount={betAmount}/>
             }
         </>
     )

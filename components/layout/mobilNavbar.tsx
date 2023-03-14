@@ -56,7 +56,7 @@ export default function MobilNavbar() {
                     {user && <div
                         className={`flex items-center justify-center  bg-black rounded-md h-[36px] text-center px-5 text-[#BA8E09] border border-[#BA8E09] `}
                     >
-                        {`${user.deposit.toString().slice(0, 3)}...`} <span className="text-[#9293A6]">{" "}{Coin.symbol}</span>
+                        {`${user.deposit.toString().slice(0, 3)}...`}&nbsp;&nbsp;<span className="text-[#9293A6]">{" "}{Coin.symbol}</span>
                     </div>
                     }
                     {

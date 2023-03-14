@@ -9,7 +9,7 @@ import { BsFillVolumeUpFill, BsFillVolumeMuteFill } from "react-icons/bs";
 
 
 let socket;
-export default function Race() {
+export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any, betLongShort: any, betAmount: any}) {
 
     //console.log("yarisNew horse", horse);
 
@@ -27,9 +27,35 @@ export default function Race() {
     const [soundStatus, setSoundStatus] = useState(true);
     const [finishLine, setFinishLine] = useState(false);
 
-    const [basePrice, setBasePrice] = useState<any>(1682.32);
-
     const [currentPrice, setCurrentPrice] = useState<any>(1682.32);
+
+    const [betAmountLong, setBetAmountLong] = useState<any>("");
+    const [betAmountShort, setBetAmountShort] = useState<any>("");
+
+    /*
+    if (betLongShort === "Long") {
+        setBetAmountLong(betAmount);
+        setBetAmountShort("");
+    } else if (betLongShort === "Short") {
+        setBetAmountShort(betAmount);
+        setBetAmountLong("");
+    }
+    */
+
+    useEffect(() => {
+
+        //console.log("betLongShort", betLongShort);
+        //console.log("betAmount", betAmount);
+
+        if (betLongShort === "Long") {
+            setBetAmountLong("My Rabbit");
+            setBetAmountShort("");
+        } else if (betLongShort === "Short") {
+            setBetAmountShort("My Rabbit");
+            setBetAmountLong("");
+        }
+        
+    }, [])
 
 
     setTimeout(() => {
@@ -210,7 +236,7 @@ export default function Race() {
                         <div
                             className={`flex items-center justify-center  bg-black h-[36px] text-center text-xl px-5 text-[#BA8E09] border border-[#BA8E09] `}
                         >
-                            <span>ETH/USDT BASE:</span>&nbsp;&nbsp;&nbsp; <span className="text-[#ffffff]">{basePrice}</span>
+                            <span>ETH/USDT BASE:</span>&nbsp;&nbsp;&nbsp; <span className="text-[#ffffff]">{betPrice}</span>
                         </div>
 
                         <div
@@ -238,6 +264,8 @@ export default function Race() {
                         }}
                     >
                         <Image src={"/rabbit1.gif"} width="150" height="100" alt={"at"} />
+                        <span className="text-green-500"  >1: Long</span>&nbsp;&nbsp;
+                        <span className="text-green-500" >{betAmountLong}</span>
                     </div>
 
                     <div
@@ -247,7 +275,11 @@ export default function Race() {
                         }}
                     >
                         <Image src={"/rabbit2.gif"} width="150" height="100" alt={"at"} />
+                        <span className="text-red-500" >2: Short</span>&nbsp;&nbsp;
+                        <span className="text-red-500" >{betAmountShort}</span>
+                        
                     </div>
+
 
 {/*
                     <div
