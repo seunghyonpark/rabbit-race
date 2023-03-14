@@ -1,5 +1,16 @@
-import './globals.css'
-import { Bebas_Neue } from '@next/font/google'
+import './globals.css';
+import { Bebas_Neue } from '@next/font/google';
+
+import { ChainId, ThirdwebProvider } from "@thirdweb-dev/react";
+
+/*
+import RootProvider from "./providers";
+*/
+
+
+//const activeChainId = ChainId.BinanceSmartChainTestnet;
+
+const activeChainId = 4002;
 
 const BebasNeue = Bebas_Neue({
   subsets: ['latin'],
@@ -13,9 +24,25 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <head />
-      <body className={`${BebasNeue.className}`} >{children}</body>
-    </html>
+
+      <html lang="en">
+        <head />
+        <body className={`${BebasNeue.className}`} >
+          
+          {/*
+          <RootProvider>
+  */}
+
+            {children}
+
+{/*
+          </RootProvider>
+*/}
+
+        </body>
+      </html>
+
+   
+
   )
 }

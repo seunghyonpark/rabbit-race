@@ -89,20 +89,24 @@ export default function Navbar() {
                             </div>
                             }
                             {
+                                /*
                                 !user && <Link
                                     href={"/gameT2E/login"}
                                     className={`text-[13px] text-[#9293A6]  border-t-2 border-green-500 p-1`}
                                 >
                                     Sign In
                                 </Link>
+                                */
                             }
                             {
+                                /*
                                 !user && <Link
                                     href={"/gameT2E/register"}
                                     className={`text-[13px] text-[#9293A6]  border-t-2 border-yellow-500 p-1`}
                                 >
                                     Sign Up
                                 </Link>
+                                */
                             }
                             {
                                 user && <div

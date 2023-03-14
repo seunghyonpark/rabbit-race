@@ -4,7 +4,7 @@ import BetTables from '@/components/betScreen/betTables'
 import Son20Oyun from '@/components/betScreen/son20';
 import SonKazananlar from '@/components/betScreen/sonKazananlar';
 import YuruyenAt from '@/components/betEkrani/yuruyenAt'
-import Race from '@/components/yarisEkrani/yaris'
+import Race from '@/components/yarisEkrani/yarisNew';
 import SocketEnum from '@/libs/enums/socket';
 import React, { useEffect, useState } from 'react';
 
@@ -27,16 +27,38 @@ export default function GameT2E() {
     useEffect(() => socketInitializer(), []);
 
     const socketInitializer = () => {
+
         const socket = io(`${SocketEnum.id}`, {
             transports: ["websocket"],
         });
-        socket.on("connect", () => {
-        })
-        socket.on('status', (data: any) => { setStatus(data) })
-        socket.on('time', (data: any) => { setTime(data) })
 
-        socket.on('horse1Orana', (data: any) => { setHorse1Oran(data) })
-        socket.on('horse2Orana', (data: any) => { setHorse2Oran(data) })
+        socket.on("connect", () => {
+            console.log("GameT2E socketInitializer connect");
+        });
+
+        socket.on('status', (data: any) => {
+            console.log("GameT2E socketInitializer status", data);
+            setStatus(data);
+
+            //setStatus(true);
+        });
+
+        socket.on('time', (data: any) => {
+            console.log("GameT2E socketInitializer time", data);
+            setTime(data)
+        });
+
+        socket.on('horse1Orana', (data: any) => {
+            console.log("GameT2E socketInitializer horse1Orana", data);
+            setHorse1Oran(data)
+        });
+
+        socket.on('horse2Orana', (data: any) => {
+            console.log("GameT2E socketInitializer horse2Orana", data);
+            setHorse2Oran(data)
+        });
+
+
     }
 
     
@@ -63,8 +85,8 @@ export default function GameT2E() {
                             </div>
                         </div>
                         <BetInputs 
-                        horse1={horse1Oran}
-                        horse2={horse2Oran}
+                            horse1={horse1Oran}
+                            horse2={horse2Oran}
                         />
 
                         {/*

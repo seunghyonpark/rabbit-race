@@ -1,8 +1,9 @@
+
 import { Inter } from '@next/font/google'
 import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
-import YuruyenAt from '@/components/betEkrani/yuruyenAt';
+//import YuruyenAt from '@/components/betEkrani/yuruyenAt';
 
 import Footer from "@/components/layout/footer";
 
@@ -19,15 +20,18 @@ export default function Home() {
         <div className="w-full h-full flex flex-col ">
           <div className="flex">
             <div className="flex flex-col w-full min-h-screen h-full">
+              
               <div className='w-full h-5 lg:h-16'></div>
+
               <div style={{ minHeight: "calc(100vh - 12rem)" }}>
+
                 <div className="bg-center bg-no-repeat bg-contain bg-[url(/back.svg)] h-full">
 
                   <div className="
                     flex flex-col items-center justify-center gap-14 lg:py-10 bg-gradient-radial from-transparent via-[#0C0E1A] to-transparent bg-blend-difference h-full
                   ">
-                    <h1 className='text-white text-center w-full text-lg font-bebasNeue md:text-3xl'>Cracle Games</h1>
 
+                    <h1 className='text-white text-center w-full text-lg font-bebasNeue md:text-3xl'>Cracle Games</h1>
 
 
 
@@ -118,4 +122,3 @@ export default function Home() {
     </main>
   )
 }
-

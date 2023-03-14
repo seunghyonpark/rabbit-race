@@ -39,6 +39,8 @@ export default function MobilNavbar() {
                 <Link href={"/"}>
                     <Image src={"/logo.png"} width={100} height={100} alt="logo" />
                 </Link>
+
+                
                 <div className='w-full p-2 flex items-center justify-end gap-3'>
                     {user && <Link
                         href={"/gameT2E/deposit"}
@@ -53,20 +55,24 @@ export default function MobilNavbar() {
                     </div>
                     }
                     {
+                        /*
                         !user && <Link
                             href={"/gameT2E/login"}
                             className={`text-[13px] text-[#9293A6]  border-t-2 border-green-500 p-1`}
                         >
                             Sign In
                         </Link>
+                        */
                     }
                     {
+                        /*
                         !user && <Link
                             href={"/gameT2E/register"}
                             className={`text-[13px] text-[#9293A6]  border-t-2 border-yellow-500 p-1`}
                         >
                             Sign Up
                         </Link>
+                        */
                     }
                     {/* {
                         user && <Link
@@ -97,6 +103,9 @@ export default function MobilNavbar() {
                         </button>
                     }
                 </div>
+                
+
+
             </div>
         </>
     )

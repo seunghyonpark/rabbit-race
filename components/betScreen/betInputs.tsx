@@ -3,14 +3,20 @@ import API from '@/libs/enums/API_KEY';
 import Horses from '@/libs/enums/horses.enums';
 import { IUser } from '@/libs/interface/user';
 import { getCookie, hasCookie } from 'cookies-next';
-import React, { useEffect, useState } from 'react'
-import { FaCoins } from 'react-icons/fa'
+import React, { useEffect, useState } from 'react';
+import { FaCoins } from 'react-icons/fa';
+
+//@ts-ignore
+import { io } from "socket.io-client";
+import SocketEnum from '@/libs/enums/socket';
+
 
 export default function BetInputs({ horse1, horse2}: any) {
     const [user, setUser] = useState<IUser>()
     const [secilenAt, setSecilenAt] = useState<any>(null)
     const [betAmount, setBetAmount] = useState<any>(0)
 
+    /*
     const getUser = async () => {
         const inputs = {
             method: 'getOne',
@@ -25,19 +31,27 @@ export default function BetInputs({ horse1, horse2}: any) {
         const user = await res.json()
         setUser(user.user.user)
     }
+
     useEffect(() => {
         if (hasCookie('user')) {
             getUser()
         }
     }, [])
+    */
 
 
+    /*
     const placeBet = async () => {
         if (user) {
-            if (betAmount > user?.deposit) return alert('You dont have enough money to bet this amount')
-            if (betAmount === 0) return alert('You need to enter a bet amount')
-            if (betAmount < 0) return alert('You cannot bet a negative amount')
-            if (secilenAt === null) return alert('You need to select a horse to bet')
+
+            if (betAmount > user?.deposit) return alert('You dont have enough money to bet this amount');
+
+            if (betAmount === 0) return alert('You need to enter a bet amount');
+
+            if (betAmount < 0) return alert('You cannot bet a negative amount');
+
+            if (secilenAt === null) return alert('You need to select a horse to bet');
+
             const formInputs = {
                 method: 'newGame',
                 API_KEY: process.env.API_KEY,
@@ -60,10 +74,89 @@ export default function BetInputs({ horse1, horse2}: any) {
             } else {
                 alert('You have already placed a bet')
             }
+
         } else {
             alert('You need to login to place a bet')
         }
     }
+    */
+
+
+    const placeBet = async () => {
+        //if (user) {
+
+            /*
+            if (betAmount > user?.deposit) return alert('You dont have enough money to bet this amount');
+
+            if (betAmount === 0) return alert('You need to enter a bet amount');
+
+            if (betAmount < 0) return alert('You cannot bet a negative amount');
+            */
+
+            if (secilenAt === null) return alert('You need to select long or shot to bet');
+
+
+
+
+            const socket = io(`${SocketEnum.id}`, {
+                transports: ["websocket"],
+            });
+    
+            /*
+            socket.on("connect", () => {
+                console.log("placeBet connect");
+
+                socket.emit("start", "nevertry");
+
+
+            });
+            */
+
+            /*
+            socket.on("connection", () => {
+                console.log("placeBet connection");
+
+                //socket.emit("start", "nevertry");
+
+
+            });
+            */
+
+            socket.emit("start", "nevertry");
+
+
+
+            /*
+            const formInputs = {
+                method: 'newGame',
+                API_KEY: process.env.API_KEY,
+                userToken: getCookie('user'),
+                img: user?.img,
+                username: user?.username,
+                betAmount: betAmount,
+                selectedSide: secilenAt
+            }
+
+
+            const res = await fetch('/api/game', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formInputs)
+            })
+            const data = await res.json()
+            if (data.message === 'Success') {
+                alert('You have successfully placed your bet');
+            } else {
+                alert('You have already placed a bet');
+            }
+            */
+
+
+        //} else {
+        //    alert('You need to login to place a bet')
+        //}
+    }
+
 
     return (
         <>
@@ -132,19 +225,22 @@ export default function BetInputs({ horse1, horse2}: any) {
                 
                 {/* //? Horse Select Buttons */}
                 <div className='flex flex-col md:flex-row items-center justify-center w-full md:justify-around gap-3'>
+
                     <button onClick={() => { setSecilenAt(Horses.Horse1) }}
                         className={`btn hidden md:block border text-center border-white text-white p-1 btn-circle bg=[#333541] btn-xl w-20 h-20 ${secilenAt === Horses.Horse1 ? "bg=[#333541]" : secilenAt === 0 ? "bg=[#333541]" : "btn-ghost"}`}
-                    >{Horses.Horse1} x{horse1} </button>
+                    >{Horses.Horse1} x {horse1} </button>
+
                     <button onClick={() => { setSecilenAt(Horses.Horse2) }}
                         className={`btn hidden md:block border text-center border-white text-white p-1 btn-circle bg=[#333541] btn-xl w-20 h-20 ${secilenAt === Horses.Horse2 ? "bg=[#333541]" : secilenAt === 0 ? "bg=[#333541]" : "btn-ghost"}`}
-                    >{Horses.Horse2} x{horse2}</button>
+                    >{Horses.Horse2} x {horse2}</button>
+
                     <div className="space-x-10 md:hidden">
                         <button onClick={() => { setSecilenAt(Horses.Horse1) }}
                             className={`btn border text-center border-white text-white p-1 btn-circle bg=[#333541] btn-xl w-20 h-20 ${secilenAt === Horses.Horse1 ? "bg=[#333541]" : secilenAt === 0 ? "bg=[#333541]" : "btn-ghost"}`}
-                        >{Horses.Horse1} x{horse1} </button>
+                        >{Horses.Horse1} x {horse1} </button>
                         <button onClick={() => { setSecilenAt(Horses.Horse2) }}
                             className={`btn border text-center border-white text-white p-1 btn-circle bg=[#333541] btn-xl w-20 h-20 ${secilenAt === Horses.Horse2 ? "bg=[#333541]" : secilenAt === 0 ? "bg=[#333541]" : "btn-ghost"}`}
-                        >{Horses.Horse2} x{horse2}</button>
+                        >{Horses.Horse2} x {horse2}</button>
                     </div>
 
 {/*
@@ -169,7 +265,7 @@ export default function BetInputs({ horse1, horse2}: any) {
 
 
                 </div>
-                <button onClick={placeBet} className='btn btn-success mt-5 w-full'>Place Bet </button>
+                <button onClick={placeBet} className='btn btn-success mt-5 w-full'>Place Bet</button>
             </div>
         </>
     )
