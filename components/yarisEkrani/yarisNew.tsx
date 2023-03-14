@@ -215,18 +215,18 @@ export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any
                     </div>
 
 
-                    <div className="w-full h-24 mt-4 "
+                    <div className="w-full h-20 mt-4 "
                         style={{
                                 backgroundImage: `url('/crowd2.png')`,
-                                backgroundSize: "250px",
+                                backgroundSize: "200px",
                                 backgroundRepeat: "repeat-x",
                             }}
                     ></div>
 
-                    <div className="w-full h-14 mt-4 "
+                    <div className="w-full h-6 mt-4 "
                         style={{
                                 backgroundImage: `url('/lbank-logo.png')`,
-                                backgroundSize: "250px",
+                                backgroundSize: "100px",
                                 backgroundRepeat: "repeat-x",
                             }}
                     ></div>
