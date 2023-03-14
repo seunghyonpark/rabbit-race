@@ -9,7 +9,7 @@ import { BsFillVolumeUpFill, BsFillVolumeMuteFill } from "react-icons/bs";
 
 
 let socket;
-export default function Race({ horse }) {
+export default function Race() {
 
     //console.log("yarisNew horse", horse);
 

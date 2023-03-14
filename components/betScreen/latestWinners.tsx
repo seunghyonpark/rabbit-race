@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react'
 import { IHistory } from '@/libs/interface/historyInterface';
 
 
-export default function latestWinners() {
+export default function LatestWinners() {
 
     const [sonKazananlar, setSonKazananlar] = useState<any>();
 

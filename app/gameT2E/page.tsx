@@ -112,7 +112,7 @@ export default function GameT2E() {
                     </div>
                 )
                 :
-                < Race horse="1"/>
+                < Race/>
             }
         </>
     )
