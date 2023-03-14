@@ -250,7 +250,7 @@ export default function Race() {
 */}
 
                     <div
-                        className="w-full h-14 -mt-8"
+                        className="w-full h-14 -mt-1"
                         style={{
                             backgroundImage: `url('/fence2.png')`,
                             backgroundSize: "120px",
