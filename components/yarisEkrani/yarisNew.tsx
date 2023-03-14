@@ -120,8 +120,8 @@ export default function Race() {
                     <div className={`absolute h-2/3 w-4  bg-[url(/finish.png)] top-1/3 duration-1000 transition-all ease-linear ${finishLine ? " right-0 " : "-right-[16px]"}`}></div>
 
 
-                    <div className="border
-                        flex md:h-44 w-full items-center justify-center relative
+                    <div className="
+                        flex md:h-40 w-full items-center justify-center relative
                     ">
 
                         <div className="
@@ -137,7 +137,7 @@ export default function Race() {
                         </div>
 
                         <div className="
-                            md:h-32 md:w-full xl:w-2/3 md:mt-5 rounded-xl gap-1 flex-col flex lg:px-5 bg-gradient-to-t from-black to-transparent
+                            md:h-40 md:w-full xl:w-2/3 md:mt-5 rounded-xl gap-1 flex-col flex lg:px-5 bg-gradient-to-t from-black to-transparent
                         ">
 
                             <div className="flex-row m-2 flex gap-3 border-red-100 ">
@@ -207,7 +207,7 @@ export default function Race() {
                             width: `${progress1}%`,
                         }}
                     >
-                        <Image src={"/rabbit1.gif"} width="150" height="80" alt={"at"} />
+                        <Image src={"/rabbit1.gif"} width="150" height="100" alt={"at"} />
                     </div>
 
                     <div
@@ -216,7 +216,7 @@ export default function Race() {
                             width: `${progress2}%`,
                         }}
                     >
-                        <Image src={"/rabbit2.gif"} width="150" height="80" alt={"at"} />
+                        <Image src={"/rabbit2.gif"} width="150" height="100" alt={"at"} />
                     </div>
 
 {/*
