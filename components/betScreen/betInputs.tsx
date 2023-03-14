@@ -16,7 +16,7 @@ export default function BetInputs({ horse1, horse2}: any) {
     const [secilenAt, setSecilenAt] = useState<any>(null)
     const [betAmount, setBetAmount] = useState<any>(0)
 
-    /*
+    
     const getUser = async () => {
         const inputs = {
             method: 'getOne',
@@ -37,7 +37,7 @@ export default function BetInputs({ horse1, horse2}: any) {
             getUser()
         }
     }, [])
-    */
+    
 
 
     /*
@@ -83,7 +83,7 @@ export default function BetInputs({ horse1, horse2}: any) {
 
 
     const placeBet = async () => {
-        //if (user) {
+        if (user) {
 
             /*
             if (betAmount > user?.deposit) return alert('You dont have enough money to bet this amount');
@@ -125,8 +125,14 @@ export default function BetInputs({ horse1, horse2}: any) {
             socket.emit("start", "nevertry");
 
 
+            console.log("user img", user?.img);
+            console.log("user username", user?.username);
+            console.log("betAmount", betAmount);
+            console.log("secilenAt", secilenAt);
 
-            /*
+            //user.username = "creath.park@gmail.com";
+
+            
             const formInputs = {
                 method: 'newGame',
                 API_KEY: process.env.API_KEY,
@@ -142,19 +148,19 @@ export default function BetInputs({ horse1, horse2}: any) {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formInputs)
-            })
-            const data = await res.json()
+            });
+            const data = await res.json();
             if (data.message === 'Success') {
-                alert('You have successfully placed your bet');
+                //alert('You have successfully placed your bet');
             } else {
-                alert('You have already placed a bet');
+                //alert('You have already placed a bet');
             }
-            */
+            
 
 
-        //} else {
-        //    alert('You need to login to place a bet')
-        //}
+        } else {
+            alert('You need to login to place a bet');
+        }
     }
 
 
@@ -228,11 +234,15 @@ export default function BetInputs({ horse1, horse2}: any) {
 
                     <button onClick={() => { setSecilenAt(Horses.Horse1) }}
                         className={`btn hidden md:block border text-center border-white text-white p-1 btn-circle bg=[#333541] btn-xl w-20 h-20 ${secilenAt === Horses.Horse1 ? "bg=[#333541]" : secilenAt === 0 ? "bg=[#333541]" : "btn-ghost"}`}
-                    >{Horses.Horse1} x {horse1} </button>
+                    >
+                        {Horses.Horse1}
+                    </button>
 
                     <button onClick={() => { setSecilenAt(Horses.Horse2) }}
                         className={`btn hidden md:block border text-center border-white text-white p-1 btn-circle bg=[#333541] btn-xl w-20 h-20 ${secilenAt === Horses.Horse2 ? "bg=[#333541]" : secilenAt === 0 ? "bg=[#333541]" : "btn-ghost"}`}
-                    >{Horses.Horse2} x {horse2}</button>
+                    >
+                        {Horses.Horse2}
+                    </button>
 
                     <div className="space-x-10 md:hidden">
                         <button onClick={() => { setSecilenAt(Horses.Horse1) }}
@@ -243,7 +253,7 @@ export default function BetInputs({ horse1, horse2}: any) {
                     */}
 
                             {Horses.Horse1}
-                            
+
                         </button>
                         <button onClick={() => { setSecilenAt(Horses.Horse2) }}
                             className={`btn border text-center border-white text-white p-1 btn-circle bg=[#333541] btn-xl w-20 h-20 ${secilenAt === Horses.Horse2 ? "bg=[#333541]" : secilenAt === 0 ? "bg=[#333541]" : "btn-ghost"}`}

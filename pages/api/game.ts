@@ -14,6 +14,10 @@ export default async function handler(
   const { method, API_KEY } = req.body;
 
   if (API_KEY !== process.env.API_KEY) {
+
+    console.log("API_KEY", API_KEY);
+    console.log("process.env.API_KEY", process.env.API_KEY);
+
     res.status(401).json({ message: "Unauthorized" });
     return;
   }
@@ -24,6 +28,13 @@ export default async function handler(
       res.status(400).json({ message: "Bad Request" });
       return;
     }
+
+    console.log("userToken", userToken);
+    console.log("username", username);
+    console.log("img", img);
+    console.log("betAmount", betAmount);
+    console.log("selectedSide", selectedSide);
+
     const addedGame = await newGame(
       userToken,
       username,
@@ -36,6 +47,7 @@ export default async function handler(
     }
     return res.status(400).json({ message: "Action Failed" });
   }
+
 
   if (method === "getGames") {
     const games = await getGames();
@@ -65,6 +77,7 @@ export default async function handler(
     }
     return res.status(400).json({ message: "Action Failed" });
   }
+
   if (method === "getGameByToken") {
     const { userToken } = req.body;
     if (!userToken) {
@@ -77,4 +90,5 @@ export default async function handler(
     }
     return res.status(400).json({ message: "Action Failed" });
   }
+
 }
