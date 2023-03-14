@@ -149,6 +149,7 @@ export default function BetInputs({ horse1, horse2 }: any) {
                         >{Horses.Horse2} x{horse2}</button>
                     </div>
 
+
                         {/*
                     <button onClick={() => { setSecilenAt(Horses.Horse3) }}
                         className={`btn hidden md:block border text-center border-white text-white p-1 btn-circle bg=[#333541] btn-xl w-20 h-20 ${secilenAt === Horses.Horse3 ? "bg=[#333541]" : secilenAt === 0 ? "bg=[#333541]" : "btn-ghost"}`}
