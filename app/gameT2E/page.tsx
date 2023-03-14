@@ -23,6 +23,9 @@ export default function GameT2E() {
     const [horse1Oran, setHorse1Oran] = useState<any>([]);
     const [horse2Oran, setHorse2Oran] = useState<any>([]);
 
+    const [basePrice, setBasePrice] = useState<any>(1682.32);
+
+
 
     useEffect(() => socketInitializer(), []);
 
@@ -72,9 +75,9 @@ export default function GameT2E() {
                         <LatestWinners />
                 
 
-                        {/*
+                        
                         <Son20Oyun />
-                */}
+                
 
                         <div className="bg-center bg-no-repeat bg-contain bg-[url(/back.svg)] h-full ">
                             <div className="flex flex-col items-center justify-center md:gap-14 md:py-10 bg-gradient-radial from-transparent via-[#0C0E1A] to-transparent bg-blend-difference h-full md:px-32">
@@ -84,8 +87,19 @@ export default function GameT2E() {
 
                                 <Image src="/realtime-ticking-stock-chart.gif" width={500} height={500} alt="gameT2E" />
 
+
+                                <div
+                                    className={`flex items-center justify-center  bg-black rounded-md h-[36px] text-center px-5 text-[#BA8E09] border border-[#BA8E09] mt-3`}
+                                >
+                                   <span>ETH/USDT:</span>&nbsp;&nbsp;&nbsp; <span className="text-[#ffffff]">{basePrice}</span>
+                                </div>
+
+
                             </div>
+
                         </div>
+
+
                         <BetInputs 
                             horse1={horse1Oran}
                             horse2={horse2Oran}
@@ -98,7 +112,7 @@ export default function GameT2E() {
                     </div>
                 )
                 :
-                < Race />
+                < Race horse="1"/>
             }
         </>
     )

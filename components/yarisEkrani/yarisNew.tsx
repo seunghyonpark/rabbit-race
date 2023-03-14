@@ -7,8 +7,11 @@ import { useEffect, useState } from "react";
 import { io } from "socket.io-client";
 import { BsFillVolumeUpFill, BsFillVolumeMuteFill } from "react-icons/bs";
 
+
 let socket;
-export default function Race() {
+export default function Race({ horse }) {
+
+    //console.log("yarisNew horse", horse);
 
     const [status, setStatus] = useState<any>();
 
@@ -24,6 +27,10 @@ export default function Race() {
     const [soundStatus, setSoundStatus] = useState(true);
     const [finishLine, setFinishLine] = useState(false);
 
+    const [basePrice, setBasePrice] = useState<any>(1682.32);
+
+    const [currentPrice, setCurrentPrice] = useState<any>(1682.32);
+
 
     setTimeout(() => {
         setHorses([
@@ -33,6 +40,10 @@ export default function Race() {
             //{ id: 4, progress: progress4, name: `${Horses.Horse4}` },
             //{ id: 5, progress: progress5, name: `${Horses.Horse5}` },
         ]);
+
+        const price = 1682.32 + progress1-progress2;
+        setCurrentPrice(price.toFixed(2));
+
     }, 40);
     //}, 1000);
 
@@ -51,7 +62,6 @@ export default function Race() {
 
         socket.on('status', (data: any) => {
 
-            
             setStatus(data)
         })
 
@@ -61,16 +71,16 @@ export default function Race() {
         })
 
         socket.on("horse1", (data: any) => {
-            console.log("YarisNew socketInitializer horse1", data);
+            //console.log("YarisNew socketInitializer horse1", data);
             setProgress1(data);
         });
 
         socket.on("horse2", (data: any) => {
-            console.log("YarisNew socketInitializer horse2", data);
+            //console.log("YarisNew socketInitializer horse2", data);
             setProgress2(data);
         });
 
-        
+        /*
         socket.on("horse3", (data: any) => {
             //console.log("YarisNew socketInitializer horse3", data);
             //////setProgress3(data);
@@ -85,6 +95,7 @@ export default function Race() {
             //console.log("YarisNew socketInitializer horse5", data);
             ///setProgress5(data);
         });
+        */
         
 
     };
@@ -195,8 +206,19 @@ export default function Race() {
                     ></div>
                     
 
+                    <div className="w-full h-10 mt-4 ">
+                        <div
+                            className={`flex items-center justify-center  bg-black h-[36px] text-center text-xl px-5 text-[#BA8E09] border border-[#BA8E09] `}
+                        >
+                            <span>Base ETH/USDT:</span>&nbsp;&nbsp;&nbsp; <span className="text-[#ffffff]">{basePrice}</span>
+                        </div>
 
-
+                        <div
+                            className={`flex items-center justify-center  bg-black h-[36px] text-center text-xl px-5 text-[#BA8E09] border border-[#BA8E09] `}
+                        >
+                            <span>Current ETH/USDT:</span>&nbsp;&nbsp;&nbsp; <span className="text-[#ffffff]">{currentPrice}</span>
+                        </div>
+                    </div>
 
 
                     <div className="w-full h-14 mt-8"

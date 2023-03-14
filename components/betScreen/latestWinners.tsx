@@ -6,7 +6,8 @@ import { IHistory } from '@/libs/interface/historyInterface';
 
 
 export default function latestWinners() {
-    const [sonKazananlar, setSonKazananlar] = useState<any>()
+
+    const [sonKazananlar, setSonKazananlar] = useState<any>();
 
     const getSonKazananlar = async () => {
         const response = await fetch('/api/history', {
@@ -17,26 +18,30 @@ export default function latestWinners() {
                 method: "getLast"
             })
         })
-        const data = await response.json()
-        setSonKazananlar(data.lastGame)
-    }
+        const data = await response.json();
 
+
+        console.log("latestWinners data", data);
+
+        setSonKazananlar(data.lastGame);
+    }
+    
     useEffect(() => {
-        getSonKazananlar()
-    }, [])
+        getSonKazananlar();
+    }, []);
 
 
     return (
         <div className='absolute text-white right-5 top-20  bg-black/20 rounded-lg backdrop-blur-md p-5 hidden lg:flex flex-col gap-3 items-center justify-center'>
-            <h4 className=' border-b mb-2'>Last Long/Short Results</h4>
+            <h4 className=' border-b mb-2'>Long/Short Rabbit</h4>
 
 
             {
                 sonKazananlar && sonKazananlar.placements.map((item: any,) => {
                     return (
                         <div key={item.line} className='flex items-center gap-2'>
-                            <p className='  text-center text-green-500'> {item.horse} </p>
-                            <Image src={`/at${item.line}.png`} width={100} height={100} alt='alt1' />
+                            <p className='  text-center text-green-500'> {item.horse} Rabbit</p>
+                            <Image src={`/rabbit${item.line}.gif`} width={100} height={100} alt='alt1' />
                         </div>
                     )
                 })

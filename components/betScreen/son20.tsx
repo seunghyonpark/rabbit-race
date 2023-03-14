@@ -3,6 +3,7 @@ import React, { useEffect } from 'react'
 
 
 export default function Son20Oyun() {
+
     const [son20Oyun, setSon20Oyun] = React.useState<any>()
 
     const getLast20 = async () => {
@@ -25,17 +26,23 @@ export default function Son20Oyun() {
 
     return (
         <div className='absolute text-white left-5 top-10  bg-black/20 rounded-lg backdrop-blur-md p-3 hidden  lg:flex flex-col gap-3 items-center justify-center'>
-            <h6 className=' border-b mb-1'>Last Long/Short Results -</h6>
+            <h6 className=' border-b mb-1'>Last Long/Short Results</h6>
             <div className='flex flex-col gap-2 text-xs text-green-400'>
-
 
 
                 {
                     son20Oyun && son20Oyun.map((item: any) => {
                         return (
+ 
+
+                            
+                           
                             <div key={item._id}>
                                 {item.winnerHorse}
                             </div>
+                        
+
+
                         )
                     })}
 

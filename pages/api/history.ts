@@ -20,11 +20,13 @@ export default async function handler(
       return res.status(400).json({ status: false, message: "Error" });
     return res.status(200).json({ status: true, createNew });
   }
+
   if (method === "getAll") {
     const all = await getHistory();
     if (!all) return res.status(400).json({ status: false, message: "Error" });
     return res.status(200).json({ status: true, all });
   }
+  
   if (method === "getLast") {
     const lastGame = await getLastHistory();
     if (!lastGame) {

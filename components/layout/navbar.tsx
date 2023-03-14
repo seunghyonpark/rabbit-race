@@ -77,31 +77,34 @@ export default function Navbar() {
                         </div>
                     </div>
                     <div className="flex items-center justify-center w-full h-[50px] bg-[#24252F] px-3 ">
-                        <div className="flex items-center w-full gap-7 text-[#9293A6] fill-[#9293A6] uppercase ">
+                        
+                        <div className="flex items-center w-full gap-7 text-[#9293A6] fill-[#9293A6] uppercase">
                             {user && <Link
                                 href={"/gameT2E/deposit"}
-                                className={`text-[13px] text-[#dca709]`}
+                                className={`text-[13px] text-[#dca709] hidden`}
                             >
                                 Deposit / Withdraw
                             </Link>}
                         </div>
+
                         <div className="flex items-center w-full justify-end gap-4">
-                            {user && <div
+                            {
+                            user && <div
                                 className={`flex items-center justify-center  bg-black rounded-md h-[36px] text-center px-5 text-[#BA8E09] border border-[#BA8E09] `}
                             >
                                 {user?.deposit} <span className="text-[#9293A6]">{" "}{Coin.symbol}</span>
                             </div>
                             }
-                            {
-                                
+
+                            {    
                                 !user && <Link
                                     href={"/gameT2E/login"}
                                     className={`text-[13px] text-[#9293A6]  border-t-2 border-green-500 p-1`}
                                 >
                                     Sign In
                                 </Link>
-                                
                             }
+                            
                             {
                                 
                                 !user && <Link
