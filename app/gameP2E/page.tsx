@@ -1,12 +1,13 @@
 'use client';
-import BetInputs from '@/components/betEkrani/betInputs'
-import BetTables from '@/components/betEkrani/betTables'
-import Son20Oyun from '@/components/betEkrani/son20';
-import SonKazananlar from '@/components/betEkrani/sonKazananlar';
-import YuruyenAt from '@/components/betEkrani/yuruyenAt'
-import Race from '@/components/yarisEkrani/yaris'
+import BetInputs from '@/components/betHorse/betInputs';
+import BetTables from '@/components/betHorse/betTables';
+
+import Son20Oyun from '@/components/betHorse/son20';
+import SonKazananlar from '@/components/betHorse/sonKazananlar';
+import YuruyenAt from '@/components/betHorse/yuruyenAt';
+import Race from '@/components/yarisEkrani/horse';
 import SocketEnum from '@/libs/enums/socket';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 
 
 //@ts-ignore
@@ -26,8 +27,14 @@ export default function GameP2E() {
 
     useEffect(() => socketInitializer(), []);
 
+
+
+
     const socketInitializer = () => {
-        const socket = io(`${SocketEnum.id}`, {
+
+        console.log("socketInitializer gameServer",SocketEnum.gameServer);
+
+        const socket = io(`${SocketEnum.gameServer}`, {
             transports: ["websocket"],
         });
         socket.on("connect", () => {
@@ -40,11 +47,6 @@ export default function GameP2E() {
         socket.on('horse4Orana', (data: any) => { setHorse4Oran(data) })
         socket.on('horse5Orana', (data: any) => { setHorse5Oran(data) })
     }
-
-
-    // for test
-    //setStatus(true);
-
     
     return (
         <>
