@@ -29,8 +29,21 @@ export default function MobilNavbar() {
         }
     }
     useEffect(() => {
-        getUser()
-    })
+        getUser();
+    });
+
+
+    const setAccountInfo = async () => {
+		console.log("setAccountInfo");
+
+
+        const { klaytn } = window;
+
+    }
+
+
+
+
 
 
     return (
@@ -73,6 +86,11 @@ aaa
                         className={` ml-2 text-[11px] text-orange-500 `}
                         onClick={() => {
                             //deleteCookie('user'), router.push('/')
+
+
+
+
+
 
 
                         }}
