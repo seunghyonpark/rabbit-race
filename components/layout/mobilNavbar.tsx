@@ -88,7 +88,7 @@ aaa
                         />
                         
                         <button
-                        className={` ml-2 text-[11px] text-orange-500 `}
+                        className={` ml-2 text-[8px] text-orange-500 `}
                         onClick={() => {
                             //deleteCookie('user'), router.push('/')
 
@@ -110,7 +110,7 @@ aaa
 
                     {
                         user && <div
-                            className={`flex items-center justify-center  bg-black rounded-md h-[36px] text-center px-5 text-[#BA8E09] border border-[#BA8E09] `}
+                            className={`flex items-center justify-center  bg-black rounded-md h-[32px] text-[13px] text-center px-5 text-[#BA8E09] border border-[#BA8E09] `}
                         >
                             {`${user.deposit.toString().slice(0, 3)}...`}&nbsp;&nbsp;<span className="text-[#9293A6]">{" "}{Coin.symbol}</span>
                         </div>
@@ -121,7 +121,7 @@ aaa
                         
                         !user && <Link
                             href={"/gameT2E/login"}
-                            className={`text-[13px] text-[#9293A6]  border-t-2 border-green-500 p-1`}
+                            className={`text-[10px] text-[#9293A6]  border-t-2 border-green-500 p-1`}
                         >
                             Sign In
                         </Link>
@@ -142,7 +142,7 @@ aaa
                         user && <div
                             //href={"/gameT2E/profile"}
                             
-                            className={`flex items-center shadow-sm  justify-center rounded-md p-1 gap-2  h-[36px] px-2 text-[#D4D1CB] text-[13px]`}
+                            className={`flex items-center shadow-sm  justify-center rounded-md p-1 gap-2  h-[36px] px-2 text-[#D4D1CB] text-[10px]`}
                         >
                             <div className="flex gap-1">
 
@@ -162,7 +162,7 @@ aaa
                     } 
                     {
                         user && <button
-                            className={`text-[13px] text-red-500`}
+                            className={`text-[10px] text-red-500`}
                             onClick={() => {
                                 deleteCookie('user'),
                                     router.push('/')
