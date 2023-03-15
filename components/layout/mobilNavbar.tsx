@@ -35,30 +35,65 @@ export default function MobilNavbar() {
 
     return (
         <>
-            <div className="lg:hidden w-full flex items-center gap-2 px-5 h-20 bg-[#24252F]">
+            <div className="lg:hidden w-full flex items-center gap-2 px-2 h-20 bg-[#24252F]">
+
                 <Link href={"/"}>
-                    <Image src={"/logo.png"} width={100} height={100} alt="logo" />
+                    <Image src={"/logo.png"} width={80} height={100} alt="logo" />
                 </Link>
 
                 
                 <div className='w-full p-2 flex items-center justify-end gap-3'>
 
+aaa
+
+                    {/*
+                        user && <Link
+                            href={"/gameT2E/deposit"}
+                            className={`text-[13px] text-[#dca709] `}
+                        >
+                            Connect Wallet
+                        </Link>
+    */}
 
 
-                    {user && <Link
-                        href={"/gameT2E/deposit"}
-                        className={`text-[13px] text-[#dca709] hidden`}
-                    >
-                        Deposit / Withdraw
-                    </Link>}
 
 
-                    {user && <div
-                        className={`flex items-center justify-center  bg-black rounded-md h-[36px] text-center px-5 text-[#BA8E09] border border-[#BA8E09] `}
-                    >
-                        {`${user.deposit.toString().slice(0, 3)}...`}&nbsp;&nbsp;<span className="text-[#9293A6]">{" "}{Coin.symbol}</span>
-                    </div>
+                    {
+                        user && 
+                        <div className="flex flex-row">
+                        <Image
+                            src={'/metamask.png'}
+                            width={20}
+                            height={20}
+                            alt="pp"
+                            className="rounded-full"
+                        />
+                        
+                        <button
+                        className={` ml-2 text-[11px] text-orange-500 `}
+                        onClick={() => {
+                            //deleteCookie('user'), router.push('/')
+
+
+                        }}
+                        >
+                            Connect Wallet
+                        </button>
+                        </div>
                     }
+
+
+
+
+                    {
+                        user && <div
+                            className={`flex items-center justify-center  bg-black rounded-md h-[36px] text-center px-5 text-[#BA8E09] border border-[#BA8E09] `}
+                        >
+                            {`${user.deposit.toString().slice(0, 3)}...`}&nbsp;&nbsp;<span className="text-[#9293A6]">{" "}{Coin.symbol}</span>
+                        </div>
+                    }
+
+
                     {
                         
                         !user && <Link
@@ -69,6 +104,7 @@ export default function MobilNavbar() {
                         </Link>
                         
                     }
+
                     {/*
                         
                         !user && <Link
@@ -79,12 +115,15 @@ export default function MobilNavbar() {
                         </Link>
                         
                 */}
-                    {/* {
-                        user && <Link
-                            href={"/hipodrom/profile"}
+                     {
+                        user && <div
+                            //href={"/gameT2E/profile"}
+                            
                             className={`flex items-center shadow-sm  justify-center rounded-md p-1 gap-2  h-[36px] px-2 text-[#D4D1CB] text-[13px]`}
                         >
                             <div className="flex gap-1">
+
+                            {/*
                                 {user && <Image
                                     src={user.img}
                                     width={20}
@@ -92,10 +131,12 @@ export default function MobilNavbar() {
                                     alt="pp"
                                     className="rounded-full"
                                 />}
+                                */}
+
                                 {user?.username}
                             </div>
-                        </Link>
-                    } */}
+                        </div>
+                    } 
                     {
                         user && <button
                             className={`text-[13px] text-red-500`}

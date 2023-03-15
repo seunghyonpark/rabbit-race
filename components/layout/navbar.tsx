@@ -79,20 +79,59 @@ export default function Navbar() {
                     <div className="flex items-center justify-center w-full h-[50px] bg-[#24252F] px-3 ">
                         
                         <div className="flex items-center w-full gap-7 text-[#9293A6] fill-[#9293A6] uppercase">
-                            {user && <Link
+
+
+{/*
+                            {
+                            user && <Link
                                 href={"/gameT2E/deposit"}
                                 className={`text-[13px] text-[#dca709] hidden`}
                             >
                                 Deposit / Withdraw
-                            </Link>}
+                            </Link>
+                            }
+                        */}
+
+                    {
+                        user && 
+                        <div className="flex flex-row">
+                        <Image
+                            src={'/metamask.png'}
+                            width={20}
+                            height={20}
+                            alt="pp"
+                            className="rounded-full"
+                        />
+                        
+                        <button
+                        className={` ml-2 text-[11px] text-orange-500 `}
+                        onClick={() => {
+                            //deleteCookie('user'), router.push('/')
+
+
+                        }}
+                        >
+                            Connect Wallet
+                        </button>
                         </div>
+                    }
+
+
+                        </div>
+
+
 
                         <div className="flex items-center w-full justify-end gap-4">
                             {
                             user && <div
                                 className={`flex items-center justify-center  bg-black rounded-md h-[36px] text-center px-5 text-[#BA8E09] border border-[#BA8E09] `}
                             >
-                                {user?.deposit} <span className="text-[#9293A6]">{" "}{Coin.symbol}</span>
+                                {user?.deposit}
+                                
+                                
+                                <span className="text-[#9293A6]">{" "}{Coin.symbol}</span>
+                                
+
                             </div>
                             }
 
@@ -121,6 +160,8 @@ export default function Navbar() {
                                     className={`flex items-center shadow-sm  justify-center rounded-md p-1 gap-2  h-[36px] px-2 text-[#D4D1CB] text-[13px]`}
                                 >
                                     <div className="flex gap-1">
+
+                                    {/*
                                         {user && <Image
                                             src={user.img}
                                             width={20}
@@ -128,10 +169,14 @@ export default function Navbar() {
                                             alt="pp"
                                             className="rounded-full"
                                         />}
+                                        */}
+
                                         {user?.username}
                                     </div>
                                 </div>
-                            }
+                                        }
+
+
                             {
                                 user && <button
                                     className={`text-[13px] text-red-500`}
