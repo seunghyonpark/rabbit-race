@@ -6,9 +6,18 @@ import { hasCookie, getCookie, deleteCookie } from 'cookies-next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
+
+import Wallet from "../../components/Wallet";
+import { useListen } from "../../hooks/useListen";
+import { useMetamask } from "../../hooks/useMetamask";
+
 
 export default function MobilNavbar() {
+    //const { dispatch } = useMetamask();
+    //const listen = useListen();
+
+
     const [user, setUser] = useState<IUser>()
     const router = useRouter();
 
@@ -28,18 +37,14 @@ export default function MobilNavbar() {
             setUser(user.user.user)
         }
     }
+
+
     useEffect(() => {
         getUser();
     });
 
 
-    const setAccountInfo = async () => {
-		console.log("setAccountInfo");
 
-
-        const { klaytn } = window;
-
-    }
 
 
 

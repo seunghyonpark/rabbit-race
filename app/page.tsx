@@ -8,11 +8,18 @@ import Image from 'next/image';
 import Footer from "@/components/layout/footer";
 
 
+import { MetamaskProvider } from "../hooks/useMetamask";
+
+
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
 
   return (
+
+    <MetamaskProvider>
+
+
 
     <main className={inter.className}>
 
@@ -124,5 +131,11 @@ export default function Home() {
 
 
     </main>
+
+
+
+    </MetamaskProvider>
+
+
   )
 }
