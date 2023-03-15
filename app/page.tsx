@@ -17,10 +17,6 @@ export default function Home() {
 
   return (
 
-    <MetamaskProvider>
-
-
-
     <main className={inter.className}>
 
       <div className="bg-[#0C0E1A] text-lg">
@@ -131,10 +127,6 @@ export default function Home() {
 
 
     </main>
-
-
-
-    </MetamaskProvider>
 
 
   )
