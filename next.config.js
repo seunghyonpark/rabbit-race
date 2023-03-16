@@ -6,6 +6,9 @@ const nextConfig = {
   env: {
     API_KEY: process.env.API_KEY,
   },
+
+  reactStrictMode: true,
+
   images: {
     domains: [
       "placeimg.com",
@@ -17,6 +20,7 @@ const nextConfig = {
       "www.freepnglogos.com",
       "www.linkpicture.com",
       "roulette.cryptogameplace.com",
+      "gateway.ipfscdn.io",
     ],
   },
 

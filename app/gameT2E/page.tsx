@@ -7,12 +7,27 @@ import YuruyenAt from '@/components/betEkrani/yuruyenAt'
 import Race from '@/components/yarisEkrani/yarisNew';
 import SocketEnum from '@/libs/enums/socket';
 import React, { useEffect, useState } from 'react';
-
 import Image from 'next/image';
-
 
 //@ts-ignore
 import { io } from "socket.io-client";
+
+
+import {
+    useActiveClaimConditionForWallet,
+    useAddress,
+    useClaimConditions,
+    useClaimedNFTSupply,
+    useClaimerProofs,
+    useClaimIneligibilityReasons,
+    useContract,
+    useContractMetadata,
+    useUnclaimedNFTSupply,
+    Web3Button,
+  } from "@thirdweb-dev/react";
+  import { BigNumber, utils } from "ethers";
+
+
 
 // Bebas Neue
 let socket;

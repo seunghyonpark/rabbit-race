@@ -6,14 +6,15 @@ import { ChainId, ThirdwebProvider } from "@thirdweb-dev/react";
 import { MetamaskProvider } from "../hooks/useMetamask";
 
 
+
 /*
 import RootProvider from "./providers";
 */
 
 
-//const activeChainId = ChainId.BinanceSmartChainTestnet;
+const activeChainId = ChainId.BinanceSmartChainTestnet;
 
-const activeChainId = 4002;
+//////const activeChainId = 4002;
 
 const BebasNeue = Bebas_Neue({
   subsets: ['latin'],
@@ -36,11 +37,17 @@ export default function RootLayout({
           <RootProvider>
   */}
 
+{/*
 <MetamaskProvider>
+*/}
 
+            <ThirdwebProvider  activeChain={activeChainId}>
             {children}
+            </ThirdwebProvider>
 
+{/*            
 </MetamaskProvider>
+*/}
 
 {/*
           </RootProvider>

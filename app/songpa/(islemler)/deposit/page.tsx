@@ -237,8 +237,6 @@ export default function Deposit() {
     }
   }, [Abifile, contractAddress, wallet]);
 
-
-
   const paraYatir = async () => {
     if (depositCount == 0) {
       setErrMsgSnackbar("Please enter a value greater than 0");
@@ -296,8 +294,6 @@ export default function Deposit() {
       });
 
   };
-
-  
 
   const paraCek = async () => {
     let miktar = (document.getElementById("withdraw") as HTMLInputElement)
