@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useEffect, type PropsWithChildren } from "react";
 
 type ConnectAction = { type: "connect"; wallet: string };
@@ -30,6 +32,7 @@ const initialState: State = {
   isMetamaskInstalled: false,
   status: "loading",
 } as const;
+
 
 function metamaskReducer(state: State, action: Action): State {
   switch (action.type) {

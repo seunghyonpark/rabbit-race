@@ -3,6 +3,9 @@ import { Bebas_Neue } from '@next/font/google';
 
 import { ChainId, ThirdwebProvider } from "@thirdweb-dev/react";
 
+import { MetamaskProvider } from "../hooks/useMetamask";
+
+
 /*
 import RootProvider from "./providers";
 */
@@ -33,7 +36,11 @@ export default function RootLayout({
           <RootProvider>
   */}
 
+<MetamaskProvider>
+
             {children}
+
+</MetamaskProvider>
 
 {/*
           </RootProvider>

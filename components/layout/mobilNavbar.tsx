@@ -14,8 +14,9 @@ import { useMetamask } from "../../hooks/useMetamask";
 
 
 export default function MobilNavbar() {
-    //const { dispatch } = useMetamask();
-    //const listen = useListen();
+
+    const { dispatch } = useMetamask();
+    const listen = useListen();
 
 
     const [user, setUser] = useState<IUser>()
@@ -47,13 +48,11 @@ export default function MobilNavbar() {
 
 
 
-
-
-
-
     return (
         <>
             <div className="lg:hidden w-full flex items-center gap-2 px-2 h-20 bg-[#24252F]">
+
+
 
                 <Link href={"/"}>
                     <Image src={"/logo.png"} width={80} height={100} alt="logo" />

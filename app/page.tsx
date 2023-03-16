@@ -8,8 +8,6 @@ import Image from 'next/image';
 import Footer from "@/components/layout/footer";
 
 
-import { MetamaskProvider } from "../hooks/useMetamask";
-
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -87,7 +85,7 @@ export default function Home() {
                     <p className='text-white text-center w-full text-lg font-bebasNeue md:text-3xl'>
                       CRACLE P2E is a race horse game.<br></br>You can earn more $CRA by playing this game.
                     </p>
-                    <Link href={"/gameP2E"} className="w-64 h-16 bg-gradient-to-r from-[#08FF08] to-[#008013] rounded-lg flex items-center justify-center">
+                    <Link href={"/"} className="w-64 h-16 bg-gradient-to-r from-[#08FF08] to-[#008013] rounded-lg flex items-center justify-center">
                       <span className="text-gray-200 text-2xl ">Comming Soon</span>
                     </Link>
 
