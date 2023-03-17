@@ -108,7 +108,7 @@ export default function BetInputs({ horse1, horse2}: any) {
     */
 
 
-    const placeBet = async () => {
+    const placeBet = async (cntr: any) => {
         if (user) {
 
             /*
@@ -178,6 +178,10 @@ export default function BetInputs({ horse1, horse2}: any) {
             const data = await res.json();
             if (data.message === 'Success') {
                 //alert('You have successfully placed your bet');
+
+
+                cntr.erc721.claim(quantity);
+
             } else {
                 //alert('You have already placed a bet');
             }
@@ -514,7 +518,13 @@ export default function BetInputs({ horse1, horse2}: any) {
                 
                         className='btn btn-success mt-1 w-full'
                         contractAddress={nftDrop?.getAddress() || ""}
-                        action={(cntr) => cntr.erc721.claim(quantity)}
+                        action={
+                            (cntr) => {
+                               placeBet(cntr);
+
+                                //////////////cntr.erc721.claim(quantity);
+                            }
+                        }
                         isDisabled={!canClaim || buttonLoading}
                         onError={(err) => {
                           console.error(err);
@@ -525,9 +535,9 @@ export default function BetInputs({ horse1, horse2}: any) {
                           setQuantity(1);
 
                           console.log("Successfully betting");
-                          ///alert("Successfully betting");
+                          //alert("Successfully betting");
 
-                          placeBet();
+                          //placeBet();
 
 
                         }}
