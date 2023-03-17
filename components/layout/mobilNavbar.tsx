@@ -8,9 +8,9 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 
-import Wallet from "../../components/Wallet";
-import { useListen } from "../../hooks/useListen";
-import { useMetamask } from "../../hooks/useMetamask";
+////import Wallet from "../../components/Wallet";
+////import { useListen } from "../../hooks/useListen";
+////import { useMetamask } from "../../hooks/useMetamask";
 
 
 
