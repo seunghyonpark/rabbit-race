@@ -15,12 +15,17 @@ export function parseIneligibility(
     reason === ClaimEligibility.NoActiveClaimPhase ||
     reason === ClaimEligibility.NoClaimConditionSet
   ) {
-    return "This drop is not ready to be minted.";
+
+    return "This game is not ready to be betted.";
+
   } else if (reason === ClaimEligibility.NotEnoughTokens) {
-    return "You don't have enough currency to mint.";
+
+    return "You don't have enough currency to bet.";
+
   } else if (reason === ClaimEligibility.AddressNotAllowed) {
+
     if (quantity > 1) {
-      return `You are not eligible to mint ${quantity} tokens.`;
+      return `You are not eligible to bet ${quantity} tokens.`;
     }
 
     return "You are not eligible to mint at this time.";
