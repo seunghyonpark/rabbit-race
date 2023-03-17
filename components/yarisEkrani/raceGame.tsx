@@ -32,7 +32,7 @@ export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any
     const [betAmountLong, setBetAmountLong] = useState<any>("");
     const [betAmountShort, setBetAmountShort] = useState<any>("");
 
-    const [timeRemaining, setTimeRemaining] = useState<any>(30.00);
+    const [timeRemaining, setTimeRemaining] = useState<any>(90.00);
 
     /*
     if (betLongShort === "Long") {
@@ -58,18 +58,6 @@ export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any
         }
         
     }, []);
-
-
-
-    /*
-    setTimeout(() => {
-
-        setTimeRemaining(timeRemaining - 0.01);
-
-    }, 10);
-    
-    */
-
 
 
     setTimeout(() => {
@@ -158,6 +146,20 @@ export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any
     setTimeout(() => {
         setFence(fence - 1);
     }, 60);
+
+
+
+    
+    setTimeout(() => {
+
+        if (timeRemaining > 0) {
+
+            setTimeRemaining(timeRemaining - 1);
+
+        }
+
+    }, 1000);
+    
 
 
     return (
@@ -251,18 +253,16 @@ export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any
                     ></div>
                     
                     
-                    {/*
-                    <div className="w-full h-12 mt-4 ">
+                    
+
+
+                    <div className="w-full h-16 mt-4 ">
+
                         <div
                             className={`flex items-center justify-center  bg-black h-[36px] text-center text-xl px-5 text-[#BA8E09] border border-[#BA8E09] `}
                         >
-                            <span>TIME REMAINING(Seconds):</span>&nbsp;&nbsp;&nbsp; <span className="text-[#ffffff]">{timeRemaining.toFixed(2)}</span>&nbsp;&nbsp;<span>Seconds</span>
+                            <span>TIME REMAINING(Seconds):</span>&nbsp;&nbsp;&nbsp; <span className="text-[#ffffff]">{timeRemaining}</span>&nbsp;&nbsp;<span>Seconds</span>
                         </div>
-                    </div>
-                        */}
-                        
-
-                    <div className="w-full h-16 mt-4 ">
 
                         <div
                             className={`flex items-center justify-center  bg-black h-[36px] text-center text-xl px-5 text-[#BA8E09] border border-[#BA8E09] `}
