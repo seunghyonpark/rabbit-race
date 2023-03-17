@@ -39,17 +39,16 @@ export default function RootLayout({
           <RootProvider>
   */}
 
-{/*
+
 <MetamaskProvider>
-*/}
 
             <ThirdwebProvider  activeChain={activeChainId}>
             {children}
             </ThirdwebProvider>
 
-{/*            
+          
 </MetamaskProvider>
-*/}
+
 
 {/*
           </RootProvider>
