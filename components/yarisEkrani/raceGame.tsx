@@ -11,7 +11,7 @@ import { BsFillVolumeUpFill, BsFillVolumeMuteFill } from "react-icons/bs";
 let socket;
 export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any, betLongShort: any, betAmount: any}) {
 
-    //console.log("yarisNew horse", horse);
+    //console.log("Race horse", horse);
 
     const [status, setStatus] = useState<any>();
 
@@ -31,6 +31,8 @@ export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any
 
     const [betAmountLong, setBetAmountLong] = useState<any>("");
     const [betAmountShort, setBetAmountShort] = useState<any>("");
+
+    const [timeRemaining, setTimeRemaining] = useState<any>(30.00);
 
     /*
     if (betLongShort === "Long") {
@@ -55,7 +57,19 @@ export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any
             setBetAmountLong("");
         }
         
-    }, [])
+    }, []);
+
+
+
+    /*
+    setTimeout(() => {
+
+        setTimeRemaining(timeRemaining - 0.01);
+
+    }, 10);
+    
+    */
+
 
 
     setTimeout(() => {
@@ -68,7 +82,7 @@ export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any
         ]);
 
         const price = 1682.32 + progress1-progress2;
-        setCurrentPrice(price.toFixed(2));
+        setCurrentPrice(price);
 
     }, 40);
     //}, 1000);
@@ -83,7 +97,7 @@ export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any
 
         socket.on("connect", () => {
 
-            console.log("YarisNew socketInitializer connect");
+            console.log("Race socketInitializer connect");
         });
 
         socket.on('status', (data: any) => {
@@ -97,28 +111,28 @@ export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any
         })
 
         socket.on("horse1", (data: any) => {
-            //console.log("YarisNew socketInitializer horse1", data);
+            //console.log("Race socketInitializer horse1", data);
             setProgress1(data);
         });
 
         socket.on("horse2", (data: any) => {
-            //console.log("YarisNew socketInitializer horse2", data);
+            //console.log("Race socketInitializer horse2", data);
             setProgress2(data);
         });
 
         /*
         socket.on("horse3", (data: any) => {
-            //console.log("YarisNew socketInitializer horse3", data);
+            //console.log("Race socketInitializer horse3", data);
             //////setProgress3(data);
         });
 
         socket.on("horse4", (data: any) => {
-            //console.log("YarisNew socketInitializer horse4", data);
+            //console.log("Race socketInitializer horse4", data);
             ///setProgress4(data);
         });
 
         socket.on("horse5", (data: any) => {
-            //console.log("YarisNew socketInitializer horse5", data);
+            //console.log("Race socketInitializer horse5", data);
             ///setProgress5(data);
         });
         */
@@ -128,11 +142,16 @@ export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any
 
 
     useEffect(() => {
+
         if (status) {
             setTimeout(() => {
-                setFinishLine(true)
-            }, 28 * 1000)
+                
+                setFinishLine(true);
+
+            ////////////////}, 28 * 1000)
+            }, 88 * 1000)
         }
+
     }, [status])
 
 
@@ -231,19 +250,30 @@ export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any
                             }}
                     ></div>
                     
-
-                    <div className="w-full h-10 mt-4 ">
+                    
+                    {/*
+                    <div className="w-full h-12 mt-4 ">
                         <div
                             className={`flex items-center justify-center  bg-black h-[36px] text-center text-xl px-5 text-[#BA8E09] border border-[#BA8E09] `}
                         >
-                            <span>ENTRY PRICE(ETH):</span>&nbsp;&nbsp;&nbsp; <span className="text-[#ffffff]">{betPrice}</span>&nbsp;&nbsp;<span>USDT</span>
+                            <span>TIME REMAINING(Seconds):</span>&nbsp;&nbsp;&nbsp; <span className="text-[#ffffff]">{timeRemaining.toFixed(2)}</span>&nbsp;&nbsp;<span>Seconds</span>
+                        </div>
+                    </div>
+                        */}
+                        
+
+                    <div className="w-full h-16 mt-4 ">
+
+                        <div
+                            className={`flex items-center justify-center  bg-black h-[36px] text-center text-xl px-5 text-[#BA8E09] border border-[#BA8E09] `}
+                        >
+                            <span>ENTRY PRICE(ETH):</span>&nbsp;&nbsp;&nbsp; <span className="text-[#ffffff]">{betPrice.toFixed(2)}</span>&nbsp;&nbsp;<span>USDT</span>
                         </div>
 
                         <div
                             className={`flex items-center justify-center  bg-black h-[36px] text-center text-xl px-5 text-[#BA8E09] border border-[#BA8E09] `}
                         >
-
-                            <span>CURRENT PRICE(ETH):</span>&nbsp;&nbsp;&nbsp; <span className="text-[#ffffff]">{currentPrice}</span>&nbsp;&nbsp;<span>USDT</span>
+                            <span>CURRENT PRICE(ETH):</span>&nbsp;&nbsp;&nbsp; <span className="text-[#ffffff]">{currentPrice.toFixed(2)}</span>&nbsp;&nbsp;<span>USDT</span>
                         </div>
                     </div>
 

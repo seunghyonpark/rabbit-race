@@ -28,6 +28,15 @@ import {
   } from "@thirdweb-dev/react";
   import { BigNumber, utils } from "ethers";
   import { parseIneligibility } from "../../utils/parseIneligibility";
+
+  import { ThirdwebSDK } from "@thirdweb-dev/sdk";
+  import { BinanceTestnet } from "@thirdweb-dev/chains";
+
+  const sdk = new ThirdwebSDK(
+    BinanceTestnet,
+  );
+
+
   
   
   // Put Your NFT Drop Contract address from the dashboard here
@@ -41,6 +50,8 @@ export default function BetInputs({ horse1, horse2}: any) {
     const [user, setUser] = useState<IUser>()
     const [secilenAt, setSecilenAt] = useState<any>(null)
     const [betAmount, setBetAmount] = useState<any>(0)
+
+
 
     
     const getUser = async () => {
@@ -58,10 +69,14 @@ export default function BetInputs({ horse1, horse2}: any) {
         setUser(user.user.user)
     }
 
+
     useEffect(() => {
+
         if (hasCookie('user')) {
             getUser()
         }
+
+      
     }, [])
     
 
@@ -198,6 +213,25 @@ export default function BetInputs({ horse1, horse2}: any) {
 
 
 
+    const [erc20Balance, setErc20Balance] = useState<any>(0)
+
+    const getErc20Balance = async () => {
+
+      const erc20Balance = await sdk.wallet.balance("0x481b39CA8d9Ea8443c32bF2C252232c18D3DDf50");
+      setErc20Balance(erc20Balance);
+
+      console.log("erc20Balance", erc20Balance);
+      alert("erc20Balance="+erc20Balance);
+
+    }
+
+    useEffect(() => {
+
+      if (hasCookie('user')) {
+        ///////getErc20Balance();
+      }
+    
+    }, [])
 
 
     // code for web3
@@ -390,7 +424,7 @@ export default function BetInputs({ horse1, horse2}: any) {
       claimIneligibilityReasons.data,
       buttonLoading,
       activeClaimCondition.data?.currencyMetadata.value,
-      priceToMint,
+      //priceToMint,
       quantity,
     ]);
   
@@ -520,9 +554,10 @@ export default function BetInputs({ horse1, horse2}: any) {
                         contractAddress={nftDrop?.getAddress() || ""}
                         action={
                             (cntr) => {
-                               placeBet(cntr);
+                               
+                              placeBet(cntr);
 
-                                //////////////cntr.erc721.claim(quantity);
+                                /////cntr.erc721.claim(quantity);
                             }
                         }
                         isDisabled={!canClaim || buttonLoading}

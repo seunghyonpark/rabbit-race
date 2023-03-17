@@ -4,7 +4,9 @@ import BetTables from '@/components/betScreen/betTables'
 import Son20Oyun from '@/components/betScreen/son20';
 import LatestWinners from '@/components/betScreen/latestWinners';
 import YuruyenAt from '@/components/betEkrani/yuruyenAt'
-import Race from '@/components/yarisEkrani/yarisNew';
+
+import Race from '@/components/yarisEkrani/RaceGame';
+
 import SocketEnum from '@/libs/enums/socket';
 import React, { useEffect, useState, useMemo } from 'react';
 import Image from 'next/image';
