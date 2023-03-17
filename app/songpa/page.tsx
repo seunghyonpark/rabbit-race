@@ -4,13 +4,14 @@ import type { NextPage } from "next";
 import { useEffect } from "react";
 import Wallet from "../../components/Wallet";
 import { useListen } from "../../hooks/useListen";
-import { useMetamask } from "../../hooks/useMetamask";
+///import { useMetamask } from "../../hooks/useMetamask";
 
 export default function Songpa() {
 
-  const { dispatch } = useMetamask();
+  ////const { dispatch } = useMetamask();
   const listen = useListen();
 
+  /*
   useEffect(() => {
     if (typeof window !== undefined) {
       // start by checking if window.ethereum is present, indicating a wallet extension
@@ -36,11 +37,13 @@ export default function Songpa() {
       /////dispatch({ type: "pageLoaded", isMetamaskInstalled, wallet, balance });
     }
   }, [listen, dispatch]);
-
+  */
 
   return (
     <>
+    {/*
       <Wallet />
+  */}
     </>
   );
 };
