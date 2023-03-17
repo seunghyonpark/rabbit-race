@@ -33,7 +33,7 @@ import {
   // Put Your NFT Drop Contract address from the dashboard here
   //const myNftDropContractAddress = "0x90E2dD8C48cA35534Dd70e3eC19B362cdf71981E";
   
-  const myNftDropContractAddress = "0x327dA22b2bCdfd6F4EE4269892bd39Fe6c637BcC";
+  const myNftDropContractAddress = "0x547C5b4F0936Af17bc79a85D9C5f07Ec20d8C12c";
 
 
 
