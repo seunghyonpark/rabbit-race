@@ -5,7 +5,7 @@ import Son20Oyun from '@/components/betScreen/son20';
 import LatestWinners from '@/components/betScreen/latestWinners';
 import YuruyenAt from '@/components/betEkrani/yuruyenAt'
 
-import Race from '@/components/yarisEkrani/RaceGame';
+import Race from '@/components/yarisEkrani/raceGame';
 
 import SocketEnum from '@/libs/enums/socket';
 import React, { useEffect, useState, useMemo } from 'react';
