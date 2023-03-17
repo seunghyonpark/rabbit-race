@@ -124,6 +124,19 @@ export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any
             ///setProgress5(data);
         });
         */
+
+
+        socket.on("timer", (data: any) => {
+            //console.log("Race socketInitializer horse5", data);
+            ///setProgress5(data);
+
+            if ( (90000 - (data*1000) ) > 0) {
+                setTimeRemaining( (90000 - (data * 1000)) / 1000);
+            } else {
+                setTimeRemaining(0);
+            }
+
+        });
         
 
     };
@@ -149,7 +162,7 @@ export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any
 
 
 
-    
+    /*
     setTimeout(() => {
 
         if (timeRemaining > 0) {
@@ -159,6 +172,8 @@ export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any
         }
 
     }, 1000);
+
+    */
     
 
 
@@ -261,7 +276,7 @@ export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any
                         <div
                             className={`flex items-center justify-center  bg-black h-[36px] text-center text-xl px-5 text-[#BA8E09] border border-[#BA8E09] `}
                         >
-                            <span>TIME REMAINING(Seconds):</span>&nbsp;&nbsp;&nbsp; <span className="text-[#ffffff]">{timeRemaining}</span>&nbsp;&nbsp;<span>Seconds</span>
+                            <span>TIME REMAINING(Seconds):</span>&nbsp;&nbsp;&nbsp; <span className="text-[#ffffff]">{timeRemaining.toFixed(2)}</span>&nbsp;&nbsp;<span>Seconds</span>
                         </div>
 
                         <div
