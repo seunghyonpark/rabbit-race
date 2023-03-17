@@ -29,6 +29,8 @@ import DomainEnum from "@/libs/enums/domain";
 
 export default function MobilNavbar() {
 
+
+    /*
     const { dispatch } = useMetamask();
     const listen = useListen();
 
@@ -52,7 +54,7 @@ export default function MobilNavbar() {
     const [waiting, setWaiting] = useState<boolean>(false);
 
     const [settings, setSettings] = useState<any>()
-
+    */
 
 
 
@@ -83,7 +85,7 @@ export default function MobilNavbar() {
     });
 
 
-
+    /*
     useEffect(() => {
 
         if (typeof window !== undefined) {
@@ -110,11 +112,7 @@ export default function MobilNavbar() {
         }
 
       }, [listen]);
-
-
-
-
-
+      
 
       useEffect(() => {
         setMetaMask(isMetaMaskInstalled());
@@ -276,8 +274,6 @@ export default function MobilNavbar() {
           setContract(contract);
         }
       }, [Abifile, contractAddress, wallet]);
-    
-    
 
 
 
@@ -343,7 +339,7 @@ export default function MobilNavbar() {
     
       };
 
-
+      */
 
 
 
@@ -390,7 +386,7 @@ export default function MobilNavbar() {
                             //deleteCookie('user'), router.push('/')
 
 
-                            paraYatir();
+                            ///////////paraYatir();
 
 
 

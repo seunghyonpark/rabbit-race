@@ -1,3 +1,5 @@
+'use client';
+
 import './globals.css';
 import { Bebas_Neue } from '@next/font/google';
 
