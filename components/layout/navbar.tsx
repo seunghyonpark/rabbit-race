@@ -92,7 +92,7 @@ export default function Navbar() {
                             }
                         */}
 
-                    {
+                    {/*
                         user && 
                         <div className="flex flex-row">
                         <Image
@@ -114,7 +114,7 @@ export default function Navbar() {
                             Connect Wallet
                         </button>
                         </div>
-                    }
+                    */}
 
 
                         </div>

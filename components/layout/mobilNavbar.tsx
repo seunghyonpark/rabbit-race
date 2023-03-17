@@ -585,7 +585,7 @@ export default function MobilNavbar() {
 
 
 
-                    {
+                    {/*
                         user && 
                         <div className="flex flex-row">
                         <Image
@@ -617,7 +617,7 @@ export default function MobilNavbar() {
 
 
                         </div>
-                    }
+                      */}
 
 
 
