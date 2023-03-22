@@ -123,6 +123,7 @@ export default function Deposit() {
 
 
       if (chainId !== ethChainId) {
+
         MySwal.fire({
           title: "Opsss?",
           text: "You are connected to the wrong network!",
@@ -191,6 +192,8 @@ export default function Deposit() {
             }
           }
         });
+
+        
       } else {
         const accounts = await ethereum.request({
           method: "eth_requestAccounts",

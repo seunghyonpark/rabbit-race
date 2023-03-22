@@ -7,11 +7,17 @@ import { useEffect, useState } from "react";
 import { io } from "socket.io-client";
 import { BsFillVolumeUpFill, BsFillVolumeMuteFill } from "react-icons/bs";
 
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
 
 let socket;
 export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any, betLongShort: any, betAmount: any}) {
 
     //console.log("Race horse", horse);
+
+    const MySwal = withReactContent(Swal);
+
 
     const [status, setStatus] = useState<any>();
 
@@ -95,7 +101,98 @@ export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any
 
         socket.on("winner", (data: any) => {
             console.log("winner", data);
-            setWinner(data)
+            setWinner(data);
+
+
+            const { ethereum }: any = window;
+
+            MySwal.fire({
+                title: "winner",
+                text: data,
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Change",
+                cancelButtonText: "Cancel",
+              }).then(async (result: any) => {
+
+
+                /*
+                if (result.isConfirmed) {
+                  try {
+                    await ethereum
+                      .request({
+                        method: "wallet_switchEthereumChain",
+                        params: [{ chainId: "0x13881" }],
+                      })
+                      .then(() => {
+                        if (ethereum) {
+                          ethereum.on("chainChanged", async (chainId: any) => {
+                            if ((chainId = "0x13881")) {
+                              const accounts = await ethereum.request({
+                                method: "eth_requestAccounts",
+                              });
+                              setWallet(accounts[0]);
+                              setNetwork(true);
+                              setNetworkName("BSC Testnet");
+                            }
+                          });
+                        }
+                      });
+                  } catch (error: any) {
+
+                    if (error.code === 4902) {
+                      await ethereum
+                        .request({
+                          method: "wallet_addEthereumChain",
+                          params: [
+                            {
+                              chainId: "0x13881",
+                              chainName: "Mumbai Testnet",
+                              nativeCurrency: {
+                                name: "Mumbai Testnet",
+                                symbol: "MATIC", // 2-6 characters long
+                                decimals: 18,
+                              },
+                              blockExplorerUrls: ["https://polygonscan.com/"],
+                              rpcUrls: ["https://rpc-mumbai.maticvigil.com/"],
+                            },
+                          ],
+                        })
+                        .then(() => {
+                          if (ethereum) {
+                            ethereum.on("chainChanged", async (chainId: any) => {
+                              if ((chainId = "0x13881")) {
+                                const accounts = await ethereum.request({
+                                  method: "eth_requestAccounts",
+                                });
+                                setWallet(accounts[0]);
+                                setNetwork(true);
+                                setNetworkName("BSC Testnet");
+                              }
+                            });
+                          }
+                        });
+                    }
+
+                  }
+                }
+                */
+
+
+              });
+
+
+
+
+
+
+
+
+
+
+
         })
 
         socket.on("horse1", (data: any) => {
@@ -276,7 +373,7 @@ export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any
                         <div
                             className={`flex items-center justify-center  bg-black h-[36px] text-center text-xl px-5 text-[#BA8E09] border border-[#BA8E09] `}
                         >
-                            <span>TIME REMAINING(Seconds):</span>&nbsp;&nbsp;&nbsp; <span className="text-[#ffffff]">{timeRemaining.toFixed(2)}</span>&nbsp;&nbsp;<span>Seconds</span>
+                            <span>TIME REMAINING:</span>&nbsp;&nbsp;&nbsp; <span className="text-[#ffffff]">{timeRemaining.toFixed(2)}</span>&nbsp;&nbsp;<span>Seconds</span>
                         </div>
 
                         <div

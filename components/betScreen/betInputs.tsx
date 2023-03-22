@@ -52,8 +52,6 @@ export default function BetInputs({ horse1, horse2}: any) {
     const [betAmount, setBetAmount] = useState<any>(0)
 
 
-
-    
     const getUser = async () => {
         const inputs = {
             method: 'getOne',
