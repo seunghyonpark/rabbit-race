@@ -46,7 +46,7 @@ import {
 
 
 
-export default function BetInputs({ horse1, horse2}: any) {
+export default function BetInputs({ horse1, horse2, setLongShort, setMyBetAmount}: any) {
     const [user, setUser] = useState<IUser>()
     const [secilenAt, setSecilenAt] = useState<any>(null)
     const [betAmount, setBetAmount] = useState<any>(0)
@@ -166,7 +166,7 @@ export default function BetInputs({ horse1, horse2}: any) {
             });
             */
 
-            socket.emit("start", user?.username);
+
 
 
             console.log("user img", user?.img);
@@ -176,6 +176,7 @@ export default function BetInputs({ horse1, horse2}: any) {
 
             //user.username = "creath.park@gmail.com";
 
+           
             
             const formInputs = {
                 method: 'newGame',
@@ -192,9 +193,19 @@ export default function BetInputs({ horse1, horse2}: any) {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formInputs)
             });
+
             const data = await res.json();
             if (data.message === 'Success') {
                 //alert('You have successfully placed your bet');
+
+
+
+                setLongShort(secilenAt);
+                setMyBetAmount(betAmount);
+    
+    
+                socket.emit("start", user?.username);
+
 
 
 

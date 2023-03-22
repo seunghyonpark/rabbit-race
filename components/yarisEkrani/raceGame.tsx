@@ -14,7 +14,13 @@ import withReactContent from "sweetalert2-react-content";
 let socket;
 export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any, betLongShort: any, betAmount: any}) {
 
-    //console.log("Race horse", horse);
+
+
+    ////Swal.fire('승인이 완료되었습니다.', '화끈하시네요~! LongShort' + betLongShort, 'success');
+
+    ///console.log("raceGame betLongShort===>", betLongShort);
+
+
 
     const MySwal = withReactContent(Swal);
 
@@ -56,10 +62,10 @@ export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any
         //console.log("betAmount", betAmount);
 
         if (betLongShort === "Long") {
-            setBetAmountLong("My Rabbit");
+            setBetAmountLong("My Rabbit: " + betAmount);
             setBetAmountShort("");
         } else if (betLongShort === "Short") {
-            setBetAmountShort("My Rabbit");
+            setBetAmountShort("My Rabbit: " + betAmount);
             setBetAmountLong("");
         }
         
@@ -104,21 +110,31 @@ export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any
             setWinner(data);
 
 
-            const { ethereum }: any = window;
+
+            let textResult = "";
+
+            if (data === betLongShort) { // You win
+                textResult = "You win";
+            } else { // You lose
+                textResult = "You lose";
+            }
+            
 
             MySwal.fire({
-                title: "winner",
-                text: data,
-                icon: "warning",
+                title: "Game Result: " + data,
+                text: textResult,
+                icon: "success",
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",
                 cancelButtonColor: "#d33",
-                confirmButtonText: "Change",
-                cancelButtonText: "Cancel",
+                confirmButtonText: "OK",
+                cancelButtonText: "Game History",
               }).then(async (result: any) => {
 
 
                 /*
+                const { ethereum }: any = window;
+
                 if (result.isConfirmed) {
                   try {
                     await ethereum

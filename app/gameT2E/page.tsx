@@ -59,7 +59,7 @@ export default function GameT2E() {
     const [basePrice, setBasePrice] = useState<any>(1682.32);
     const [longShort, setlongShort] = useState<any>("Long");
     
-    const [betAmount, setBetAmount] = useState<any>("");
+    const [myBetAmount, setMyBetAmount] = useState<any>("");
 
     
     const MySwal = withReactContent(Swal);
@@ -356,6 +356,8 @@ export default function GameT2E() {
                         <BetInputs 
                             horse1={horse1Oran}
                             horse2={horse2Oran}
+                            setLongShort={setlongShort}
+                            setMyBetAmount={setMyBetAmount}
 
                         />
 
@@ -366,7 +368,11 @@ export default function GameT2E() {
                     </div>
                 )
                 :
-                < Race betPrice={basePrice} betLongShort={longShort} betAmount={betAmount}/>
+                < Race
+                  betPrice={basePrice}
+                  betLongShort={longShort}
+                  myBetAmount={myBetAmount}
+                />
             }
         </>
     )
