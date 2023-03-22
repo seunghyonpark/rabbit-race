@@ -2,14 +2,16 @@
 'use client';
 import React, { useEffect, useRef } from 'react';
 
-let tvScriptLoadingPromise;
+let tvScriptLoadingPromise: any;
 
 export default function TradingViewWidget() {
   const onLoadScriptRef = useRef();
 
   useEffect(
     () => {
+
       onLoadScriptRef.current = createWidget;
+      
 
       if (!tvScriptLoadingPromise) {
         tvScriptLoadingPromise = new Promise((resolve) => {
@@ -54,7 +56,9 @@ export default function TradingViewWidget() {
       <div id='tradingview_8070a' />
       
       <div className="tradingview-widget-copyright">
+        {/*
         <a href="https://www.tradingview.com/symbols/NASDAQ-AAPL/" rel="noopener" target="_blank"><span className="blue-text">AAPL stock chart</span></a> by TradingView
+  */}
       </div>
     </div>
   );
