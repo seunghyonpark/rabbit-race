@@ -123,6 +123,11 @@ export default function BetInputs({ horse1, horse2}: any) {
     */
 
 
+    /////const { contract, isLoading, error } = useContract("{{contract_address}}");
+
+    const { contract, error } = useContract(myNftDropContractAddress);
+
+
     const placeBet = async (cntr: any) => {
         if (user) {
 
@@ -163,7 +168,7 @@ export default function BetInputs({ horse1, horse2}: any) {
             });
             */
 
-            socket.emit("start", "nevertry");
+            socket.emit("start", user?.username);
 
 
             console.log("user img", user?.img);
@@ -184,7 +189,6 @@ export default function BetInputs({ horse1, horse2}: any) {
                 selectedSide: secilenAt
             }
 
-
             const res = await fetch('/api/game', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -195,7 +199,24 @@ export default function BetInputs({ horse1, horse2}: any) {
                 //alert('You have successfully placed your bet');
 
 
-                cntr.erc721.claim(quantity);
+
+                // 메타마스크로 처하는 부분
+                // 충전방식으로 변경
+                /////////cntr.erc721.claim(quantity);
+
+                
+
+                /*
+                // Optionally pass in filters to limit the blocks from which events are retrieved
+                const filters = {
+                  fromBlock: 0,
+                  toBlock: "latest",
+                }
+                const events = await contract.events.getAllEvents(filters);
+                console.log(events[0].eventName);
+                console.log(events[0].data);
+                */
+
 
             } else {
                 //alert('You have already placed a bet');
@@ -234,6 +255,8 @@ export default function BetInputs({ horse1, horse2}: any) {
     }, [])
 
 
+
+    
     // code for web3
     const disconnect = useDisconnect();
 
@@ -428,6 +451,12 @@ export default function BetInputs({ horse1, horse2}: any) {
       quantity,
     ]);
   
+
+
+
+
+
+
 
 
 

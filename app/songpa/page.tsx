@@ -1,50 +1,61 @@
-"use client";
+// TradingViewWidget.jsx
+'use client';
+import React, { useEffect, useRef } from 'react';
 
-import type { NextPage } from "next";
-import { useEffect } from "react";
-import Wallet from "../../components/Wallet";
-import { useListen } from "../../hooks/useListen";
-///import { useMetamask } from "../../hooks/useMetamask";
+let tvScriptLoadingPromise;
 
-export default function Songpa() {
+export default function TradingViewWidget() {
+  const onLoadScriptRef = useRef();
 
-  ////const { dispatch } = useMetamask();
-  const listen = useListen();
+  useEffect(
+    () => {
+      onLoadScriptRef.current = createWidget;
 
-  /*
-  useEffect(() => {
-    if (typeof window !== undefined) {
-      // start by checking if window.ethereum is present, indicating a wallet extension
-      const ethereumProviderInjected = typeof window.ethereum !== "undefined";
-      // this could be other wallets so we can verify if we are dealing with metamask
-      // using the boolean constructor to be explecit and not let this be used as a falsy value (optional)
-      const isMetamaskInstalled =
-        ethereumProviderInjected && Boolean(window.ethereum.isMetaMask);
+      if (!tvScriptLoadingPromise) {
+        tvScriptLoadingPromise = new Promise((resolve) => {
+          const script = document.createElement('script');
+          script.id = 'tradingview-widget-loading-script';
+          script.src = 'https://s3.tradingview.com/tv.js';
+          script.type = 'text/javascript';
+          script.onload = resolve;
 
-      const local = window.localStorage.getItem("metamaskState");
-
-      // user was previously connected, start listening to MM
-      if (local) {
-        listen();
+          document.head.appendChild(script);
+        });
       }
 
-      // local could be null if not present in LocalStorage
-      const { wallet, balance } = local
-        ? JSON.parse(local)
-        : // backup if local storage is empty
-          { wallet: null, balance: null };
+      tvScriptLoadingPromise.then(() => onLoadScriptRef.current && onLoadScriptRef.current());
 
-      /////dispatch({ type: "pageLoaded", isMetamaskInstalled, wallet, balance });
-    }
-  }, [listen, dispatch]);
-  */
+      return () => onLoadScriptRef.current = null;
+
+      function createWidget() {
+        if (document.getElementById('tradingview_8070a') && 'TradingView' in window) {
+          new window.TradingView.widget({
+            autosize: true,
+            symbol: "NASDAQ:AAPL",
+            interval: "D",
+            timezone: "Etc/UTC",
+            theme: "light",
+            style: "1",
+            locale: "en",
+            toolbar_bg: "#f1f3f6",
+            enable_publishing: false,
+            allow_symbol_change: true,
+            container_id: "tradingview_8070a"
+          });
+        }
+      }
+    },
+    []
+  );
 
   return (
-    <>
-    {/*
-      <Wallet />
-  */}
-    </>
-  );
-};
+    <div className='tradingview-widget-container'>
 
+      <div id='tradingview_8070a' />
+      
+      <div className="tradingview-widget-copyright">
+        <a href="https://www.tradingview.com/symbols/NASDAQ-AAPL/" rel="noopener" target="_blank"><span className="blue-text">AAPL stock chart</span></a> by TradingView
+      </div>
+    </div>
+  );
+}

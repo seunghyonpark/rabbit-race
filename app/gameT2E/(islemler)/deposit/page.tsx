@@ -106,6 +106,8 @@ export default function Deposit() {
     return Boolean(ethereum && ethereum.isMetaMask);
   };
 
+
+  
   const connectWallet = async () => {
     try {
       const { ethereum }: any = window;
@@ -113,7 +115,13 @@ export default function Deposit() {
         return;
       }
       let chainId = await ethereum.request({ method: "eth_chainId" });
-      const ethChainId = "0x13881";
+
+      ////const ethChainId = "0x13881";
+
+      const ethChainId = "0x61";
+
+
+
       if (chainId !== ethChainId) {
         MySwal.fire({
           title: "Opsss?",
@@ -350,7 +358,7 @@ export default function Deposit() {
         setWaiting(false);
         return
       } else if (Number(miktar) > user?.maticBalance) {
-        setErrMsgSnackbar("You do not have enough Matic");
+        setErrMsgSnackbar("You do not have enough BNB");
         setErr(true);
         setWaiting(false);
         return
@@ -494,10 +502,14 @@ export default function Deposit() {
       <div className="flex flex-col items-center justify-center min-h-[75vh] gap-3 p-10 text-gray-100">
         <h1 className="text-center">Deposit And Withdraw Page</h1>
         <p className="text-center">
-          Swap your Matic to {Coin.name} and start earning
+          Swap your BNB to {Coin.name} and start earning
         </p>
         <p className=" text-lg text-center">
+          
+          {/*
           Dear <span className="text-amber-500">{user.username}</span> you have{" "}
+      */}
+
           <span className="text-green-500">{user.deposit}</span>{" "}
           <span className="text-blue-500">{Coin.name} </span>and
           <span className="text-pink-500"> {((user.maticBalance).toString()).slice(0, 6)} Matic </span>
@@ -507,7 +519,7 @@ export default function Deposit() {
           {/* //? Matic Deposit  */}
           <div className="w-full border rounded-lg flex flex-col items-center justify-center p-2 gap-5 py-10">
             <h4 className=" ">
-              Deposit <span className="text-xs ">(MATIC)</span>{" "}
+              Deposit <span className="text-xs ">(BNB)</span>{" "}
             </h4>
             <input
               type="number"
@@ -532,7 +544,7 @@ export default function Deposit() {
           {/* //? Matic Withdraw */}
           <div className="w-full border rounded-lg flex flex-col items-center p-2 justify-center gap-5 py-10">
             <h4 className=" ">
-              Withdraw <span className="text-sm text-green-500">{`(${settings?.requestType === 'Matic' ? "MATIC" : Coin.name})`}</span>{" "}
+              Withdraw <span className="text-sm text-green-500">{`(${settings?.requestType === 'Matic' ? "BNB" : Coin.name})`}</span>{" "}
             </h4>
             <input
               type="number"
@@ -546,7 +558,7 @@ export default function Deposit() {
           {/* //? Swap Matic to Coin */}
           <div className="w-full border rounded-lg flex flex-col items-center p-2 justify-center gap-5 py-10">
             <h4 className=" ">
-              Swap <span className="text-xs ">(MATIC to {Coin.name})</span>{" "}
+              Swap <span className="text-xs ">(BNB to {Coin.name})</span>{" "}
             </h4>
             <p className="text-xs "> 1 MATIC = x{Coin.katSayi} {Coin.name} </p>
             <input
@@ -563,14 +575,14 @@ export default function Deposit() {
             <h4 className=" ">
               Swap <span className="text-xs ">({Coin.name} to MATIC)</span>{" "}
             </h4>
-            <p className="text-xs "> 1 {Coin.katSayi} {Coin.name} = 1/{Coin.katSayi} MATIC </p>
+            <p className="text-xs "> 1 {Coin.katSayi} {Coin.name} = 1/{Coin.katSayi} BNB </p>
             <input
               type="number"
               placeholder="Type here"
               id="swapToMatic"
               className="input input-bordered w-full max-w-xs text-gray-800"
             />
-            <button onClick={swapToMatic} className="btn btn-secondary max-w-xs w-full">Swap to Matic</button>
+            <button onClick={swapToMatic} className="btn btn-secondary max-w-xs w-full">Swap to BNB</button>
           </div>
         </div>
       </div>

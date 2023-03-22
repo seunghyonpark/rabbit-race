@@ -11,6 +11,9 @@ import SocketEnum from '@/libs/enums/socket';
 import React, { useEffect, useState, useMemo } from 'react';
 import Image from 'next/image';
 
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
 //@ts-ignore
 import { io } from "socket.io-client";
 
@@ -58,6 +61,8 @@ export default function GameT2E() {
     
     const [betAmount, setBetAmount] = useState<any>("");
 
+    
+    const MySwal = withReactContent(Swal);
 
 
     useEffect(() => socketInitializer(), []);
