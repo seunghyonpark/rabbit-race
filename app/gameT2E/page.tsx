@@ -371,7 +371,7 @@ export default function GameT2E() {
                 < Race
                   betPrice={basePrice}
                   betLongShort={longShort}
-                  myBetAmount={myBetAmount}
+                  betAmount={myBetAmount}
                 />
             }
         </>
