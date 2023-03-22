@@ -69,7 +69,7 @@ export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any
             setBetAmountLong("");
         }
         
-    }, []);
+    }, [betLongShort, setBetAmountLong, setBetAmountShort, betAmount]);
 
 
     setTimeout(() => {
@@ -112,13 +112,16 @@ export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any
 
 
             let textResult = "";
+            let imageUrl = "";
 
             if (data === betLongShort) { // You win
                 textResult = "You win";
+                imageUrl = "/winner.gif";
             } else { // You lose
                 textResult = "You lose";
+                imageUrl = "/loser.gif";
             }
-            
+
 
             MySwal.fire({
                 title: "Game Result: " + data,
@@ -129,6 +132,14 @@ export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any
                 cancelButtonColor: "#d33",
                 confirmButtonText: "OK",
                 cancelButtonText: "Game History",
+
+                imageUrl: imageUrl,
+                imageWidth: 400,
+                imageHeight: 200,
+                imageAlt: 'Custom image'
+
+           
+                //animation: true,
               }).then(async (result: any) => {
 
 
