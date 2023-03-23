@@ -16,7 +16,7 @@ import DomainEnum from "@/libs/enums/domain";
 
 
 
-export default function Deposit() {
+export default function Loser() {
   let Abifile: any = abi;
   let contractAddress = "0x46aA314E5ee3c0E5E945B238075d2B5eB2AAA317";
   const MySwal = withReactContent(Swal);
@@ -193,7 +193,7 @@ export default function Deposit() {
           }
         });
 
-
+        
       } else {
         const accounts = await ethereum.request({
           method: "eth_requestAccounts",
@@ -481,6 +481,7 @@ export default function Deposit() {
 
   return (
     <>
+
       {metamaskview ? (
         <div
           onClick={() => {
@@ -496,97 +497,58 @@ export default function Deposit() {
           />
         </div>
       ) : null}
+
+
       {waiting ? (
         <div
           className="flex absolute min-w-full min-h-full bg-black/70 justify-center items-center "
         >please wait...
         </div>
       ) : null}
-      <div className="flex flex-col items-center justify-center min-h-[75vh] gap-3 p-10 text-gray-100">
-        <h1 className="text-center">Deposit And Withdraw Page</h1>
-        <p className="text-center">
-          Swap your BNB to {Coin.name} and start earning
-        </p>
-        <p className=" text-lg text-center">
-          
-          {/*
-          Dear <span className="text-amber-500">{user.username}</span> you have{" "}
-      */}
 
-          <span className="text-green-500">{user.deposit}</span>{" "}
-          <span className="text-blue-500">{Coin.name} </span>and
-          <span className="text-pink-500"> {((user.maticBalance).toString()).slice(0, 6)} BNB </span>
-          in your account
-        </p>
-        <div className="p-2 grid grid-cols-1 lg:grid-cols-2 w-full lg:w-2/3 gap-5">
+
+      <div className="flex flex-col items-center justify-center min-h-[75vh] gap-3 p-10 text-gray-100">
+        <h1 className="text-center">Bet Result Page</h1>
+        <h2 className="text-center">
+          Your bet Winns! 
+        </h2>
+
+
+        <div className="p-2 grid grid-cols-1 lg:grid-cols-1 w-full lg:w-2/3 gap-5 ">
+
           {/* //? Matic Deposit  */}
-          <div className="w-full border rounded-lg flex flex-col items-center justify-center p-2 gap-5 py-10">
+          <div className="w-full  rounded-lg flex flex-col items-center justify-center p-2 gap-5 py-10">
+
+
+{/*
             <h4 className=" ">
               Deposit <span className="text-xs ">(BNB)</span>{" "}
             </h4>
-            <input
-              type="number"
-              placeholder="Type here"
-              id="deposit"
-              value={depositCount}
-              onChange={(e) => {
-                setDepositCount(e.target.value);
-              }}
-              className="input input-bordered w-full max-w-xs text-gray-800"
+    */}
+
+            <Image
+                //src={`/rabbit${horse.id}.gif`}
+                src={`/loser.gif`}
+                width="500"
+                height="500"
+                alt={"at"}
             />
+
+
+
             <button
               onClick={() => {
-                paraYatir();
+                ////paraYatir();
               }}
-              className="btn btn-success max-w-xs w-full "
+              className="btn btn-success max-w-xs w-full text-xl bg-color-#66CDAA hover:bg-color-#66CDAA  text-white font-bold py-2 px-4 rounded-full"
             >
-              Deposit
+              Next Betting
             </button>
+
+
+
           </div>
 
-          {/* //? Matic Withdraw */}
-          <div className="w-full border rounded-lg flex flex-col items-center p-2 justify-center gap-5 py-10">
-            <h4 className=" ">
-              Withdraw <span className="text-sm text-green-500">{`(${settings?.requestType === 'Matic' ? "BNB" : Coin.name})`}</span>{" "}
-            </h4>
-            <input
-              type="number"
-              placeholder="Type here"
-              id="withdraw"
-              className="input input-bordered w-full max-w-xs text-gray-800"
-            />
-            <button onClick={paraCek} className="btn btn-accent max-w-xs w-full">Withdraw</button>
-          </div>
-
-          {/* //? Swap Matic to Coin */}
-          <div className="w-full border rounded-lg flex flex-col items-center p-2 justify-center gap-5 py-10">
-            <h4 className=" ">
-              Swap <span className="text-xs ">(BNB to {Coin.name})</span>{" "}
-            </h4>
-            <p className="text-xs "> 1 MATIC = x{Coin.katSayi} {Coin.name} </p>
-            <input
-              type="number"
-              placeholder="Type here"
-              id="swapToCoin"
-              className="input input-bordered w-full max-w-xs text-gray-800"
-            />
-            <button onClick={swapToCoin} className="btn btn-primary max-w-xs w-full">Swap to {Coin.name}</button>
-          </div>
-
-          {/* //? Swap Coin to Matic */}
-          <div className="w-full border rounded-lg flex flex-col items-center p-2 justify-center gap-5 py-10">
-            <h4 className=" ">
-              Swap <span className="text-xs ">({Coin.name} to MATIC)</span>{" "}
-            </h4>
-            <p className="text-xs "> 1 {Coin.katSayi} {Coin.name} = 1/{Coin.katSayi} BNB </p>
-            <input
-              type="number"
-              placeholder="Type here"
-              id="swapToMatic"
-              className="input input-bordered w-full max-w-xs text-gray-800"
-            />
-            <button onClick={swapToMatic} className="btn btn-secondary max-w-xs w-full">Swap to BNB</button>
-          </div>
         </div>
       </div>
       <Stack spacing={2} sx={{ width: "100%" }}>
