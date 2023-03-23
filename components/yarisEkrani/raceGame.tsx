@@ -124,7 +124,8 @@ export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any
 
 
             MySwal.fire({
-                title: "Game Result: " + data,
+                //title: "You Bet: " + betLongShort + "<br>Game Result: " + data,
+                html: "You Bet: " + betLongShort + "<br>Game Result: " + data,
                 text: textResult,
                 icon: "success",
                 showCancelButton: true,
@@ -391,6 +392,33 @@ export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any
                             }}
                     ></div>
                     
+                    <div className="w-full h-6 mt-4 ">
+                        <div className="marquee-container relative w-full">
+                            <div className="marquee ">
+
+                                {/*
+                                <span>
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet culpa voluptates quis incidunt officiis optio fugiat voluptatum enim aliquid reprehenderit, praesentium repudiandae cum velit quos dicta eum quasi suscipit consectetur.
+                                </span>
+                        */}
+
+<div className="w-full h-6 mt-4 "
+                        style={{
+                                backgroundImage: `url('/lbank-logo.png')`,
+                                backgroundSize: "100px",
+                                backgroundRepeat: "repeat-x",
+                            }}
+                    ></div>
+
+
+                            </div>
+                            <div className="marquee marquee2 ">
+                                <span>
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum perferendis eveniet inventore est velit ad modi ratione repellat doloremque dicta quod asperiores numquam dignissimos quo, reprehenderit ex rem nulla ipsam!
+                                </span>
+                            </div>
+                        </div>
+                    </div>
                     
                     
 
