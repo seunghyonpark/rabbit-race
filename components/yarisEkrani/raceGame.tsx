@@ -407,15 +407,22 @@ export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any
                                 <span>
                                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet culpa voluptates quis incidunt officiis optio fugiat voluptatum enim aliquid reprehenderit, praesentium repudiandae cum velit quos dicta eum quasi suscipit consectetur.
                                 </span>
-                        */}
+                                */}
 
-<div className="w-full h-6 mt-4 "
-                        style={{
-                                backgroundImage: `url('/lbank-logo.png')`,
-                                backgroundSize: "100px",
-                                backgroundRepeat: "repeat-x",
-                            }}
-                    ></div>
+                                <div className="w-full h-6 mt-4 "
+                                    style={{
+                                            backgroundImage: `url('/lbank-logo.png')`,
+                                            backgroundSize: "100px",
+                                            backgroundRepeat: "repeat-x",
+                                        }}
+                                ></div>
+                                <div className="w-full h-6 mt-4 "
+                                    style={{
+                                            backgroundImage: `url('/cracle-logo.png')`,
+                                            backgroundSize: "100px",
+                                            backgroundRepeat: "repeat-x",
+                                        }}
+                                ></div>
 
 
                             </div>
