@@ -418,6 +418,7 @@ export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any
                             <span>TIME REMAINING:</span>&nbsp;&nbsp;&nbsp; <span className="text-[#ffffff]">{timeRemaining.toFixed(2)}</span>&nbsp;&nbsp;<span>Seconds</span>
                         </div>
 
+                        {/*
                         <div
                             className={`flex items-center justify-center  bg-black h-[36px] text-center text-xl px-5 text-[#BA8E09] border border-[#BA8E09] `}
                         >
@@ -429,6 +430,8 @@ export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any
                         >
                             <span>CURRENT PRICE(ETH):</span>&nbsp;&nbsp;&nbsp; <span className="text-[#ffffff]">{currentPrice.toFixed(2)}</span>&nbsp;&nbsp;<span>USDT</span>
                         </div>
+                        */}
+                        
                     </div>
 
 
