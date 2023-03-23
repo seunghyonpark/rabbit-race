@@ -367,9 +367,19 @@ export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any
                                     .map((horse: any, index: number) => {
                                         return (
                                             <div key={index} className="md:h-28 w-full xl:w-1/5 md:border-[2px] p-2 rounded-md flex-col flex">
-                                                <div className="flex-row w-7 h-7 bg-white rounded-full items-center justify-center text-center">
+                                                <div className="flex-row w-7 h-7
+
+
+                                                bg-white
+
+                                                
+                                                rounded-full items-center justify-center text-center"
+                                                
+                                                >
                                                     {horse.id}
                                                 </div>
+
+
                                                 <div className="flex-col w-full items-center justify-center hidden md:flex">
                                                     <Image
                                                         //src={`/rabbit${horse.id}.gif`}
