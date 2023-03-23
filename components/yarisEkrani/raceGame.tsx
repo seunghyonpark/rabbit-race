@@ -399,7 +399,7 @@ export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any
 
                     </div>
                     
-                    <div className="w-full h-6 mt-4 ">
+                    <div className="w-full h-10 mt-0 ">
                         <div className="marquee-container relative w-full">
                             <div className="marquee ">
 
@@ -409,21 +409,22 @@ export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any
                                 </span>
                                 */}
 
-                                <div className="w-full h-6 mt-4 "
+{/*
+                                <div className="w-full h-10 mt-0 "
                                     style={{
                                             backgroundImage: `url('/lbank-logo.png')`,
                                             backgroundSize: "100px",
                                             backgroundRepeat: "repeat-x",
                                         }}
                                 ></div>
-                                <div className="w-full h-6 mt-4 "
+                                    */}
+                                <div className="w-full h-10 mt-0 "
                                     style={{
                                             backgroundImage: `url('/cracle-logo.png')`,
                                             backgroundSize: "100px",
                                             backgroundRepeat: "repeat-x",
                                         }}
                                 ></div>
-
 
                             </div>
 
@@ -433,7 +434,7 @@ export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any
                     
 
 
-                    <div className="w-full h-16 mt-4 ">
+                    <div className="w-full h-5 mt-0 ">
 
                         <div
                             className={`flex items-center justify-center  bg-black h-[36px] text-center text-xl px-5 text-[#BA8E09] border border-[#BA8E09] `}
