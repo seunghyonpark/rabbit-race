@@ -324,6 +324,25 @@ export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any
                         flex md:h-40 w-full items-center justify-center relative
                     ">
 
+                        <div className="flex flex-col gap-0 border-red-100">
+
+                            <div
+                                className={`flex items-center justify-center  bg-black h-[36px] text-center text-xl px-5 text-[#BA8E09] border border-[#BA8E09] `}
+                            >
+                                <span className="text-[#ffffff]">{betPrice.toFixed(2)}</span>&nbsp;&nbsp;<span>USDT</span>
+                            </div>
+
+                            <div
+                                className={`flex items-center justify-center  bg-black h-[36px] text-center text-xl px-5 text-[#BA8E09] border border-[#BA8E09] `}
+                            >
+                                <span className="text-[#ffffff]">{currentPrice.toFixed(2)}</span>&nbsp;&nbsp;<span>USDT</span>
+                            </div>
+
+                        </div>
+
+
+
+
                         <div className="
                             absolute right-0 md:right-10 flex flex-col text-center items-center justify-center fill-gray-200 text-gray-200
                             "
@@ -340,7 +359,9 @@ export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any
                             md:h-40 md:w-full xl:w-2/3 md:mt-5 rounded-xl gap-1 flex-col flex lg:px-5 bg-gradient-to-t from-black to-transparent
                         ">
 
+
                             <div className="flex-row m-2 flex gap-3 border-red-100 ">
+
                                 {horses
                                     .sort((a: any, b: any) => a.progress - b.progress)
                                     .map((horse: any, index: number) => {
@@ -365,12 +386,15 @@ export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any
                                                 </div>
                                             </div>
                                         );
-                                    })}
+                                    })
+                                }
+
                             </div>
 
 
                             <div className="flex items-center justify-center text-center">
                             </div>
+
                         </div>
 
                     </div>
@@ -431,7 +455,7 @@ export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any
                             <span>CURRENT PRICE(ETH):</span>&nbsp;&nbsp;&nbsp; <span className="text-[#ffffff]">{currentPrice.toFixed(2)}</span>&nbsp;&nbsp;<span>USDT</span>
                         </div>
                         */}
-                        
+
                     </div>
 
 
