@@ -10,6 +10,8 @@ import { BsFillVolumeUpFill, BsFillVolumeMuteFill } from "react-icons/bs";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
+import { useRouter } from 'next/navigation';
+
 
 let socket;
 export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any, betLongShort: any, betAmount: any}) {
@@ -99,6 +101,9 @@ export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any
     useEffect(() => socketInitializer(), []);
     
 
+
+    const { push } = useRouter();
+
     const socketInitializer = () => {
         const socket = io(`${SocketEnum.id}`, {
             transports: ["websocket"],
@@ -132,6 +137,11 @@ export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any
             }
 
 
+            push('/gameT2E/winner');
+
+
+
+            /*
             MySwal.fire({
                 //title: "You Bet: " + betLongShort + "<br>Game Result: " + data,
                 html: "You Bet: " + betLongShort + "<br>Game Result: " + data,
@@ -153,74 +163,9 @@ export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any
               }).then(async (result: any) => {
 
 
-                /*
-                const { ethereum }: any = window;
-
-                if (result.isConfirmed) {
-                  try {
-                    await ethereum
-                      .request({
-                        method: "wallet_switchEthereumChain",
-                        params: [{ chainId: "0x13881" }],
-                      })
-                      .then(() => {
-                        if (ethereum) {
-                          ethereum.on("chainChanged", async (chainId: any) => {
-                            if ((chainId = "0x13881")) {
-                              const accounts = await ethereum.request({
-                                method: "eth_requestAccounts",
-                              });
-                              setWallet(accounts[0]);
-                              setNetwork(true);
-                              setNetworkName("BSC Testnet");
-                            }
-                          });
-                        }
-                      });
-                  } catch (error: any) {
-
-                    if (error.code === 4902) {
-                      await ethereum
-                        .request({
-                          method: "wallet_addEthereumChain",
-                          params: [
-                            {
-                              chainId: "0x13881",
-                              chainName: "Mumbai Testnet",
-                              nativeCurrency: {
-                                name: "Mumbai Testnet",
-                                symbol: "MATIC", // 2-6 characters long
-                                decimals: 18,
-                              },
-                              blockExplorerUrls: ["https://polygonscan.com/"],
-                              rpcUrls: ["https://rpc-mumbai.maticvigil.com/"],
-                            },
-                          ],
-                        })
-                        .then(() => {
-                          if (ethereum) {
-                            ethereum.on("chainChanged", async (chainId: any) => {
-                              if ((chainId = "0x13881")) {
-                                const accounts = await ethereum.request({
-                                  method: "eth_requestAccounts",
-                                });
-                                setWallet(accounts[0]);
-                                setNetwork(true);
-                                setNetworkName("BSC Testnet");
-                              }
-                            });
-                          }
-                        });
-                    }
-
-                  }
-                }
-                */
-
-
               });
 
-
+              */
 
 
 
