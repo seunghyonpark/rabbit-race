@@ -318,6 +318,7 @@ export default function GameT2E() {
     
     return (
         <>
+        
             {!status ?
                 (
                     <div className='flex flex-col px-10 pb-10 w-full h-full items-center justify-center gap-5 bg-[#0C0E1A] relative'>
@@ -374,6 +375,8 @@ export default function GameT2E() {
                   betAmount={myBetAmount}
                 />
             }
+
+
         </>
     )
 }

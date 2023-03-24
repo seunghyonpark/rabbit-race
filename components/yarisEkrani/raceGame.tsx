@@ -46,6 +46,14 @@ export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any
 
     const [timeRemaining, setTimeRemaining] = useState<any>(90.00);
 
+
+    const [imageRabbit1, setImageRabbit1] = useState<any>("");
+    const [imageRabbit2, setImageRabbit2] = useState<any>("");
+
+   
+
+
+
     /*
     if (betLongShort === "Long") {
         setBetAmountLong(betAmount);
@@ -74,8 +82,8 @@ export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any
 
     setTimeout(() => {
         setHorses([
-            { id: 1, progress: progress1, name: `${Horses.Horse1}` },
-            { id: 2, progress: progress2, name: `${Horses.Horse2}` },
+            { id: 1, progress: progress1, name: `${Horses.Horse1}`, image: imageRabbit1 },
+            { id: 2, progress: progress2, name: `${Horses.Horse2}`, image: imageRabbit2 },
             //{ id: 3, progress: progress3, name: `${Horses.Horse3}` },
             //{ id: 4, progress: progress4, name: `${Horses.Horse4}` },
             //{ id: 5, progress: progress5, name: `${Horses.Horse5}` },
@@ -89,6 +97,7 @@ export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any
 
 
     useEffect(() => socketInitializer(), []);
+    
 
     const socketInitializer = () => {
         const socket = io(`${SocketEnum.id}`, {
@@ -226,11 +235,15 @@ export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any
         socket.on("horse1", (data: any) => {
             //console.log("Race socketInitializer horse1", data);
             setProgress1(data);
+
+
+
         });
 
         socket.on("horse2", (data: any) => {
             //console.log("Race socketInitializer horse2", data);
             setProgress2(data);
+
         });
 
         /*
@@ -261,6 +274,7 @@ export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any
                 setTimeRemaining(0);
             }
 
+
         });
         
 
@@ -278,7 +292,32 @@ export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any
             }, 88 * 1000)
         }
 
+
+
+
     }, [status])
+
+
+
+    useEffect(() => {
+
+
+        if ( (progress1-progress2) > 0) {
+            setImageRabbit1("/rabbit1_winning.gif");
+            setImageRabbit2("/rabbit2_losing.gif");
+        } else if ( (progress2-progress1) > 0) {
+            setImageRabbit1("/rabbit1_losing.gif");
+            setImageRabbit2("/rabbit2_winning.gif");
+        } else {
+            setImageRabbit1("/rabbit1.gif");
+            setImageRabbit2("/rabbit2.gif");
+        }
+
+
+
+
+    }, [progress1, progress2])
+
 
 
     setTimeout(() => {
@@ -382,7 +421,6 @@ export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any
 
                                                 <div className="flex-col w-full items-center justify-center hidden md:flex">
                                                     <Image
-                                                        //src={`/rabbit${horse.id}.gif`}
                                                         src={`/rabbit${horse.id}.gif`}
                                                         width="40"
                                                         height="40"
@@ -484,20 +522,44 @@ export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any
                             width: `${progress1}%`,
                         }}
                     >
-                        <Image src={"/rabbit1.gif"} width="150" height="100" alt={"at"} />
+
+                        <Image
+                            src={
+                                imageRabbit1
+                            }
+                            width={150}
+                            height={150}
+                            alt={"at"}
+                        />
+
+
+
+{/*
                         <span className="text-green-500"  >1: Long</span>&nbsp;&nbsp;
                         <span className="text-green-500" >{betAmountLong}</span>
+                        */}
                     </div>
 
                     <div
-                        className="flex  min-w-[150px] items-end justify-end"
+                        className="flex min-w-[150px] items-end justify-end "
                         style={{
                             width: `${progress2}%`,
                         }}
                     >
-                        <Image src={"/rabbit2.gif"} width="150" height="100" alt={"at"} />
+
+                        <Image
+                            src={
+                                imageRabbit2
+                            }
+                            width={150}
+                            height={150}
+                            alt={"at"}
+                        />
+
+{/*
                         <span className="text-red-500" >2: Short</span>&nbsp;&nbsp;
                         <span className="text-red-500" >{betAmountShort}</span>
+                        */}
                         
                     </div>
 

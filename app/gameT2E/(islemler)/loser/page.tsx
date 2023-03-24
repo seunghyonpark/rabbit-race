@@ -510,7 +510,7 @@ export default function Loser() {
       <div className="flex flex-col items-center justify-center min-h-[75vh] gap-3 p-10 text-gray-100">
         <h1 className="text-center">Bet Result Page</h1>
         <h2 className="text-center">
-          Your bet Winns! 
+          Now Lose.. 
         </h2>
 
 
@@ -528,7 +528,7 @@ export default function Loser() {
 
             <Image
                 //src={`/rabbit${horse.id}.gif`}
-                src={`/loser.gif`}
+                src={`/rabbit_loser.png`}
                 width="500"
                 height="500"
                 alt={"at"}

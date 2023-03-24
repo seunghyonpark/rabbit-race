@@ -1,6 +1,7 @@
 "use client";
 import { getCookie, hasCookie } from "cookies-next";
 import React, { useEffect, useState } from "react";
+import Link from 'next/link';
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import Web3 from "web3";
@@ -482,29 +483,33 @@ export default function Winner() {
   return (
     <>
 
-      {metamaskview ? (
-        <div
-          onClick={() => {
-            setMetamaskView(false);
-          }}
-          className="flex absolute min-w-full min-h-full bg-black/70 justify-center items-center "
-        >
-          <Image
-            src="/metamask-fox.svg"
-            width={100}
-            height={100}
-            alt="Metamask"
-          />
-        </div>
-      ) : null}
+      {
+        metamaskview ? (
+          <div
+            onClick={() => {
+              setMetamaskView(false);
+            }}
+            className="flex absolute min-w-full min-h-full bg-black/70 justify-center items-center "
+          >
+            <Image
+              src="/metamask-fox.svg"
+              width={100}
+              height={100}
+              alt="Metamask"
+            />
+          </div>
+        ) : null
+      }
 
 
-      {waiting ? (
-        <div
-          className="flex absolute min-w-full min-h-full bg-black/70 justify-center items-center "
-        >please wait...
-        </div>
-      ) : null}
+      {
+        waiting ? (
+          <div
+            className="flex absolute min-w-full min-h-full bg-black/70 justify-center items-center "
+          >please wait...
+          </div>
+        ) : null
+      }
 
 
       <div className="flex flex-col items-center justify-center min-h-[75vh] gap-3 p-10 text-gray-100">
@@ -528,13 +533,14 @@ export default function Winner() {
 
             <Image
                 //src={`/rabbit${horse.id}.gif`}
-                src={`/winner.gif`}
+                src={`/rabbit_winner.png`}
                 width="500"
                 height="500"
                 alt={"at"}
             />
 
 
+{/*
             <button
               onClick={() => {
                 ////paraYatir();
@@ -544,6 +550,11 @@ export default function Winner() {
               Next Betting
             </button>
 
+*/}
+
+            <Link href={"/gameT2E"} className="w-64 h-16 bg-gradient-to-r from-[#08FF08] to-[#008013] rounded-lg flex items-center justify-center">
+              <span className="text-gray-200 text-2xl ">Next Betting</span>
+            </Link>
 
 
           </div>
