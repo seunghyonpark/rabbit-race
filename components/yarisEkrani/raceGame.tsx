@@ -509,7 +509,7 @@ export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any
 
                     <div className="w-full h-14 mt-8"
                         style={{
-                            backgroundImage: `url('/fence3.png')`,
+                            backgroundImage: `url('/fence4.png')`,
                             backgroundSize: "120px",
                             backgroundRepeat: "repeat-x",
                             backgroundPosition: `${finishLine ? "0px" : `${fence}%`} 0px`,
@@ -597,7 +597,7 @@ export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any
                     <div
                         className="w-full h-14 -mt-1"
                         style={{
-                            backgroundImage: `url('/fence3.png')`,
+                            backgroundImage: `url('/fence4.png')`,
                             backgroundSize: "120px",
                             backgroundRepeat: "repeat-x",
                             backgroundPosition: `${finishLine ? "0px" : `${fence}%`} 0px`,
