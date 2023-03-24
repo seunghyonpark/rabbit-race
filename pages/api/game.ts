@@ -22,8 +22,19 @@ export default async function handler(
     return;
   }
 
+  console.log("api game method", method);
+
+
   if (method === "newGame") {
     const { userToken, username, img, betAmount, selectedSide } = req.body;
+
+    console.log("api game newGame userToken", userToken);
+    console.log("api game newGame username", username);
+    console.log("api game newGame img", img);
+    console.log("api game newGame betAmount", betAmount);
+    console.log("api game newGame selectedSide", selectedSide);
+
+
     if (!userToken || !username || !img || !betAmount || !selectedSide) {
       res.status(400).json({ message: "Bad Request" });
       return;

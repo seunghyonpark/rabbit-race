@@ -265,11 +265,21 @@ export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any
 
 
         socket.on("timer", (data: any) => {
-            //console.log("Race socketInitializer horse5", data);
+            ////console.log("Race socketInitializer timer", data);
+           
             ///setProgress5(data);
 
+            /* 90 seconds
             if ( (90000 - (data*1000) ) > 0) {
                 setTimeRemaining( (90000 - (data * 1000)) / 1000);
+            } else {
+                setTimeRemaining(0);
+            }
+            */
+
+            // 60 seconds
+            if ( (60000 - (data*1000) ) > 0) {
+                setTimeRemaining( (60000 - (data * 1000)) / 1000);
             } else {
                 setTimeRemaining(0);
             }
