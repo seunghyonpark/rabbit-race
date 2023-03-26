@@ -365,6 +365,8 @@ export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any
                         
                         </div>
 
+
+{/*
                         <div className="
                             md:h-40 md:w-full xl:w-2/3 md:mt-5 rounded-xl gap-1 flex-col flex lg:px-5 bg-gradient-to-t from-black to-transparent
                         ">
@@ -376,15 +378,12 @@ export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any
                                     .sort((a: any, b: any) => a.progress - b.progress)
                                     .map((horse: any, index: number) => {
                                         return (
+
                                             <div key={index} className="md:h-28 w-full xl:w-1/5 md:border-[2px] p-2 rounded-md flex-col flex">
+                                                
                                                 <div className="flex-row w-7 h-7
-
-
                                                 bg-white
-
-                                                
                                                 rounded-full items-center justify-center text-center"
-                                                
                                                 >
                                                     {horse.id}
                                                 </div>
@@ -403,6 +402,7 @@ export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any
                                                     </div>
 
                                                 </div>
+
                                             </div>
                                         );
                                     })
@@ -415,6 +415,8 @@ export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any
                             </div>
 
                         </div>
+*/}
+
 
                     </div>
                     
