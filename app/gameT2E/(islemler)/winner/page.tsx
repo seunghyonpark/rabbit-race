@@ -523,16 +523,13 @@ export default function Winner() {
       ) : null}
 
 
-      <div className="flex flex-col items-center justify-center min-h-[75vh] gap-3 p-10 text-gray-100">
+      <div className="flex flex-col items-center justify-center min-h-[75vh] gap-3 p-5 text-gray-100">
        
-
-
-
 
         <div className="p-2 grid grid-cols-1 lg:grid-cols-1 w-full lg:w-2/3 gap-5 ">
 
           {/* //? Matic Deposit  */}
-          <div className="w-full  rounded-lg flex flex-col items-center justify-center p-2 gap-5 py-10">
+          <div className="w-full  rounded-lg flex flex-col items-center justify-center p-2 gap-5 py-5">
 
 
 {/*
@@ -541,9 +538,8 @@ export default function Winner() {
             </h4>
     */}
 
-
             <h3>
-              You Earned {betAmount} $CRA
+            You Earned {betAmount} $CRA
             </h3>
             <h4>
               You Betted {bet}
