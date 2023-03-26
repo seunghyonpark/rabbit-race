@@ -56,7 +56,7 @@ export default function GameT2E() {
 
     const [currentPrice, setCurrentPrice] = useState<any>(0);
 
-    const [basePrice, setBasePrice] = useState<any>(1682.32);
+    const [basePrice, setBasePrice] = useState<any>(0);
     const [longShort, setlongShort] = useState<any>("Long");
     
     const [myBetAmount, setMyBetAmount] = useState<any>("");
