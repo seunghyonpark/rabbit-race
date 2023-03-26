@@ -16,7 +16,7 @@ import Winner from './winner';
 
 
 let socket;
-export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any, betLongShort: any, betAmount: any}) {
+export default function Race({currentPrice, betPrice, betLongShort, betAmount}: {currentPrice: any, betPrice: any, betLongShort: any, betAmount: any}) {
 
 
 
@@ -43,7 +43,7 @@ export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any
     const [soundStatus, setSoundStatus] = useState(true);
     const [finishLine, setFinishLine] = useState(false);
 
-    const [currentPrice, setCurrentPrice] = useState<any>(1682.32);
+    /////const [currentPrice, setCurrentPrice] = useState<any>(1682.32);
 
     const [betAmountLong, setBetAmountLong] = useState<any>("");
     const [betAmountShort, setBetAmountShort] = useState<any>("");
@@ -93,8 +93,10 @@ export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any
             //{ id: 5, progress: progress5, name: `${Horses.Horse5}` },
         ]);
 
+        /*
         const price = 1682.32 + progress1-progress2;
         setCurrentPrice(price);
+        */
 
     }, 40);
     //}, 1000);
@@ -345,7 +347,7 @@ export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any
                             <div
                                 className={`flex items-center justify-center  bg-black h-[36px] text-center text-xl px-5 text-[#BA8E09] border border-[#BA8E09] `}
                             >
-                                <span className="text-[#ffffff]">{currentPrice.toFixed(2)}</span>&nbsp;&nbsp;<span>USDT</span>
+                                <span className="text-[#ffffff]">{Number(currentPrice).toFixed(2)}</span>&nbsp;&nbsp;<span>USDT</span>
                             </div>
 
                         </div>

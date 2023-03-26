@@ -54,7 +54,7 @@ export default function GameT2E() {
     const [horse1Oran, setHorse1Oran] = useState<any>([]);
     const [horse2Oran, setHorse2Oran] = useState<any>([]);
 
-    const [currentPrice, setCurrentPrice] = useState<any>(1682.32);
+    const [currentPrice, setCurrentPrice] = useState<any>(0);
 
     const [basePrice, setBasePrice] = useState<any>(1682.32);
     const [longShort, setlongShort] = useState<any>("Long");
@@ -68,13 +68,14 @@ export default function GameT2E() {
     useEffect(() => socketInitializer(), []);
 
 
+    /*
     setTimeout(() => {
 
         const price = 1682.32 + Math.random()*10;
         setCurrentPrice(price.toFixed(2));
 
     }, 1000);
-
+    */
 
 
 
@@ -116,6 +117,17 @@ export default function GameT2E() {
             console.log("GameT2E socketInitializer horse2Orana", data);
             setHorse2Oran(data)
         });
+     
+        
+        socket.on('price', (data: any) => {
+            console.log("GameT2E socketInitializer price", data.price);
+            
+            setCurrentPrice(data.price);
+
+        });
+
+
+          
     }
 
 
@@ -350,7 +362,7 @@ export default function GameT2E() {
                                     className={`flex items-center justify-center text-xl  bg-black rounded-md h-[36px] text-center px-5 text-[#BA8E09] border border-[#BA8E09] mt-5`}
                                 >
                                    <span className="text-[#ffffff]">ENTRY PRICE (ETH):</span>&nbsp;&nbsp;&nbsp;
-                                   <span>{currentPrice}&nbsp;&nbsp;&nbsp;</span>
+                                   <span>{Number(currentPrice).toFixed(2)}&nbsp;&nbsp;&nbsp;</span>
                                    <span className="text-[#ffffff]">USDT</span>
                                 </div>
 
@@ -380,6 +392,7 @@ export default function GameT2E() {
                 )
                 :
                 < Race
+                  currentPrice={currentPrice}
                   betPrice={basePrice}
                   betLongShort={longShort}
                   betAmount={myBetAmount}
