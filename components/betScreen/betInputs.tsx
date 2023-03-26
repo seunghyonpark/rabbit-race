@@ -126,7 +126,10 @@ export default function BetInputs({ horse1, horse2, currenPrice, setBasePrice, s
     const { contract, error } = useContract(myNftDropContractAddress);
 
 
-    const placeBet = async (cntr: any) => {
+    ////const placeBet = async (cntr: any) => {
+
+    const placeBet = async () => {
+
         if (user) {
 
             /*
@@ -585,10 +588,11 @@ export default function BetInputs({ horse1, horse2, currenPrice, setBasePrice, s
 
                 </div>
 
-                {/*
+                
                 <button onClick={placeBet} className='btn btn-success mt-5 w-full'>Place Bet</button>
-*/}
 
+
+{/*
                 <Web3Button
                 
                         className='btn btn-success mt-1 w-full'
@@ -615,9 +619,7 @@ export default function BetInputs({ horse1, horse2, currenPrice, setBasePrice, s
 
                           //placeBet();
 
-
                         }}
-
                         
                       >
                         {buttonLoading ? "Loading..." : buttonText}
@@ -625,7 +627,7 @@ export default function BetInputs({ horse1, horse2, currenPrice, setBasePrice, s
 
 
                 <button onClick={disconnect} className='btn mt-3 w-full'>Disconnect</button>
-
+*/}
 
             </div>
         </>
