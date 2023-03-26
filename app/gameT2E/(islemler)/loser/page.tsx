@@ -6,7 +6,6 @@ import withReactContent from "sweetalert2-react-content";
 import Web3 from "web3";
 import abi from "../../../../public/abi.json";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import { Stack, Snackbar, Alert } from "@mui/material";
 import Coin from "@/libs/enums/coin.enum";
 import API from "@/libs/enums/API_KEY";
@@ -14,6 +13,7 @@ import { IUser } from "@/libs/interface/user";
 import DomainEnum from "@/libs/enums/domain";
 
 
+import { useRouter, useSearchParams } from 'next/navigation';
 
 
 export default function Loser() {
@@ -28,7 +28,6 @@ export default function Loser() {
   const [contract, setContract] = useState<any>();
   const [depositCount, setDepositCount] = useState<any>(0);
   const [metamaskview, setMetamaskView] = useState<boolean>(false);
-  const router = useRouter();
   const [succ, setSucc] = React.useState(false);
   const [err, setErr] = React.useState(false);
   const [errMsgSnackbar, setErrMsgSnackbar] = useState<String>("");
@@ -36,6 +35,13 @@ export default function Loser() {
   const [waiting, setWaiting] = useState<boolean>(false);
   const [user, setUser] = useState<IUser>()
   const [settings, setSettings] = useState<any>()
+
+  const { push } = useRouter();
+  const searchParams = useSearchParams();
+
+  const bet = searchParams.get('bet');
+  const betAmount = searchParams.get('betAmount');
+
 
   const getUser = async () => {
     const inputs = {
@@ -51,6 +57,7 @@ export default function Loser() {
     const user = await res.json()
     setUser(user.user.user)
   }
+
   useEffect(() => {
     getUser();
     getSettings();
@@ -525,9 +532,18 @@ export default function Loser() {
             </h4>
     */}
 
+
+            <h3>
+              You Lost {betAmount} $CRA
+            </h3>
+            <h4>
+              You Betted {bet}
+            </h4>
+
+
             <Image
                 //src={`/rabbit${horse.id}.gif`}
-                src={`/rabbit_loser_green.png`}
+                src={`/rabbit_loser_${bet}.png`}
                 width="500"
                 height="500"
                 alt={"at"}
@@ -538,6 +554,8 @@ export default function Loser() {
             <button
               onClick={() => {
                 ////paraYatir();
+
+                push( '/gameT2E' );
               }}
               className="btn btn-success max-w-xs w-full text-xl bg-color-#66CDAA hover:bg-color-#66CDAA  text-white font-bold py-2 px-4 rounded-full"
             >

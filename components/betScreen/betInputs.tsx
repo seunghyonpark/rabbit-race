@@ -46,7 +46,7 @@ import {
 
 
 
-export default function BetInputs({ horse1, horse2, setLongShort, setMyBetAmount}: any) {
+export default function BetInputs({ horse1, horse2, currenPrice, setBasePrice, setLongShort, setMyBetAmount}: any) {
     const [user, setUser] = useState<IUser>()
     const [secilenAt, setSecilenAt] = useState<any>(null)
     const [betAmount, setBetAmount] = useState<any>(0)
@@ -198,8 +198,11 @@ export default function BetInputs({ horse1, horse2, setLongShort, setMyBetAmount
             if (data.message === 'Success') {
                 //alert('You have successfully placed your bet');
 
+                ////console.log('You have successfully placed your bet');
 
+                console.log("currenPrice", currenPrice);
 
+                setBasePrice(currenPrice);
                 setLongShort(secilenAt);
                 setMyBetAmount(betAmount);
     
@@ -228,7 +231,7 @@ export default function BetInputs({ horse1, horse2, setLongShort, setMyBetAmount
 
 
             } else {
-                //alert('You have already placed a bet');
+                alert('You have already placed a bet');
             }
             
 

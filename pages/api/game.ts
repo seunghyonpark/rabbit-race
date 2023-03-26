@@ -53,9 +53,14 @@ export default async function handler(
       betAmount,
       selectedSide
     );
+
+    console.log("addedGame", addedGame);
+    
+
     if (addedGame.success) {
       return res.status(200).json({ message: "Success", addedGame });
     }
+
     return res.status(400).json({ message: "Action Failed" });
   }
 

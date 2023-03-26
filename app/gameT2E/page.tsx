@@ -73,7 +73,9 @@ export default function GameT2E() {
         const price = 1682.32 + Math.random()*10;
         setCurrentPrice(price.toFixed(2));
 
-    }, 400);
+    }, 1000);
+
+
 
 
     const socketInitializer = () => {
@@ -88,11 +90,14 @@ export default function GameT2E() {
 
         socket.on('status', (data: any) => {
             console.log("GameT2E socketInitializer status", data);
+
             setStatus(data);
 
+            /*
             if (data === true) {
                 setBasePrice(currentPrice);
-            } 
+            }
+            */
 
             //setStatus(true);
         });
@@ -112,6 +117,8 @@ export default function GameT2E() {
             setHorse2Oran(data)
         });
     }
+
+
 
 
 
@@ -318,7 +325,6 @@ export default function GameT2E() {
     
     return (
         <>
-        
             {!status ?
                 (
                     <div className='flex flex-col px-10 pb-10 w-full h-full items-center justify-center gap-5 bg-[#0C0E1A] relative'>
@@ -357,6 +363,8 @@ export default function GameT2E() {
                         <BetInputs 
                             horse1={horse1Oran}
                             horse2={horse2Oran}
+                            currenPrice={currentPrice}
+                            setBasePrice={setBasePrice}
                             setLongShort={setlongShort}
                             setMyBetAmount={setMyBetAmount}
 
@@ -367,6 +375,8 @@ export default function GameT2E() {
                             */}
 
                     </div>
+
+
                 )
                 :
                 < Race
@@ -375,8 +385,7 @@ export default function GameT2E() {
                   betAmount={myBetAmount}
                 />
             }
-
-
         </>
+
     )
 }

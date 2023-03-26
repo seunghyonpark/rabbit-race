@@ -1,20 +1,19 @@
 "use client";
 import { getCookie, hasCookie } from "cookies-next";
 import React, { useEffect, useState } from "react";
+import Link from 'next/link';
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import Web3 from "web3";
-import abi from "../../../../public/abi.json";
+import abi from "../../public/abi.json";
 import Image from "next/image";
-
+import { useRouter } from "next/navigation";
 import { Stack, Snackbar, Alert } from "@mui/material";
 import Coin from "@/libs/enums/coin.enum";
 import API from "@/libs/enums/API_KEY";
 import { IUser } from "@/libs/interface/user";
 import DomainEnum from "@/libs/enums/domain";
 
-
-import { useRouter, useSearchParams } from 'next/navigation';
 
 
 
@@ -30,27 +29,14 @@ export default function Winner() {
   const [contract, setContract] = useState<any>();
   const [depositCount, setDepositCount] = useState<any>(0);
   const [metamaskview, setMetamaskView] = useState<boolean>(false);
- 
+  const router = useRouter();
   const [succ, setSucc] = React.useState(false);
   const [err, setErr] = React.useState(false);
   const [errMsgSnackbar, setErrMsgSnackbar] = useState<String>("");
   const [successMsgSnackbar, setSuccessMsgSnackbar] = useState<String>("");
   const [waiting, setWaiting] = useState<boolean>(false);
-  const [user, setUser] = useState<IUser>();
-  const [settings, setSettings] = useState<any>();
-
-
-  //const router = useRouter();
-  //const queries = router.query;
-
-  const { push } = useRouter();
-
-  const searchParams = useSearchParams();
-
-  const bet = searchParams.get('bet');
-  const betAmount = searchParams.get('betAmount');
-
-  
+  const [user, setUser] = useState<IUser>()
+  const [settings, setSettings] = useState<any>()
 
   const getUser = async () => {
     const inputs = {
@@ -66,7 +52,6 @@ export default function Winner() {
     const user = await res.json()
     setUser(user.user.user)
   }
-
   useEffect(() => {
     getUser();
     getSettings();
@@ -498,34 +483,37 @@ export default function Winner() {
   return (
     <>
 
-      {metamaskview ? (
-        <div
-          onClick={() => {
-            setMetamaskView(false);
-          }}
-          className="flex absolute min-w-full min-h-full bg-black/70 justify-center items-center "
-        >
-          <Image
-            src="/metamask-fox.svg"
-            width={100}
-            height={100}
-            alt="Metamask"
-          />
-        </div>
-      ) : null}
+      {
+        metamaskview ? (
+          <div
+            onClick={() => {
+              setMetamaskView(false);
+            }}
+            className="flex absolute min-w-full min-h-full bg-black/70 justify-center items-center "
+          >
+            <Image
+              src="/metamask-fox.svg"
+              width={100}
+              height={100}
+              alt="Metamask"
+            />
+          </div>
+        ) : null
+      }
 
 
-      {waiting ? (
-        <div
-          className="flex absolute min-w-full min-h-full bg-black/70 justify-center items-center "
-        >please wait...
-        </div>
-      ) : null}
+      {
+        waiting ? (
+          <div
+            className="flex absolute min-w-full min-h-full bg-black/70 justify-center items-center "
+          >please wait...
+          </div>
+        ) : null
+      }
 
 
       <div className="flex flex-col items-center justify-center min-h-[75vh] gap-3 p-10 text-gray-100">
-       
-
+        
 
 
 
@@ -541,35 +529,30 @@ export default function Winner() {
             </h4>
     */}
 
-
-            <h3>
-              You Earned {betAmount} $CRA
-            </h3>
-            <h4>
-              You Betted {bet}
-            </h4>
-
-
             <Image
                 //src={`/rabbit${horse.id}.gif`}
-                src={`/rabbit_winner_${bet}.png`}
+                src={`/rabbit_winner_green.png`}
                 width="500"
                 height="500"
                 alt={"at"}
             />
 
 
-
+{/*
             <button
               onClick={() => {
                 ////paraYatir();
-                push( '/gameT2E' );
               }}
               className="btn btn-success max-w-xs w-full text-xl bg-color-#66CDAA hover:bg-color-#66CDAA  text-white font-bold py-2 px-4 rounded-full"
             >
               Next Betting
             </button>
 
+*/}
+
+            <Link href={"/gameT2E"} className="w-64 h-16 bg-gradient-to-r from-[#08FF08] to-[#008013] rounded-lg flex items-center justify-center">
+              <span className="text-gray-200 text-2xl ">Next Betting</span>
+            </Link>
 
 
           </div>

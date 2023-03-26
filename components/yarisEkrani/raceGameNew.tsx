@@ -16,7 +16,7 @@ import Winner from './winner';
 
 
 let socket;
-export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any, betLongShort: any, betAmount: any}) {
+export default function RaceNew({betPrice, betLongShort, betAmount}: {betPrice: any, betLongShort: any, betAmount: any}) {
 
 
 
@@ -138,20 +138,13 @@ export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any
             if (data === betLongShort) { // You win
                 textResult = "You win";
                 imageUrl = "/winner.gif";
-
-                push( '/gameT2E/winner?bet=' + betLongShort + '&betAmount=' + betAmount );
-
             } else { // You lose
                 textResult = "You lose";
                 imageUrl = "/loser.gif";
-
-                push( '/gameT2E/loser?bet=' + betLongShort + '&betAmount=' + betAmount );
             }
 
 
-            
-
-            
+            /////////push('/gameT2E/winner');
 
 
 
@@ -309,6 +302,10 @@ export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any
 
 
     return (
+
+        <>
+            {!winner ?
+                (
 
 
         <div className="min-w-full min-h-screen items-center overflow-x-hidden ">
@@ -581,6 +578,12 @@ export default function Race({betPrice, betLongShort, betAmount}: {betPrice: any
             </div>
         </div>
 
+                )
+                    :
+
+                    < Winner />
+            }
+        </>
 
 
 
