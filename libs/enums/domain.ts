@@ -4,6 +4,7 @@ enum DomainEnum {
   
   
   address = "https://craclegames.nuklabs.xyz",
+  
 }
 
 export default DomainEnum;

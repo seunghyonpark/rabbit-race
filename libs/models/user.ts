@@ -82,7 +82,10 @@ export const newUser = async (
   userToken: string,
   walletAddress: string
 ) => {
+  
   const checkUser = await User.find({ email: email });
+
+
   if (checkUser.length > 0) {
     return { success: false, message: "User already exists" };
   }
@@ -93,9 +96,11 @@ export const newUser = async (
     pass2: pass2,
     userToken: userToken,
     walletAddress: walletAddress,
+    img: "/logo.png"
   });
   return await user.save();
 };
+
 
 export const loginUser = async (email: string) => {
   const user = await User.findOne({ email: email });

@@ -92,7 +92,7 @@ export default function LoginPage() {
                     </div>
                     <div className="form-control w-full max-w-xs">
                         <label className="label">
-                            <span className="label-text">ID</span>
+                            <span className="label-text">EMAIL</span>
                         </label>
                         <input
                             type="text"

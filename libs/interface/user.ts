@@ -12,4 +12,5 @@ export interface IUser {
   newPassToken: string;
   userToken: string;
   maticBalance: number;
+  walletAddress: string;
 }

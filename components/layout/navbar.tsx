@@ -81,16 +81,16 @@ export default function Navbar() {
                         <div className="flex items-center w-full gap-7 text-[#9293A6] fill-[#9293A6] uppercase">
 
 
-{/*
+
                             {
                             user && <Link
                                 href={"/gameT2E/deposit"}
                                 className={`text-[13px] text-[#dca709] hidden`}
                             >
-                                Deposit / Withdraw
+                                Wallet
                             </Link>
                             }
-                        */}
+                        
 
                     {/*
                         user && 

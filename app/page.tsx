@@ -10,7 +10,9 @@ import Footer from "@/components/layout/footer";
 
 
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ['latin'] });
+
+
 
 export default function Home() {
 

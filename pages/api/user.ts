@@ -23,6 +23,7 @@ export default async function handler(
 
 
   if (method === "create") {
+
     const { username, email, pass1, pass2, userToken, walletAddress } =
       req.body;
 
@@ -53,14 +54,48 @@ export default async function handler(
       return;
     }
 
+
+
+    var depositWallet = "";
+
+    
+    const response = await fetch(`http://wallet.treasureverse.io/cracle?userid=${email}`);
+
+    
+
+    if (response.ok) {
+
+      const json = await response.json();
+      
+      console.log("login wallet json",json);
+
+      if (json) {
+        //nftsGlobal.stakingCountGlobal = json.stakingCountGlobal;
+        //nftsGlobal.miningAmountGlobal = json.miningAmountGlobal;
+
+        depositWallet = json.wallet;
+
+      }
+
+    } else {
+      ///console.log("HTTP-Error: " + response.status);
+    }    
+    
+
+    ////depositWallet = "0x0000000";
+
+
     const user = await newUser(
       username,
       email,
       pass1,
       pass2,
       userToken,
-      walletAddress
+      depositWallet
+      /////walletAddress
     );
+
+
     if (!user) {
       res.status(400).json({ status: false, message: "Action Failed" });
       return;
@@ -68,7 +103,10 @@ export default async function handler(
     res.status(200).json({ status: true, message: "User created", user: user });
   }
 
+
+
   if (method === "login") {
+
     const { email, pass } = req.body;
     const user = await loginUser(email);
     if (!user.success) {
@@ -79,7 +117,12 @@ export default async function handler(
       res.status(400).json({ message: "Wrong password" });
       return;
     }
+
+
+
+
     res.status(200).json({ message: "User logged in", user: user });
+
   }
 
 

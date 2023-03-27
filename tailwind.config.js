@@ -9,6 +9,13 @@ module.exports = {
     extend: {
       fontFamily: {
         bebasNeue: ["var(--font-bebasNeue)"],
+
+        sans: [
+          '"Segoe UI"',
+          'Roboto',
+          'sans-serif'
+        ],
+
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

@@ -34,7 +34,14 @@ export default function RegisterPage() {
         return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
     });
 
+
     useEffect(() => {
+
+
+        setWallet("0x");
+        
+
+
         setMetaMask(isMetaMaskInstalled());
         checkAccount();
         const { ethereum }: any = window;
@@ -57,6 +64,7 @@ export default function RegisterPage() {
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
 
     //? METAMASK
     const isMetaMaskInstalled = () => {
@@ -164,6 +172,8 @@ export default function RegisterPage() {
         }
     }
 
+
+    /*
     useEffect(() => {
         if (isMetaMaskInstalled()) {
             wrongWallet();
@@ -171,6 +181,8 @@ export default function RegisterPage() {
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+    */
+
 
     async function checkAccount() {
         const { ethereum }: any = window;
@@ -252,6 +264,7 @@ export default function RegisterPage() {
 
         setErr(false);
     };
+
 
     return (
         <>
