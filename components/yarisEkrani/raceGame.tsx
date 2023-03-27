@@ -2,7 +2,7 @@
 import Horses from "@/libs/enums/horses.enums";
 import SocketEnum from "@/libs/enums/socket";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 //@ts-ignore
 import { io } from "socket.io-client";
 import { BsFillVolumeUpFill, BsFillVolumeMuteFill } from "react-icons/bs";
@@ -56,8 +56,16 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
     const [imageRabbit1, setImageRabbit1] = useState<any>("");
     const [imageRabbit2, setImageRabbit2] = useState<any>("");
 
+
+    const [isPlaying1, setIsPlaying1] = useState(false);
+    const audioRef1 = useRef(null);
+    const [isPlaying2, setIsPlaying2] = useState(false);
+    const audioRef2 = useRef(null);
+
    
     /////const [socket, setSocket] = useState<any>();
+
+
 
 
     const { push } = useRouter();
@@ -71,6 +79,31 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
         setBetAmountLong("");
     }
     */
+
+
+
+    useEffect(() => {
+        if (isPlaying1) {
+          audioRef1.current.play();
+        } else {
+          audioRef1.current.pause();
+        }
+
+        if (isPlaying2) {
+            audioRef2.current.play();
+          } else {
+            audioRef2.current.pause();
+          }
+    
+        audioRef1.current.onended = () => {
+          setIsPlaying1(false);
+        };
+        audioRef2.current.onended = () => {
+            setIsPlaying2(false);
+          };
+
+    }, [isPlaying1, isPlaying2, audioRef1, audioRef2]);
+
 
     useEffect(() => {
 
@@ -182,8 +215,10 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
         })
 
         socket.on("horse1", (data: any) => {
-            //console.log("Race socketInitializer horse1", data);
+            ////console.log("Race socketInitializer horse1", data);
             setProgress1(data);
+
+            
         });
 
         socket.on("horse2", (data: any) => {
@@ -332,11 +367,22 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
 
 
         if ( (progress1-progress2) > 0) {
+
+            setIsPlaying1(true);
+            setIsPlaying2(false);
+
+
             setImageRabbit1("/rabbit1_winning.gif");
             setImageRabbit2("/rabbit2_losing.gif");
+
         } else if ( (progress2-progress1) > 0) {
+
+            setIsPlaying2(true);
+            setIsPlaying1(false);
+
             setImageRabbit1("/rabbit1_losing.gif");
             setImageRabbit2("/rabbit2_winning.gif");
+
         } else {
             setImageRabbit1("/rabbit1.gif");
             setImageRabbit2("/rabbit2.gif");
@@ -376,6 +422,9 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
         <div className="min-w-full min-h-screen items-center overflow-x-hidden ">
             
             <audio src="/racing.mp3" typeof="audio/mpeg" autoPlay={soundStatus} muted={!soundStatus} />
+
+            <audio src="/shouting1.wav" ref={audioRef1} autoPlay={soundStatus} muted={!soundStatus} />
+            <audio src="/shouting2.wav" ref={audioRef2} autoPlay={soundStatus} muted={!soundStatus} />
 
             <div className="flex flex-row">
 

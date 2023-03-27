@@ -21,6 +21,7 @@ export default function Race() {
     const [soundStatus, setSoundStatus] = useState(true);
     const [finishLine, setFinishLine] = useState(false);
 
+    
 
     setTimeout(() => {
         setHorses([
