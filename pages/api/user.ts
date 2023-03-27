@@ -85,6 +85,7 @@ export default async function handler(
 
   if (method === "getOne") {
     const { userToken } = req.body;
+
     const user = await getUser(userToken);
 
     if (!user.success) {
@@ -96,7 +97,6 @@ export default async function handler(
 
     //const users = await getAllUsers();
     //console.log("api users", users);
-
 
     res.status(200).json({ message: "User found", user: user });
   }

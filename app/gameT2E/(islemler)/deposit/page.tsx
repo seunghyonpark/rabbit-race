@@ -51,6 +51,7 @@ export default function Deposit() {
     const user = await res.json()
     setUser(user.user.user)
   }
+  
   useEffect(() => {
     getUser();
     getSettings();

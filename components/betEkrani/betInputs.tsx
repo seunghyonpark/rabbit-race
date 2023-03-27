@@ -28,6 +28,7 @@ export default function BetInputs({ horse1, horse2 }: any) {
         const user = await res.json()
         setUser(user.user.user)
     }
+    
     useEffect(() => {
         if (hasCookie('user')) {
             getUser()

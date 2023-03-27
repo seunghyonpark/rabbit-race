@@ -17,6 +17,10 @@ import withReactContent from "sweetalert2-react-content";
 //@ts-ignore
 import { io } from "socket.io-client";
 
+import API from '@/libs/enums/API_KEY';
+import { IUser } from '@/libs/interface/user';
+import { getCookie, hasCookie } from 'cookies-next';
+
 
 
 // code for web3
@@ -46,11 +50,14 @@ import {
 
 
 // Bebas Neue
-let socket;
+
 
 export default function GameT2E() {
+
     const [status, setStatus] = useState<any>();
+
     const [time, setTime] = useState<any>(0);
+
     const [horse1Oran, setHorse1Oran] = useState<any>([]);
     const [horse2Oran, setHorse2Oran] = useState<any>([]);
 
@@ -61,24 +68,126 @@ export default function GameT2E() {
     
     const [myBetAmount, setMyBetAmount] = useState<any>("");
 
+    const [socket, setSocket] = useState<any>();
+
     
     const MySwal = withReactContent(Swal);
 
 
-    useEffect(() => socketInitializer(), []);
+
+    useEffect(() => {
+
+      const socketIo = io(`${SocketEnum.id}`, {
+        transports: ["websocket"],
+      });
+
+      socketIo.on("connect", () => {
+
+        console.log("GameT2E connect");
+
+        console.log("GameT2E userToken", getCookie('user'));
+
+       
+        if (hasCookie('user')) {
+ 
+          const inputs = {
+            method: 'getOne',
+            API_KEY: API.key,
+            userToken: getCookie('user')
+          };
+
+          (async () => {
+
+              const res = await fetch('/api/user', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(inputs)
+              })
+              const user = await res.json();
+              
+              ///setUser(user.user.user);
+
+              console.log("gameT2E user", user.user.user.username);
+
+              socketIo.emit("user", user.user.user.username);
+
+          })();
+
+        }
 
 
+      });
+
+      socketIo.on('status', (data: any) => {
+          console.log(socketIo.id + " GameT2E status", data);
+
+          setStatus(data);
+
+          /*
+          if (data === true) {
+              setBasePrice(currentPrice);
+          }
+          */
+
+          //setStatus(true);
+      });
+
+      /*
+      socketIo.on('time', (data: any) => {
+          console.log("GameT2E time", data);
+          setTime(data)
+      });
+      */
+
+
+      socketIo.on('horse1Orana', (data: any) => {
+          console.log("GameT2E horse1Orana", data);
+          setHorse1Oran(data)
+      });
+
+      socketIo.on('horse2Orana', (data: any) => {
+          console.log("GameT2E horse2Orana", data);
+          setHorse2Oran(data)
+      });
+  
+      
+      socketIo.on('price', (data: any) => {
+          ////console.log(socketIo.id + " GameT2E price", data.price);
+          setCurrentPrice(data.price);
+
+      });
+      
+
+      /*
+      if (socket) {
+        socket.disconnect();
+      }
+      */
+      
+
+      setSocket(socketIo);
+    
+    }, []);
+
+        
     /*
-    setTimeout(() => {
+    useEffect(() => {
 
-        const price = 1682.32 + Math.random()*10;
-        setCurrentPrice(price.toFixed(2));
+      return (() => {
+        if (socket) {
+          socket.disconnect();
+        }
+      });
 
-    }, 1000);
+    }, [socket]);
     */
 
 
 
+    ////useEffect(() => socketInitializer(), []);
+
+
+    /*
     const socketInitializer = () => {
 
         const socket = io(`${SocketEnum.id}`, {
@@ -86,41 +195,35 @@ export default function GameT2E() {
         });
 
         socket.on("connect", () => {
-            console.log("GameT2E socketInitializer connect");
+            console.log("GameT2E connect");
         });
 
         socket.on('status', (data: any) => {
-            console.log("GameT2E socketInitializer status", data);
+            console.log("GameT2E status", data);
 
             setStatus(data);
-
-            /*
-            if (data === true) {
-                setBasePrice(currentPrice);
-            }
-            */
 
             //setStatus(true);
         });
 
         socket.on('time', (data: any) => {
-            console.log("GameT2E socketInitializer time", data);
+            console.log("GameT2E time", data);
             setTime(data)
         });
 
         socket.on('horse1Orana', (data: any) => {
-            console.log("GameT2E socketInitializer horse1Orana", data);
+            console.log("GameT2E horse1Orana", data);
             setHorse1Oran(data)
         });
 
         socket.on('horse2Orana', (data: any) => {
-            console.log("GameT2E socketInitializer horse2Orana", data);
+            console.log("GameT2E horse2Orana", data);
             setHorse2Oran(data)
         });
      
         
         socket.on('price', (data: any) => {
-            console.log("GameT2E socketInitializer price", data.price);
+            console.log(socket.id + " GameT2E price", data.price);
             
             setCurrentPrice(data.price);
 
@@ -130,7 +233,7 @@ export default function GameT2E() {
           
     }
 
-
+    */
 
 
 
@@ -372,14 +475,14 @@ export default function GameT2E() {
                         </div>
 
 
-                        <BetInputs 
-                            horse1={horse1Oran}
-                            horse2={horse2Oran}
-                            currenPrice={currentPrice}
-                            setBasePrice={setBasePrice}
-                            setLongShort={setlongShort}
-                            setMyBetAmount={setMyBetAmount}
-
+                        <BetInputs
+                          socket={socket}
+                          horse1={horse1Oran}
+                          horse2={horse2Oran}
+                          currenPrice={currentPrice}
+                          setBasePrice={setBasePrice}
+                          setLongShort={setlongShort}
+                          setMyBetAmount={setMyBetAmount}
                         />
 
                         {/*
@@ -392,6 +495,7 @@ export default function GameT2E() {
                 )
                 :
                 < Race
+                  socket={socket}
                   currentPrice={currentPrice}
                   betPrice={basePrice}
                   betLongShort={longShort}

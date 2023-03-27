@@ -15,8 +15,7 @@ import { useRouter } from 'next/navigation';
 import Winner from './winner';
 
 
-let socket;
-export default function Race({currentPrice, betPrice, betLongShort, betAmount}: {currentPrice: any, betPrice: any, betLongShort: any, betAmount: any}) {
+export default function Race({socket, currentPrice, betPrice, betLongShort, betAmount}: {socket: any, currentPrice: any, betPrice: any, betLongShort: any, betAmount: any}) {
 
 
 
@@ -55,8 +54,10 @@ export default function Race({currentPrice, betPrice, betLongShort, betAmount}: 
     const [imageRabbit2, setImageRabbit2] = useState<any>("");
 
    
+    /////const [socket, setSocket] = useState<any>();
 
 
+    const { push } = useRouter();
 
     /*
     if (betLongShort === "Long") {
@@ -102,20 +103,125 @@ export default function Race({currentPrice, betPrice, betLongShort, betAmount}: 
     //}, 1000);
 
 
-    useEffect(() => socketInitializer(), []);
+   
+    
+
+    useEffect(() => {
+
+        console.log("raceGame useEffect socket id", socket.id);
+
+        /*
+        const socketIo = io("http://localhost:8080", {
+            cors: {
+                origin: "http://localhost:8080",
+                credentials: true
+            },
+            transports: ["websocket"],
+            query: {
+                tenant: 'EGU'
+            }
+        });
+        */
+        
+
+        /*
+        const socketIo = io(`${SocketEnum.id}`, {
+            transports: ["websocket"],
+        });
+
+        socketIo.on("connect", () => {
+
+            console.log("raceGame socketInitializer connect socket.id", socketIo.id);
+
+        });
+        */
+
+        socket.on('status', (data: any) => {
+
+            console.log("raceGame status", data);
+
+            setStatus(data)
+
+            
+        })
+
+        socket.on("winner", (data: any) => {
+            console.log("raceGame winner", data);
+
+            setWinner(data);
+
+            let textResult = "";
+            let imageUrl = "";
+
+            if (data === betLongShort) { // You win
+                textResult = "You win";
+                imageUrl = "/winner.gif";
+
+                push( '/gameT2E/winner?bet=' + betLongShort + '&betAmount=' + betAmount );
+
+            } else { // You lose
+                textResult = "You lose";
+                imageUrl = "/loser.gif";
+
+                push( '/gameT2E/loser?bet=' + betLongShort + '&betAmount=' + betAmount );
+            }
+
+        })
+
+        socket.on("horse1", (data: any) => {
+            //console.log("Race socketInitializer horse1", data);
+            setProgress1(data);
+        });
+
+        socket.on("horse2", (data: any) => {
+            //console.log("Race socketInitializer horse2", data);
+            setProgress2(data);
+        });
+
+        socket.on("timer", (data: any) => {
+
+            ///console.log(socket.id + " raceGame timer", data);
+
+            // 60 seconds
+            if ( (60000 - (data*1000) ) > 0) {
+                setTimeRemaining( (60000 - (data * 1000)) / 1000);
+            } else {
+                setTimeRemaining(0);
+            }
+
+        });
+
+
+        //////setSocket(socketIo);
+    
+    }, [socket, betAmount, betLongShort, push]);
+
+    /*
+    useEffect(() => {
+        return (() => {
+            if (socket) {
+                socket.disconnect();
+            }
+        })
+    }, [socket]);
+    */
+
     
 
 
-    const { push } = useRouter();
+
+    /////useEffect(() => socketInitializer(), []);
 
     const socketInitializer = () => {
+
         const socket = io(`${SocketEnum.id}`, {
             transports: ["websocket"],
         });
 
         socket.on("connect", () => {
 
-            console.log("raceGame socketInitializer connect");
+            console.log("raceGame socketInitializer connect socket.id", socket.id);
+
         });
 
         socket.on('status', (data: any) => {
@@ -226,7 +332,7 @@ export default function Race({currentPrice, betPrice, betLongShort, betAmount}: 
 
 
         socket.on("timer", (data: any) => {
-            ////console.log("Race socketInitializer timer", data);
+            console.log(socket.id + " Race timer", data);
            
             ///setProgress5(data);
 

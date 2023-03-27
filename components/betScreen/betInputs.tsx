@@ -46,7 +46,7 @@ import {
 
 
 
-export default function BetInputs({ horse1, horse2, currenPrice, setBasePrice, setLongShort, setMyBetAmount}: any) {
+export default function BetInputs({ socket, horse1, horse2, currenPrice, setBasePrice, setLongShort, setMyBetAmount}: any) {
     const [user, setUser] = useState<IUser>()
     const [secilenAt, setSecilenAt] = useState<any>(null)
     const [betAmount, setBetAmount] = useState<any>(0)
@@ -145,31 +145,8 @@ export default function BetInputs({ horse1, horse2, currenPrice, setBasePrice, s
 
 
 
-            const socket = io(`${SocketEnum.id}`, {
-                transports: ["websocket"],
-            });
+
     
-            /*
-            socket.on("connect", () => {
-                console.log("placeBet connect");
-
-                socket.emit("start", "nevertry");
-
-
-            });
-            */
-
-            /*
-            socket.on("connection", () => {
-                console.log("placeBet connection");
-
-                //socket.emit("start", "nevertry");
-
-
-            });
-            */
-
-
 
 
             console.log("user img", user?.img);
@@ -210,6 +187,7 @@ export default function BetInputs({ horse1, horse2, currenPrice, setBasePrice, s
                 setMyBetAmount(betAmount);
     
     
+
                 socket.emit("start", user?.username);
 
 
