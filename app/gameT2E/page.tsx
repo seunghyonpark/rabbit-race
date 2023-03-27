@@ -477,7 +477,7 @@ export default function GameT2E() {
                                 <div
                                     className={`flex items-center justify-center text-xl  bg-black rounded-md h-[36px] text-center px-5 text-[#BA8E09] border border-[#BA8E09] mt-5`}
                                 >
-                                   <span className="text-[#ffffff]">ENTRY PRICE (ETH):</span>&nbsp;&nbsp;&nbsp;
+                                   <span className="text-[#ffffff]">PRICE (ETH):</span>&nbsp;&nbsp;&nbsp;
                                    <span>{Number(currentPrice).toFixed(2)}&nbsp;&nbsp;&nbsp;</span>
                                    <span className="text-[#ffffff]">USDT</span>
                                 </div>
