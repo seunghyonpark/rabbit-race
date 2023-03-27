@@ -58,9 +58,15 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
 
 
     const [isPlaying1, setIsPlaying1] = useState(false);
-    const audioRef1 = useRef(null);
+
+    const audioRef1 = useRef<HTMLInputElement>(null);
+
+
+    //const audioRef1 = useRef(null);
     const [isPlaying2, setIsPlaying2] = useState(false);
-    const audioRef2 = useRef(null);
+
+    const audioRef2 = useRef<HTMLInputElement>(null);
+    ////const audioRef2 = useRef(null);
 
    
     /////const [socket, setSocket] = useState<any>();
@@ -84,23 +90,36 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
 
     useEffect(() => {
         if (isPlaying1) {
-          audioRef1.current.play();
+            if (audioRef1.current != null) {
+                audioRef1.current.play();
+            }
         } else {
-          audioRef1.current.pause();
+            if (audioRef1.current != null) {
+                audioRef1.current.pause();
+            }
         }
 
         if (isPlaying2) {
-            audioRef2.current.play();
-          } else {
-            audioRef2.current.pause();
-          }
+            if (audioRef2.current != null) {
+                audioRef2.current.play();
+            }
+        } else {
+            if (audioRef2.current != null) {
+                audioRef2.current.pause();
+            }
+        }
     
-        audioRef1.current.onended = () => {
-          setIsPlaying1(false);
-        };
-        audioRef2.current.onended = () => {
-            setIsPlaying2(false);
-          };
+        if (audioRef1.current != null) {
+            audioRef1.current.onended = () => {
+            setIsPlaying1(false);
+            };
+        }
+
+        if (audioRef2.current != null) {
+            audioRef2.current.onended = () => {
+                setIsPlaying2(false);
+            };
+        }
 
     }, [isPlaying1, isPlaying2, audioRef1, audioRef2]);
 
