@@ -19,8 +19,8 @@ import { io } from "socket.io-client";
 
 import API from '@/libs/enums/API_KEY';
 import { IUser } from '@/libs/interface/user';
-import { getCookie, hasCookie } from 'cookies-next';
-
+import { getCookie, hasCookie, deleteCookie } from 'cookies-next';
+import { useRouter } from 'next/navigation';
 
 
 // code for web3
@@ -73,6 +73,7 @@ export default function GameT2E() {
     
     const MySwal = withReactContent(Swal);
 
+    const router = useRouter();
 
 
     useEffect(() => {
@@ -152,8 +153,20 @@ export default function GameT2E() {
   
       
       socketIo.on('price', (data: any) => {
-          ////console.log(socketIo.id + " GameT2E price", data.price);
+          console.log(socketIo.id + " GameT2E price", data.price);
           setCurrentPrice(data.price);
+
+      });
+
+
+      socketIo.on('logout', (data: any) => {
+        console.log(socketIo.id + " GameT2E logout", data);
+
+        ////deleteCookie('user');
+        ///router.push('/gameT2E');
+
+        
+        socketIo.disconnect();
 
       });
       
@@ -167,7 +180,7 @@ export default function GameT2E() {
 
       setSocket(socketIo);
     
-    }, []);
+    }, [router]);
 
         
     /*
