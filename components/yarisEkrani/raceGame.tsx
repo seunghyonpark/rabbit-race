@@ -59,14 +59,13 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
 
     const [isPlaying1, setIsPlaying1] = useState(false);
 
-    const audioRef1 = useRef<HTMLInputElement>(null);
+    /////const audioRef1 = useRef<HTMLInputElement>(null);
+    const audioRef1 = useRef(null);
 
-
-    //const audioRef1 = useRef(null);
     const [isPlaying2, setIsPlaying2] = useState(false);
 
-    const audioRef2 = useRef<HTMLInputElement>(null);
-    ////const audioRef2 = useRef(null);
+    //const audioRef2 = useRef<HTMLInputElement>(null);
+    const audioRef2 = useRef(null);
 
    
     /////const [socket, setSocket] = useState<any>();
