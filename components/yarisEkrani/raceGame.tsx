@@ -30,6 +30,9 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
 
     const [status, setStatus] = useState<any>();
 
+    const [basePrice, setBasePrice] = useState<any>(0);
+
+
     const [progress1, setProgress1] = useState<any>(0);
     const [progress2, setProgress2] = useState<any>(0);
     //const [progress3, setProgress3] = useState<any>(0);
@@ -140,10 +143,20 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
 
             console.log("raceGame status", data);
 
-            setStatus(data)
+            setStatus(data);
 
             
-        })
+        });
+
+
+        socket.on('baseprice', (data: any) => {
+
+            ////console.log("raceGame baseprice", data);
+
+            setBasePrice(data);
+
+        });
+
 
         socket.on("winner", (data: any) => {
             console.log("raceGame winner", data);
@@ -212,6 +225,7 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
 
     /////useEffect(() => socketInitializer(), []);
 
+    /*
     const socketInitializer = () => {
 
         const socket = io(`${SocketEnum.id}`, {
@@ -256,47 +270,6 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
                 push( '/gameT2E/loser?bet=' + betLongShort + '&betAmount=' + betAmount );
             }
 
-
-            
-
-            
-
-
-
-            /*
-            MySwal.fire({
-                //title: "You Bet: " + betLongShort + "<br>Game Result: " + data,
-                html: "You Bet: " + betLongShort + "<br>Game Result: " + data,
-                text: textResult,
-                icon: "success",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "OK",
-                cancelButtonText: "Game History",
-
-                imageUrl: imageUrl,
-                imageWidth: 400,
-                imageHeight: 200,
-                imageAlt: 'Custom image'
-
-           
-                //animation: true,
-              }).then(async (result: any) => {
-
-
-              });
-
-              */
-
-
-
-
-
-
-
-
-
         })
 
         socket.on("horse1", (data: any) => {
@@ -313,36 +286,17 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
 
         });
 
-        /*
-        socket.on("horse3", (data: any) => {
-            //console.log("Race socketInitializer horse3", data);
-            //////setProgress3(data);
-        });
-
-        socket.on("horse4", (data: any) => {
-            //console.log("Race socketInitializer horse4", data);
-            ///setProgress4(data);
-        });
-
-        socket.on("horse5", (data: any) => {
-            //console.log("Race socketInitializer horse5", data);
-            ///setProgress5(data);
-        });
-        */
-
-
         socket.on("timer", (data: any) => {
             console.log(socket.id + " Race timer", data);
            
             ///setProgress5(data);
 
-            /* 90 seconds
-            if ( (90000 - (data*1000) ) > 0) {
-                setTimeRemaining( (90000 - (data * 1000)) / 1000);
-            } else {
-                setTimeRemaining(0);
-            }
-            */
+            
+            //if ( (90000 - (data*1000) ) > 0) {
+            //    setTimeRemaining( (90000 - (data * 1000)) / 1000);
+            //} else {
+            //    setTimeRemaining(0);
+            //}
 
             // 60 seconds
             if ( (60000 - (data*1000) ) > 0) {
@@ -353,9 +307,9 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
 
 
         });
-        
 
     };
+    */
 
 
     /*
@@ -446,7 +400,7 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
                                 className={`flex items-center justify-center  bg-black h-[36px] text-center text-xl px-5 text-[#BA8E09] border border-[#BA8E09] `}
                             >
                                 <span className="text-[#ffffff]">
-                                    {Number(betPrice).toFixed(2)}
+                                    {Number(basePrice).toFixed(2)}
                                 </span>&nbsp;&nbsp;<span>USDT</span>
                             </div>
 

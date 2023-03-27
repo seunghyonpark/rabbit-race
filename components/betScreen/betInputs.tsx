@@ -46,7 +46,7 @@ import {
 
 
 
-export default function BetInputs({ socket, horse1, horse2, currenPrice, setBasePrice, setLongShort, setMyBetAmount}: any) {
+export default function BetInputs({ socket, horse1, horse2, currentPrice, setBasePrice, setLongShort, setMyBetAmount}: any) {
     const [user, setUser] = useState<IUser>()
     const [secilenAt, setSecilenAt] = useState<any>(null)
     const [betAmount, setBetAmount] = useState<any>(0)
@@ -167,7 +167,6 @@ export default function BetInputs({ socket, horse1, horse2, currenPrice, setBase
                 betAmount: betAmount,
                 selectedSide: secilenAt
             }
-
             const res = await fetch('/api/game', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -180,13 +179,15 @@ export default function BetInputs({ socket, horse1, horse2, currenPrice, setBase
 
                 ////console.log('You have successfully placed your bet');
 
-                console.log("currenPrice", currenPrice);
+                //console.log("currentPrice", currentPrice);
 
-                setBasePrice(currenPrice);
+                ////setBasePrice(currentPrice);
+
                 setLongShort(secilenAt);
                 setMyBetAmount(betAmount);
     
-    
+
+                ///////socket.emit("baseprice", currentPrice);
 
                 socket.emit("start", user?.username);
 
