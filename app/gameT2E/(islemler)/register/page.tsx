@@ -352,16 +352,9 @@ export default function RegisterPage() {
                                 <div className="absolute left-1/3  w-2 h-2 rounded-full bg-red-500 z-50"></div>
                             </div>
                         </div>
+
                         <label className="label">
-                            <span className="label-text">Username:</span>
-                        </label>
-                        <input
-                            type="text"
-                            id="username"
-                            className="input w-full bg-gray-200 rounded-md"
-                        />
-                        <label className="label">
-                            <span className="label-text">E-Mail:</span>
+                            <span className="label-text">ID (Email Address):</span>
                         </label>
                         <input
                             type="email"
@@ -384,6 +377,16 @@ export default function RegisterPage() {
                             id="pass2"
                             className="input w-full bg-gray-200 rounded-md"
                         />
+
+                        <label className="label">
+                            <span className="label-text">Nickname:</span>
+                        </label>
+                        <input
+                            type="text"
+                            id="username"
+                            className="input w-full bg-gray-200 rounded-md"
+                        />
+
                     </div>
                 </div>
 

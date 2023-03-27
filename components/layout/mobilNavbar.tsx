@@ -565,21 +565,21 @@ export default function MobilNavbar() {
 
 
 
-                <Link href={"/"}>
+                <Link href={"/gameT2E"}>
                     <Image src={"/logo.png"} width={80} height={100} alt="logo" />
                 </Link>
 
                 
                 <div className='w-full p-2 flex items-center justify-end gap-3'>
 
-                    
+                    {
                         user && <Link
                             href={"/gameT2E/deposit"}
                             className={`text-[13px] text-[#dca709] `}
                         >
                             Wallet
                         </Link>
-    
+                    }
 
 
 

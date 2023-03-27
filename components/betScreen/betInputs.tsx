@@ -478,32 +478,42 @@ export default function BetInputs({ socket, horse1, horse2, currentPrice, setBas
                             setBetAmount(betAmount + 100)
                         }}
                         className='btn btn-circle bg-[url(/cion.webp)] bg-contain bg-center bg-no-repeat text-black border'> +100 </button>
+                    
                     <button
                         onClick={() => {
                             setBetAmount(betAmount + 500)
                         }}
                         className='btn btn-circle bg-[url(/cion.webp)] bg-contain bg-center bg-no-repeat text-black border'> +500 </button>
+                    
                     <button
                         onClick={() => {
                             setBetAmount(betAmount + 1000)
                         }}
                         className='btn btn-circle bg-[url(/cion.webp)] bg-contain bg-center bg-no-repeat text-black border'> +1000 </button>
                 
+
+                </div>
+
+                <div className='grid grid-cols-2 content-center md:flex w-full gap-3 items-center justify-center text-white'>   
+
                     <button
                         onClick={() => {
                             setBetAmount(betAmount * 2)
                         }}
-                        className='btn btn-circle bg-[url(/cion.webp)] bg-contain bg-center bg-no-repeat text-black border'> x2 </button>
+                        className=' btn btn-circle bg-[url(/cion.webp)] bg-contain bg-center bg-no-repeat text-black border'> x2 </button>
+                    
                     <button
                         onClick={() => {
                             setBetAmount(betAmount / 2)
                         }}
                         className='btn btn-circle bg-[url(/cion.webp)] bg-contain bg-center bg-no-repeat text-black border'> /2 </button>
+                    
                     {user && <button
                         onClick={() => {
                             setBetAmount(user?.deposit - 0.00001)
                         }}
-                        className='btn btn-circle hidden md:block bg-[url(/cion.webp)] bg-contain bg-center bg-no-repeat text-black border'> Max </button>}
+                        className=' btn-circle hidden md:block bg-[url(/cion.webp)] bg-contain bg-center bg-no-repeat text-black border'> Max </button>}
+                
                 </div>
                 
                 {/* //? Horse Select Buttons */}

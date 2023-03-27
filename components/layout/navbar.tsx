@@ -45,7 +45,7 @@ export default function Navbar() {
             {/* //? LG Screen üstü görüntü */}
             <div className="hidden lg:flex items-center justify-center w-full h-20 bg-[#24252F] sticky top-0 z-50 ">
                 <div className="flex flex-col gap-3 items-center justify-center w-[250px] absolute top-0 bg-[#24252F] rounded-lg h-full z-50  ">
-                    <Link href={"/"} className="hover:opacity-50">
+                    <Link href={"/gameT2E"} className="hover:opacity-50">
                         <Image src={"/logo.png"} alt="" width={150} height={20} />
                     </Link>
 

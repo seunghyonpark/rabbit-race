@@ -153,7 +153,7 @@ export default function GameT2E() {
   
       
       socketIo.on('price', (data: any) => {
-          console.log(socketIo.id + " GameT2E price", data.price);
+          ///console.log(socketIo.id + " GameT2E price", data.price);
           setCurrentPrice(data.price);
 
       });
