@@ -85,7 +85,7 @@ export default function Navbar() {
                             {
                             user && <Link
                                 href={"/gameT2E/deposit"}
-                                className={`text-[13px] text-[#dca709] hidden`}
+                                className={`text-[13px] text-[#dca709]`}
                             >
                                 Wallet
                             </Link>
