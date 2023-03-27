@@ -51,7 +51,7 @@ export default function UserList() {
     },
     {
       field: "matic",
-      headerName: "Matic Balance",
+      headerName: "BNB Balance",
       flex: 0.1,
       minWidth: 150,
       align: "center",
@@ -316,7 +316,7 @@ export default function UserList() {
                 autoFocus
                 margin="dense"
                 id="maticBalance"
-                label="Matic Balance"
+                label="BNB Balance"
                 type="number"
                 fullWidth
                 defaultValue={selectedUser?.matic}
