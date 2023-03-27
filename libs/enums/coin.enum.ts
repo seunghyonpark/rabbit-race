@@ -1,5 +1,5 @@
 enum Coin {
-  name = "Clacle",
+  name = "CRA",
   symbol = "CRA",
   katSayi = 8,
 }

@@ -472,7 +472,7 @@ export default function BetInputs({ socket, horse1, horse2, currentPrice, setBas
                 </div>
 
                 {/* //? Miktar Selector Buttons */}
-                <div className='grid grid-cols-3 content-center md:flex w-full gap-3 items-center justify-center text-white'>
+                <div className='grid grid-cols-5 content-center md:flex w-full gap-3 items-center justify-center text-white'>
                     <button
                         onClick={() => {
                             setBetAmount(betAmount + 100)
@@ -491,10 +491,6 @@ export default function BetInputs({ socket, horse1, horse2, currentPrice, setBas
                         }}
                         className='btn btn-circle bg-[url(/cion.webp)] bg-contain bg-center bg-no-repeat text-black border'> +1000 </button>
                 
-
-                </div>
-
-                <div className='grid grid-cols-2 content-center md:flex w-full gap-3 items-center justify-center text-white'>   
 
                     <button
                         onClick={() => {

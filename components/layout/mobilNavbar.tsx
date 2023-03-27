@@ -684,7 +684,7 @@ export default function MobilNavbar() {
                             className={`text-[10px] text-red-500`}
                             onClick={() => {
                                 deleteCookie('user'),
-                                    router.push('/')
+                                    router.push('/gameT2E')
                             }}
                         >
                             Log Out
