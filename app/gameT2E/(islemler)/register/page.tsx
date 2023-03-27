@@ -379,7 +379,7 @@ export default function RegisterPage() {
                         />
 
                         <label className="label">
-                            <span className="label-text">Nickname:</span>
+                            <span className="label-text">Nick Name:</span>
                         </label>
                         <input
                             type="text"
