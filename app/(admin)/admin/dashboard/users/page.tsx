@@ -244,7 +244,7 @@ export default function UserList() {
     <>
       <>
         <div className='flex flex-col p-10 mt-5 text-gray-200'>
-          <h1 className='font-bold italic text-2xl'>Withdraw users (DEMO)</h1>
+          <h1 className='font-bold italic text-2xl'>Users</h1>
           <div style={{ width: "100%", height: 600, color: "white" }}>
             <DataGrid
               rows={rows}
