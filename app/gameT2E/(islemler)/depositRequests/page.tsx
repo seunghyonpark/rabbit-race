@@ -41,7 +41,7 @@ export default function DepositRequestList() {
             headerAlign: "center",
         },
         {
-            field: "requestAmount",
+            field: "depositAmount",
             headerName: "Request Amount",
             align: "center",
             headerAlign: "center",
@@ -200,8 +200,11 @@ export default function DepositRequestList() {
                 userToken: getCookie("user")
             }),
         })
-        const data = await res.json()
-        setRequests(data.payments)
+        const data = await res.json();
+
+        console.log("deposits=>", data.deposits, "user=>", getCookie("user")  );
+
+        setRequests(data.deposits)
     }
 
     useEffect(() => {
@@ -213,10 +216,10 @@ export default function DepositRequestList() {
             kayitId: item._id,
             id: i,
             email1: item.email1,
-            requestAmount: item.withdrawAmount,
+            depositAmount: item.depositAmount,
             type: item.type,
             status: item.status,
-            wallet: item.walletTo,
+            wallet: item.walletFrom,
             createdAt: item.createdAt,
             txHash: item.txHash,
             userToken: item.userToken,
@@ -255,7 +258,7 @@ export default function DepositRequestList() {
                             ID(E-mail): <span className='font-bold italic'> {selectedUser?.email1} </span>
                         </DialogContentText>
                         <DialogContentText>
-                            Request Amount: <span className='font-bold italic'> {selectedUser?.requestAmount} </span>
+                            Deposit Amount: <span className='font-bold italic'> {selectedUser?.depositAmount} </span>
                         </DialogContentText>
                         <DialogContentText>
                             Type: <span className='font-bold italic'> {selectedUser?.type} </span>
