@@ -42,8 +42,15 @@ export default function RootLayout({
 
     if (!user) return (
         <>
+
+        {/*
             <div className="flex flex-col items-center justify-center w-full h-full min-h-screen text-2xl">
                 You shall not pass ! -Gandalf The Gray
+            </div>
+    */}
+
+            <div className="flex flex-col items-center justify-center w-full h-full min-h-screen text-2xl">
+                You shall not pass !!!
             </div>
         </>
     )
