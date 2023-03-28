@@ -253,7 +253,7 @@ export default function MaticWithdrawRequestList() {
                     onClose={handleClose}
                     aria-describedby="alert-dialog-slide-description"
                 >
-                    <DialogTitle> Withdraw MATIC Request from {selectedUser?.email1}</DialogTitle>
+                    <DialogTitle> Withdraw Request from {selectedUser?.email1}</DialogTitle>
                     <DialogContent className='space-y-3'>
                         <DialogContentText>
                             ID(E-mail): <span className='font-bold italic'> {selectedUser?.email1} </span>
