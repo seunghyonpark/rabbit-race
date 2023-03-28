@@ -191,7 +191,7 @@ export default function DepositRequestList() {
     }
 
     const getAll = async () => {
-        const res = await fetch('/api/paymentRequests', {
+        const res = await fetch('/api/depositRequests', {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -249,7 +249,7 @@ export default function DepositRequestList() {
                     onClose={handleClose}
                     aria-describedby="alert-dialog-slide-description"
                 >
-                    <DialogTitle> Withdraw Request from {selectedUser?.email1}</DialogTitle>
+                    <DialogTitle> Deposit Request from {selectedUser?.email1}</DialogTitle>
                     <DialogContent className='space-y-3'>
                         <DialogContentText>
                             ID(E-mail): <span className='font-bold italic'> {selectedUser?.email1} </span>
