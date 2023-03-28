@@ -50,7 +50,7 @@ export default function MaticWithdrawRequestList() {
         },
         {
             field: "requestAmount",
-            headerName: "Withdraw Request Amount",
+            headerName: "Request Amount",
             align: "center",
             headerAlign: "center",
             type: "number",
@@ -256,10 +256,10 @@ export default function MaticWithdrawRequestList() {
                     <DialogTitle> Withdraw MATIC Request from {selectedUser?.email1}</DialogTitle>
                     <DialogContent className='space-y-3'>
                         <DialogContentText>
-                            E-mail: <span className='font-bold italic'> {selectedUser?.email1} </span>
+                            ID(E-mail): <span className='font-bold italic'> {selectedUser?.email1} </span>
                         </DialogContentText>
                         <DialogContentText>
-                            Withdraw Request Amount: <span className='font-bold italic'> {selectedUser?.requestAmount} </span>
+                            Request Amount: <span className='font-bold italic'> {selectedUser?.requestAmount} </span>
                         </DialogContentText>
                         <DialogContentText>
                             Type: <span className='font-bold italic'> {selectedUser?.type} </span>

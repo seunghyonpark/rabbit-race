@@ -34,8 +34,9 @@ export default function Deposit() {
   const [errMsgSnackbar, setErrMsgSnackbar] = useState<String>("");
   const [successMsgSnackbar, setSuccessMsgSnackbar] = useState<String>("");
   const [waiting, setWaiting] = useState<boolean>(false);
-  const [user, setUser] = useState<IUser>()
-  const [settings, setSettings] = useState<any>()
+  const [user, setUser] = useState<IUser>();
+  const [settings, setSettings] = useState<any>();
+  
 
   const getUser = async () => {
     const inputs = {
@@ -56,6 +57,7 @@ export default function Deposit() {
     getUser();
     getSettings();
   }, [])
+
 
   const getSettings = async () => {
     const res = await fetch(DomainEnum.address + '/api/settings', {
@@ -245,6 +247,7 @@ export default function Deposit() {
   }
 
 
+  /*
   useEffect(() => {
     if (wallet) {
       //@ts-ignore
@@ -254,7 +257,7 @@ export default function Deposit() {
       setContract(contract);
     }
   }, [Abifile, contractAddress, wallet]);
-
+  */
 
 
 
@@ -282,7 +285,9 @@ export default function Deposit() {
       .on("receipt", (receipt: any) => {
       })
       .on("confirmation", (confirmationNumber: any, receip: any) => {
+
         if (confirmationNumber == 1) {
+
           fetch("/api/deposit", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -305,7 +310,9 @@ export default function Deposit() {
                 setErr(true);
               }
             })
+
         }
+
       })
       .on("error", (error: any) => {
         console.error(error);
@@ -317,16 +324,17 @@ export default function Deposit() {
   };
 
   const paraCek = async () => {
-    let miktar = (document.getElementById("withdraw") as HTMLInputElement)
-      .value;
+
+    let miktar = (document.getElementById("withdraw") as HTMLInputElement).value;
+
     if (miktar == "0") {
       setErrMsgSnackbar("Please enter a value greater than 0");
       setErr(true);
-      return
+      return;
     } else if (miktar < "0") {
       setErrMsgSnackbar("Please enter a value greater than 0");
       setErr(true);
-      return
+      return;
     }
     setWaiting(true);
     const res = await fetch('/api/paymentRequests', {
@@ -341,19 +349,23 @@ export default function Deposit() {
         walletTo: wallet,
         type: settings?.requestType
       })
-    })
-    const data = await res.json()
+    });
+
+    
+
+    const data = await res.json();
+
     if (data.status === false) {
       setErrMsgSnackbar(data.message);
       setWaiting(false);
       setErr(true);
-      return
     } else {
       getUser();
       setWaiting(false);
       setSucc(true);
       setSuccessMsgSnackbar("Your request has been sent successfully");
     }
+
   };
 
   const swapToCoin = async () => {
@@ -583,6 +595,13 @@ export default function Deposit() {
 */}
             </h4>
             <input
+              placeholder="Wallet Address"
+              onChange={(e) => {
+                setWallet(e.target.value);
+              }}
+              className="input input-bordered w-full max-w-xs text-gray-800"
+            />
+            <input
               type="number"
               placeholder="Type Amount"
               id="withdraw"
@@ -628,6 +647,7 @@ export default function Deposit() {
 
         </div>
       </div>
+
       <Stack spacing={2} sx={{ width: "100%" }}>
         <Snackbar
           open={succ}
