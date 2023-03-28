@@ -612,16 +612,7 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
 
 
 
-<div className="w-full "
-                        style={{
-                            backgroundImage: `url('/logo.png')`,
-                            backgroundSize: "2000px",
-                            backgroundRepeat: "repeat-x",
-                            backgroundPosition: `${finishLine ? "0px" : `${fence}%`} 0px`,
-                        }}
-
->
-
+<div className="w-full ">
 
                     <div className="w-full h-20 mt-8"
                         style={{
