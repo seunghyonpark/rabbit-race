@@ -86,6 +86,15 @@ export const getAllPaymentRequests = async () => {
   }
 };
 
+export const getAllPaymentRequestsforUser = async (email1: string) => {
+  const requests = await PaymentRequest.find({ email1: email1});
+  if (requests) {
+    return requests;
+  } else {
+    return null;
+  }
+};
+
 export const updatePaymentRequest = async (
   _id: string,
   status: string,

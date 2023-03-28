@@ -12,6 +12,7 @@ import Coin from "@/libs/enums/coin.enum";
 import API from "@/libs/enums/API_KEY";
 import { IUser } from "@/libs/interface/user";
 import DomainEnum from "@/libs/enums/domain";
+import Link from 'next/link';
 
 
 
@@ -580,6 +581,9 @@ export default function Deposit() {
             </button>
 */}
 
+            <Link href={"/gameT2E/depositRequests"} className="hover:opacity-50">
+                List of Deposit Requests
+            </Link>
 
           </div>
 
@@ -607,7 +611,14 @@ export default function Deposit() {
               id="withdraw"
               className="input input-bordered w-full max-w-xs text-gray-800"
             />
+
             <button onClick={paraCek} className="btn btn-accent max-w-xs w-full">Withdraw</button>
+
+
+            <Link href={"/gameT2E/withdrawRequests"} className="hover:opacity-50">
+                List of Withdraw Requests
+            </Link>
+
           </div>
 
           {/* //? Swap Matic to Coin */}

@@ -2,6 +2,7 @@ import {
   newPaymentRequest,
   getPaymentRequest,
   getAllPaymentRequests,
+  getAllPaymentRequestsforUser,
   updatePaymentRequest,
   deletePaymentRequest,
 } from "@/libs/models/paymentRequest";
@@ -134,6 +135,33 @@ export default async function handler(
       payments,
     });
   }
+
+
+  if (method === "getAllforUser") {
+    const { userToken } = req.body;
+    if (!userToken) {
+      return res.status(400).json({ message: "Missing required fields" });
+    }
+
+    const user = await User.findOne({ userToken: userToken });
+    if (!user) {
+      return res.status(400).json({ message: "User not found" });
+    }
+
+    const payments = await getAllPaymentRequestsforUser(user.email);
+    if (!payments) {
+      return res.status(200).json({
+        status: false,
+        message: "Payments request failed",
+      });
+    }
+    return res.status(200).json({
+      status: true,
+      message: "Payments request successful",
+      payments,
+    });
+  }  
+
 
   if (method === "update") {
     const { _id, txHash, status, gonderildi } = req.body;
