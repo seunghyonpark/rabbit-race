@@ -586,7 +586,7 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
                     
 
 
-                    <div className="w-full h-5 mt-0 ">
+                    <div className="w-full h-5 mt-0 mb-5">
 
                         <div
                             className={`flex items-center justify-center  bg-black h-[36px] text-center text-xl px-5 text-[#BA8E09] border border-[#BA8E09] `}
@@ -611,7 +611,19 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
                     </div>
 
 
-                    <div className="w-full h-14 mt-8"
+
+<div className="w-full "
+                        style={{
+                            backgroundImage: `url('/logo.png')`,
+                            backgroundSize: "2000px",
+                            backgroundRepeat: "repeat-x",
+                            backgroundPosition: `${finishLine ? "0px" : `${fence}%`} 0px`,
+                        }}
+
+>
+
+
+                    <div className="w-full h-20 mt-8"
                         style={{
                             backgroundImage: `url('/fence4.png')`,
                             backgroundSize: "120px",
@@ -627,6 +639,7 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
                         }}
                     >
 
+
                         <Image
                             src={
                                 imageRabbit1
@@ -639,10 +652,23 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
 
 
 {/*
+<div className="relative">
+
+<Image className="absolute top-0 left-0" src={imageRabbit1} width={150} height={150} alt={"at"}/>
+
+<Image className="cursor-pointer absolute top-0 left-0 mt-1 ml-1 hover:shadow-outline" src="/logo.png" width={150} height={150} alt={"at"}/>
+
+</div>
+*/}
+
+
+{/*
                         <span className="text-green-500"  >1: Long</span>&nbsp;&nbsp;
                         <span className="text-green-500" >{betAmountLong}</span>
                         */}
                     </div>
+
+
 
                     <div
                         className="flex min-w-[150px] items-end justify-end "
@@ -708,6 +734,9 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
                         }}
                         
                     ></div>
+
+</div>
+
 
 
                 </div>
