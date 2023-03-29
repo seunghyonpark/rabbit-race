@@ -33,6 +33,10 @@ const BetHistorySchema = new Schema({
     type: String,
     required: true,
   },
+  closePrice: {
+    type: Number,
+    required: true,
+  },
   winnerHorse: {
     type: String,
     required: true,

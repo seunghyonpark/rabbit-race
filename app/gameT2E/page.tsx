@@ -22,7 +22,7 @@ import { IUser } from '@/libs/interface/user';
 import { getCookie, hasCookie, deleteCookie } from 'cookies-next';
 import { useRouter } from 'next/navigation';
 
-/*
+
 import HighchartsReact from 'highcharts-react-official';
 import Highcharts from 'highcharts/highstock';
 import Indicators from "highcharts/indicators/indicators-all.js";
@@ -32,7 +32,7 @@ import PriceIndicator from "highcharts/modules/price-indicator.js";
 import FullScreen from "highcharts/modules/full-screen.js";
 import StockTools from "highcharts/modules/stock-tools.js";
 import HollowCandleStick from "highcharts/modules/hollowcandlestick.js";
-*/
+
 
 
 
