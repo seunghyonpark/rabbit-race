@@ -630,8 +630,14 @@ useEffect(() => {
 
     const staticData = [] as any;
 
+    const startTime = Date.now() - 1000 * 60 * 60;
+
+    console.log("startTime", startTime);
+
     (async () => {
-      const response = await axios.get('https://dapi.binance.com/dapi/v1/klines?symbol=ETHUSD_PERP&interval=1m&startTime=1680113606000');
+      ////const response = await axios.get('https://dapi.binance.com/dapi/v1/klines?symbol=ETHUSD_PERP&interval=1m&startTime=1680113606000');
+
+      const response = await axios.get('https://dapi.binance.com/dapi/v1/klines?symbol=ETHUSD_PERP&interval=1m&startTime=' + startTime);
       
       
       response.data.forEach( (el: any) => {
@@ -728,7 +734,7 @@ useEffect(() => {
   constructorType={"stockChart"}
   options={chartOptions}
   ///options={options}
-  containerProps={{ style: { height: "300px", width: "300px" } }}
+  containerProps={{ style: { height: "250px", width: "300px" } }}
 />
 </div>
 
@@ -736,7 +742,7 @@ useEffect(() => {
 
 
                                 <div
-                                    className={`flex items-center justify-center text-l  bg-black rounded-md h-[36px] text-center px-5 text-[#BA8E09] border border-[#BA8E09] mt-5`}
+                                    className={`flex items-center justify-center text-l  bg-black rounded-md h-[36px] text-center px-5 text-[#BA8E09] border border-[#BA8E09] mt-1`}
                                 >
                                    <span className="text-[#ffffff] text-sm">PRICE (ETH):</span>&nbsp;&nbsp;&nbsp;
                                    <span className="text-xl">{Number(currentPrice).toFixed(2)}&nbsp;&nbsp;&nbsp;</span>
