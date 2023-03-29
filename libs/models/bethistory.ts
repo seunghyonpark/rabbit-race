@@ -3,6 +3,7 @@ import connectMongo from "../services/database";
 
 connectMongo();
 
+
 const BetHistorySchema = new Schema({
   date: {
     type: Date,
