@@ -161,7 +161,7 @@ export default function BetHistories() {
             gonderildi: isPay,
             API_KEY: process.env.API_KEY,
         }
-        const res = await fetch('/api/betHistories', {
+        const res = await fetch('/api/bethistories', {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(formInputs)
