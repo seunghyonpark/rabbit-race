@@ -475,45 +475,113 @@ export default function GameT2E() {
       HollowCandleStick(Highcharts);
     }
 */
-    //const data = [] as any;
+    ///const data = [] as any;
+
+    const chartData = [] as any;
 
     const chartRef = useRef();
 
+
+    /*
+
     const [chartOptions, setChartOptions] = useState({
+
+
+      
+        rangeSelector: {
+          selected: 1
+        },
+  
+        accessibility: {
+          enabled: true
+        },
+    
+        chart: {
+          backgroundColor: '#000000',
+       },
+  
+        yAxis: [
+          {
+            labels: {
+              align: "right",
+              x: -3
+            },
+            title: {
+              text: "ETH-USD"
+            },
+            height: "100%",
+            lineWidth: 2,
+            resize: {
+              enabled: true
+            }
+          },
+  
+        ],
+    
+        tooltip: {
+          split: true
+        },
+  
+        series: [
+          {
+            type: "candlestick",
+            name: "ETH-USD",
+            data: chartData,
+
+          },
+  
+        ]
+      
+
+    });
+
+    */
+
+
+    if (typeof Highcharts === "object") {
+      // init the module
+      Indicators(Highcharts);
+      DragPanes(Highcharts);
+      AnnotationsAdvanced(Highcharts);
+      PriceIndicator(Highcharts);
+      FullScreen(Highcharts);
+      StockTools(Highcharts);
+      HollowCandleStick(Highcharts);
+    }
+
+
+    const data = [] as any;
+
+    const [chartOptions, setChartOptions] = useState({
+
+      chart: {
+        backgroundColor: '#000000',
+      },
 
       yAxis: [
         {
-          //height: "80%"
-          height: "100%",
-          //width: "100%",
+          height: "80%"
         },
         {
-          top: "20%",
-          height: "10%",
-          offset: 10
+          top: "80%",
+          height: "20%",
+          offset: 0
         }
       ],
-      xAxis: [
-        {
-          //height: "80%"
-          height: "100%",
-          //width: "100%",
-        },
-        {
-          top: "20%",
-          height: "10%",
-          offset: 10
-        }
-      ],
+
     
       series: [
         {
           type: "hollowcandlestick",
           name: "ETH-USD",
-          //data: data
+          data: data
         }
       ]
     });
+
+
+
+
 
     /*
   const staticData = [] as any;
@@ -543,7 +611,10 @@ startTime=1611619200000
   },[staticData]);
 */
 
-const [chartData, setChartData] = useState<any>();
+
+///const [chartData, setChartData] = useState<any>();
+
+
 
 
 
@@ -571,10 +642,16 @@ useEffect(() => {
 
     console.log("staticData", staticData);
 
-    setChartData(staticData);
+    setChartOptions({
+      series: {
+        data: staticData,
+      },
+    } as any);
 
-    
   }
+
+  pollDOM();
+
   const interval = setInterval(pollDOM, 10000);
 
   return () => {
@@ -609,93 +686,8 @@ useEffect(() => {
 
 
 
-    const data = [
-      [1601324000000, 613, 617, 597, 597, 149800],
-      [1601437600000, 614, 622, 611, 615, 164700]
-    ];
-  
-    var ohlc = [],
-      volume = [],
-      dataLength = data.length,
-      groupingUnits = [
-        [
-          "week", // unit name
-          [1] // allowed multiples
-        ],
-        ["month", [1, 2, 3, 4, 6]]
-      ],
-      i = 0;
-  
-    for (i; i < dataLength; i += 1) {
-      ohlc.push([
-        data[i][0], // the date
-        data[i][1], // open
-        data[i][2], // high
-        data[i][3], // low
-        data[i][4] // close
-      ]);
-  
-      volume.push([
-        data[i][0], // the date
-        data[i][5] // the volume
-      ]);
-    }
 
-    const options = {
-      rangeSelector: {
-        selected: 1
-      },
 
-      accessibility: {
-        enabled: true
-      },
-  
-      /*
-      title: {
-        text: "AAPL Historical"
-      },
-      */
-      chart: {
-        backgroundColor: '#000000',
-     },
-
-      yAxis: [
-        {
-          labels: {
-            align: "right",
-            x: -3
-          },
-          title: {
-            text: "ETH-USD"
-          },
-          height: "100%",
-          lineWidth: 2,
-          resize: {
-            enabled: true
-          }
-        },
-
-      ],
-  
-      tooltip: {
-        split: true
-      },
-
-      series: [
-        {
-          type: "candlestick",
-          name: "ETH-USD",
-          data: chartData,
-          //data: ohlc,
-          /*
-          dataGrouping: {
-            units: groupingUnits
-          }
-          */
-        },
-
-      ]
-    };
 
 
 
@@ -734,10 +726,9 @@ useEffect(() => {
 <HighchartsReact
   highcharts={Highcharts}
   constructorType={"stockChart"}
-  //options={chartOptions}
-  options={options}
-  containerProps={{ style: { height: "300px", width: "400px" } }}
-  ref={chartRef}
+  options={chartOptions}
+  ///options={options}
+  containerProps={{ style: { height: "300px", width: "300px" } }}
 />
 </div>
 
