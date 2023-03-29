@@ -68,13 +68,13 @@ const BetHistorySchema = new Schema({
 
 
 
-export const BetHistory =
+export const betHistory =
   models.BetHistory || model("BetHistory", BetHistorySchema);
 
 
 
 export const getBetHistories = async (_id: string) => {
-  const request = await BetHistory.find({ _id });
+  const request = await betHistory.find({ _id });
   if (request) {
     return request;
   } else {
@@ -83,7 +83,7 @@ export const getBetHistories = async (_id: string) => {
 };
 
 export const getAllBetHistories = async () => {
-  const requests = await BetHistory.find();
+  const requests = await betHistory.find();
   if (requests) {
     return requests;
   } else {
@@ -92,7 +92,7 @@ export const getAllBetHistories = async () => {
 };
 
 export const getAllBetHistoriesforUser = async (email1: string) => {
-  const requests = await BetHistory.find({ email1: email1, date: -1 });
+  const requests = await betHistory.find({ email1: email1, date: -1 });
   if (requests) {
     return requests;
   } else {

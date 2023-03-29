@@ -529,22 +529,15 @@ export default function Loser() {
     */}
 
 
+{/*
             <h3>
               You Lost {betAmount} $CRA
             </h3>
             <h4>
               You Betted {bet}
             </h4>
+*/}
 
-            <button
-              onClick={() => {
-                ////paraYatir();
-                push( '/gameT2E/betHistories' );
-              }}
-              className="btn btn-success max-w-xs w-full text-xl bg-color-#66CDAA hover:bg-color-#66CDAA  text-white font-bold py-2 px-4 rounded-full"
-            >
-              BET RESULTS & HISTORY
-            </button>
 
             <Image
                 //src={`/rabbit${horse.id}.gif`}
@@ -564,9 +557,18 @@ export default function Loser() {
               }}
               className="btn btn-success max-w-xs w-full text-xl bg-color-#66CDAA hover:bg-color-#66CDAA  text-white font-bold py-2 px-4 rounded-full"
             >
-              Next Betting
+              GO BET
             </button>
 
+            <button
+              onClick={() => {
+                ////paraYatir();
+                push( '/gameT2E/betHistories' );
+              }}
+              className="btn btn-success max-w-xs w-full text-xl bg-color-#66CDAA hover:bg-color-#66CDAA  text-white font-bold py-2 px-4 rounded-full"
+            >
+              BET RESULT
+            </button>
 
 
           </div>
