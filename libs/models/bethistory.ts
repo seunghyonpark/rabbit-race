@@ -68,7 +68,7 @@ const BetHistorySchema = new Schema({
 
 
 
-export const Bethistory =
+export const BetHistory =
   models.BetHistory || model("BetHistory", BetHistorySchema);
 
 
