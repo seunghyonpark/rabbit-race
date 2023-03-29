@@ -548,7 +548,7 @@ export default function Winner() {
 
             <Image
                 //src={`/rabbit${horse.id}.gif`}
-                src={`/rabbit_winner_${bet}.png`}
+                src={`/rabbit_winner_${bet}.gif`}
                 width="500"
                 height="500"
                 alt={"at"}

@@ -539,7 +539,7 @@ export default function Loser() {
 
             <Image
                 //src={`/rabbit${horse.id}.gif`}
-                src={`/rabbit_loser_${bet}.png`}
+                src={`/rabbit_loser_${bet}.gif`}
                 width="500"
                 height="500"
                 alt={"at"}

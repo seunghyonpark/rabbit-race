@@ -529,7 +529,7 @@ export default function BetInputs({ socket, horse1, horse2, currentPrice, setBas
 
                     <div className="space-x-10 md:hidden">
                         <button onClick={() => { setSecilenAt(Horses.Horse1) }}
-                            className={`btn border text-center text-xl border-white text-white p-1 bg=[#333541] btn-xl w-32 h-16 ${secilenAt === Horses.Horse1 ? "bg=[#333541]" : secilenAt === 0 ? "bg=[#333541]" : "btn-ghost"}`}
+                            className={`btn border text-center text-xl border-white text-white p-1 bg=[#333541] btn-xl w-28 h-16 ${secilenAt === Horses.Horse1 ? "bg=[#333541]" : secilenAt === 0 ? "bg=[#333541]" : "btn-ghost"}`}
                         >
                             {/*
                             {Horses.Horse1} x {horse1}
@@ -539,7 +539,7 @@ export default function BetInputs({ socket, horse1, horse2, currentPrice, setBas
 
                         </button>
                         <button onClick={() => { setSecilenAt(Horses.Horse2) }}
-                            className={`btn border text-center border-white text-xl text-white p-1 bg=[#333541] btn-xl w-32 h-16 ${secilenAt === Horses.Horse2 ? "bg=[#333541]" : secilenAt === 0 ? "bg=[#333541]" : "btn-ghost"}`}
+                            className={`btn border text-center border-white text-xl text-white p-1 bg=[#333541] btn-xl w-28 h-16 ${secilenAt === Horses.Horse2 ? "bg=[#333541]" : secilenAt === 0 ? "bg=[#333541]" : "btn-ghost"}`}
                         >
                             {/*
                             {Horses.Horse2} x {horse2}
