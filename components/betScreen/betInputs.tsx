@@ -467,7 +467,7 @@ export default function BetInputs({ socket, horse1, horse2, currentPrice, setBas
                         value={betAmount === 0 ? '' : betAmount}
                         type="number"
                         placeholder='Enter your bet (CRA)'
-                        className='input w-full pl-16 font-bold text-2xl' />
+                        className='input w-full pl-16 font-bold text-l' />
                     <button onClick={() => { setBetAmount(0) }} className='absolute right-5 z-10 btn btn-xs btn-outline border-gray-700'>Clear</button>
                 </div>
 
