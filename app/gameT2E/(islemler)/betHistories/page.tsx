@@ -249,8 +249,38 @@ export default function BetHistories() {
     return (
         <>
             <div className='flex flex-col p-10 mt-5 text-gray-200'>
-                <h1 className='font-bold italic text-2xl'>YOUR BET HISTROY</h1>
-                <div style={{ width: "100%", height: 600, color: "white" }}>
+
+
+
+                <div className="w-full border rounded-lg flex flex-col items-center justify-center p-2 gap-1 py-5">
+                    <h4 className="  text-red-500 text-xl font-bold">
+                        T2E FUTURES
+                    </h4>
+
+                    <h4 className=" text-red-500 text-xl font-bold">
+                        LONG | X2 | BETTING GAME
+                    </h4>
+
+                    <h4 className=" text-green-500 text-4xl font-bold ">
+                        + 245 CRA
+                    </h4>
+                    <h4 className=" text-red-500 text-sm font-bold">
+                        Betting Time: 203.03.03 12:00
+                    </h4>
+                    <h4 className=" text-red-500 text-sm font-bold">
+                        Entry Price: 1,851.22 USDT
+                    </h4>
+                    <h4 className=" text-red-500 text-sm font-bold">
+                        Last Price: 1,865.43 USDT
+                    </h4>
+
+                    <h1 className='text-sm mt-5'>YOUR BET HISTROY</h1>
+
+                </div>
+
+
+                
+                <div className="mt-5" style={{ width: "100%", height: 600, color: "white" }}>
                     <DataGrid
                         rows={rows}
                         columns={columns}
