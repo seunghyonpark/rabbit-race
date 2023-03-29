@@ -8,7 +8,7 @@ import YuruyenAt from '@/components/betEkrani/yuruyenAt'
 import Race from '@/components/yarisEkrani/raceGame';
 
 import SocketEnum from '@/libs/enums/socket';
-import React, { useEffect, useState, useMemo } from 'react';
+import React, { useEffect, useState, useMemo, useRef } from 'react';
 import Image from 'next/image';
 
 import Swal from "sweetalert2";
@@ -23,6 +23,8 @@ import { getCookie, hasCookie, deleteCookie } from 'cookies-next';
 import { useRouter } from 'next/navigation';
 
 
+
+import axios from 'axios';
 import HighchartsReact from 'highcharts-react-official';
 import Highcharts from 'highcharts/highstock';
 import Indicators from "highcharts/indicators/indicators-all.js";
@@ -457,9 +459,66 @@ export default function GameT2E() {
     ]);
   
   
-  
 
+    if (typeof Highcharts === "object") {
+      // init the module
+      Indicators(Highcharts);
+      DragPanes(Highcharts);
+      AnnotationsAdvanced(Highcharts);
+      PriceIndicator(Highcharts);
+      FullScreen(Highcharts);
+      StockTools(Highcharts);
+      HollowCandleStick(Highcharts);
+    }
+    
+    const data = [] as any;
 
+    const chartRef = useRef();
+
+    const [chartOptions, setChartOptions] = useState({
+
+      yAxis: [
+        {
+          height: "80%"
+        },
+        {
+          top: "80%",
+          height: "20%",
+          offset: 0
+        }
+      ],
+    
+      series: [
+        {
+          type: "hollowcandlestick",
+          name: "ETH-USD",
+          data: data
+        }
+      ]
+    });
+
+  const staticData = [] as any;
+
+  useEffect(() => {
+
+    (async () => {
+        
+      const response = await axios.get('https://dapi.binance.com/dapi/v1/klines?symbol=ETHUSD_PERP&interval=1m');
+      response.data.forEach( (el: any) => {
+        staticData.push([el[0],parseFloat(el[1]),parseFloat(el[2]),parseFloat(el[3]),parseFloat(el[4]),parseInt(el[5])])
+      })
+
+    })()
+
+    setTimeout(() => {
+      setChartOptions({
+        series: {
+          data: staticData,
+        },
+      } as any);
+    },1000)
+
+  },[staticData]);
 
 
 
@@ -484,9 +543,16 @@ export default function GameT2E() {
                                 <YuruyenAt time={time} horseSrc={'/at.json'} />
                                 */}
 
-
+{/*
                                <Image src="/realtime-ticking-stock-chart.gif" width={500} height={500} alt="gameT2E" />
+*/}
 
+<HighchartsReact className="w-full h-[300px]"
+          highcharts={Highcharts}
+          constructorType={"stockChart"}
+          options={chartOptions}
+          ref={chartRef}
+        />
 
 
 
