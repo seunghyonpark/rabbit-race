@@ -212,7 +212,7 @@ export default function BetHistories() {
     }
 
     const getAll = async () => {
-        const res = await fetch('/api/betHistories', {
+        const res = await fetch('/api/bethistories', {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

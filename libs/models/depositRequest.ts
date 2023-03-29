@@ -45,8 +45,7 @@ export const depositRequestSchema = new Schema({
 });
 
 
-export const DepositRequest =
-  models.DepositRequest || model("DepositRequest", depositRequestSchema);
+export const DepositRequest = models.DepositRequest || model("DepositRequest", depositRequestSchema);
 
 export const newDepositRequest = async (
   userToken: string,
