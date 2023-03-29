@@ -27,6 +27,7 @@ import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import HighchartsReact from 'highcharts-react-official';
 import Highcharts from 'highcharts/highstock';
+
 import Indicators from "highcharts/indicators/indicators-all.js";
 import DragPanes from "highcharts/modules/drag-panes.js";
 import AnnotationsAdvanced from "highcharts/modules/annotations-advanced.js";
@@ -91,6 +92,7 @@ export default function GameT2E() {
     const router = useRouter();
 
 
+    
     useEffect(() => {
 
       const socketIo = io(`${SocketEnum.id}`, {
@@ -195,7 +197,9 @@ export default function GameT2E() {
 
       setSocket(socketIo);
     
-    }, [router]);
+    /////}, [router]);
+    }, []);
+
 
         
     /*
@@ -459,7 +463,7 @@ export default function GameT2E() {
     ]);
   
   
-
+/*
     if (typeof Highcharts === "object") {
       // init the module
       Indicators(Highcharts);
@@ -470,8 +474,8 @@ export default function GameT2E() {
       StockTools(Highcharts);
       HollowCandleStick(Highcharts);
     }
-    
-    const data = [] as any;
+*/
+    //const data = [] as any;
 
     const chartRef = useRef();
 
@@ -506,17 +510,21 @@ export default function GameT2E() {
         {
           type: "hollowcandlestick",
           name: "ETH-USD",
-          data: data
+          //data: data
         }
       ]
     });
 
+    /*
   const staticData = [] as any;
 
   useEffect(() => {
 
     (async () => {
         
+      // [1680076800000,"1805.19","1806.60","1805.18","1806.03","151306",1680076859999,"837.85354498",296,"125620","695.62075315","0"]
+startTime=1611619200000
+
       const response = await axios.get('https://dapi.binance.com/dapi/v1/klines?symbol=ETHUSD_PERP&interval=1m');
       response.data.forEach( (el: any) => {
         staticData.push([el[0],parseFloat(el[1]),parseFloat(el[2]),parseFloat(el[3]),parseFloat(el[4]),parseInt(el[5])])
@@ -533,8 +541,167 @@ export default function GameT2E() {
     },1000)
 
   },[staticData]);
+*/
+
+const [chartData, setChartData] = useState<any>();
 
 
+
+
+useEffect(() => {
+
+  let i = 0;
+
+  function pollDOM() {
+    console.log(i);
+    i++;
+
+
+    const staticData = [] as any;
+
+    (async () => {
+      const response = await axios.get('https://dapi.binance.com/dapi/v1/klines?symbol=ETHUSD_PERP&interval=1m&startTime=1680113606000');
+      
+      
+      response.data.forEach( (el: any) => {
+        staticData.push([el[0],parseFloat(el[1]),parseFloat(el[2]),parseFloat(el[3]),parseFloat(el[4]),parseInt(el[5])])
+      })
+
+    })()
+
+    console.log("staticData", staticData);
+
+    setChartData(staticData);
+
+    
+  }
+  const interval = setInterval(pollDOM, 10000);
+
+  return () => {
+    clearInterval(interval);
+
+  }
+
+}, []);
+
+
+/*
+useEffect(() => {
+
+  const staticData = [] as any;
+
+  (async () => {
+    const response = await axios.get('https://dapi.binance.com/dapi/v1/klines?symbol=ETHUSD_PERP&interval=1m&startTime=1611619200000');
+    
+    
+    response.data.forEach( (el: any) => {
+      staticData.push([el[0],parseFloat(el[1]),parseFloat(el[2]),parseFloat(el[3]),parseFloat(el[4]),parseInt(el[5])])
+    })
+
+  })()
+
+  console.log("staticData", staticData);
+
+  setChartData(staticData);
+
+},[]);
+*/
+
+
+
+    const data = [
+      [1601324000000, 613, 617, 597, 597, 149800],
+      [1601437600000, 614, 622, 611, 615, 164700]
+    ];
+  
+    var ohlc = [],
+      volume = [],
+      dataLength = data.length,
+      groupingUnits = [
+        [
+          "week", // unit name
+          [1] // allowed multiples
+        ],
+        ["month", [1, 2, 3, 4, 6]]
+      ],
+      i = 0;
+  
+    for (i; i < dataLength; i += 1) {
+      ohlc.push([
+        data[i][0], // the date
+        data[i][1], // open
+        data[i][2], // high
+        data[i][3], // low
+        data[i][4] // close
+      ]);
+  
+      volume.push([
+        data[i][0], // the date
+        data[i][5] // the volume
+      ]);
+    }
+
+    const options = {
+      rangeSelector: {
+        selected: 1
+      },
+
+      accessibility: {
+        enabled: true
+      },
+  
+      /*
+      title: {
+        text: "AAPL Historical"
+      },
+      */
+      chart: {
+        backgroundColor: '#000000',
+     },
+
+      yAxis: [
+        {
+          labels: {
+            align: "right",
+            x: -3
+          },
+          title: {
+            text: "ETH-USD"
+          },
+          height: "100%",
+          lineWidth: 2,
+          resize: {
+            enabled: true
+          }
+        },
+
+      ],
+  
+      tooltip: {
+        split: true
+      },
+
+      series: [
+        {
+          type: "candlestick",
+          name: "ETH-USD",
+          data: chartData,
+          //data: ohlc,
+          /*
+          dataGrouping: {
+            units: groupingUnits
+          }
+          */
+        },
+
+      ]
+    };
+
+
+
+
+
+    
 
     
     return (
@@ -547,7 +714,6 @@ export default function GameT2E() {
                         <LatestWinners />
                 
 
-                        
                         <Son20Oyun />
                 
 
@@ -561,12 +727,20 @@ export default function GameT2E() {
                                <Image src="/realtime-ticking-stock-chart.gif" width={500} height={500} alt="gameT2E" />
 */}
 
+
+
+<div >
+
 <HighchartsReact
-          highcharts={Highcharts}
-          constructorType={"stockChart"}
-          options={chartOptions}
-          ref={chartRef}
-        />
+  highcharts={Highcharts}
+  constructorType={"stockChart"}
+  //options={chartOptions}
+  options={options}
+  containerProps={{ style: { height: "300px", width: "400px" } }}
+  ref={chartRef}
+/>
+</div>
+
 
 
 
@@ -597,6 +771,10 @@ export default function GameT2E() {
                         {/*
                         <BetTables />
                             */}
+
+
+
+
 
                     </div>
 
