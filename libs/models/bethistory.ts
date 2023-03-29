@@ -4,7 +4,7 @@ import connectMongo from "../services/database";
 connectMongo();
 
 
-const BetHistorySchema = new Schema({
+const betHistorySchema = new Schema({
   date: {
     type: Date,
     default: Date.now,
@@ -69,7 +69,7 @@ const BetHistorySchema = new Schema({
 
 
 export const BetHistory =
-  models.BetHistory || model("BetHistory", BetHistorySchema);
+  models.BetHistory || model("BetHistory", betHistorySchema);
 
 
 
