@@ -2,7 +2,7 @@ import {
   getBetHistories,
   getAllBetHistories,
   getAllBetHistoriesforUser,
-} from "@/libs/models/bethistory";
+} from "@/libs/models/betHistory";
 import { User } from "@/libs/models/user";
 import { NextApiRequest, NextApiResponse } from "next";
 

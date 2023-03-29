@@ -33,9 +33,30 @@ export default function BetHistories() {
             headerAlign: "center",
         },
         {
+            field: "date",
+            headerName: "DATE",
+            align: "center",
+            headerAlign: "center",
+            width: 150,
+            type: "dateTime",
+            minWidth: 250,
+            valueFormatter: (params) => {
+                return new Date(params.value).toLocaleString();
+            }, // burada tarih formatı değiştirilebilir.
+        },
+        {
             field: "betAmount",
             type: "number",
-            headerName: "Bet Amount",
+            headerName: "Bet",
+            flex: 0.1,
+            minWidth: 80,
+            align: "center",
+            headerAlign: "center",
+        },
+        {
+            field: "basePrice",
+            type: "number",
+            headerName: "ENTRY",
             flex: 0.1,
             minWidth: 80,
             align: "center",
@@ -44,7 +65,7 @@ export default function BetHistories() {
         {
             field: "prizeAmount",
             type: "number",
-            headerName: "Prize Amount",
+            headerName: "RESULTS",
             flex: 0.1,
             minWidth: 80,
             align: "center",
@@ -52,7 +73,7 @@ export default function BetHistories() {
         },
         {
             field: "selectedSide",
-            headerName: "Selected Side",
+            headerName: "L/S",
             align: "center",
             headerAlign: "center",
             flex: 0.2,
@@ -64,6 +85,7 @@ export default function BetHistories() {
             */
             
         },
+        /*
         {
             field: "winnerHorse",
             headerName: "Result",
@@ -71,12 +93,9 @@ export default function BetHistories() {
             headerAlign: "center",
             flex: 0.1,
             minWidth: 100,
-            /*
-            renderCell(params) {
-                return <Chip label={params.value} color={params.value === "Rejected" ? "error" : params.value === "Accepted" ? "info" : params.value === "Waiting" ? "warning" : "success"} />;
-            },
-            */
+
         },
+        */
 
 
 
@@ -218,10 +237,10 @@ export default function BetHistories() {
             kayitId: item._id,
             id: i,
             betAmount: item.betAmount,
+            basePrice: item.basePrice,
             prizeAmount: item.prizeAmount,
             selectedSide: item.selectedSide,
             winnerHorse: item.winnerHorse,
-            wallet: item.walletFrom,
             date: item.date,
             userToken: item.userToken,
         }

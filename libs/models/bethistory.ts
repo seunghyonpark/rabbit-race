@@ -24,6 +24,10 @@ const BetHistorySchema = new Schema({
     type: Number,
     required: true,
   },
+  basePrice: {
+    type: Number,
+    required: true,
+  },
   selectedSide: {
     type: String,
     required: true,
@@ -87,7 +91,7 @@ export const getAllBetHistories = async () => {
 };
 
 export const getAllBetHistoriesforUser = async (email1: string) => {
-  const requests = await BetHistories.find({ email1: email1});
+  const requests = await BetHistories.find({ email1: email1, date: -1 });
   if (requests) {
     return requests;
   } else {
