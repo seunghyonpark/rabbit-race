@@ -479,12 +479,26 @@ export default function GameT2E() {
 
       yAxis: [
         {
-          height: "80%"
+          //height: "80%"
+          height: "100%",
+          //width: "100%",
         },
         {
-          top: "80%",
-          height: "20%",
-          offset: 0
+          top: "20%",
+          height: "10%",
+          offset: 10
+        }
+      ],
+      xAxis: [
+        {
+          //height: "80%"
+          height: "100%",
+          //width: "100%",
+        },
+        {
+          top: "20%",
+          height: "10%",
+          offset: 10
         }
       ],
     
@@ -547,7 +561,7 @@ export default function GameT2E() {
                                <Image src="/realtime-ticking-stock-chart.gif" width={500} height={500} alt="gameT2E" />
 */}
 
-<HighchartsReact className="w-full h-[300px]"
+<HighchartsReact
           highcharts={Highcharts}
           constructorType={"stockChart"}
           options={chartOptions}
