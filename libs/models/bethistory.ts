@@ -1,5 +1,4 @@
-import { IHistory } from "./../interface/historyInterface";
-import { model, models, Schema } from "mongoose";
+import mongoose, { model, models, Schema } from "mongoose";
 import connectMongo from "../services/database";
 
 connectMongo();
@@ -44,23 +43,54 @@ const BetHistorySchema = new Schema({
       required: true,
     },
   },
+
+  prizeAmount: {
+    type: Number,
+    required: true,
+  },
+  depositBefore: {
+    type: Number,
+    required: true,
+  },
+  depositAfter: {
+    type: Number,
+    required: true,
+  },
+
 });
 
-export const BetHistoryModel =
-  models.History || model<IHistory>("History", BetHistorySchema);
 
-export const newHistory = async (
-  winnerHorse: string,
-  placements: { line: number; horse: string }[]
-): Promise<IHistory> => {
-  const history = new BetHistoryModel({ winnerHorse, placements });
-  return await history.save();
+
+
+
+export const BetHistories =
+  models.BetHistories || model("BetHistories", BetHistorySchema);
+
+
+
+export const getBetHistories = async (_id: string) => {
+  const request = await BetHistories.find({ _id });
+  if (request) {
+    return request;
+  } else {
+    return null;
+  }
 };
 
-export const getHistory = async (): Promise<IHistory[]> => {
-  return await BetHistoryModel.find().sort({ date: -1 }).limit(20);
+export const getAllBetHistories = async () => {
+  const requests = await BetHistories.find();
+  if (requests) {
+    return requests;
+  } else {
+    return null;
+  }
 };
 
-export const getLastHistory = async (): Promise<IHistory> => {
-  return await BetHistoryModel.findOne().sort({ date: -1 });
+export const getAllBetHistoriesforUser = async (email1: string) => {
+  const requests = await BetHistories.find({ email1: email1});
+  if (requests) {
+    return requests;
+  } else {
+    return null;
+  }
 };
