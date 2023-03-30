@@ -472,7 +472,7 @@ export default function BetInputs({ socket, horse1, horse2, currentPrice, setBas
                 </div>
 
                 {/* //? Miktar Selector Buttons */}
-                <div className='grid grid-cols-5 content-center md:flex w-full gap-3 items-center justify-center text-white'>
+                <div className='grid grid-cols-5 content-center md:flex w-full gap-6 items-center justify-center text-white'>
                     <button
                         onClick={() => {
                             setBetAmount(betAmount + 100)
