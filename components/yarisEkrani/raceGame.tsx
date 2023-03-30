@@ -551,7 +551,7 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
 
                     </div>
                     
-                    
+                    {/*
                     <div className="w-full h-6 mt-2 ">
                             <div
                                 className=" h-10 -mt-1"
@@ -564,9 +564,20 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
                             >
                         </div>
                     </div>
+                            */}
+
+<div className="w-full ">
+
+<div className="w-full h-6 mt-0"
+    style={{
+        backgroundImage: `url('/cracle-banner.png')`,
+        backgroundSize: "120px",
+        backgroundRepeat: "repeat-x",
+        backgroundPosition: `${finishLine ? "0px" : `${fence}%`} 0px`,
+    }}
+></div>
                     
-                    
-                    
+</div>    
 
 
                     <div className="w-full h-5 mt-0 mb-5">
