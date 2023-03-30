@@ -566,7 +566,7 @@ export default function MobilNavbar() {
 
 
                 <Link href={"/gameT2E"}>
-                    <Image src={"/logo.png"} width={80} height={100} alt="logo" />
+                    <Image src={"/logo.png"} width={100} height={100} alt="logo" />
                 </Link>
 
                 
@@ -575,9 +575,8 @@ export default function MobilNavbar() {
                     {
                         user && <Link
                             href={"/gameT2E/deposit"}
-                            className={`text-[13px] text-[#dca709] `}
                         >
-                            Wallet
+                            <Image src={"/wallet.png"} width={20} height={40} alt="logo" />
                         </Link>
                     }
 

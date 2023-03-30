@@ -519,7 +519,7 @@ export default function Loser() {
         <div className="p-2 grid grid-cols-1 lg:grid-cols-1 w-full lg:w-2/3 gap-5 ">
 
           {/* //? Matic Deposit  */}
-          <div className="w-full  rounded-lg flex flex-col items-center justify-center p-2 gap-5 py-5">
+          <div className="w-full  rounded-lg flex flex-col items-center justify-center p-2 gap-5 py-0">
 
 
 {/*
