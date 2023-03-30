@@ -563,7 +563,7 @@ export default function Loser() {
             <button
               onClick={() => {
                 ////paraYatir();
-                push( '/gameT2E/betHistories' );
+                push( '/gameT2E/betHistory' );
               }}
               className="btn btn-success max-w-xs w-full text-xl bg-color-#66CDAA hover:bg-color-#66CDAA  text-white font-bold py-2 px-4 rounded-full"
             >

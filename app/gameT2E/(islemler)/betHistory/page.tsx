@@ -17,7 +17,7 @@ const Transition = React.forwardRef(function Transition(
 
 
 
-export default function BetHistories() {
+export default function BetHistoryList() {
     const [requests, setRequests] = useState<any>([]);
     const [open, setOpen] = React.useState(false);
     const [selectedUser, setSelectedUser] = useState<any>();
@@ -47,7 +47,7 @@ export default function BetHistories() {
         {
             field: "betAmount",
             type: "number",
-            headerName: "Bet",
+            headerName: "BET",
             flex: 0.1,
             minWidth: 80,
             align: "center",
@@ -161,7 +161,7 @@ export default function BetHistories() {
             gonderildi: isPay,
             API_KEY: process.env.API_KEY,
         }
-        const res = await fetch('/api/bethistories', {
+        const res = await fetch('/api/bethistory', {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(formInputs)
@@ -212,7 +212,7 @@ export default function BetHistories() {
     }
 
     const getAll = async () => {
-        const res = await fetch('/api/bethistories', {
+        const res = await fetch('/api/bethistory', {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -223,14 +223,17 @@ export default function BetHistories() {
         })
         const data = await res.json();
 
-        console.log("betHistories=>", data.betHistories, "user=>", getCookie("user")  );
+        //console.log("data=>", data  );
 
-        setRequests(data.betHistories)
+        ///console.log("betHistory=>", data.betHistory, "user=>", getCookie("user")  );
+
+        setRequests(data.betHistory)
     }
 
     useEffect(() => {
         getAll();
     }, [])
+
 
     const rows = requests.map((item: any, i: number) => {
         return {
@@ -245,6 +248,7 @@ export default function BetHistories() {
             userToken: item.userToken,
         }
     })
+    
 
     return (
         <>

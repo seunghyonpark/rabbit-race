@@ -75,7 +75,7 @@ export const Bethistory = models.Bethistory || model("Bethistory", BetHistorySch
 
 
 
-export const getBetHistories = async (_id: string) => {
+export const getBetHistory = async (_id: string) => {
   const request = await Bethistory.find({ _id });
   if (request) {
     return request;
@@ -84,7 +84,7 @@ export const getBetHistories = async (_id: string) => {
   }
 };
 
-export const getAllBetHistories = async () => {
+export const getAllBetHistory = async () => {
   const requests = await Bethistory.find();
   if (requests) {
     return requests;
@@ -93,9 +93,12 @@ export const getAllBetHistories = async () => {
   }
 };
 
-export const getAllBetHistoriesforUser = async (email1: string) => {
+export const getAllBetHistoryforUser = async (email1: string) => {
   const requests = await Bethistory.find({ email1: email1, date: -1 });
   if (requests) {
+
+///console.log("getAllBetHistoryforUser requests", requests)
+
     return requests;
   } else {
     return null;

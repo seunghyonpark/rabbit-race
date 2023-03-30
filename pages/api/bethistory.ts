@@ -1,8 +1,9 @@
 import {
-  getBetHistories,
-  getAllBetHistories,
-  getAllBetHistoriesforUser,
+  getBetHistory,
+  getAllBetHistory,
+  getAllBetHistoryforUser,
 } from "@/libs/models/bethistory";
+
 
 
 
@@ -29,7 +30,7 @@ export default async function handler(
     if (!_id) {
       return res.status(400).json({ message: "Missing required fields" });
     }
-    const betHistory = await getBetHistories(_id);
+    const betHistory = await getBetHistory(_id);
     if (!betHistory) {
       return res.status(200).json({
         status: false,
@@ -48,8 +49,8 @@ export default async function handler(
     if (!userToken) {
       return res.status(400).json({ message: "Missing required fields" });
     }
-    const betHistories = await getAllBetHistories();
-    if (!betHistories) {
+    const betHistory = await getAllBetHistory();
+    if (!betHistory) {
       return res.status(200).json({
         status: false,
         message: "Bet histories request failed",
@@ -58,7 +59,7 @@ export default async function handler(
     return res.status(200).json({
       status: true,
       message: "Bet histories request successful",
-      betHistories,
+      betHistory,
     });
   }
 
@@ -74,8 +75,8 @@ export default async function handler(
       return res.status(400).json({ message: "User not found" });
     }
 
-    const betHistories = await getAllBetHistoriesforUser(user.email);
-    if (!betHistories) {
+    const betHistory = await getAllBetHistoryforUser(user.email);
+    if (!betHistory) {
       return res.status(200).json({
         status: false,
         message: "Bet histories request failed",
@@ -84,7 +85,7 @@ export default async function handler(
     return res.status(200).json({
       status: true,
       message: "Bet histories request successful",
-      betHistories,
+      betHistory,
     });
   }  
 
