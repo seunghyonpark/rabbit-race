@@ -3,7 +3,8 @@ import { Button, Chip, Dialog, DialogActions, DialogContent, DialogContentText, 
 import { TransitionProps } from '@mui/material/transitions';
 import { GridColDef, GridValueGetterParams, DataGrid, GridApi, GridCellValue } from '@mui/x-data-grid';
 import { getCookie } from 'cookies-next';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
+import { format } from "date-fns";
 
 
 const Transition = React.forwardRef(function Transition(
@@ -24,32 +25,34 @@ export default function BetHistoryList() {
 
 
     const columns: GridColDef[] = [
-        {
-            field: "id",
-            headerName: "ID",
-            flex: 0.01,
-            minWidth: 50,
-            align: "center",
-            headerAlign: "center",
-        },
+ 
+
         {
             field: "date",
             headerName: "DATE",
             align: "center",
             headerAlign: "center",
-            width: 150,
+            width: 70,
             type: "dateTime",
-            minWidth: 250,
+            minWidth: 100,
             valueFormatter: (params) => {
-                return new Date(params.value).toLocaleString();
+
+                var date = new Date(params.value);
+                //.toLocaleString();
+
+                return format(date, "HH:mm:ss");
+
+                //return new Date(params.value).toLocaleString();
+
             }, // burada tarih formatı değiştirilebilir.
         },
+
         {
             field: "betAmount",
             type: "number",
             headerName: "BET",
             flex: 0.1,
-            minWidth: 80,
+            minWidth: 60,
             align: "center",
             headerAlign: "center",
         },
@@ -67,7 +70,7 @@ export default function BetHistoryList() {
             type: "number",
             headerName: "RESULTS",
             flex: 0.1,
-            minWidth: 80,
+            minWidth: 60,
             align: "center",
             headerAlign: "center",
         },
@@ -85,6 +88,7 @@ export default function BetHistoryList() {
             */
             
         },
+
         /*
         {
             field: "winnerHorse",
