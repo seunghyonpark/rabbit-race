@@ -551,37 +551,20 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
 
                     </div>
                     
-                    <div className="w-full h-10 mt-0 ">
-                        <div className="marquee-container relative w-full">
-                            <div className="marquee ">
-
-                                {/*
-                                <span>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet culpa voluptates quis incidunt officiis optio fugiat voluptatum enim aliquid reprehenderit, praesentium repudiandae cum velit quos dicta eum quasi suscipit consectetur.
-                                </span>
-                                */}
-
-{/*
-                                <div className="w-full h-10 mt-0 "
-                                    style={{
-                                            backgroundImage: `url('/lbank-logo.png')`,
-                                            backgroundSize: "100px",
-                                            backgroundRepeat: "repeat-x",
-                                        }}
-                                ></div>
-                                    */}
-                                <div className="w-full h-10 mt-0 "
-                                    style={{
-                                            backgroundImage: `url('/cracle-logo.png')`,
-                                            backgroundSize: "100px",
-                                            backgroundRepeat: "repeat-x",
-                                        }}
-                                ></div>
-
-                            </div>
-
+                    
+                    <div className="w-full h-6 mt-2 ">
+                            <div
+                                className=" h-10 -mt-1"
+                                style={{
+                                    backgroundImage: `url('/cracle-logo.png')`,
+                                    backgroundSize: "120px",
+                                    backgroundRepeat: "repeat-x",
+                                    backgroundPosition: `${finishLine ? "0px" : `${fence}%`} 0px`,
+                                }}   
+                            >
                         </div>
                     </div>
+                    
                     
                     
 
@@ -591,7 +574,7 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
                         <div
                             className={`flex items-center justify-center  bg-black h-[36px] text-center text-xl px-5 text-[#BA8E09] border border-[#BA8E09] `}
                         >
-                            <span>TIME REMAINING:</span>&nbsp;&nbsp;&nbsp; <span className="text-[#ffffff]">{timeRemaining.toFixed(2)}</span>&nbsp;&nbsp;<span>Seconds</span>
+                            <span>TIME LEFT:</span>&nbsp;&nbsp;&nbsp; <span className="text-[#ffffff]">{timeRemaining.toFixed(2)}</span>&nbsp;&nbsp;<span>Seconds</span>
                         </div>
 
                         {/*
