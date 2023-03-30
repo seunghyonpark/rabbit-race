@@ -460,14 +460,22 @@ export default function BetInputs({ socket, horse1, horse2, currentPrice, setBas
             <div className='flex flex-col items-center justify-center gap-5 w-full lg:w-2/3 '>
                 {/* //? Input amount manuel */}
                 <div className='flex items-center w-full md:w-1/2 relative'>
-                    <div className='absolute left-5 z-10'> <FaCoins className='fill-yellow-500' /> </div>
+                    <div className='absolute left-3 z-10'> <FaCoins className='fill-yellow-500' /> </div>
+
+
+                    {user && <button
+                        onClick={() => {
+                            setBetAmount(user?.deposit - 0.00001)
+                        }}
+                        className=' w-7 btn-circle absolute left-10 z-10 bg-[url(/cion.webp)] bg-contain bg-center bg-no-repeat text-black text-xs'> Max </button>}
+                    
                     <input onChange={(e: any) => {
                         setBetAmount(e.target.value)
                     }}
                         value={betAmount === 0 ? '' : betAmount}
                         type="number"
                         placeholder='1~10,000 CRA'
-                        className='input w-full pl-16 font-bold text-l' />
+                        className='input w-full pl-20 font-bold text-l' />
                     <button onClick={() => { setBetAmount(0) }} className='absolute right-5 z-10 btn btn-xs btn-outline border-gray-700'>Clear</button>
                 </div>
 
@@ -504,12 +512,7 @@ export default function BetInputs({ socket, horse1, horse2, currentPrice, setBas
                         }}
                         className='btn btn-circle bg-[url(/cion.webp)] bg-contain bg-center bg-no-repeat text-black border'> /2 </button>
                     
-                    {user && <button
-                        onClick={() => {
-                            setBetAmount(user?.deposit - 0.00001)
-                        }}
-                        className=' btn-circle hidden md:block bg-[url(/cion.webp)] bg-contain bg-center bg-no-repeat text-black border'> Max </button>}
-                
+            
                 </div>
                 
                 {/* //? Horse Select Buttons */}
