@@ -742,7 +742,10 @@ export default function MobilNavbar() {
                       width={50}
                       height={50}
                       alt="pfp"
-                      className=""
+                      className="rounded-md"
+                      onClick={() => {
+                        setShowModal(false), router.push('/gameT2E/mynft')
+                      }}
                   />}
                                                       
 

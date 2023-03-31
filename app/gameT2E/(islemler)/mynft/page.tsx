@@ -256,7 +256,7 @@ export default function Mynft() {
 
     return (
         <>
-            <div className='flex flex-col p-10 mt-5 text-gray-200'>
+            <div className='flex flex-col p-10 mt-0 text-gray-200'>
 
 
 

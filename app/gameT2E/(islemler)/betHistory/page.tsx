@@ -348,13 +348,16 @@ export default function BetHistoryList() {
                             variant="standard"
                         />
                     </DialogContent>
+
                     <DialogContentText className='text-center text-xs italic'>If you reject the request than request amount will be refund to user!</DialogContentText>
+                    
                     <DialogActions>
                         <Button color='error' onClick={deleteRequest}>Delete</Button>
                         <Button color='error' onClick={requestRejected}>Reject</Button>
                         <Button onClick={handleClose}>Close</Button>
                         <Button color='success' onClick={requestAccepted}>Save</Button>
                     </DialogActions>
+                    
                 </Dialog>
             )}
 

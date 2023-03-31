@@ -34,7 +34,7 @@ export default function DepositRequestList() {
         },
         {
             field: "wallet",
-            headerName: "Wallet",
+            headerName: "From",
             flex: 0.1,
             minWidth: 80,
             align: "center",
@@ -42,7 +42,7 @@ export default function DepositRequestList() {
         },
         {
             field: "depositAmount",
-            headerName: "Request Amount",
+            headerName: "Amount",
             align: "center",
             headerAlign: "center",
             type: "number",
@@ -53,21 +53,10 @@ export default function DepositRequestList() {
             },
 
         },
-        {
-            field: "status",
-            headerName: "Status",
-            align: "center",
-            headerAlign: "center",
-            description: "This column has a value getter and is not sortable.",
-            flex: 0.1,
-            minWidth: 100,
-            renderCell(params) {
-                return <Chip label={params.value} color={params.value === "Rejected" ? "error" : params.value === "Accepted" ? "info" : params.value === "Waiting" ? "warning" : "success"} />;
-            },
-        },
+
         {
             field: "createdAt",
-            headerName: "Created At",
+            headerName: "Date",
             align: "center",
             headerAlign: "center",
             width: 150,
@@ -230,7 +219,7 @@ export default function DepositRequestList() {
     return (
         <>
             <div className='flex flex-col p-10 mt-5 text-gray-200'>
-                <h1 className='font-bold italic text-2xl'>Deposit Requests</h1>
+                <h1 className='font-bold italic text-2xl'>Deposits</h1>
                 <div style={{ width: "100%", height: 600, color: "white" }}>
                     <DataGrid
                         rows={rows}
