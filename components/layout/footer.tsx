@@ -20,6 +20,9 @@ export default function Footer() {
                     <p>All Rights Reserved © 2023 Cracle </p>
                 </div>
             </div>
+
+            <div id="modal-root"></div>
+
         </>
     )
 }

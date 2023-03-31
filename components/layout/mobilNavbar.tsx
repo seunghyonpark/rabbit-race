@@ -12,6 +12,15 @@ import React, { useEffect, useState, useMemo } from 'react';
 ////import { useListen } from "../../hooks/useListen";
 ////import { useMetamask } from "../../hooks/useMetamask";
 
+import Sidebar from "./Sidebar";
+
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+import Modal from '../../components/Modal';
+
+import MyPage from '../MyPage';
+
 
 
 
@@ -47,6 +56,10 @@ import { parseIneligibility } from "../../utils/parseIneligibility";
 //const myNftDropContractAddress = "0x90E2dD8C48cA35534Dd70e3eC19B362cdf71981E";
 
 const myNftDropContractAddress = "0x327dA22b2bCdfd6F4EE4269892bd39Fe6c637BcC";
+
+
+const MySwal = withReactContent(Swal);
+
 
 
 
@@ -557,12 +570,16 @@ export default function MobilNavbar() {
 
       */
 
+    const [showModal, setShowModal] = useState(false);
+
+    
 
 
     return (
         <>
             <div className="lg:hidden w-full flex items-center gap-2 px-2 h-20 bg-[#24252F]">
 
+           
 
 
                 <Link href={"/gameT2E"}>
@@ -660,23 +677,121 @@ export default function MobilNavbar() {
                             
                             className={`flex items-center shadow-sm  justify-center rounded-md p-1 gap-2  h-[36px] px-2 text-[#D4D1CB] text-[10px]`}
                         >
-                            <div className="flex gap-1">
 
-                            {/*
-                                {user && <Image
-                                    src={user.img}
-                                    width={20}
-                                    height={20}
-                                    alt="pp"
-                                    className="rounded-full"
-                                />}
-                                */}
+                          {/*
+                            <div className="flex gap-1"            
+                              onClick={() => {
+                                
+                              }}
+                            >
+
 
                                 {user?.username}
+
                             </div>
+                              */}
+
+
+        <button onClick={() => setShowModal(true)}>{user?.username}</button>
+            <Modal
+                onClose={() => setShowModal(false)}
+                show={showModal}
+            >
+             
+
+
+
+             <div className='flex flex-col p-0 mt-0 text-gray-200'>
+
+
+
+<div className="w-full rounded-lg flex flex-col items-center justify-center p-2 gap-1 py-5">
+
+
+
+
+    <h4 className="  text-white text-sm font-bold">
+    Now connected with <br/> 
+    0x7289…1A0B
+
+    </h4>
+
+                                    
+                                        {user && <Image
+                                            src={user.img}
+                                            width={50}
+                                            height={50}
+                                            alt="pfp"
+                                            className=""
+                                        />}
+                                        
+
+
+
+    <h4 className=" text-white text-xl font-bold">
+    Banking
+    </h4>
+
+
+    <button
+      className={` ml-5 text-sm text-white `}
+      onClick={() => {
+          setShowModal(false), router.push('/gameT2E/deposit')
+      }}
+      >
+        Deposit
+    </button>
+
+    <button
+      className={` ml-5 text-sm text-white `}
+      onClick={() => {
+          setShowModal(false), router.push('/gameT2E/deposit')
+      }}
+      >
+        Withdrawal
+    </button>
+
+    <button
+      className={` text-xl text-white `}
+      onClick={() => {
+          setShowModal(false), router.push('/gameT2E/betHistory')
+      }}
+      >
+        History
+    </button>
+
+    <button
+      className={` disabled text-xl text-white `}
+      onClick={() => {
+          setShowModal(false), router.push('/gameT2E/betHistory')
+      }}
+      >
+        Ranking
+    </button>
+
+
+    <button
+      className={` ml-2 text-sm text-orange-500 `}
+      onClick={() => {
+          deleteCookie('user'), router.push('/gameT2E')
+      }}
+      >
+          Logout
+    </button>
+
+</div>
+
+
+</div>
+        
+
+
+            </Modal>
+
+
                         </div>
                     } 
-                    {
+                    {/*
                         user && <button
                             className={`text-[10px] text-red-500`}
                             onClick={() => {
@@ -686,12 +801,20 @@ export default function MobilNavbar() {
                         >
                             Log Out
                         </button>
+                          */}
+
+                    {
+                      
                     }
                 </div>
                 
 
 
             </div>
+
+
+            
+            
         </>
     )
 }

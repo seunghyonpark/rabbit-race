@@ -55,7 +55,9 @@ import {
   import { BigNumber, utils } from "ethers";
   import { parseIneligibility } from "../../utils/parseIneligibility";
   
-  
+  import Modal from '../../components/Modal';
+
+
   // Put Your NFT Drop Contract address from the dashboard here
   //const myNftDropContractAddress = "0x90E2dD8C48cA35534Dd70e3eC19B362cdf71981E";
   
@@ -694,7 +696,7 @@ useEffect(() => {
 
 
 
-
+  const [showModal, setShowModal] = useState(false);
 
 
 
@@ -704,6 +706,9 @@ useEffect(() => {
     
     return (
         <>
+
+
+
             {!status ?
                 (
                     <div className='flex flex-col px-10 pb-10 w-full h-full items-center justify-center gap-5 bg-[#0C0E1A] relative'>
@@ -755,6 +760,9 @@ useEffect(() => {
                         </div>
 
 
+                        
+
+
                         <BetInputs
                           socket={socket}
                           horse1={horse1Oran}
@@ -772,8 +780,8 @@ useEffect(() => {
 
 
 
-
                     </div>
+
 
 
                 )
@@ -786,6 +794,13 @@ useEffect(() => {
                   betAmount={myBetAmount}
                 />
             }
+
+
+
+         
+
+
+
         </>
 
     )
