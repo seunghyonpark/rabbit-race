@@ -9,7 +9,7 @@ const Modal = ({ show, onClose, children, title } : any) => {
     setIsBrowser(true);
   }, []);
 
-  const handleCloseClick = (e) => {
+  const handleCloseClick = (e:any) => {
     e.preventDefault();
     onClose();
   };
