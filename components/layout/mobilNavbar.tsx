@@ -572,17 +572,6 @@ export default function MobilNavbar() {
                 
                 <div className='w-full p-2 flex items-center justify-end gap-3'>
 
-                    {
-                        user && <Link
-                            href={"/gameT2E/deposit"}
-                        >
-                            <Image src={"/wallet.png"} width={20} height={40} alt="logo" />
-                        </Link>
-                    }
-
-
-
-
 
                     {/*
                         user && 
@@ -625,6 +614,15 @@ export default function MobilNavbar() {
                         user && <div
                             className={`flex items-center justify-center  bg-black rounded-md h-[32px] text-[13px] text-center px-5 text-[#BA8E09] border border-[#BA8E09] `}
                         >
+
+                        <Link
+                            href={"/gameT2E/deposit"}
+                            className={"pr-3 "}
+                        >
+                            <Image src={"/wallet-icon-white.png"} width={10} height={40} alt="logo" />
+                        </Link>
+
+
                           {/*
                             {`${user.deposit.toString().slice(0, 3)}...`}&nbsp;&nbsp;<span className="text-[#9293A6]">{" "}{Coin.symbol}</span>
                     */}

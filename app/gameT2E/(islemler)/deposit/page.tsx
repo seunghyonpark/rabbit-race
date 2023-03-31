@@ -581,9 +581,16 @@ export default function Deposit() {
             </button>
 */}
 
+
+
             <Link href={"/gameT2E/depositRequests"} className="hover:opacity-50">
                 List of Deposit Requests
             </Link>
+
+
+            <span>
+            If you send coins to your wallet address, it will be processed automatically.
+            </span>
 
           </div>
 

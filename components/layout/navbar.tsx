@@ -86,7 +86,7 @@ export default function Navbar() {
                         user && <Link
                             href={"/gameT2E/deposit"}
                         >
-                            <Image src={"/wallet.png"} width={25} height={40} alt="logo" />
+                            <Image src={"/wallet-icon-white.png"} width={25} height={40} alt="logo" />
                         </Link>
                     }
                         
