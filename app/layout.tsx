@@ -52,11 +52,17 @@ export default function RootLayout({
 
 <MetamaskProvider>
 
+{/*
             <ThirdwebProvider  activeChain={activeChainId}>
-            {children}
-            </ThirdwebProvider>
+*/}
 
-          
+            {children}
+
+ {/*
+            </ThirdwebProvider>
+*/}
+
+         
 </MetamaskProvider>
 
 

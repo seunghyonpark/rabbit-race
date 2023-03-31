@@ -131,6 +131,9 @@ export default async function handler(
 
     const user = await getUser(userToken);
 
+    //console.log("api user", user);
+
+
     if (!user.success) {
       res.status(400).json({ message: user.message });
       return;

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import styled from "styled-components";
 
-const Modal = ({ show, onClose, children, title } : any) => {
+const Modal = ({ show, onClose, title, children } : any) => {
   const [isBrowser, setIsBrowser] = useState(false);
 
   useEffect(() => {
@@ -15,17 +15,22 @@ const Modal = ({ show, onClose, children, title } : any) => {
   };
 
   const modalContent = show ? (
+
     <StyledModalOverlay>
       <StyledModal>
+        
         <StyledModalHeader>
           <a href="#" onClick={handleCloseClick}>
             x
           </a>
         </StyledModalHeader>
+        
         {/*title && <StyledModalTitle>{title}</StyledModalTitle>*/}
         <StyledModalBody>{children}</StyledModalBody>
       </StyledModal>
     </StyledModalOverlay>
+
+
   ) : null;
 
   if (isBrowser) {
@@ -38,34 +43,41 @@ const Modal = ({ show, onClose, children, title } : any) => {
   }
 };
 
-const StyledModalBody = styled.div`
-  padding-top: 10px;
-`;
-
 const StyledModalHeader = styled.div`
   display: flex;
+  height: 10px;
+  padding-right: 12px;
   justify-content: flex-end;
   font-size: 25px;
+  color: #ffffff;
 `;
+
+const StyledModalBody = styled.div`
+
+  padding-top: 15px;
+`;
+
+
 
 const StyledModal = styled.div`
   background: #24252F;
   width: 300px;
-  height: 350px;
+  height: 320px;
   border-radius: 15px;
   padding: 5px;
   vertical-align: top;
 `;
+
 const StyledModalOverlay = styled.div`
   opacity: 1;
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 40%;
+  height: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: top;
   background-color: rgba(0, 0, 0, 0.5);
 `;
 

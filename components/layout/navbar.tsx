@@ -181,7 +181,7 @@ export default function Navbar() {
                                     className={`text-[13px] text-red-500`}
                                     onClick={() => {
                                         deleteCookie('user')
-                                        getUser();
+                                        getUser()
                                         router.push('/gameT2E')
                                     }}
                                 >

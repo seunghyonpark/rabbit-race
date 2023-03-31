@@ -65,6 +65,7 @@ const MySwal = withReactContent(Swal);
 
 export default function MobilNavbar() {
 
+  /*
   const { contract: nftDrop } = useContract(myNftDropContractAddress);
 
   const address = useAddress();
@@ -188,6 +189,7 @@ export default function MobilNavbar() {
     numberTotal,
   ]);
 
+
   /////console.log("claimIneligibilityReasons", claimIneligibilityReasons.data);
 
   const canClaim = useMemo(() => {
@@ -255,7 +257,7 @@ export default function MobilNavbar() {
     quantity,
   ]);
 
-
+*/
 
 
 
@@ -692,120 +694,24 @@ export default function MobilNavbar() {
                               */}
 
 
-        <button onClick={() => setShowModal(true)}>{user?.username}</button>
-            <Modal
-                onClose={() => setShowModal(false)}
-                show={showModal}
-            >
-             
-
-
-
-             <div className='flex flex-col p-0 mt-0 text-gray-200'>
-
-
-
-<div className="w-full rounded-lg flex flex-col items-center justify-center p-2 gap-1 py-5">
-
-
-
-
-    <h4 className="  text-white text-sm font-bold">
-    Now connected with <br/> 
-    0x7289…1A0B
-
-    </h4>
-
-                                    
-                                        {user && <Image
-                                            src={user.img}
-                                            width={50}
-                                            height={50}
-                                            alt="pfp"
-                                            className=""
-                                        />}
-                                        
-
-
-
-    <h4 className=" text-white text-xl font-bold">
-    Banking
-    </h4>
-
-
-    <button
-      className={` ml-5 text-sm text-white `}
-      onClick={() => {
-          setShowModal(false), router.push('/gameT2E/deposit')
-      }}
-      >
-        Deposit
-    </button>
-
-    <button
-      className={` ml-5 text-sm text-white `}
-      onClick={() => {
-          setShowModal(false), router.push('/gameT2E/deposit')
-      }}
-      >
-        Withdrawal
-    </button>
-
-    <button
-      className={` text-xl text-white `}
-      onClick={() => {
-          setShowModal(false), router.push('/gameT2E/betHistory')
-      }}
-      >
-        History
-    </button>
-
-    <button
-      className={` disabled text-xl text-white `}
-      onClick={() => {
-          setShowModal(false), router.push('/gameT2E/betHistory')
-      }}
-      >
-        Ranking
-    </button>
-
-
-    <button
-      className={` ml-2 text-sm text-orange-500 `}
-      onClick={() => {
-          deleteCookie('user'), router.push('/gameT2E')
-      }}
-      >
-          Logout
-    </button>
-
-</div>
-
-
-</div>
-        
-
-
-            </Modal>
-
-
+                          <div onClick={() => setShowModal(true)}>{user?.username}</div>
                         </div>
                     } 
-                    {/*
+                    
+                    {
                         user && <button
                             className={`text-[10px] text-red-500`}
                             onClick={() => {
-                                deleteCookie('user'),
-                                    router.push('/gameT2E')
+                                deleteCookie('user')
+                                getUser()
+                                router.push('/gameT2E')
                             }}
                         >
                             Log Out
                         </button>
-                          */}
-
-                    {
-                      
                     }
+
+              
                 </div>
                 
 
@@ -813,6 +719,96 @@ export default function MobilNavbar() {
             </div>
 
 
+
+            <Modal
+              show={showModal}
+              onClose={() => setShowModal(false)}
+                
+            >
+
+            <div className='flex flex-col p-0 mt-0 text-gray-200 '>
+
+              <div className="w-full rounded-lg flex flex-col items-center justify-center p-2 gap-1 py-5">
+
+                  <h4 className="  text-white text-sm font-bold">
+                  Now connected with <br/> 
+                  0x7289…1A0B
+
+                  </h4>
+
+                                                  
+                  {user && <Image
+                      src={user.img}
+                      width={50}
+                      height={50}
+                      alt="pfp"
+                      className=""
+                  />}
+                                                      
+
+
+
+                  <h4 className=" text-white text-xl font-bold">
+                  Banking
+                  </h4>
+
+
+                  <button
+                    className={` ml-5 text-sm text-white `}
+                    onClick={() => {
+                        setShowModal(false), router.push('/gameT2E/deposit')
+                    }}
+                    >
+                      Deposit
+                  </button>
+
+                  <button
+                    className={` ml-5 text-sm text-white `}
+                    onClick={() => {
+                        setShowModal(false), router.push('/gameT2E/deposit')
+                    }}
+                    >
+                      Withdrawal
+                  </button>
+
+                  <button
+                    className={` text-xl text-white `}
+                    onClick={() => {
+                        setShowModal(false), router.push('/gameT2E/betHistory')
+                    }}
+                    >
+                      History
+                  </button>
+
+                  <button
+                    className={` disabled text-xl text-white `}
+                    onClick={() => {
+                        setShowModal(false), router.push('/gameT2E/betHistory')
+                    }}
+                    >
+                      Ranking
+                  </button>
+
+{/*
+                  <button
+                    className={` ml-2 text-sm text-orange-500 `}
+                    onClick={() => {
+                      
+                        setShowModal(false), deleteCookie('user'), router.push('/gameT2E')
+                    }}
+                    >
+                        Logout
+                  </button>
+*/}
+
+              </div>
+
+
+            </div>
+        
+
+
+            </Modal>
             
             
         </>

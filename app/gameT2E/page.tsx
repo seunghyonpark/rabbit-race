@@ -273,7 +273,7 @@ export default function GameT2E() {
 
 
     // code for web3
-
+    /*
     const { contract: nftDrop } = useContract(myNftDropContractAddress);
 
     const address = useAddress();
@@ -463,7 +463,7 @@ export default function GameT2E() {
       priceToMint,
       quantity,
     ]);
-  
+    */
   
 /*
     if (typeof Highcharts === "object") {

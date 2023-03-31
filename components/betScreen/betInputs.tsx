@@ -123,8 +123,9 @@ export default function BetInputs({ socket, horse1, horse2, currentPrice, setBas
 
     /////const { contract, isLoading, error } = useContract("{{contract_address}}");
 
+    /*
     const { contract, error } = useContract(myNftDropContractAddress);
-
+    */
 
     ////const placeBet = async (cntr: any) => {
 
@@ -227,7 +228,7 @@ export default function BetInputs({ socket, horse1, horse2, currentPrice, setBas
 
 
 
-
+  /*
     const [erc20Balance, setErc20Balance] = useState<any>(0)
 
     const getErc20Balance = async () => {
@@ -239,6 +240,7 @@ export default function BetInputs({ socket, horse1, horse2, currentPrice, setBas
       alert("erc20Balance="+erc20Balance);
 
     }
+    */
 
     useEffect(() => {
 
@@ -252,6 +254,7 @@ export default function BetInputs({ socket, horse1, horse2, currentPrice, setBas
 
     
     // code for web3
+    /*
     const disconnect = useDisconnect();
 
     const { contract: nftDrop } = useContract(myNftDropContractAddress);
@@ -445,7 +448,7 @@ export default function BetInputs({ socket, horse1, horse2, currentPrice, setBas
       quantity,
     ]);
   
-
+    */
 
 
 
