@@ -20,7 +20,9 @@ import Link from 'next/link';
 export default function Deposit() {
   let Abifile: any = abi;
   let contractAddress = "0x46aA314E5ee3c0E5E945B238075d2B5eB2AAA317";
+
   const MySwal = withReactContent(Swal);
+
   const [errMsg, setErrMsg] = useState<String>();
   const [metamusk, setMetaMask] = useState<boolean>(false);
   const [wallet, setWallet] = useState<any>(null);
@@ -54,12 +56,6 @@ export default function Deposit() {
     setUser(user.user.user)
   }
   
-  useEffect(() => {
-    getUser();
-    getSettings();
-  }, [])
-
-
   const getSettings = async () => {
     const res = await fetch(DomainEnum.address + '/api/settings', {
       method: 'POST',
@@ -79,6 +75,12 @@ export default function Deposit() {
       setSettings(data.settings[0]);
     }
   }
+
+
+  useEffect(() => {
+    getUser();
+    getSettings();
+  }, [])
 
   /*
   useEffect(() => {
@@ -504,6 +506,8 @@ export default function Deposit() {
 
   return (
     <>
+
+    
       {metamaskview ? (
         <div
           onClick={() => {
@@ -519,12 +523,16 @@ export default function Deposit() {
           />
         </div>
       ) : null}
+
+
       {waiting ? (
         <div
           className="flex absolute min-w-full min-h-full bg-black/70 justify-center items-center "
         >please wait...
         </div>
       ) : null}
+
+
       <div className="flex flex-col items-center justify-center min-h-[75vh] gap-3 p-10 text-gray-100">
         <h3 className="text-center">Deposit And Withdraw</h3>
 

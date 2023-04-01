@@ -5,6 +5,12 @@ import { GridColDef, GridValueGetterParams, DataGrid, GridApi, GridCellValue } f
 import { getCookie } from 'cookies-next';
 import React, { useEffect, useState } from 'react';
 import { format } from "date-fns";
+import Image from "next/image";
+import Link from 'next/link';
+import { AiOutlineUser } from "react-icons/ai";
+
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 
 const Transition = React.forwardRef(function Transition(
@@ -18,10 +24,22 @@ const Transition = React.forwardRef(function Transition(
 
 
 
+
+
+
 export default function Mynft() {
     const [requests, setRequests] = useState<any>([]);
     const [open, setOpen] = React.useState(false);
     const [selectedUser, setSelectedUser] = useState<any>();
+
+    const MySwal = withReactContent(Swal);
+
+    const [metamusk, setMetaMask] = useState<boolean>(false);
+    const [wallet, setWallet] = useState<any>(null);
+    const [networkName, setNetworkName] = useState<any>(null);
+    const [network, setNetwork] = useState<any>(false);
+    const [metamaskview, setMetamaskView] = useState<boolean>(false);
+
 
 
     const columns: GridColDef[] = [
@@ -227,16 +245,222 @@ export default function Mynft() {
         })
         const data = await res.json();
 
-        //console.log("data=>", data  );
-
-        ///console.log("betHistory=>", data.betHistory, "user=>", getCookie("user")  );
-
         setRequests(data.betHistory)
     }
 
     useEffect(() => {
         getAll();
     }, [])
+
+
+
+    useEffect(() => {
+        setMetaMask(isMetaMaskInstalled());
+        checkAccount();
+
+        const { ethereum }: any = window;
+
+        if (metamusk == true) {
+          ethereum.on("networkChanged", function (networkId: any) {
+            if (networkId == 97) {
+              setNetwork(true);
+            } else {
+              setNetwork(false);
+            }
+          });
+    
+          ethereum.on("accountsChanged", function (accounts: any) {
+            if (accounts.length !== 0) {
+              setWallet(accounts[0]);
+            } else {
+              setWallet(null);
+            }
+          });
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+      }, []);
+
+
+  //? METAMASK
+  const isMetaMaskInstalled = () => {
+    const { ethereum }: any = window;
+    return Boolean(ethereum && ethereum.isMetaMask);
+  };
+
+
+  
+  const connectWallet = async () => {
+    try {
+      const { ethereum }: any = window;
+      if (!ethereum) {
+        return;
+      }
+      let chainId = await ethereum.request({ method: "eth_chainId" });
+
+      ////const ethChainId = "0x13881";
+
+      const ethChainId = "0x61";
+
+
+
+      if (chainId !== ethChainId) {
+
+        MySwal.fire({
+          title: "Opsss?",
+          text: "You are connected to the wrong network!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Change",
+          cancelButtonText: "Cancel",
+        }).then(async (result: any) => {
+
+          if (result.isConfirmed) {
+            try {
+              await ethereum
+                .request({
+                  method: "wallet_switchEthereumChain",
+                  ////params: [{ chainId: "0x13881" }],
+                  params: [{ chainId: "0x61" }],
+                })
+                .then(() => {
+                  if (ethereum) {
+                    ethereum.on("chainChanged", async (chainId: any) => {
+
+                      ///if ((chainId = "0x13881")) {
+                      if ((chainId = "0x61")) {
+
+                        const accounts = await ethereum.request({
+                          method: "eth_requestAccounts",
+                        });
+                        setWallet(accounts[0]);
+                        setNetwork(true);
+                        setNetworkName("BSC Testnet");
+                      }
+                    });
+                  }
+                });
+            } catch (error: any) {
+              if (error.code === 4902) {
+                await ethereum
+                  .request({
+                    method: "wallet_addEthereumChain",
+                    params: [
+                      {
+                        ///chainId: "0x13881",
+                        chainId: "0x61",
+
+                        ///chainName: "Mumbai Testnet",
+                        chainName: "BSC Testnet",
+
+                        nativeCurrency: {
+                          ///name: "Mumbai Testnet",
+                          name: "BSC Testnet",
+                          //symbol: "MATIC", // 2-6 characters long
+                          symbol: "BSC", // 2-6 characters long
+                          decimals: 18,
+                        },
+                        //blockExplorerUrls: ["https://polygonscan.com/"],
+                        blockExplorerUrls: ["https://testnet.bscscan.com/"],
+
+                        
+                        ///rpcUrls: ["https://rpc-mumbai.maticvigil.com/"],
+                        rpcUrls: ["https://binance-testnet.rpc.thirdweb.com"],
+
+                        
+                      },
+                    ],
+                  })
+                  .then(() => {
+                    if (ethereum) {
+                      ethereum.on("chainChanged", async (chainId: any) => {
+
+                        ////if ((chainId = "0x13881")) {
+
+                        if ((chainId = "0x61")) {
+
+
+                          const accounts = await ethereum.request({
+                            method: "eth_requestAccounts",
+                          });
+                          setWallet(accounts[0]);
+                          setNetwork(true);
+                          setNetworkName("BSC Testnet");
+                        }
+                      });
+                    }
+                  });
+              }
+            }
+          }
+        });
+
+
+      } else {
+        const accounts = await ethereum.request({
+          method: "eth_requestAccounts",
+        });
+        setWallet(accounts[0]);
+        setNetwork(true);
+        setNetworkName("BSC Testnet");
+      }
+    } catch (error) { }
+  };
+
+  async function wrongWallet() {
+    try {
+      const { ethereum }: any = window;
+      let chainId = await ethereum.request({ method: "eth_chainId" });
+
+      ////if (chainId !== "0x13881") {
+
+      if (chainId !== "0x61") {
+
+        setNetwork(false);
+      } else {
+        setNetwork(true);
+      }
+    } catch (e: any) { }
+  }
+
+  
+  useEffect(() => {
+    if (isMetaMaskInstalled()) {
+      wrongWallet();
+      connectWallet();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  
+
+  async function checkAccount() {
+    const { ethereum }: any = window;
+    if (metamusk == true) {
+      const accounts = await ethereum.request({ method: "eth_accounts" });
+      if (accounts.length !== 0) {
+        setWallet(accounts[0]);
+      } else {
+        setWallet(null);
+        //await connectWallet()
+      }
+    }
+  }
+
+
+  /*
+  useEffect(() => {
+    if (wallet) {
+      //@ts-ignore
+       //@ts-ignore
+      const web3 = new Web3(window.ethereum);
+      const contract = new web3.eth.Contract(Abifile, contractAddress); //@ts-ignore
+      setContract(contract);
+    }
+  }, [Abifile, contractAddress, wallet]);
+  */
+
+
 
 
     const rows = requests.map((item: any, i: number) => {
@@ -256,6 +480,24 @@ export default function Mynft() {
 
     return (
         <>
+
+{metamaskview ? (
+        <div
+          onClick={() => {
+            setMetamaskView(false);
+          }}
+          className="flex absolute min-w-full min-h-full bg-black/70 justify-center items-center "
+        >
+          <Image
+            src="/metamask-fox.svg"
+            width={100}
+            height={100}
+            alt="Metamask"
+          />
+        </div>
+      ) : null}
+
+
             <div className='flex flex-col p-10 mt-0 text-gray-200'>
 
 
@@ -265,9 +507,83 @@ export default function Mynft() {
                         My NFT
                     </h4>
 
-      
-
                 </div>
+
+
+
+
+                <div className="flex flex-col justify-center h-full md:w-1/3 bg-white rounded-lg shadow-md p-4 m-5">
+
+<div className="pb-10 space-y-3">
+    <div className="flex gap-2 items-center pl-4">
+        <AiOutlineUser className="fill-green-500 w-5 h-5" />
+        <h2 className="text-gray-500 text-lg">
+            Connect Wallet
+        </h2>
+    </div>
+    <div className="w-full relative h-[1px] border flex items-center justify-center">
+        <div className="absolute bg-green-500 left-0 w-1/3 h-[1px] z-40"></div>
+        <div className="absolute left-1/3  w-2 h-2 rounded-full bg-green-500 z-50"></div>
+    </div>
+</div>
+
+{/* //todo BU KISIMA METAMASK EKLENİCEK */}
+{metamusk == true ? (
+    network == true ? (
+        wallet ? (
+            <Button className="w-full text-white text-center justify-center h-500 p-5 items-center bg-[#24252f] hover:bg-[#141111] rounded-md flex flex-col">
+                <Image
+                    src={"/metamask-fox.svg"}
+                    alt="meta-svg"
+                    width={100}
+                    height={100}
+                />
+                <h2 className="text-xl">
+                    <span className="text-[#f5841f]">Metamask</span> Connected!
+                    <p className="text-xs">Wallet: {wallet.slice(0, 5)}...{wallet.slice(wallet.length - 5, wallet.length)}</p>
+                </h2>
+            </Button>
+        ) :
+            <Button className="w-full text-white text-center justify-center h-500 p-5 items-center bg-[#24252f] hover:bg-[#141111] rounded-md flex flex-col">
+                <Image
+                    src={"/metamask-fox.svg"}
+                    alt="meta-svg"
+                    width={100}
+                    height={100}
+                />
+                <h2 className="text-xl">
+                    <span className="text-[#f5841f]">Metamask</span> Connect
+                </h2>
+            </Button>
+    ) : (
+        <Button className="w-full text-white text-center justify-center h-500 p-5 items-center bg-[#24252f] hover:bg-[#141111] rounded-md flex flex-col">
+            <Image
+                src={"/metamask-fox.svg"}
+                alt="meta-svg"
+                width={100}
+                height={100}
+            />
+            <h2 className="text-xl">
+                <span className="text-[#f5841f]">Wrong</span> Network
+            </h2>
+        </Button>
+    )
+) : (
+    <Link target="_blank" href="https://metamask.io/download/" className="w-full text-white text-center justify-center h-500 p-5 items-center bg-[#24252f] hover:bg-[#141111] rounded-md flex flex-col">
+        <Image
+            src={"/metamask-fox.svg"}
+            alt="meta-svg"
+            width={100}
+            height={100}
+        />
+        <h2 className="text-xl">
+            <span className="text-[#f5841f]">Metamask</span> Install
+        </h2>
+    </Link>
+)}
+
+</div>
+
 
 
                 
