@@ -257,7 +257,9 @@ export default function RegisterPage() {
         <>
             <div className="flex flex-col items-center justify-center py-10 h-full text-black gap-4">
                 <div className="flex flex-col md:flex-row justify-center w-full h-full gap-10 p-10">
+
                     <div className="flex flex-col  justify-center h-full md:w-1/3 bg-white rounded-lg shadow-md p-4">
+
                         <div className="pb-10 space-y-3">
                             <div className="flex gap-2 items-center pl-4">
                                 <AiOutlineUser className="fill-green-500 w-5 h-5" />
@@ -325,7 +327,9 @@ export default function RegisterPage() {
                                 </h2>
                             </Link>
                         )}
+                        
                     </div>
+
                     <div className="flex flex-col  justify-center h-full md:w-1/2 bg-white rounded-lg shadow-md p-4">
                         <div className="pb-10 space-y-3">
                             <div className="flex gap-2 items-center pl-4">
