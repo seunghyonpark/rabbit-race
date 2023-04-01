@@ -571,6 +571,9 @@ export default function GameT2E() {
         }
       ],
 
+      credits: {
+        enabled: false
+      },
     
       series: [
         {
