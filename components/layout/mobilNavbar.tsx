@@ -310,11 +310,19 @@ export default function MobilNavbar() {
         }
     }
 
+    useEffect(() => {
+      if (hasCookie("user") && !user) {
+          setInterval(() => {
+              getUser()
+          }, 5 * 1000)
+      }
+    })
 
+    /*
     useEffect(() => {
         getUser();
     });
-
+    */
 
     /*
     useEffect(() => {

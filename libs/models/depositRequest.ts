@@ -85,8 +85,9 @@ export const getAllDepositRequests = async () => {
   }
 };
 
+
 export const getAllDepositRequestsforUser = async (email1: string) => {
-  const requests = await DepositRequest.find({ email1: email1});
+  const requests = await DepositRequest.find({ email1: email1}).sort( { createdAt: -1 } );
   if (requests) {
     return requests;
   } else {
