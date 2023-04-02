@@ -439,6 +439,7 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
     
 
 
+    console.log("selectSide===========", selectSide);
 
 
     return (
@@ -649,15 +650,13 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
                             alt={"at"}
 
                             style={{
-                                opacity: `${selectSide ? "Short" : 0}`
+                                opacity: `${selectSide === "Long" ? 100 : 0}`
                             }}
-
-                       
-       
 
                         />
                     
 
+       
 {/*
 <div className="relative">
 
@@ -701,7 +700,7 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
                             alt={"at"}
 
                             style={{
-                                opacity: `${selectSide ? "Long" : 0}`
+                                opacity: `${selectSide === "Short" ? 100 : 0}`
                             }}
                         />
 

@@ -702,10 +702,6 @@ export default function MobilNavbar() {
                               />
 
                               {user?.username}
-                     
-
-                          
-
 
                         </div>
                     } 
@@ -753,7 +749,7 @@ export default function MobilNavbar() {
               {wallet === "0x" && 
           
                     <Button
-                      className="w-full text-white text-center justify-center p-3 items-center bg-red-900 hover:bg-[#141111] flex flex-row"
+                      className="w-full text-white text-center justify-center p-5 items-center bg-red-900 hover:bg-[#141111] flex flex-row"
                       onClick={() => {
                         setShowModal(false), router.push('/gameT2E/mynft')
                       }}
@@ -774,12 +770,13 @@ export default function MobilNavbar() {
             </div>
 
 
-            <div className='flex flex-col pl-5 mt-3 text-gray-200 '>
+            <div className='flex flex-col pl-5 pr-3 mt-3 text-gray-200 '>
 
 
               <div className="w-full rounded-lg flex flex-col items-center justify-center pt-2 gap-1">                                    
                   
                   <div className="w-full rounded-lg flex flex-row items-center justify-left p-2 gap-1 ">
+
                     {user && <Image
                         src={user.img}
                         width={80}
@@ -788,21 +785,27 @@ export default function MobilNavbar() {
                         className="rounded-md"
                     />}
 
-                    {user?.username}
+                    <div className="w-full rounded-lg flex flex-col items-center justify-left p-2 gap-1 ">
+                      <div className='text-xs'>Equity Value (CRA)</div>
 
-                    {user &&
-                    <button
-                        className={`text-[10px] text-red-500`}
-                        onClick={() => {
-                          setShowModal(false);
-                          deleteCookie('user');
-                          getUser();
-                          router.push('/gameT2E');
-                        }}
-                    >
-                        Log Out
-                    </button>
-                    }
+                      <div className='text-xl font-extrabold'>
+                        {`${user?.deposit.toString()}`}
+                      </div>
+
+                      {user &&
+                      <button
+                          className={`text-[10px] text-red-500`}
+                          onClick={() => {
+                            setShowModal(false);
+                            deleteCookie('user');
+                            getUser();
+                            router.push('/gameT2E');
+                          }}
+                      >
+                          Log Out
+                      </button>
+                      }
+                    </div>
                                                         
                   </div>
 
@@ -845,15 +848,15 @@ export default function MobilNavbar() {
 
 {/*
                   <button
-                    className={` ml-2 text-sm text-orange-500 `}
+                    className={` btn btn-success w-full`}
                     onClick={() => {
                       
-                        setShowModal(false), deleteCookie('user'), router.push('/gameT2E')
+                        ///setShowModal(false), deleteCookie('user'), router.push('/gameT2E')
                     }}
                     >
-                        Logout
+                        How to Bet in T2E Game?
                   </button>
-*/}
+                  */}
 
               </div>
 
