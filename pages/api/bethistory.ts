@@ -75,7 +75,7 @@ export default async function handler(
       return res.status(400).json({ message: "User not found" });
     }
 
-    const betHistory = await getAllBetHistoryforUser(user.email);
+    const betHistory = await getAllBetHistoryforUser(user.username);
     if (!betHistory) {
       return res.status(200).json({
         status: false,

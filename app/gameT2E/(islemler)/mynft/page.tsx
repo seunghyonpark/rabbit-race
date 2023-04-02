@@ -261,6 +261,7 @@ export default function Mynft() {
         const { ethereum }: any = window;
 
         if (metamusk == true) {
+
           ethereum.on("networkChanged", function (networkId: any) {
             if (networkId == 97) {
               setNetwork(true);
@@ -270,8 +271,14 @@ export default function Mynft() {
           });
     
           ethereum.on("accountsChanged", function (accounts: any) {
+
+            console.log("accountsChanged", accounts);
+
             if (accounts.length !== 0) {
               setWallet(accounts[0]);
+
+
+
             } else {
               setWallet(null);
             }
