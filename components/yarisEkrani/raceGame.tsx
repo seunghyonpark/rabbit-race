@@ -14,6 +14,8 @@ import { useRouter } from 'next/navigation';
 
 import Winner from './winner';
 
+import styles from "../styles/Home.module.css";
+
 
 export default function Race({socket, currentPrice, betPrice, betLongShort, betAmount}: {socket: any, currentPrice: any, betPrice: any, betLongShort: any, betAmount: any}) {
 
@@ -50,6 +52,8 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
     const [betAmountLong, setBetAmountLong] = useState<any>("");
     const [betAmountShort, setBetAmountShort] = useState<any>("");
 
+    const [selectSide, setSelectSide] = useState<any>(betLongShort);
+
     const [timeRemaining, setTimeRemaining] = useState<any>(0.00);
 
 
@@ -73,6 +77,7 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
     /////const [socket, setSocket] = useState<any>();
 
 
+    //console.log("selectSide", selectSide);
 
 
     const { push } = useRouter();
@@ -625,6 +630,8 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
                     >
 
 
+
+                   
                         <Image
                             src={
                                 imageRabbit1
@@ -633,8 +640,23 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
                             height={150}
                             alt={"at"}
                         />
+                        <Image
+                            src={
+                                "/cracle_ci.png"
+                            }
+                            width={20}
+                            height={20}
+                            alt={"at"}
 
+                            style={{
+                                opacity: `${selectSide ? "Short" : 0}`
+                            }}
 
+                       
+       
+
+                        />
+                    
 
 {/*
 <div className="relative">
@@ -656,7 +678,7 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
 
 
                     <div
-                        className="flex min-w-[150px] items-end justify-end "
+                        className="flex min-w-[150px] items-end justify-end mt-5"
                         style={{
                             width: `${progress2}%`,
                         }}
@@ -670,6 +692,20 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
                             height={150}
                             alt={"at"}
                         />
+                        <Image
+                            src={
+                                "/cracle_ci.png"
+                            }
+                            width={20}
+                            height={20}
+                            alt={"at"}
+
+                            style={{
+                                opacity: `${selectSide ? "Long" : 0}`
+                            }}
+                        />
+
+
 
 {/*
                         <span className="text-red-500" >2: Short</span>&nbsp;&nbsp;
@@ -710,7 +746,7 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
 */}
 
                     <div
-                        className="w-full h-14 -mt-1"
+                        className="w-full h-14 mt-0"
                         style={{
                             backgroundImage: `url('/fence4.png')`,
                             backgroundSize: "120px",
