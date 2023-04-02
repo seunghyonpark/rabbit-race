@@ -87,7 +87,7 @@ export const getAllPaymentRequests = async () => {
 };
 
 export const getAllPaymentRequestsforUser = async (email1: string) => {
-  const requests = await PaymentRequest.find({ email1: email1});
+  const requests = await PaymentRequest.find({ email1: email1}).sort({createdAt: -1});
   if (requests) {
     return requests;
   } else {

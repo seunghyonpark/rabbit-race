@@ -3,7 +3,8 @@ import { Button, Chip, Dialog, DialogActions, DialogContent, DialogContentText, 
 import { TransitionProps } from '@mui/material/transitions';
 import { GridColDef, GridValueGetterParams, DataGrid, GridApi, GridCellValue } from '@mui/x-data-grid';
 import { getCookie } from 'cookies-next';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
+import { format } from "date-fns";
 
 
 const Transition = React.forwardRef(function Transition(
@@ -47,10 +48,11 @@ export default function DepositRequestList() {
             headerAlign: "center",
             type: "number",
             flex: 0.2,
-            minWidth: 120,
-            renderCell(params) {
-                return <Chip label={`${params.value}  ${params.row.type}`} color="primary" />;
-            },
+            minWidth: 80,
+
+            //renderCell(params) {
+            //    return <Chip label={`${params.value}  ${params.row.type}`} color="primary" />;
+            //},
 
         },
 
@@ -61,9 +63,14 @@ export default function DepositRequestList() {
             headerAlign: "center",
             width: 150,
             type: "dateTime",
-            minWidth: 250,
+            minWidth: 120,
             valueFormatter: (params) => {
-                return new Date(params.value).toLocaleString();
+                //return new Date(params.value).toLocaleString();
+
+                var date = new Date(params.value);
+            
+                return format(date, "yy/MM/dd HH:mm:ss");
+
             }, // burada tarih formatı değiştirilebilir.
         },
 
@@ -191,7 +198,7 @@ export default function DepositRequestList() {
         })
         const data = await res.json();
 
-        console.log("deposits=>", data.deposits, "user=>", getCookie("user")  );
+        ///console.log("deposits=>", data.deposits, "user=>", getCookie("user")  );
 
         setRequests(data.deposits)
     }
@@ -218,7 +225,7 @@ export default function DepositRequestList() {
 
     return (
         <>
-            <div className='flex flex-col p-10 mt-5 text-gray-200'>
+            <div className='flex flex-col p-10 mt-0 text-gray-200'>
                 <h1 className='font-bold italic text-2xl'>Deposits</h1>
                 <div style={{ width: "100%", height: 600, color: "white" }}>
                     <DataGrid

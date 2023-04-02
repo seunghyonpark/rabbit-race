@@ -686,38 +686,42 @@ export default function MobilNavbar() {
                             //href={"/gameT2E/profile"}
                             
                             className={`flex items-center shadow-sm  justify-center rounded-md p-1 gap-2  h-[36px] px-2 text-[#D4D1CB] text-[10px]`}
+                            onClick={() => setShowModal(true)}
                         >
+                      
 
-                          {/*
-                            <div className="flex gap-1"            
-                              onClick={() => {
-                                
-                              }}
-                            >
+                              <Image
+                                  src={user?.img}
+                                  width={18}
+                                  height={18}
+                                  alt="pfp"
+                                  className="rounded-md"
+                              />
+
+                              {user?.username}
+                     
+
+                          
 
 
-                                {user?.username}
-
-                            </div>
-                              */}
-
-
-                          <div onClick={() => setShowModal(true)}>{user?.username}</div>
                         </div>
                     } 
+
+
+
                     
-                    {
+                    {/*
                         user && <button
                             className={`text-[10px] text-red-500`}
                             onClick={() => {
-                                deleteCookie('user')
-                                getUser()
-                                router.push('/gameT2E')
+                                deleteCookie('user');
+                                getUser();
+                                router.push('/gameT2E');
                             }}
                         >
                             Log Out
                         </button>
-                    }
+                          */}
 
               
                 </div>
@@ -736,47 +740,65 @@ export default function MobilNavbar() {
 
             <div className='flex flex-col p-0 mt-0 text-gray-200 '>
 
-              <div className="w-full rounded-lg flex flex-col items-center justify-center p-2 gap-1 py-5">
+              <div className="w-full rounded-lg flex flex-row items-center justify-center p-2 gap-1 py-5">
 
-                  <h4 className="  text-white text-sm font-bold">
-                  Now connected with <br/> 
+                  <h4 className="   text-white text-sm font-bold">
+                  Connected with <br/> 
                   0x7289…1A0B
-
                   </h4>
 
-                                                  
-                  {user && <Image
-                      src={user.img}
-                      width={50}
-                      height={50}
-                      alt="pfp"
-                      className="rounded-md"
-                      onClick={() => {
-                        setShowModal(false), router.push('/gameT2E/mynft')
-                      }}
-                  />}
-                                                      
+                  <button className="btn btn-secondary ml-5"
+                    onClick={() => {
+                      setShowModal(false), router.push('/gameT2E/mynft')
+                    }}
+                  >
+                  My NFTs
+                  </button>
+              </div>
 
+              <div className="w-full rounded-lg flex flex-col items-center justify-center p-2 gap-1 py-0">                                    
+                  
+                <div className="w-full rounded-lg flex flex-row items-center justify-center p-2 gap-1 py-0">
+                    {user && <Image
+                        src={user.img}
+                        width={80}
+                        height={80}
+                        alt="pfp"
+                        className="rounded-md"
+                    />}
 
+                    {user?.username}
 
-                  <h4 className=" text-white text-xl font-bold">
-                  Banking
-                  </h4>
+                    {user &&
+                    <button
+                        className={`text-[10px] text-red-500`}
+                        onClick={() => {
+                          setShowModal(false);
+                          deleteCookie('user');
+                          getUser();
+                          router.push('/gameT2E');
+                        }}
+                    >
+                        Log Out
+                    </button>
+                    }
+                                                        
+                  </div>
 
 
                   <button
-                    className={` ml-5 text-sm text-white `}
+                    className={` ml-5 text-xl text-white `}
                     onClick={() => {
-                        setShowModal(false), router.push('/gameT2E/deposit')
+                        setShowModal(false), router.push('/gameT2E/depositRequests')
                     }}
                     >
                       Deposit
                   </button>
 
                   <button
-                    className={` ml-5 text-sm text-white `}
+                    className={` ml-5 text-xl text-white `}
                     onClick={() => {
-                        setShowModal(false), router.push('/gameT2E/deposit')
+                        setShowModal(false), router.push('/gameT2E/withdrawRequests')
                     }}
                     >
                       Withdrawal

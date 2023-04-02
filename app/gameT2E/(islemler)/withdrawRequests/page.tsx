@@ -3,7 +3,8 @@ import { Button, Chip, Dialog, DialogActions, DialogContent, DialogContentText, 
 import { TransitionProps } from '@mui/material/transitions';
 import { GridColDef, GridValueGetterParams, DataGrid, GridApi, GridCellValue } from '@mui/x-data-grid';
 import { getCookie } from 'cookies-next';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
+import { format } from "date-fns";
 
 
 const Transition = React.forwardRef(function Transition(
@@ -47,10 +48,12 @@ export default function WithdrawRequestList() {
             headerAlign: "center",
             type: "number",
             flex: 0.2,
-            minWidth: 120,
+            minWidth: 80,
+            /*
             renderCell(params) {
                 return <Chip label={`${params.value}  ${params.row.type}`} color="primary" />;
             },
+            */
 
         },
         {
@@ -67,14 +70,19 @@ export default function WithdrawRequestList() {
         },
         {
             field: "createdAt",
-            headerName: "Created At",
+            headerName: "Date",
             align: "center",
             headerAlign: "center",
             width: 150,
             type: "dateTime",
-            minWidth: 250,
+            minWidth: 150,
             valueFormatter: (params) => {
-                return new Date(params.value).toLocaleString();
+                ///return new Date(params.value).toLocaleString();
+
+
+                var date = new Date(params.value);
+            
+                return format(date, "yy/MM/dd HH:mm:ss");
             }, // burada tarih formatı değiştirilebilir.
         },
 
