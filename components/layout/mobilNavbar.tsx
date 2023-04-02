@@ -820,7 +820,7 @@ export default function MobilNavbar() {
                         setShowModal(false), router.push('/gameT2E/betHistory')
                     }}
                     >
-                      Game History
+                      Bet History
                   </div>
 
                   <div

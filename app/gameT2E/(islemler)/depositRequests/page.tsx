@@ -1,8 +1,9 @@
 'use client';
+import API from '@/libs/enums/API_KEY';
 import { Button, Chip, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Slide, TextField } from '@mui/material';
 import { TransitionProps } from '@mui/material/transitions';
 import { GridColDef, GridValueGetterParams, DataGrid, GridApi, GridCellValue } from '@mui/x-data-grid';
-import { getCookie } from 'cookies-next';
+import { hasCookie, getCookie } from 'cookies-next';
 import React, { useEffect, useState } from 'react';
 import { format } from "date-fns";
 
@@ -22,6 +23,9 @@ export default function DepositRequestList() {
     const [requests, setRequests] = useState<any>([]);
     const [open, setOpen] = React.useState(false);
     const [selectedUser, setSelectedUser] = useState<any>();
+
+    const [wallet, setWallet] = useState<any>(null);
+    const [user, setUser] = useState<IUser>()
 
 
     const columns: GridColDef[] = [
@@ -203,9 +207,36 @@ export default function DepositRequestList() {
         setRequests(data.deposits)
     }
 
+
+    const getUser = async () => {
+        if (hasCookie("user")) {
+            const inputs = {
+                method: 'getOne',
+                API_KEY: API.key,
+                userToken: getCookie('user')
+            }
+            const res = await fetch('/api/user', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(inputs)
+            })
+            const user = await res.json()
+            setUser(user.user.user)
+            setWallet("0x22571950F07e5acb92160E133B3878267c86aF56")
+        }
+    }
+
+ 
+
+
     useEffect(() => {
         getAll();
-    }, [])
+
+        if (hasCookie("user") && !user) {
+            getUser();
+        }
+        
+    }, [user])
 
     const rows = requests.map((item: any, i: number) => {
         return {
@@ -226,7 +257,37 @@ export default function DepositRequestList() {
     return (
         <>
             <div className='flex flex-col p-10 mt-0 text-gray-200'>
-                <h1 className='font-bold italic text-2xl'>Deposits</h1>
+
+
+                <h1 className='font-bold italic text-2xl'>Deposit Wallet Address{" "}
+                <span className="text-sm text-red-500">(CRA)</span>{" "}
+                </h1>
+                
+                <div className="w-full border rounded-lg flex flex-col items-center justify-center p-2 gap-5 py-10">
+
+                    <input
+                    ///type="number"
+                    //disabled="true"
+                    placeholder="Wallet Address"
+                    id="deposit"
+                    ///value={depositCount}
+                    value={user?.walletAddress}
+
+                    //onChange={(e) => {
+                    //    setDepositCount(e.target.value);
+                    //}}
+
+                    className="input input-bordered w-full max-w-xs text-gray-800"
+                    />
+
+                    <span className="ml-5 mr-5 content-center text-sm text-green-500">
+                    If you send coins to your wallet address, it will be processed automatically.
+                    </span>
+
+                </div>
+                
+
+                <h1 className='mt-5 font-bold italic text-2xl'>Lists</h1>
                 <div style={{ width: "100%", height: 600, color: "white" }}>
                     <DataGrid
                         rows={rows}
@@ -239,7 +300,9 @@ export default function DepositRequestList() {
                         }}
                     />
                 </div>
+
             </div>
+
             {selectedUser && (
                 <Dialog
                     open={open}
