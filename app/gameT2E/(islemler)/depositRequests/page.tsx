@@ -6,6 +6,7 @@ import { GridColDef, GridValueGetterParams, DataGrid, GridApi, GridCellValue } f
 import { hasCookie, getCookie } from 'cookies-next';
 import React, { useEffect, useState } from 'react';
 import { format } from "date-fns";
+import { IUser } from "@/libs/interface/user";
 
 
 const Transition = React.forwardRef(function Transition(
