@@ -32,15 +32,14 @@ export default function BetHistoryList() {
             headerName: "DATE",
             align: "center",
             headerAlign: "center",
-            width: 70,
+            width: 150,
             type: "dateTime",
             minWidth: 100,
             valueFormatter: (params) => {
 
                 var date = new Date(params.value);
-                //.toLocaleString();
-
-                return format(date, "HH:mm:ss");
+            
+                return format(date, "yy/MM/dd HH:mm:ss");
 
                 //return new Date(params.value).toLocaleString();
 
@@ -220,7 +219,7 @@ export default function BetHistoryList() {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                method: "getAll",
+                method: "getAllforUser",
                 API_KEY: process.env.API_KEY,
                 userToken: getCookie("user")
             }),
@@ -247,11 +246,14 @@ export default function BetHistoryList() {
             basePrice: item.basePrice,
             prizeAmount: item.prizeAmount,
             selectedSide: item.selectedSide,
+            closePrice: item.closePrice,
             winnerHorse: item.winnerHorse,
             date: item.date,
             userToken: item.userToken,
         }
     })
+
+
     
 
     return (
@@ -270,24 +272,24 @@ export default function BetHistoryList() {
                     </h4>
 
                     <h4 className=" text-green-500 text-4xl font-bold ">
-                        + 245 CRA
+                    {rows[0]?.prizeAmount} CRA
                     </h4>
-                    <h4 className=" text-red-500 text-sm font-bold">
-                        Betting Time: 203.03.03 12:00
+                    <h4 className=" text-white text-sm font-bold">
+                        Betting Time: {rows[0]?.date }
                     </h4>
-                    <h4 className=" text-red-500 text-sm font-bold">
-                        Entry Price: 1,851.22 USDT
+                    <h4 className=" text-white text-sm font-bold">
+                        Entry Price: {rows[0]?.basePrice} USDT
                     </h4>
-                    <h4 className=" text-red-500 text-sm font-bold">
-                        Last Price: 1,865.43 USDT
+                    <h4 className=" text-white text-sm font-bold">
+                        Last Price: {rows[0]?.closePrice} USDT
                     </h4>
 
-                    <h1 className='text-sm mt-5'>YOUR BET HISTROY</h1>
+                    
 
                 </div>
 
 
-                
+                <h1 className='text-sm mt-5'>YOUR BET HISTROY</h1>
                 <div className="mt-5" style={{ width: "100%", height: 600, color: "white" }}>
                     <DataGrid
                         rows={rows}
@@ -297,6 +299,7 @@ export default function BetHistoryList() {
                         hideFooterSelectedRowCount
                         sx={{
                             color: "white",
+                            bgcolor: "#343a40",
                         }}
                     />
                 </div>
