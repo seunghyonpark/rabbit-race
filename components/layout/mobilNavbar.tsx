@@ -288,7 +288,7 @@ export default function MobilNavbar() {
     */
 
 
-
+    const [wallet, setWallet] = useState<any>(null);
 
     const [user, setUser] = useState<IUser>()
     const router = useRouter();
@@ -307,6 +307,7 @@ export default function MobilNavbar() {
             })
             const user = await res.json()
             setUser(user.user.user)
+            setWallet("0x22571950F07e5acb92160E133B3878267c86aF56")
         }
     }
 
@@ -686,7 +687,7 @@ export default function MobilNavbar() {
                             //href={"/gameT2E/profile"}
                             
                             className={`flex items-center shadow-sm  justify-center rounded-md p-1 gap-2  h-[36px] px-2 text-[#D4D1CB] text-[10px]`}
-                            onClick={() => setShowModal(true)}
+                            onClick={() => setShowModal(!showModal)}
                         >
                       
 
@@ -733,32 +734,41 @@ export default function MobilNavbar() {
 
 
             <Modal
+              
               show={showModal}
               onClose={() => setShowModal(false)}
                 
             >
 
-            <div className='flex flex-col p-0 mt-0 text-gray-200 '>
+            <div className="w-full flex flex-row pl-5 items-center justify-left gap-1 bg-red-900 ">
 
-              <div className="w-full rounded-lg flex flex-row items-center justify-center p-2 gap-1 py-5">
+              <h2 className="mt-1 mb-1 text-xs">
+                    <span className="text-[#f5841f]">Connected with</span>
+                    <p className="text-xl text-white">{wallet?.slice(0, 5)}...{wallet?.slice(wallet.length - 5, wallet?.length)}</p>
+              </h2>
 
-                  <h4 className="   text-white text-sm font-bold">
-                  Connected with <br/> 
-                  0x7289…1A0B
-                  </h4>
-
-                  <button className="btn btn-secondary ml-5"
-                    onClick={() => {
-                      setShowModal(false), router.push('/gameT2E/mynft')
-                    }}
-                  >
-                  My NFTs
-                  </button>
+              <div
+                onClick={() => {
+                  setShowModal(false), router.push('/gameT2E/mynft')
+                }}
+                className={"ml-10 "}
+              >
+                <Image                     
+                  src={"/metamask-fox.svg"}
+                  alt="meta-svg"
+                  width={20}
+                  height={20}
+                  />
               </div>
+            </div>
 
-              <div className="w-full rounded-lg flex flex-col items-center justify-center p-2 gap-1 py-0">                                    
+
+            <div className='flex flex-col pl-5 mt-3 text-gray-200 '>
+
+
+              <div className="w-full rounded-lg flex flex-col items-center justify-center pt-2 gap-1">                                    
                   
-                <div className="w-full rounded-lg flex flex-row items-center justify-center p-2 gap-1 py-0">
+                  <div className="w-full rounded-lg flex flex-row items-center justify-left p-2 gap-1 ">
                     {user && <Image
                         src={user.img}
                         width={80}
@@ -786,41 +796,41 @@ export default function MobilNavbar() {
                   </div>
 
 
-                  <button
-                    className={` ml-5 text-xl text-white `}
+                  <div
+                    className={` w-full items-left text-xl text-white`}
                     onClick={() => {
                         setShowModal(false), router.push('/gameT2E/depositRequests')
                     }}
                     >
                       Deposit
-                  </button>
+                  </div>
 
-                  <button
-                    className={` ml-5 text-xl text-white `}
+                  <div
+                    className={`w-full items-left text-xl text-white `}
                     onClick={() => {
                         setShowModal(false), router.push('/gameT2E/withdrawRequests')
                     }}
                     >
                       Withdrawal
-                  </button>
+                  </div>
 
-                  <button
-                    className={` text-xl text-white `}
+                  <div
+                    className={`w-full items-left text-xl text-white `}
                     onClick={() => {
                         setShowModal(false), router.push('/gameT2E/betHistory')
                     }}
                     >
-                      History
-                  </button>
+                      Game History
+                  </div>
 
-                  <button
-                    className={` disabled text-xl text-white `}
+                  <div
+                    className={` disabled w-full items-left text-xl text-white `}
                     onClick={() => {
                         setShowModal(false), router.push('/gameT2E/betHistory')
                     }}
                     >
-                      Ranking
-                  </button>
+                      Game Ranking
+                  </div>
 
 {/*
                   <button
