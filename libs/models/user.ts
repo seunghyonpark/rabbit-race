@@ -66,6 +66,11 @@ const UserSchema = new Schema({
     required: true,
     default: "",
   },
+  nftWalletAddress: {
+    type: String,
+    required: true,
+    default: "",
+  },
   status: {
     type: Boolean,
     default: true,
@@ -80,7 +85,8 @@ export const newUser = async (
   pass1: string,
   pass2: string,
   userToken: string,
-  walletAddress: string
+  walletAddress: string,
+  nftWalletAddress: string
 ) => {
   
   const checkUser = await User.find({ email: email });
@@ -96,7 +102,8 @@ export const newUser = async (
     pass2: pass2,
     userToken: userToken,
     walletAddress: walletAddress,
-    img: "/logo.png"
+    nftWalletAddress: nftWalletAddress,
+    img: "/profile_default.gif"
   });
   return await user.save();
 };
@@ -140,7 +147,7 @@ export const updateUser = async (
   admin: boolean,
   newPassToken: string,
   maticBalance: number,
-  walletAddress: string
+  walletAddress: string,
 ) => {
   const updatedUser: IUser = (await User.findOneAndUpdate(
     { userToken: userToken },
@@ -239,6 +246,18 @@ export const makeWithdrawMatic = async (userToken: string, amount: number) => {
     return { success: false, message: "Not Enough Matic" };
   }
   user.maticBalance -= amount;
+  await user.save();
+  return { success: true, user };
+};
+
+
+export const updateNftWallet = async (userToken: string, nftWallet: string) => {
+  const user = await User.findOne({ userToken: userToken });
+  if (!user) {
+    return { success: false, message: "User not found" };
+  }
+
+  user.nftWallet = nftWallet;
   await user.save();
   return { success: true, user };
 };

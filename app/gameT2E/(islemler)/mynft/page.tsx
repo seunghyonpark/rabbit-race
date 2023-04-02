@@ -1,16 +1,20 @@
 'use client';
+import API from '@/libs/enums/API_KEY';
 import { Button, Chip, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Slide, TextField } from '@mui/material';
 import { TransitionProps } from '@mui/material/transitions';
 import { GridColDef, GridValueGetterParams, DataGrid, GridApi, GridCellValue } from '@mui/x-data-grid';
-import { getCookie } from 'cookies-next';
+import { hasCookie, getCookie } from 'cookies-next';
 import React, { useEffect, useState } from 'react';
 import { format } from "date-fns";
 import Image from "next/image";
 import Link from 'next/link';
 import { AiOutlineUser } from "react-icons/ai";
 
+
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
+
+import { IUser } from "@/libs/interface/user";
 
 
 const Transition = React.forwardRef(function Transition(
@@ -41,10 +45,11 @@ export default function Mynft() {
     const [metamaskview, setMetamaskView] = useState<boolean>(false);
 
 
+    const [user, setUser] = useState<IUser>();
+    const [nftWallet, setNftWallet] = useState<any>(null);;
+
 
     const columns: GridColDef[] = [
- 
-
         {
             field: "date",
             headerName: "DATE",
@@ -248,7 +253,29 @@ export default function Mynft() {
         setRequests(data.betHistory)
     }
 
+    const getUser = async () => {
+      if (hasCookie("user")) {
+          const inputs = {
+              method: 'getOne',
+              API_KEY: API.key,
+              userToken: getCookie('user')
+          }
+          const res = await fetch('/api/user', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(inputs)
+          })
+          const user = await res.json()
+          setUser(user.user.user)
+
+          setNftWallet(user.user.user.nftWalletAddress)
+      }
+    }
+
+
+
     useEffect(() => {
+        getUser();
         getAll();
     }, [])
 
@@ -275,9 +302,8 @@ export default function Mynft() {
             console.log("accountsChanged", accounts);
 
             if (accounts.length !== 0) {
+
               setWallet(accounts[0]);
-
-
 
             } else {
               setWallet(null);
@@ -391,7 +417,9 @@ export default function Mynft() {
                           const accounts = await ethereum.request({
                             method: "eth_requestAccounts",
                           });
+                          
                           setWallet(accounts[0]);
+
                           setNetwork(true);
                           setNetworkName("BSC Testnet");
                         }
@@ -414,6 +442,7 @@ export default function Mynft() {
       }
     } catch (error) { }
   };
+
 
   async function wrongWallet() {
     try {
@@ -446,13 +475,57 @@ export default function Mynft() {
     if (metamusk == true) {
       const accounts = await ethereum.request({ method: "eth_accounts" });
       if (accounts.length !== 0) {
+        
         setWallet(accounts[0]);
+
       } else {
         setWallet(null);
         //await connectWallet()
       }
     }
   }
+
+
+
+
+  
+    const updateUserNftWallet = async () => {
+      console.log("updateUserNftWallet");
+
+      const formInput = {
+          method: 'updateNftWallet',
+          API_KEY: process.env.API_KEY,
+          userToken: getCookie("user"),
+          nftWalletAddress: nftWallet,
+      };
+      fetch("/api/user", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formInput),
+      })
+      .then((res) => res.json())
+      .then((data) => {
+          if (data.status) {
+  
+            alert("NFT Wallet Address Updated");
+              //handleClickSucc();
+              //router.push("/gameT2E/login");
+          }
+          else {
+
+            alert("NFT Wallet Address Update Failed");
+              //setErrMsg(data.message);
+              //handleClickErr();
+          }
+          //todo
+          // handleClickSucc();
+      });
+  
+    }
+
+
+
+
 
 
   /*
@@ -488,7 +561,7 @@ export default function Mynft() {
     return (
         <>
 
-{metamaskview ? (
+      {metamaskview ? (
         <div
           onClick={() => {
             setMetamaskView(false);
@@ -516,6 +589,10 @@ export default function Mynft() {
 
                 </div>
 
+{nftWallet === "0x" &&
+
+
+
 
 
 
@@ -538,7 +615,13 @@ export default function Mynft() {
 {metamusk == true ? (
     network == true ? (
         wallet ? (
-            <Button className="w-full text-white text-center justify-center h-500 p-5 items-center bg-[#24252f] hover:bg-[#141111] rounded-md flex flex-col">
+            <Button
+              className="w-full text-white text-center justify-center h-500 p-5 items-center bg-[#24252f] hover:bg-[#141111] rounded-md flex flex-col"
+              onClick={() => {
+                setNftWallet(wallet);
+                updateUserNftWallet();
+              }}
+              >
                 <Image
                     src={"/metamask-fox.svg"}
                     alt="meta-svg"
@@ -550,6 +633,8 @@ export default function Mynft() {
                     <p className="text-xs">Wallet: {wallet.slice(0, 5)}...{wallet.slice(wallet.length - 5, wallet.length)}</p>
                 </h2>
             </Button>
+
+          
         ) :
             <Button className="w-full text-white text-center justify-center h-500 p-5 items-center bg-[#24252f] hover:bg-[#141111] rounded-md flex flex-col">
                 <Image
@@ -591,7 +676,7 @@ export default function Mynft() {
 
 </div>
 
-
+}
 
                 
 

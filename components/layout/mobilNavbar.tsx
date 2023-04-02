@@ -7,6 +7,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState, useMemo } from 'react';
+import Button from "@mui/material/Button";
 
 ////import Wallet from "../../components/Wallet";
 ////import { useListen } from "../../hooks/useListen";
@@ -307,7 +308,8 @@ export default function MobilNavbar() {
             })
             const user = await res.json()
             setUser(user.user.user)
-            setWallet("0x22571950F07e5acb92160E133B3878267c86aF56")
+            //setWallet("0x22571950F07e5acb92160E133B3878267c86aF56")
+            setWallet(user.user.user.nftWalletAddress)
         }
     }
 
@@ -583,7 +585,7 @@ export default function MobilNavbar() {
 
     const [showModal, setShowModal] = useState(false);
 
-    
+    console.log("wallet", wallet); 
 
 
     return (
@@ -693,8 +695,8 @@ export default function MobilNavbar() {
 
                               <Image
                                   src={user?.img}
-                                  width={18}
-                                  height={18}
+                                  width={25}
+                                  height={25}
                                   alt="pfp"
                                   className="rounded-md"
                               />
@@ -740,26 +742,35 @@ export default function MobilNavbar() {
                 
             >
 
-            <div className="w-full flex flex-row pl-5 items-center justify-left gap-1 bg-red-900 ">
+            <div className="w-full flex flex-row items-center justify-left gap-1 bg-red-900 ">
 
+              {wallet !== "0x" && 
               <h2 className="mt-1 mb-1 text-xs">
                     <span className="text-[#f5841f]">Connected with</span>
                     <p className="text-xl text-white">{wallet?.slice(0, 5)}...{wallet?.slice(wallet.length - 5, wallet?.length)}</p>
               </h2>
+              }
+              {wallet === "0x" && 
+          
+                    <Button
+                      className="w-full text-white text-center justify-center p-3 items-center bg-red-900 hover:bg-[#141111] flex flex-row"
+                      onClick={() => {
+                        setShowModal(false), router.push('/gameT2E/mynft')
+                      }}
+                      >
+                        <Image
+                            src={"/metamask-fox.svg"}
+                            alt="meta-svg"
+                            width={20}
+                            height={20}
+                        />
+                        <h2 className="text-sm pl-3">
+                            <span className="text-[#f5841f]">Metamask</span> Connect
+                        </h2>
+                    </Button>
+           
+              }
 
-              <div
-                onClick={() => {
-                  setShowModal(false), router.push('/gameT2E/mynft')
-                }}
-                className={"ml-10 "}
-              >
-                <Image                     
-                  src={"/metamask-fox.svg"}
-                  alt="meta-svg"
-                  width={20}
-                  height={20}
-                  />
-              </div>
             </div>
 
 

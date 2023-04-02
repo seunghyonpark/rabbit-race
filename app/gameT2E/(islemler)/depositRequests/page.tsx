@@ -223,7 +223,7 @@ export default function DepositRequestList() {
             })
             const user = await res.json()
             setUser(user.user.user)
-            setWallet("0x22571950F07e5acb92160E133B3878267c86aF56")
+            setWallet(user.user.user.walletAddress)
         }
     }
 

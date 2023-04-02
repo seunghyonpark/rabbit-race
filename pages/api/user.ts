@@ -24,7 +24,7 @@ export default async function handler(
 
   if (method === "create") {
 
-    const { username, email, pass1, pass2, userToken, walletAddress } =
+    const { username, email, pass1, pass2, userToken, walletAddress, nftWalletAddress } =
       req.body;
 
     if (
@@ -33,7 +33,8 @@ export default async function handler(
       !pass1 ||
       !pass2 ||
       !userToken ||
-      !walletAddress
+      !walletAddress || 
+      !nftWalletAddress
     ) {
       res.status(400).json({ status: false, message: "Missing data" });
       return;
@@ -91,8 +92,8 @@ export default async function handler(
       pass1,
       pass2,
       userToken,
-      depositWallet
-      /////walletAddress
+      depositWallet,
+      nftWalletAddress
     );
 
 

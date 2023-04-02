@@ -14,7 +14,7 @@ import { useRouter } from 'next/navigation';
 
 import Winner from './winner';
 
-import styles from "../styles/Home.module.css";
+
 
 
 export default function Race({socket, currentPrice, betPrice, betLongShort, betAmount}: {socket: any, currentPrice: any, betPrice: any, betLongShort: any, betAmount: any}) {
