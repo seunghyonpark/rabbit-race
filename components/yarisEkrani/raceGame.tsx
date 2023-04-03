@@ -17,7 +17,7 @@ import Winner from './winner';
 
 
 
-export default function Race({socket, currentPrice, betPrice, betLongShort, betAmount}: {socket: any, currentPrice: any, betPrice: any, betLongShort: any, betAmount: any}) {
+export default function Race({socket, username, currentPrice, betPrice}: {socket: any, username: any, currentPrice: any, betPrice: any}) {
 
 
 
@@ -52,7 +52,9 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
     const [betAmountLong, setBetAmountLong] = useState<any>("");
     const [betAmountShort, setBetAmountShort] = useState<any>("");
 
-    const [selectSide, setSelectSide] = useState<any>(betLongShort);
+    const [betAmount, setBetAmount] = useState<any>(0);
+
+    const [selectedSide, setSelectedSide] = useState<any>();
 
     const [timeRemaining, setTimeRemaining] = useState<any>(0.00);
 
@@ -82,6 +84,8 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
 
     const { push } = useRouter();
 
+    const [game, setGame] = useState<any>();
+
     /*
     if (betLongShort === "Long") {
         setBetAmountLong(betAmount);
@@ -91,6 +95,33 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
         setBetAmountLong("");
     }
     */
+
+
+    useEffect(() => {
+
+        const getGame = async () => {
+       
+          const res = await fetch('/api/game', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              cache: 'no-store',
+              body: JSON.stringify({
+                  method: "getGameByUsername",
+                  API_KEY: process.env.API_KEY,
+                  username: username,
+              })
+          })
+          const data = await res.json()
+
+          setGame(data.game);
+          setSelectedSide(data.game.selectedSide);
+          setBetAmount(data.game.betAmount);
+        }
+
+        getGame();
+
+      }, [username]);
+
 
 
 
@@ -135,15 +166,15 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
         //console.log("betLongShort", betLongShort);
         //console.log("betAmount", betAmount);
 
-        if (betLongShort === "Long") {
+        if (selectedSide === "Long") {
             setBetAmountLong("My Rabbit: " + betAmount);
             setBetAmountShort("");
-        } else if (betLongShort === "Short") {
+        } else if (selectedSide === "Short") {
             setBetAmountShort("My Rabbit: " + betAmount);
             setBetAmountLong("");
         }
         
-    }, [betLongShort, setBetAmountLong, setBetAmountShort, betAmount]);
+    }, [selectedSide, setBetAmountLong, setBetAmountShort, betAmount]);
 
 
     setTimeout(() => {
@@ -224,17 +255,17 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
             let textResult = "";
             let imageUrl = "";
 
-            if (data === betLongShort) { // You win
+            if (data === selectedSide) { // You win
                 textResult = "You win";
                 imageUrl = "/winner.gif";
 
-                push( '/gameT2E/winner?bet=' + betLongShort + '&betAmount=' + betAmount );
+                push( '/gameT2E/winner?bet=' + selectedSide + '&betAmount=' + betAmount );
 
             } else { // You lose
                 textResult = "You lose";
                 imageUrl = "/loser.gif";
 
-                push( '/gameT2E/loser?bet=' + betLongShort + '&betAmount=' + betAmount );
+                push( '/gameT2E/loser?bet=' + selectedSide + '&betAmount=' + betAmount );
             }
 
         })
@@ -267,7 +298,7 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
 
         //////setSocket(socketIo);
     
-    }, [socket, betAmount, betLongShort, push]);
+    }, [socket, betAmount, selectedSide, push]);
 
     /*
     useEffect(() => {
@@ -628,7 +659,7 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
     className="w-full h-36 "
     style={{
         //backgroundImage: `${selectSide === "Long" ? `url('/cracle-banner.png')` : `url('/grass.jpeg')`}`,
-        backgroundImage: `${selectSide === "Long" ? `url('/track.png')` : `url('/grass.jpeg')`}`,
+        backgroundImage: `${selectedSide === "Long" ? `url('/track.png')` : `url('/grass.jpeg')`}`,
         backgroundSize: "620px",
         backgroundRepeat: "repeat-x",
         backgroundPosition: `${finishLine ? "0px" : `${fence}%`} 0px`,
@@ -653,7 +684,7 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
                         <div
                         className="font-bold text-sm text-white"
                         style={{
-                            opacity: `${selectSide === "Long" ? 100 : 0}`
+                            opacity: `${selectedSide === "Long" ? 100 : 0}`
                         }}
                         >
                             {"MY RABBIT"}
@@ -701,7 +732,7 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
     className="w-full "
     style={{
         //backgroundImage: `${selectSide === "Short" ? `url('/cracle-banner.png')` : `url('/grass.jpeg')`}`,
-        backgroundImage: `${selectSide === "Short" ? `url('/track.png')` : `url('/grass.jpeg')`}`,
+        backgroundImage: `${selectedSide === "Short" ? `url('/track.png')` : `url('/grass.jpeg')`}`,
         backgroundSize: "620px",
         backgroundRepeat: "repeat-x",
         backgroundPosition: `${finishLine ? "0px" : `${fence}%`} 0px`,
@@ -729,7 +760,7 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
                         <div
                         className="font-bold text-sm text-white"
                         style={{
-                            opacity: `${selectSide === "Short" ? 100 : 0}`
+                            opacity: `${selectedSide === "Short" ? 100 : 0}`
                         }}
                         >
                             {"MY RABBIT"}

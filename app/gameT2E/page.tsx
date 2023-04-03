@@ -88,6 +88,7 @@ export default function GameT2E() {
 
     const [socket, setSocket] = useState<any>();
 
+    const [username, setUsername] = useState<any>();
     
     const MySwal = withReactContent(Swal);
 
@@ -125,9 +126,9 @@ export default function GameT2E() {
               })
               const user = await res.json();
               
-              ///setUser(user.user.user);
+              setUsername(user.user.user.username);
 
-              console.log("gameT2E user", user.user.user.username);
+              /////console.log("gameT2E user", user.user.user.username);
 
               socketIo.emit("user", user.user.user.username);
 
@@ -791,10 +792,9 @@ useEffect(() => {
                 :
                 < Race
                   socket={socket}
+                  username={username}
                   currentPrice={currentPrice}
                   betPrice={basePrice}
-                  betLongShort={longShort}
-                  betAmount={myBetAmount}
                 />
             }
 

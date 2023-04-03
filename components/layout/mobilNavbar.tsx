@@ -299,7 +299,7 @@ export default function MobilNavbar({user} : {user: any}) {
 
     const router = useRouter();
 
-    const [game, setGame] = useState<any>()
+    const [game, setGame] = useState<any>();
 
 
     /*
@@ -671,7 +671,7 @@ export default function MobilNavbar({user} : {user: any}) {
            
 
 
-                <Link href={"/gameT2E"}>
+                <Link href={"/"}>
                     <Image src={"/logo.png"} width={100} height={100} alt="logo" />
                 </Link>
 
@@ -692,6 +692,7 @@ export default function MobilNavbar({user} : {user: any}) {
                       width={30}
                       height={30}
                       alt="game"
+                      className="rounded-md"
                       onClick={() => {
                         router.push('/gameT2E')
                       }}
@@ -704,6 +705,20 @@ export default function MobilNavbar({user} : {user: any}) {
                       width={30}
                       height={30}
                       alt="game"
+                      className="rounded-md"
+                      onClick={() => {
+                        router.push('/gameT2E')
+                      }}
+                    />
+                  }
+
+                  {!game &&
+                    <Image
+                      src={user?.img}
+                      width={25}
+                      height={25}
+                      alt="pfp"
+                      className="rounded-md"
                       onClick={() => {
                         router.push('/gameT2E')
                       }}
@@ -778,7 +793,7 @@ export default function MobilNavbar({user} : {user: any}) {
 
                     {!user && <Link
                             href={"/gameT2E/login"}
-                            className={`text-[10px] text-[#9293A6]  border-t-2 border-green-500 p-1`}
+                            className={`text-[12px] text-[#9293A6]  border-t-2 border-green-500 p-1`}
                         >
                             Sign In
                         </Link>
@@ -799,20 +814,10 @@ export default function MobilNavbar({user} : {user: any}) {
                         user && <div
                             //href={"/gameT2E/profile"}
                             
-                            className={`flex items-center shadow-sm  justify-center rounded-md p-1 gap-2  h-[36px] px-2 text-[#D4D1CB] text-[10px]`}
+                            className={`flex items-center shadow-xl  justify-center rounded-md p-1 gap-2  h-[36px] px-2 text-[#D4D1CB] text-[12px]`}
                             onClick={() => setShowModal(!showModal)}
                         >
-                      
-
-                              <Image
-                                  src={user?.img}
-                                  width={25}
-                                  height={25}
-                                  alt="pfp"
-                                  className="rounded-md"
-                              />
-
-                              {user?.username}
+                          {user?.username}
 
                         </div>
                     } 
@@ -922,7 +927,7 @@ export default function MobilNavbar({user} : {user: any}) {
 
 
                   <div
-                    className={` w-full pt-1 items-left text-xl text-white`}
+                    className={` w-full pt-3 items-left text-xl text-white`}
                     onClick={() => {
                         setShowModal(false), router.push('/gameT2E/depositRequests')
                     }}
