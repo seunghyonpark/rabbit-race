@@ -22,7 +22,7 @@ export default async function handler(
     return;
   }
 
-  console.log("api game method", method);
+  ////console.log("api game method", method);
 
 
   if (method === "newGame") {

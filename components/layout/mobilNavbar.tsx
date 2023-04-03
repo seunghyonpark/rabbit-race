@@ -9,6 +9,7 @@ import { useRouter } from 'next/navigation';
 import React, { useEffect, useState, useMemo } from 'react';
 import Button from "@mui/material/Button";
 
+
 ////import Wallet from "../../components/Wallet";
 ////import { useListen } from "../../hooks/useListen";
 ////import { useMetamask } from "../../hooks/useMetamask";
@@ -60,6 +61,9 @@ const myNftDropContractAddress = "0x327dA22b2bCdfd6F4EE4269892bd39Fe6c637BcC";
 
 
 const MySwal = withReactContent(Swal);
+
+
+
 
 
 
@@ -294,6 +298,8 @@ export default function MobilNavbar() {
     const [user, setUser] = useState<IUser>()
     const router = useRouter();
 
+    const [games, setGames] = useState<any>()
+
     const getUser = async () => {
         if (hasCookie("user")) {
             const inputs = {
@@ -313,10 +319,26 @@ export default function MobilNavbar() {
         }
     }
 
+    const getGames = async () => {
+      const res = await fetch('/api/game', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          cache: 'no-store',
+          body: JSON.stringify({
+              method: "getGames",
+              API_KEY: process.env.API_KEY
+          })
+      })
+      const data = await res.json()
+      setGames(data.games)
+    }
+
+
     useEffect(() => {
       if (hasCookie("user") && !user) {
           setInterval(() => {
-              getUser()
+              getUser();
+              getGames();
           }, 5 * 1000)
       }
     })

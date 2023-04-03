@@ -482,7 +482,16 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
                             <div
                                 className={`flex items-center justify-center  bg-black h-[36px] text-center text-xl px-5 text-[#BA8E09] border border-[#BA8E09] `}
                             >
-                                <span className="text-[#ffffff]">{Number(currentPrice).toFixed(2)}</span>&nbsp;&nbsp;<span>USDT</span>
+                                <span
+                                    className="text-[#ffffff]"
+                                    style={{
+                                        color: `${(basePrice - currentPrice) > 0 ? "#ff0000" : "#00ff00"}`,
+                                    }}
+                                >
+                                        {Number(currentPrice).toFixed(2)}
+
+                                </span>&nbsp;&nbsp;
+                                <span>USDT</span>
                             </div>
 
                         </div>
