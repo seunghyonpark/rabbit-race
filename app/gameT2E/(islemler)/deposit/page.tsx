@@ -371,6 +371,8 @@ export default function Deposit() {
 
   };
 
+  
+
   const swapToCoin = async () => {
     if (user) {
       let miktar = (document.getElementById("swapToCoin") as HTMLInputElement).value;
