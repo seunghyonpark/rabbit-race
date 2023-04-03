@@ -745,7 +745,7 @@ export default function MobilNavbar() {
               }
               {wallet === "0x" && 
           
-                    <Button
+                    <div
                       className="w-full text-white text-center justify-center p-5 items-center bg-red-900 hover:bg-[#141111] flex flex-row"
                       onClick={() => {
                         setShowModal(false), router.push('/gameT2E/mynft')
@@ -758,9 +758,9 @@ export default function MobilNavbar() {
                             height={20}
                         />
                         <h2 className="text-sm pl-3">
-                            <span className="text-[#f5841f]">Metamask</span> Connect
+                            <span className="text-[#f5841f]">METAMASK</span> CONNECT
                         </h2>
-                    </Button>
+                    </div>
            
               }
 
@@ -772,12 +772,12 @@ export default function MobilNavbar() {
 
               <div className="w-full rounded-lg flex flex-col items-center justify-center pt-2 gap-1">                                    
                   
-                  <div className="w-full rounded-lg flex flex-row items-center justify-left p-2 gap-1 ">
+                  <div className="w-full rounded-lg flex flex-row items-center justify-left  gap-1 ">
 
                     {user && <Image
                         src={user.img}
-                        width={80}
-                        height={80}
+                        width={90}
+                        height={90}
                         alt="pfp"
                         className="rounded-md"
                     />}
@@ -808,7 +808,7 @@ export default function MobilNavbar() {
 
 
                   <div
-                    className={` w-full items-left text-xl text-white`}
+                    className={` w-full pt-1 items-left text-xl text-white`}
                     onClick={() => {
                         setShowModal(false), router.push('/gameT2E/depositRequests')
                     }}
@@ -817,7 +817,7 @@ export default function MobilNavbar() {
                   </div>
 
                   <div
-                    className={`w-full items-left text-xl text-white `}
+                    className={`w-full pt-1 items-left text-xl text-white `}
                     onClick={() => {
                         setShowModal(false), router.push('/gameT2E/withdrawRequests')
                     }}
@@ -826,7 +826,7 @@ export default function MobilNavbar() {
                   </div>
 
                   <div
-                    className={`w-full items-left text-xl text-white `}
+                    className={`w-full pt-1 items-left text-xl text-white `}
                     onClick={() => {
                         setShowModal(false), router.push('/gameT2E/betHistory')
                     }}
@@ -835,9 +835,9 @@ export default function MobilNavbar() {
                   </div>
 
                   <div
-                    className={` disabled w-full items-left text-xl text-white `}
+                    className={` disabled pt-1 w-full items-left text-xl text-white `}
                     onClick={() => {
-                        setShowModal(false), router.push('/gameT2E/betHistory')
+                        setShowModal(false), router.push('/gameT2E')
                     }}
                     >
                       Game Ranking
