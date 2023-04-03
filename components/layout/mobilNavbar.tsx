@@ -295,10 +295,11 @@ export default function MobilNavbar() {
 
     const [wallet, setWallet] = useState<any>(null);
 
-    const [user, setUser] = useState<IUser>()
+    const [user, setUser] = useState<IUser>();
+
     const router = useRouter();
 
-    const [games, setGames] = useState<any>()
+    const [game, setGame] = useState<any>()
 
     const getUser = async () => {
         if (hasCookie("user")) {
@@ -312,25 +313,34 @@ export default function MobilNavbar() {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(inputs)
             })
-            const user = await res.json()
-            setUser(user.user.user)
+            const userInfo = await res.json()
+            setUser(userInfo.user.user)
             //setWallet("0x22571950F07e5acb92160E133B3878267c86aF56")
-            setWallet(user.user.user.nftWalletAddress)
+            setWallet(userInfo.user.user.nftWalletAddress)
         }
     }
 
-    const getGames = async () => {
+    const getGame = async () => {
+
+      //console.log("getGameByToken=====", getCookie('user'));
+      //console.log("getGameByToken=====", user?.userToken);
+
       const res = await fetch('/api/game', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           cache: 'no-store',
           body: JSON.stringify({
-              method: "getGames",
-              API_KEY: process.env.API_KEY
+              method: "getGameByToken",
+              API_KEY: process.env.API_KEY,
+              userToken: user?.userToken,
           })
       })
       const data = await res.json()
-      setGames(data.games)
+
+      ///console.log("game==============", data.game);
+
+
+      setGame(data.game)
     }
 
 
@@ -338,7 +348,7 @@ export default function MobilNavbar() {
       if (hasCookie("user") && !user) {
           setInterval(() => {
               getUser();
-              getGames();
+              getGame();
           }, 5 * 1000)
       }
     })
@@ -618,8 +628,16 @@ export default function MobilNavbar() {
                     <Image src={"/logo.png"} width={100} height={100} alt="logo" />
                 </Link>
 
+
+
+
+ 
+
                 
                 <div className='w-full p-2 flex items-center justify-end gap-3'>
+
+
+
 
 
                     {/*
@@ -658,11 +676,20 @@ export default function MobilNavbar() {
 
 
 
-
                     {
                         user && <div
                             className={`flex items-center justify-center  bg-black rounded-md h-[32px] text-[13px] text-center px-5 text-[#BA8E09] border border-[#BA8E09] `}
                         >
+
+                        {game &&
+                          <Image
+                          src={'/rabbit1.gif'}
+                          width={20}
+                          height={20}
+                          alt="game"
+                          className="rounded-full"
+                          />
+                        }
 
                         <Link
                             href={"/gameT2E/deposit"}
@@ -682,9 +709,8 @@ export default function MobilNavbar() {
                     }
 
 
-                    {
-                        
-                        !user && <Link
+
+                    {!user && <Link
                             href={"/gameT2E/login"}
                             className={`text-[10px] text-[#9293A6]  border-t-2 border-green-500 p-1`}
                         >

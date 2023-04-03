@@ -54,7 +54,7 @@ export default async function handler(
       selectedSide
     );
 
-    console.log("addedGame", addedGame);
+    //////console.log("addedGame", addedGame);
     
 
     if (addedGame.success) {

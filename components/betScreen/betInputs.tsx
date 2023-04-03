@@ -141,7 +141,7 @@ export default function BetInputs({ socket, horse1, horse2, currentPrice, setBas
             if (betAmount < 0) return alert('You cannot bet a negative amount');
             */
 
-            if (secilenAt === null) return alert('You need to select long or shot to bet');
+            if (secilenAt === null) return alert('You need to select long or short to bet');
 
 
 

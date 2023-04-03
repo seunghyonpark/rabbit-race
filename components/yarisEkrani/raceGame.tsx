@@ -489,8 +489,8 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
                                     }}
                                 >
                                         {Number(currentPrice).toFixed(2)}
-
-                                </span>&nbsp;&nbsp;
+                                </span>
+                                &nbsp;&nbsp;
                                 <span>USDT</span>
                             </div>
 
