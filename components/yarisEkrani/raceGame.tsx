@@ -594,19 +594,6 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
                             <span>TIME LEFT:</span>&nbsp;&nbsp;&nbsp; <span className="text-[#ffffff]">{timeRemaining.toFixed(2)}</span>&nbsp;&nbsp;<span>Seconds</span>
                         </div>
 
-                        {/*
-                        <div
-                            className={`flex items-center justify-center  bg-black h-[36px] text-center text-xl px-5 text-[#BA8E09] border border-[#BA8E09] `}
-                        >
-                            <span>ENTRY PRICE(ETH):</span>&nbsp;&nbsp;&nbsp; <span className="text-[#ffffff]">{betPrice.toFixed(2)}</span>&nbsp;&nbsp;<span>USDT</span>
-                        </div>
-
-                        <div
-                            className={`flex items-center justify-center  bg-black h-[36px] text-center text-xl px-5 text-[#BA8E09] border border-[#BA8E09] `}
-                        >
-                            <span>CURRENT PRICE(ETH):</span>&nbsp;&nbsp;&nbsp; <span className="text-[#ffffff]">{currentPrice.toFixed(2)}</span>&nbsp;&nbsp;<span>USDT</span>
-                        </div>
-                        */}
 
                     </div>
 
@@ -614,7 +601,8 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
 
 <div className="w-full ">
 
-                    <div className="w-full h-20 mt-8"
+                    <div className="w-full h-20 mt-0 "
+                    
                         style={{
                             backgroundImage: `url('/fence4.png')`,
                             backgroundSize: "120px",
@@ -623,16 +611,28 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
                         }}
                     ></div>
 
+
+
+
+
+
+<div
+    className="w-full h-36 "
+    style={{
+        backgroundImage: `${selectSide === "Long" ? `url('/cracle-banner.png')` : `url('/grass.jpeg')`}`,
+        backgroundSize: "320px",
+        backgroundRepeat: "repeat-x",
+        backgroundPosition: `${finishLine ? "0px" : `${fence}%`} 0px`,
+    }}
+>
+
+
                     <div
                         className="flex min-w-[150px] items-end justify-end -mt-10"
                         style={{
                             width: `${progress1}%`,
                         }}
                     >
-
-
-
-                   
                         <Image
                             src={
                                 imageRabbit1
@@ -674,10 +674,23 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
                         */}
                     </div>
 
+</div>
 
+
+<div
+    className="w-full "
+    style={{
+        backgroundImage: `${selectSide === "Short" ? `url('/cracle-banner.png')` : `url('/grass.jpeg')`}`,
+        backgroundSize: "320px",
+        backgroundRepeat: "repeat-x",
+        backgroundPosition: `${finishLine ? "0px" : `${fence}%`} 0px`,
+    }}
+
+>
 
                     <div
-                        className="flex min-w-[150px] items-end justify-end mt-5"
+                    
+                        className="flex min-w-[150px] items-end justify-end mt-10"
                         style={{
                             width: `${progress2}%`,
                         }}
@@ -703,13 +716,6 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
                                 opacity: `${selectSide === "Short" ? 100 : 0}`
                             }}
                         />
-
-
-
-{/*
-                        <span className="text-red-500" >2: Short</span>&nbsp;&nbsp;
-                        <span className="text-red-500" >{betAmountShort}</span>
-                        */}
                         
                     </div>
 
@@ -744,8 +750,13 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
 
 */}
 
+
+</div>
+
+
+
                     <div
-                        className="w-full h-14 mt-0"
+                        className="w-full h-14 mt-0 "
                         style={{
                             backgroundImage: `url('/fence4.png')`,
                             backgroundSize: "120px",

@@ -73,7 +73,7 @@ export default function BetHistoryList() {
             type: "number",
             headerName: "RESULTS",
             flex: 0.1,
-            minWidth: 60,
+            minWidth: 90,
             align: "center",
             headerAlign: "center",
         },
@@ -84,6 +84,11 @@ export default function BetHistoryList() {
             headerAlign: "center",
             flex: 0.2,
             minWidth: 100,
+            /*
+            renderCell(params) {
+                return <Chip label={`${params.value ? "Long" : "Short"}`} color={`${params.value ? "success" : "info"}`} />;
+              },
+                */
             /*
             renderCell(params) {
                 return <Chip label={`${params.value}  ${params.row.type}`} color="primary" />;
@@ -314,7 +319,7 @@ export default function BetHistoryList() {
                         hideFooterSelectedRowCount
                         sx={{
                             color: "white",
-                            bgcolor: "#343a40",
+                            ///bgcolor: "#343a40",
                         }}
                     />
                 </div>
