@@ -5,6 +5,9 @@ import { GridColDef, GridValueGetterParams, DataGrid, GridApi, GridCellValue } f
 import { getCookie } from 'cookies-next';
 import React, { useEffect, useState } from 'react';
 import { format } from "date-fns";
+import { useRouter, useSearchParams } from 'next/navigation';
+
+
 
 
 const Transition = React.forwardRef(function Transition(
@@ -23,6 +26,7 @@ export default function BetHistoryList() {
     const [open, setOpen] = React.useState(false);
     const [selectedUser, setSelectedUser] = useState<any>();
 
+    const { push } = useRouter();
 
     const columns: GridColDef[] = [
  
@@ -284,8 +288,19 @@ export default function BetHistoryList() {
                         Last Price: {rows[0]?.closePrice} USDT
                     </h4>
 
-                    
+                </div>
 
+                <div className="w-full flex items-center justify-center p-3">
+
+                        <button
+                    onClick={() => {
+                        ////paraYatir();
+                        push( '/gameT2E' );
+                    }}
+                    className="btn btn-success max-w-xs w-full text-xl bg-color-#66CDAA hover:bg-color-#66CDAA  text-white font-bold py-2 px-4 rounded-full"
+                    >
+                    GO BET
+                    </button>
                 </div>
 
 
