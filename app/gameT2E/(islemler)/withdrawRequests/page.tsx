@@ -9,6 +9,7 @@ import Link from 'next/link';
 import API from "@/libs/enums/API_KEY";
 import { IUser } from "@/libs/interface/user";
 import DomainEnum from "@/libs/enums/domain";
+import { Stack, Snackbar, Alert } from "@mui/material";
 
 
 
@@ -261,6 +262,8 @@ export default function WithdrawRequestList() {
           setWaiting(false);
           setSucc(true);
           setSuccessMsgSnackbar("Your request has been sent successfully");
+
+          getAll();
         }
     
       };
@@ -339,6 +342,38 @@ export default function WithdrawRequestList() {
             gonderildi: item.gonderildi,
         }
     })
+
+
+    const handleClickSucc = () => {
+        setSucc(true);
+      };
+    
+      const handleCloseSucc = (
+        event?: React.SyntheticEvent | Event,
+        reason?: string
+      ) => {
+        if (reason === "clickaway") {
+          return;
+        }
+    
+        setSucc(false);
+      };
+    
+      const handleClickErr = () => {
+        setErr(true);
+      };
+    
+      const handleCloseErr = (
+        event?: React.SyntheticEvent | Event,
+        reason?: string
+      ) => {
+        if (reason === "clickaway") {
+          return;
+        }
+    
+        setErr(false);
+      };
+
 
     return (
         <>
@@ -441,6 +476,34 @@ export default function WithdrawRequestList() {
                     </DialogActions>
                 </Dialog>
             )}
+
+
+
+<Stack spacing={2} sx={{ width: "100%" }}>
+        <Snackbar
+          open={succ}
+          autoHideDuration={6000}
+          onClose={handleCloseSucc}
+        >
+          <Alert
+            onClose={handleCloseSucc}
+            severity="success"
+            sx={{ width: "100%" }}
+          >
+            {successMsgSnackbar}
+          </Alert>
+        </Snackbar>
+        <Snackbar open={err} autoHideDuration={6000} onClose={handleCloseErr}>
+          <Alert
+            onClose={handleCloseErr}
+            severity="error"
+            sx={{ width: "100%" }}
+          >
+            {errMsgSnackbar}
+          </Alert>
+        </Snackbar>
+      </Stack>
+
         </>
     )
 }
