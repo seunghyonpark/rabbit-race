@@ -631,7 +631,7 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
     style={{
         //backgroundImage: `${selectSide === "Long" ? `url('/cracle-banner.png')` : `url('/grass.jpeg')`}`,
         backgroundImage: `${selectSide === "Long" ? `url('/track.png')` : `url('/grass.jpeg')`}`,
-        backgroundSize: "320px",
+        backgroundSize: "620px",
         backgroundRepeat: "repeat-x",
         backgroundPosition: `${finishLine ? "0px" : `${fence}%`} 0px`,
         opacity: 50,
@@ -705,7 +705,7 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
     style={{
         //backgroundImage: `${selectSide === "Short" ? `url('/cracle-banner.png')` : `url('/grass.jpeg')`}`,
         backgroundImage: `${selectSide === "Short" ? `url('/track.png')` : `url('/grass.jpeg')`}`,
-        backgroundSize: "320px",
+        backgroundSize: "620px",
         backgroundRepeat: "repeat-x",
         backgroundPosition: `${finishLine ? "0px" : `${fence}%`} 0px`,
         opacity: 50,
