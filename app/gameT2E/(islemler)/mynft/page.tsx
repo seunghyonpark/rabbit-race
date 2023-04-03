@@ -436,6 +436,9 @@ export default function Mynft() {
         const accounts = await ethereum.request({
           method: "eth_requestAccounts",
         });
+
+        console.log("accounts", accounts)
+
         setWallet(accounts[0]);
         setNetwork(true);
         setNetworkName("BSC Testnet");
@@ -464,7 +467,11 @@ export default function Mynft() {
   useEffect(() => {
     if (isMetaMaskInstalled()) {
       wrongWallet();
-      connectWallet();
+
+      setInterval(() => {
+        connectWallet();
+      }, 5 * 1000)
+      
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
