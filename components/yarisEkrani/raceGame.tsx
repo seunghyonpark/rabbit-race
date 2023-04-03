@@ -625,6 +625,7 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
         backgroundSize: "320px",
         backgroundRepeat: "repeat-x",
         backgroundPosition: `${finishLine ? "0px" : `${fence}%`} 0px`,
+        opacity: 50,
     }}
 >
 
@@ -643,6 +644,16 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
                             height={150}
                             alt={"at"}
                         />
+                        <div
+                        className="font-bold text-sm text-white"
+                        style={{
+                            opacity: `${selectSide === "Long" ? 100 : 0}`
+                        }}
+                        >
+                            {"MY RABBIT"}
+                        </div>
+
+                        {/*
                         <Image
                             src={
                                 "/cracle_ci.png"
@@ -656,6 +667,7 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
                             }}
 
                         />
+                        */}
                     
 
        
@@ -687,6 +699,7 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
         backgroundSize: "320px",
         backgroundRepeat: "repeat-x",
         backgroundPosition: `${finishLine ? "0px" : `${fence}%`} 0px`,
+        opacity: 50,
     }}
 
 >
@@ -707,6 +720,15 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
                             height={150}
                             alt={"at"}
                         />
+                        <div
+                        className="font-bold text-sm text-white"
+                        style={{
+                            opacity: `${selectSide === "Short" ? 100 : 0}`
+                        }}
+                        >
+                            {"MY RABBIT"}
+                        </div>
+                        {/*
                         <Image
                             src={
                                 "/cracle_ci.png"
@@ -719,6 +741,7 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
                                 opacity: `${selectSide === "Short" ? 100 : 0}`
                             }}
                         />
+                        */}
                         
                     </div>
 
