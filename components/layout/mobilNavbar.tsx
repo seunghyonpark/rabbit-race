@@ -686,7 +686,7 @@ export default function MobilNavbar({user} : {user: any}) {
 
                   
 
-                  {game?.selectedSide === "Long" &&
+                  {user && game?.selectedSide === "Long" &&
                     <Image
                       src={'/rabbit1.gif'}
                       width={30}
@@ -699,7 +699,7 @@ export default function MobilNavbar({user} : {user: any}) {
                     />
                   }
 
-                  {game?.selectedSide === "Short" &&
+                  {user && game?.selectedSide === "Short" &&
                     <Image
                       src={'/rabbit2.gif'}
                       width={30}
@@ -712,7 +712,7 @@ export default function MobilNavbar({user} : {user: any}) {
                     />
                   }
 
-                  {!game &&
+                  {user && !game &&
                     <Image
                       src={user?.img}
                       width={25}

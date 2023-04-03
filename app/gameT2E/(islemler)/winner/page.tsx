@@ -503,22 +503,6 @@ export default function Winner() {
   return (
     <>
 
-      {metamaskview ? (
-        <div
-          onClick={() => {
-            setMetamaskView(false);
-          }}
-          className="flex absolute min-w-full min-h-full bg-black/70 justify-center items-center "
-        >
-          <Image
-            src="/metamask-fox.svg"
-            width={100}
-            height={100}
-            alt="Metamask"
-          />
-        </div>
-      ) : null}
-
 
       {waiting ? (
         <div
