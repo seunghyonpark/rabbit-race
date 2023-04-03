@@ -576,6 +576,7 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
 
 <div className="w-full h-6 mt-0"
     style={{
+        //backgroundImage: `url('/cracle-banner.png')`,
         backgroundImage: `url('/cracle-banner.png')`,
         backgroundSize: "120px",
         backgroundRepeat: "repeat-x",
@@ -619,7 +620,8 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
 <div
     className="w-full h-36 "
     style={{
-        backgroundImage: `${selectSide === "Long" ? `url('/cracle-banner.png')` : `url('/grass.jpeg')`}`,
+        //backgroundImage: `${selectSide === "Long" ? `url('/cracle-banner.png')` : `url('/grass.jpeg')`}`,
+        backgroundImage: `${selectSide === "Long" ? `url('/track.png')` : `url('/grass.jpeg')`}`,
         backgroundSize: "320px",
         backgroundRepeat: "repeat-x",
         backgroundPosition: `${finishLine ? "0px" : `${fence}%`} 0px`,
@@ -680,7 +682,8 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
 <div
     className="w-full "
     style={{
-        backgroundImage: `${selectSide === "Short" ? `url('/cracle-banner.png')` : `url('/grass.jpeg')`}`,
+        //backgroundImage: `${selectSide === "Short" ? `url('/cracle-banner.png')` : `url('/grass.jpeg')`}`,
+        backgroundImage: `${selectSide === "Short" ? `url('/track.png')` : `url('/grass.jpeg')`}`,
         backgroundSize: "320px",
         backgroundRepeat: "repeat-x",
         backgroundPosition: `${finishLine ? "0px" : `${fence}%`} 0px`,
