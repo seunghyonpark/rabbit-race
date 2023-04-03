@@ -92,6 +92,7 @@ export default function Winner() {
     }
   }
 
+  /*
   useEffect(() => {
     setMetaMask(isMetaMaskInstalled());
     checkAccount();
@@ -115,6 +116,7 @@ export default function Winner() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  */
 
   //? METAMASK
   const isMetaMaskInstalled = () => {
@@ -233,6 +235,7 @@ export default function Winner() {
     } catch (e: any) { }
   }
 
+  /*
   useEffect(() => {
     if (isMetaMaskInstalled()) {
       wrongWallet();
@@ -254,6 +257,7 @@ export default function Winner() {
     }
   }
 
+  
   useEffect(() => {
     if (wallet) {
       //@ts-ignore
@@ -263,6 +267,7 @@ export default function Winner() {
       setContract(contract);
     }
   }, [Abifile, contractAddress, wallet]);
+  */
 
   const paraYatir = async () => {
     if (depositCount == 0) {
