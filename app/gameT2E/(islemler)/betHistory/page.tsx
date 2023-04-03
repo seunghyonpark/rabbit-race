@@ -273,25 +273,36 @@ export default function BetHistoryList() {
 
                 <div className="w-full border rounded-lg flex flex-col items-center justify-center p-2 gap-1 py-5">
                     <h4 className="  text-red-500 text-xl font-bold">
-                        T2E FUTURES
+                        T2E <span className="text-white">GAME</span>
                     </h4>
 
                     <h4 className=" text-red-500 text-xl font-bold">
-                        LONG | X2 | BETTING GAME
+                        Recent Bettings
                     </h4>
 
-                    <h4 className=" text-green-500 text-4xl font-bold ">
-                    {rows[0]?.prizeAmount} CRA
+                    <h4 className=" text-green-500 text-xl font-extrabold">
+                        LONG
+                    </h4>
+
+                    <h4 className=" text-green-500 text-4xl font-extrabold ">
+                    {rows[0]?.prizeAmount} <span className="text-white text-xl font-bold">CRA</span>
                     </h4>
                     <h4 className=" text-white text-sm font-bold">
                         Betting Time: {rows[0]?.date }
                     </h4>
                     <h4 className=" text-white text-sm font-bold">
-                        Entry Price: {rows[0]?.basePrice} USDT
+                        Entry Price: {Number(rows[0]?.basePrice).toFixed(2)}
                     </h4>
-                    <h4 className=" text-white text-sm font-bold">
-                        Last Price: {rows[0]?.closePrice} USDT
+                    <h4
+                        className=" text-white text-sm font-bold"
+                        style={{
+                            color: `${(rows[0]?.basePrice - rows[0]?.closePrice) > 0 ? "#ff0000" : "#00ff00"}`,
+                        }}
+                    >
+                        Last Price: {Number(rows[0]?.closePrice).toFixed(2)} 
+
                     </h4>
+
 
                 </div>
 
