@@ -48,6 +48,7 @@ export const newGame = async (
     betAmount,
     selectedSide,
   });
+
   const user = await User.findOne({ userToken: userToken });
   if (user) {
     user.deposit -= betAmount;
@@ -55,10 +56,10 @@ export const newGame = async (
   } else {
     return { success: false, message: "User not found" };
   }
-
   await game.save();
   return { success: true, game };
 };
+
 
 export const getGames = async () => {
   let games: IGame[];

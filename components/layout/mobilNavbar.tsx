@@ -585,9 +585,6 @@ export default function MobilNavbar() {
 
     const [showModal, setShowModal] = useState(false);
 
-    console.log("wallet", wallet); 
-
-
     return (
         <>
             <div className="lg:hidden w-full flex items-center gap-2 px-2 h-20 bg-[#24252F]">

@@ -439,7 +439,7 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
     
 
 
-    console.log("selectSide===========", selectSide);
+    
 
 
     return (
