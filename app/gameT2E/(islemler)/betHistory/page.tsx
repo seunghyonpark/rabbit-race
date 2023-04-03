@@ -76,6 +76,7 @@ export default function BetHistoryList() {
             minWidth: 90,
             align: "center",
             headerAlign: "center",
+            
         },
         {
             field: "selectedSide",
@@ -285,7 +286,7 @@ export default function BetHistoryList() {
                     </h4>
 
                     <h4 className=" text-green-500 text-4xl font-extrabold ">
-                    {rows[0]?.prizeAmount} <span className="text-white text-xl font-bold">CRA</span>
+                    {rows[0]?.prizeAmount - rows[0]?.betAmount} <span className="text-white text-xl font-bold">CRA</span>
                     </h4>
                     <h4 className=" text-white text-sm font-bold">
                         Betting Time: {rows[0]?.date }
