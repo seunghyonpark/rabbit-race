@@ -388,15 +388,13 @@ export default function MobilNavbar({user} : {user: any}) {
         setGame(data.game)
       }
 
-      //if (hasCookie("user") && user) {
-          //setInterval(() => {
 
-          if (hasCookie("user") && user) {
+      if (hasCookie("user") && user) {
               getGame();
-          }
+      }
 
-          //}, 5 * 1000)
-      //}
+      setWallet(user?.nftWalletAddress);
+
     
     }, [user]);
 
