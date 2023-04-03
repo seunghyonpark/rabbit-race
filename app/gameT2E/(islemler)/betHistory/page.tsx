@@ -71,7 +71,7 @@ export default function BetHistoryList() {
         {
             field: "prizeAmount",
             type: "number",
-            headerName: "RESULTS",
+            headerName: "OUTCOME",
             flex: 0.1,
             minWidth: 90,
             align: "center",
@@ -85,17 +85,14 @@ export default function BetHistoryList() {
             headerAlign: "center",
             flex: 0.2,
             minWidth: 100,
-            /*
-            renderCell(params) {
-                return <Chip label={`${params.value ? "Long" : "Short"}`} color={`${params.value ? "success" : "info"}`} />;
-              },
-                */
-            /*
-            renderCell(params) {
-                return <Chip label={`${params.value}  ${params.row.type}`} color="primary" />;
-            },
-            */
-            
+        },
+        {
+            field: "selectedSide",
+            headerName: "RESULTS",
+            align: "center",
+            headerAlign: "center",
+            flex: 0.2,
+            minWidth: 100,
         },
 
         /*
@@ -282,7 +279,7 @@ export default function BetHistoryList() {
                     </h4>
 
                     <h4 className=" text-green-500 text-xl font-extrabold">
-                        LONG
+                        WIN
                     </h4>
 
                     <h4 className=" text-green-500 text-4xl font-extrabold ">
