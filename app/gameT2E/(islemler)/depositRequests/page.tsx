@@ -26,7 +26,7 @@ export default function DepositRequestList() {
     const [selectedUser, setSelectedUser] = useState<any>();
 
     const [wallet, setWallet] = useState<any>(null);
-    const [user, setUser] = useState<IUser>()
+    const [user, setUser] = useState<IUser>();
 
 
     const columns: GridColDef[] = [

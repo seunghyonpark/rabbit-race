@@ -5,6 +5,14 @@ import { GridColDef, GridValueGetterParams, DataGrid, GridApi, GridCellValue } f
 import { getCookie } from 'cookies-next';
 import React, { useEffect, useState } from 'react';
 import { format } from "date-fns";
+import Link from 'next/link';
+import API from "@/libs/enums/API_KEY";
+import { IUser } from "@/libs/interface/user";
+import DomainEnum from "@/libs/enums/domain";
+
+
+
+
 
 
 const Transition = React.forwardRef(function Transition(
@@ -22,6 +30,19 @@ export default function WithdrawRequestList() {
     const [requests, setRequests] = useState<any>([]);
     const [open, setOpen] = React.useState(false);
     const [selectedUser, setSelectedUser] = useState<any>();
+
+    const [user, setUser] = useState<IUser>();
+    const [settings, setSettings] = useState<any>();
+
+    const [wallet, setWallet] = useState<any>(null);
+    
+    const [waiting, setWaiting] = useState<boolean>(false);
+    const [succ, setSucc] = React.useState(false);
+
+    const [errMsgSnackbar, setErrMsgSnackbar] = useState<String>("");
+    const [successMsgSnackbar, setSuccessMsgSnackbar] = useState<String>("");
+    const [err, setErr] = React.useState(false);
+
 
 
     const columns: GridColDef[] = [
@@ -198,6 +219,91 @@ export default function WithdrawRequestList() {
         getAll()
     }
 
+
+    const paraCek = async () => {
+
+        let miktar = (document.getElementById("withdraw") as HTMLInputElement).value;
+    
+        if (miktar == "0") {
+          setErrMsgSnackbar("Please enter a value greater than 0");
+          setErr(true);
+          return;
+        } else if (miktar < "0") {
+          setErrMsgSnackbar("Please enter a value greater than 0");
+          setErr(true);
+          return;
+        }
+        setWaiting(true);
+        const res = await fetch('/api/paymentRequests', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            method: "new",
+            API_KEY: process.env.API_KEY,
+            userToken: getCookie("user"),
+            email1: user?.email,
+            withdrawAmount: miktar,
+            walletTo: wallet,
+            type: settings?.requestType
+          })
+        });
+    
+        
+    
+        const data = await res.json();
+    
+        if (data.status === false) {
+          setErrMsgSnackbar(data.message);
+          setWaiting(false);
+          setErr(true);
+        } else {
+          getUser();
+          setWaiting(false);
+          setSucc(true);
+          setSuccessMsgSnackbar("Your request has been sent successfully");
+        }
+    
+      };
+
+     
+      
+    const getUser = async () => {
+    const inputs = {
+        method: 'getOne',
+        API_KEY: API.key,
+        userToken: getCookie('user')
+    }
+    const res = await fetch('/api/user', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(inputs)
+    })
+    const user = await res.json()
+    setUser(user.user.user)
+    }      
+
+
+    const getSettings = async () => {
+        const res = await fetch(DomainEnum.address + '/api/settings', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            method: "get",
+            API_KEY: process.env.API_KEY,
+          }),
+        });
+        if (!res.ok) {
+          throw new Error('Failed to fetch data');
+        }
+        const data = await res.json();
+        if (data.status === false) {
+          return
+        } else {
+          setSettings(data.settings[0]);
+        }
+      }
+
+
     const getAll = async () => {
         const res = await fetch('/api/paymentRequests', {
             method: "POST",
@@ -213,6 +319,8 @@ export default function WithdrawRequestList() {
     }
 
     useEffect(() => {
+        getUser();
+        getSettings();
         getAll();
     }, [])
 
@@ -235,7 +343,32 @@ export default function WithdrawRequestList() {
     return (
         <>
             <div className='flex flex-col p-10 mt-0 text-gray-200'>
-                <h1 className='font-bold italic text-2xl'>Withdraw Requests</h1>
+
+                <h1 className='font-bold italic text-2xl'>Withdraw Requests{" "}
+                <span className="text-sm text-red-500">(CRA)</span>{" "}
+                </h1>
+
+                <div className="w-full border rounded-lg flex flex-col items-center p-2 justify-center gap-5 py-10">
+
+                    <input
+                    placeholder="Wallet Address"
+                    onChange={(e) => {
+                        setWallet(e.target.value);
+                    }}
+                    className="input input-bordered w-full max-w-xs text-gray-800"
+                    />
+                    <input
+                    type="number"
+                    placeholder="Type Amount"
+                    id="withdraw"
+                    className="input input-bordered w-full max-w-xs text-gray-800"
+                    />
+
+                    <button onClick={paraCek} className="btn btn-accent max-w-xs w-full">Withdraw</button>
+
+                </div>
+
+                <h1 className='mt-5 font-bold italic text-2xl'>Lists</h1>
 
                 <div style={{ width: "100%", height: 600, color: "white" }}>
                     <DataGrid
