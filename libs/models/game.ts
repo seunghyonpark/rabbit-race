@@ -71,6 +71,13 @@ export const getGameByToken = async (userToken: string) => {
   return Game.findOne({ userToken });
 };
 
+export const getGameByUsername = async (username: string) => {
+  return Game.findOne({ username: username });
+};
+
+
+
+
 export const deleteOneGame = async (
   userToken: string,
   selectedSide: string

@@ -194,7 +194,10 @@ export default function Navbar() {
             </div>
 
             {/* //? Mobil Navbar */}
-            <MobilNavbar />
+            <MobilNavbar user={user} />
+            
+
+
         </>
     )
 }

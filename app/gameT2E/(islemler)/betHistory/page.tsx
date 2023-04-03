@@ -301,7 +301,6 @@ export default function BetHistoryList() {
 
                     </h4>
 
-
                 </div>
 
                 <div className="w-full flex items-center justify-center p-3">

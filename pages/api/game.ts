@@ -3,6 +3,7 @@ import {
   deleteGames,
   deleteOneGame,
   getGameByToken,
+  getGameByUsername,
   getGames,
   newGame,
 } from "@/libs/models/game";
@@ -22,7 +23,7 @@ export default async function handler(
     return;
   }
 
-  ////console.log("api game method", method);
+  console.log("api game method", method);
 
 
   if (method === "newGame") {
@@ -96,6 +97,9 @@ export default async function handler(
 
   if (method === "getGameByToken") {
     const { userToken } = req.body;
+
+    ///console.log("api game getGameByToken userToken", userToken);
+
     if (!userToken) {
       res.status(400).json({ message: "Bad Request" });
       return;
@@ -105,6 +109,19 @@ export default async function handler(
       return res.status(200).json({ message: "Success", game });
     }
     return res.status(400).json({ message: "Action Failed" });
+  }
+
+
+  if (method === "getGameByUsername") {
+    const { username } = req.body;
+    if (!username) {
+      res.status(400).json({ message: "Bad Request" });
+      return;
+    }
+    const game = await getGameByUsername(username);
+
+    return res.status(200).json({ message: "Success", game });
+ 
   }
 
 }

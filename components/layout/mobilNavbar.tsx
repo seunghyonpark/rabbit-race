@@ -68,8 +68,10 @@ const MySwal = withReactContent(Swal);
 
 
 
-export default function MobilNavbar() {
+export default function MobilNavbar({user} : {user: any}) {
 
+  ////console.log("MobilNavbar user", user);
+ 
   /*
   const { contract: nftDrop } = useContract(myNftDropContractAddress);
 
@@ -295,12 +297,12 @@ export default function MobilNavbar() {
 
     const [wallet, setWallet] = useState<any>(null);
 
-    const [user, setUser] = useState<IUser>();
-
     const router = useRouter();
 
     const [game, setGame] = useState<any>()
 
+
+    /*
     const getUser = async () => {
         if (hasCookie("user")) {
             const inputs = {
@@ -319,39 +321,84 @@ export default function MobilNavbar() {
             setWallet(userInfo.user.user.nftWalletAddress)
         }
     }
+    */
 
+    /*
     const getGame = async () => {
 
-      //console.log("getGameByToken=====", getCookie('user'));
-      //console.log("getGameByToken=====", user?.userToken);
+      console.log("getGame user", user);
+      console.log("getGame username", username);
 
       const res = await fetch('/api/game', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           cache: 'no-store',
           body: JSON.stringify({
-              method: "getGameByToken",
+              method: "getGameByUsername",
               API_KEY: process.env.API_KEY,
-              userToken: user?.userToken,
+              username: user?.username,
           })
       })
       const data = await res.json()
 
-      ///console.log("game==============", data.game);
+      console.log("game==============", data.game);
 
 
       setGame(data.game)
     }
+    */
 
-
+    /*
     useEffect(() => {
       if (hasCookie("user") && !user) {
           setInterval(() => {
-              getUser();
+
+              /////getUser();
+
+
+
+              setUsername(user?.username)
+
               getGame();
+
           }, 5 * 1000)
       }
     })
+    */
+
+    useEffect(() => {
+
+
+      const getGame = async () => {
+
+     
+        const res = await fetch('/api/game', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            cache: 'no-store',
+            body: JSON.stringify({
+                method: "getGameByUsername",
+                API_KEY: process.env.API_KEY,
+                username: user?.username,
+            })
+        })
+        const data = await res.json()
+  
+       
+        setGame(data.game)
+      }
+
+      //if (hasCookie("user") && user) {
+          //setInterval(() => {
+
+          if (hasCookie("user") && user) {
+              getGame();
+          }
+
+          //}, 5 * 1000)
+      //}
+    
+    }, [user]);
 
     /*
     useEffect(() => {
@@ -637,6 +684,33 @@ export default function MobilNavbar() {
                 <div className='w-full p-2 flex items-center justify-end gap-3'>
 
 
+                  
+
+                  {game?.selectedSide === "Long" &&
+                    <Image
+                      src={'/rabbit1.gif'}
+                      width={30}
+                      height={30}
+                      alt="game"
+                      onClick={() => {
+                        router.push('/gameT2E')
+                      }}
+                    />
+                  }
+
+                  {game?.selectedSide === "Short" &&
+                    <Image
+                      src={'/rabbit2.gif'}
+                      width={30}
+                      height={30}
+                      alt="game"
+                      onClick={() => {
+                        router.push('/gameT2E')
+                      }}
+                    />
+                  }
+
+                  
 
 
 
@@ -681,15 +755,7 @@ export default function MobilNavbar() {
                             className={`flex items-center justify-center  bg-black rounded-md h-[32px] text-[13px] text-center px-5 text-[#BA8E09] border border-[#BA8E09] `}
                         >
 
-                        {game &&
-                          <Image
-                          src={'/rabbit1.gif'}
-                          width={20}
-                          height={20}
-                          alt="game"
-                          className="rounded-full"
-                          />
-                        }
+          
 
                         <Link
                             href={"/gameT2E/deposit"}
@@ -823,7 +889,7 @@ export default function MobilNavbar() {
                   <div className="w-full rounded-lg flex flex-row items-center justify-left  gap-1 ">
 
                     {user && <Image
-                        src={user.img}
+                        src={user?.img}
                         width={90}
                         height={90}
                         alt="pfp"
@@ -843,7 +909,7 @@ export default function MobilNavbar() {
                           onClick={() => {
                             setShowModal(false);
                             deleteCookie('user');
-                            getUser();
+                            //////getUser();
                             router.push('/gameT2E');
                           }}
                       >

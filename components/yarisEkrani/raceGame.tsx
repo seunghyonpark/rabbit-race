@@ -619,11 +619,9 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
                             backgroundRepeat: "repeat-x",
                             backgroundPosition: `${finishLine ? "0px" : `${fence}%`} 0px`,
                         }}
-                    ></div>
+                    >
 
-
-
-
+                    </div>
 
 
 <div
@@ -637,7 +635,6 @@ export default function Race({socket, currentPrice, betPrice, betLongShort, betA
         opacity: 50,
     }}
 >
-
 
                     <div
                         className="flex min-w-[150px] items-end justify-end -mt-10"
