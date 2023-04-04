@@ -60,15 +60,6 @@ export default function BetHistoryList() {
             headerAlign: "center",
         },
         {
-            field: "basePrice",
-            type: "number",
-            headerName: "ENTRY",
-            flex: 0.1,
-            minWidth: 80,
-            align: "center",
-            headerAlign: "center",
-        },
-        {
             field: "prizeAmount",
             type: "number",
             headerName: "OUTCOME",
@@ -79,16 +70,28 @@ export default function BetHistoryList() {
             
         },
         {
+            field: "basePrice",
+            type: "number",
+            headerName: "ENTRY",
+            flex: 0.1,
+            minWidth: 80,
+            align: "center",
+            headerAlign: "center",
+            valueFormatter: (params) => {
+                return new Number(params.value).toFixed(2);
+            },
+        },
+        {
             field: "selectedSide",
-            headerName: "L/S",
+            headerName: "SELECT",
             align: "center",
             headerAlign: "center",
             flex: 0.2,
             minWidth: 100,
         },
         {
-            field: "selectedSide",
-            headerName: "RESULTS",
+            field: "winnerHorse",
+            headerName: "RESULT",
             align: "center",
             headerAlign: "center",
             flex: 0.2,
