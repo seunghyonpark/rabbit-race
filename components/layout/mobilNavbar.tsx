@@ -370,8 +370,6 @@ export default function MobilNavbar({user} : {user: any}) {
 
 
       const getGame = async () => {
-
-     
         const res = await fetch('/api/game', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },

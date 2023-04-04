@@ -42,6 +42,7 @@ export default function Race({socket, username, currentPrice, betPrice}: {socket
     //const [progress5, setProgress5] = useState<any>(0);
 
     const [fence, setFence] = useState(0);
+    const [track, setTrack] = useState(0);
     const [horses, setHorses] = useState<any>([]);
     const [winner, setWinner] = useState<any>();
     const [soundStatus, setSoundStatus] = useState(true);
@@ -425,6 +426,7 @@ export default function Race({socket, username, currentPrice, betPrice}: {socket
 
     setTimeout(() => {
         setFence(fence - 1);
+        setTrack(track + 5);
     }, 60);
 
 
@@ -636,7 +638,7 @@ export default function Race({socket, username, currentPrice, betPrice}: {socket
         backgroundImage: `${selectedSide === "Long" ? `url('/track.png')` : `url('/grass.jpeg')`}`,
         backgroundSize: "620px",
         backgroundRepeat: "repeat-x",
-        backgroundPosition: `${finishLine ? "0px" : `${fence}%`} 0px`,
+        backgroundPosition: `${finishLine ? "0px" : `${track}%`} 0px`,
         opacity: 50,
     }}
 >
@@ -709,7 +711,7 @@ export default function Race({socket, username, currentPrice, betPrice}: {socket
         backgroundImage: `${selectedSide === "Short" ? `url('/track.png')` : `url('/grass.jpeg')`}`,
         backgroundSize: "620px",
         backgroundRepeat: "repeat-x",
-        backgroundPosition: `${finishLine ? "0px" : `${fence}%`} 0px`,
+        backgroundPosition: `${finishLine ? "0px" : `${track}%`} 0px`,
         opacity: 50,
     }}
 

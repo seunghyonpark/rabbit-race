@@ -21,6 +21,9 @@ const nextConfig = {
       "www.linkpicture.com",
       "roulette.cryptogameplace.com",
       "gateway.ipfscdn.io",
+
+      "ipfs.moralis.io",
+      "ipfs.infura.io",
     ],
   },
 

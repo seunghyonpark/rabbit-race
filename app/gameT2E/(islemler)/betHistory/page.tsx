@@ -36,14 +36,14 @@ export default function BetHistoryList() {
             headerName: "DATE",
             align: "center",
             headerAlign: "center",
-            width: 120,
+            width: 160,
             type: "dateTime",
-            minWidth: 100,
+            minWidth: 150,
             valueFormatter: (params) => {
 
                 var date = new Date(params.value);
             
-                return format(date, "yy/MM/dd HH:mm:ss");
+                return format(date, "yyyy.MM.dd HH:mm:ss");
 
                 //return new Date(params.value).toLocaleString();
 
@@ -51,7 +51,7 @@ export default function BetHistoryList() {
         },
 
         {
-            field: "prizeAmount",
+            field: "resultAmount",
             type: "number",
             headerName: "RESULT",
             flex: 0.1,
@@ -61,12 +61,12 @@ export default function BetHistoryList() {
 
             renderCell: (params) => {
 
-                if (params.value === 0) {
+                if (params.value < 0) {
                     return (
 
-                        <div className='w-full flex flex-row font-bold items-right'>
+                        <div className='w-full flex flex-row font-bold items-right '>
                             <div className='w-14 text-right text-white '>
-                                {Number(params.value).toFixed(0)} 
+                                - {Number(Math.abs(params.value)).toFixed(0)} 
                             </div>
                             <div className='pl-2 text-white '>
                                 LOSE
@@ -78,7 +78,7 @@ export default function BetHistoryList() {
                     return (
                         <div className='w-full flex flex-row font-bold items-right'>
                             <div className='w-14 text-right justify-end text-white '>
-                                {Number(params.value).toFixed(0)}
+                                + {Number(params.value).toFixed(0)}
                             </div>
                             <div className='pl-2 text-white '>
                                 WIN
@@ -308,6 +308,7 @@ export default function BetHistoryList() {
             betAmount: item.betAmount,
             basePrice: item.basePrice,
             prizeAmount: item.prizeAmount,
+            resultAmount: item.prizeAmount - item.betAmount,
             selectedSide: item.selectedSide,
             closePrice: item.closePrice,
             winnerHorse: item.winnerHorse,
@@ -367,7 +368,16 @@ export default function BetHistoryList() {
 
 
                     <h4 className=" text-white text-sm font-bold">
-                        Betting Time: {rows[0]?.date }
+                        Betting Time:&nbsp;
+                        {
+                            new Date(rows[0]?.date).toLocaleString()
+                            //new Date(rows[0]?.date).getTime() + 1000 * 60 * 60 * 24
+                             //new Date(rows[0]?.date)
+                            //format(date, "yyyy.MM.dd HH:mm:ss");
+                        }
+                                    
+                                   
+                        
                     </h4>
                     <h4 className=" text-white text-sm font-bold">
                         Entry Price: {Number(rows[0]?.basePrice).toFixed(2)}

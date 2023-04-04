@@ -21,6 +21,11 @@ import { IUser } from "@/libs/interface/user";
 
 import {isMobile} from 'react-device-detect';
 
+import Moralis from "moralis";
+import { EvmChain } from "@moralisweb3/common-evm-utils";
+
+import { updateNftWalletAddress } from '@/libs/models/user';
+
 
 const Transition = React.forwardRef(function Transition(
     props: TransitionProps & {
@@ -58,6 +63,7 @@ export default function Mynft() {
     const [punkListData, setPunkListData] = useState([]);
     const [selectedPunk, setSelectedPunk] = useState(0);
 
+    const [nfts, setNfts] = useState<any>();
 
     const columns: GridColDef[] = [
         {
@@ -582,6 +588,8 @@ export default function Mynft() {
       const data = await res.json()
 
       //console.log("data", data);
+
+      //setNftWallet(wallet);
   
     }
 
@@ -607,6 +615,52 @@ export default function Mynft() {
   useEffect(() => {
 
 
+    const getNFTs = async () => {
+      const res = await fetch('/api/nft', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          cache: 'no-store',
+          body: JSON.stringify({
+              method: "getNftsByWalletAddress",
+              API_KEY: process.env.API_KEY,
+              walletAddress: nftWallet,
+          })
+      })
+      const data = await res.json()
+
+     
+      ///setGame(data.game)
+    }
+
+    /*
+    const getNFTs = async () => {
+      await Moralis.start({
+        apiKey: "9NN866AniB6YJfboJlS3uOSY9vouXnilnqaz2jH7K7fVjKd0poxLr4Hs8BwyF9UV",
+        // ...and any other configuration
+      });
+
+      console.log("Moralis nftWallet====", nftWallet)
+    
+      const address = nftWallet;
+    
+      ///const chain = EvmChain.ETHEREUM;
+      const chain = EvmChain.BSC_TESTNET;
+    
+      const response = await Moralis.EvmApi.nft.getWalletNFTs({
+        address,
+        chain,
+      });
+    
+      console.log(response.toJSON());
+
+      ///const nfts = response.toJSON();
+
+      setNfts(response.toJSON().result);
+
+    }
+    */
+
+
     /*
     https://api.bscscan.com/api
    ?module=account
@@ -616,7 +670,7 @@ export default function Mynft() {
    &page=1
    &offset=100
    &apikey=PYSG4QII57SQD87QESCZXJZ1NC84PBDUVZ 
-   */
+   
     
     const getNFTs = async () => {
       const options = {
@@ -642,9 +696,13 @@ export default function Mynft() {
           console.error("err: ", error);
         });
     };
+    */
 
-    getNFTs();
-  }, []);
+    if (nftWallet) {
+      getNFTs();
+    }
+
+  }, [nftWallet]);
 
 
 
@@ -789,21 +847,34 @@ export default function Mynft() {
 
 }
 
+
+            {nfts?.map((asset:any) => (
+              <div key={asset.token_uri}>
+                <div>
+                 <div>{asset?.token_uri}</div>
+
+
+                </div>
+              </div>
+            ))}
+
                 
+                {/*
 
                 {punkListData.length > 0 && (
                   <>
-                  {/*
+                  
                     <Main selectedPunk={selectedPunk} punkListData={punkListData} />
-                  */}
+                  
 
                     <Punklist
                       punkListData={punkListData}
                       setSelectedPunk={setSelectedPunk}
                     />
                   </>
-                )}
-
+                )
+                */}
+                
 
                 hello....
 

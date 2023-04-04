@@ -6,7 +6,12 @@ import {
   updateNftWalletAddress,
 } from "@/libs/models/user";
 
+
+import Moralis from "moralis";
+import { EvmChain } from "@moralisweb3/common-evm-utils";
+
 import { NextApiRequest, NextApiResponse } from "next";
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -92,5 +97,95 @@ export default async function handler(
 
   if (method === "") {
   }
+
+
+
+  if (method === "getNftsByWalletAddress") {
+    const { walletAddress } = req.body;
+    if (!walletAddress) {
+      res.status(400).json({ message: "Bad Request" });
+      return;
+    }
+
+    ////const game = await getGameByUsername(username);
+
+    console.log("getNftsByWalletAddress walletAddress", walletAddress);
+		
+    if (!Moralis.Core.isStarted) {
+      await Moralis.start({
+        apiKey: "9NN866AniB6YJfboJlS3uOSY9vouXnilnqaz2jH7K7fVjKd0poxLr4Hs8BwyF9UV",
+        // ...and any other configuration
+      });
+    }
+
+    console.log("Moralis walletAddress====", walletAddress)
+  
+    const address = walletAddress;
+  
+    ///const chain = EvmChain.ETHEREUM;
+    const chain = EvmChain.BSC_TESTNET;
+  
+    const response = await Moralis.EvmApi.nft.getWalletNFTs({
+      address,
+      chain,
+    });
+  
+    ////console.log(response.toJSON());
+
+    const nfts = response.toJSON().result;
+
+    ////setNfts(response.toJSON().result);
+
+    const ownedNfts = new Array();
+
+    /*
+    const list = nfts?.map((asset:any) => ({
+      token_uri: asset?.token_uri,
+
+    }));
+    */
+
+    const list = nfts?.map((asset:any) => {
+      
+
+      ///console.log("asset.token_uri", asset.token_uri)
+
+      async () => {
+        const response = await fetch(asset.token_uri);
+
+        console.log("response", response)
+
+        if (response.ok) {
+
+          const jsonTokenUri = await response.json();
+
+          console.log("jsonTokenUri", jsonTokenUri);
+
+        }
+      }
+
+    });
+
+   
+
+    /*
+    for(let idx=0; idx < list.length; idx++){
+
+      const response = await fetch(list[idx].token_uri);
+
+      if (response.ok) {
+
+        const jsonTokenUri = await response.json();
+
+      }
+
+    }
+    */
+	
+
+    return res.status(200).json({ message: "Success", list });
+ 
+  }
+
 
 }
