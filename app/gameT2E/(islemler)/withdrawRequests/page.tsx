@@ -225,12 +225,12 @@ export default function WithdrawRequestList() {
 
         let miktar = (document.getElementById("withdraw") as HTMLInputElement).value;
     
-        if (miktar == "0") {
-          setErrMsgSnackbar("Please enter a value greater than 0");
+        if (parseInt(miktar) < 1000) {
+          setErrMsgSnackbar("Please enter a value greater than 1000");
           setErr(true);
           return;
-        } else if (miktar < "0") {
-          setErrMsgSnackbar("Please enter a value greater than 0");
+        } else if (parseInt(miktar) > 10000) {
+          setErrMsgSnackbar("Please enter a value less than 10000");
           setErr(true);
           return;
         }
@@ -383,6 +383,8 @@ export default function WithdrawRequestList() {
                 <span className="text-sm text-red-500">(CRA)</span>{" "}
                 </h1>
 
+
+
                 <div className="w-full border rounded-lg flex flex-col items-center p-2 justify-center gap-5 py-10">
 
                     <input
@@ -398,6 +400,10 @@ export default function WithdrawRequestList() {
                     id="withdraw"
                     className="input input-bordered w-full max-w-xs text-gray-800"
                     />
+
+                    <span className="ml-5 mr-5 content-center text-sm text-green-500">
+                        Withdrawal amount is at least 1,000 ~ maximum 10,000 CRA at a time
+                    </span>
 
                     <button onClick={paraCek} className="btn btn-accent max-w-xs w-full">Withdraw</button>
 
