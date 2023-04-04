@@ -855,10 +855,25 @@ export default function MobilNavbar({user} : {user: any}) {
             <div className="w-full flex flex-row items-center justify-left gap-1 bg-red-900 ">
 
               {wallet !== "0x" && 
-              <h2 className="mt-1 mb-1 text-xs">
-                    <span className="text-[#f5841f]">Connected with</span>
-                    <p className="text-xl text-white">{wallet?.slice(0, 5)}...{wallet?.slice(wallet.length - 5, wallet?.length)}</p>
-              </h2>
+
+                  <div
+                    className="w-full text-white text-center justify-left pl-3 p-2 items-left bg-red-900 hover:bg-[#141111] flex flex-row"
+                    onClick={() => {
+                      setShowModal(false), router.push('/gameT2E/mynft')
+                  }}
+                  >
+                      <Image
+                        src={"/metamask-fox.svg"}
+                        alt="meta-svg"
+                        width={20}
+                        height={20}
+                      />
+                    <h2 className="pl-3 text-left text-xs">
+                          <span className="text-[#f5841f]">Connected with</span>
+                          <p className="text-sm text-white">{wallet?.slice(0, 5)}...{wallet?.slice(wallet.length - 5, wallet?.length)}</p>
+                    </h2>
+
+                  </div>
               }
               {wallet === "0x" && 
           

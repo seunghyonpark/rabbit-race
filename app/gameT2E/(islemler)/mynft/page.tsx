@@ -556,30 +556,39 @@ export default function Mynft() {
 
   useEffect(() => {
 
+
+
+    const setNftWalletAddress = async () => {
+
+      console.log("=====================")
+
+      const inputs = {
+          method: 'setNftWalletAddress',
+          API_KEY: process.env.API_KEY,
+          userToken: getCookie('user'),
+          walletAddress: wallet,
+      }
+      const res = await fetch('/api/nft', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(inputs)
+      })
+      const data = await res.json()
+
+      //console.log("data", data);
+  
+    }
+
+
     if (wallet) {
 
-      //console.log("wallet", wallet)
-      //console.log("nftWallet", nftWallet)
+      console.log("wallet", wallet)
+      console.log("nftWallet", nftWallet)
 
       if (wallet !== nftWallet) {
 
-        async () => {
-          const inputs = {
-              method: 'setNftWalletAddress',
-              API_KEY: process.env.API_KEY,
-              userToken: getCookie('user'),
-              walletAddress: wallet,
-          }
-          const res = await fetch('/api/nft', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify(inputs)
-          })
-          const data = await res.json()
 
-          //console.log("data", data);
-      
-        }
+        setNftWalletAddress();
 
       }
 
