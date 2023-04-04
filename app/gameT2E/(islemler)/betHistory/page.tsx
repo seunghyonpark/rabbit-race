@@ -51,23 +51,68 @@ export default function BetHistoryList() {
         },
 
         {
-            field: "betAmount",
-            type: "number",
-            headerName: "BET",
-            flex: 0.1,
-            minWidth: 60,
-            align: "center",
-            headerAlign: "center",
-        },
-        {
             field: "prizeAmount",
             type: "number",
-            headerName: "OUTCOME",
+            headerName: "RESULT",
             flex: 0.1,
-            minWidth: 90,
+            minWidth: 120,
+            align: "right",
+            headerAlign: "center",
+
+            renderCell: (params) => {
+
+                if (params.value === 0) {
+                    return (
+
+                        <div className='w-full flex flex-row font-bold items-right'>
+                            <div className='w-14 text-right text-white '>
+                                {Number(params.value).toFixed(0)} 
+                            </div>
+                            <div className='pl-2 text-white '>
+                                LOSE
+                            </div>
+                        </div>
+                    );
+
+                } else if (params.value > 0) {
+                    return (
+                        <div className='w-full flex flex-row font-bold items-right'>
+                            <div className='w-14 text-right justify-end text-white '>
+                                {Number(params.value).toFixed(0)}
+                            </div>
+                            <div className='pl-2 text-white '>
+                                WIN
+                            </div>
+                        </div>
+                    );
+                }
+            },
+            
+        },
+    
+        {
+            field: "selectedSide",
+            headerName: "SELECT",
             align: "center",
             headerAlign: "center",
-            
+            flex: 0.2,
+            minWidth: 100,
+
+            renderCell: (params) => {
+                if (params.value === "Long") {
+                    return (
+                        <div className='font-bold text-green-500'>
+                            LONG
+                        </div>
+                    );
+                } else {
+                    return (
+                        <div className='font-bold text-red-500'>
+                        SHORT
+                    </div>
+                    );
+                }
+            },
         },
         {
             field: "basePrice",
@@ -81,22 +126,7 @@ export default function BetHistoryList() {
                 return new Number(params.value).toFixed(2);
             },
         },
-        {
-            field: "selectedSide",
-            headerName: "SELECT",
-            align: "center",
-            headerAlign: "center",
-            flex: 0.2,
-            minWidth: 100,
-        },
-        {
-            field: "winnerHorse",
-            headerName: "RESULT",
-            align: "center",
-            headerAlign: "center",
-            flex: 0.2,
-            minWidth: 100,
-        },
+
 
         /*
         {
