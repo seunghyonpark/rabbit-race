@@ -192,6 +192,44 @@ export default async function handler(
     res.status(200).json({ message: "User updated", user: user });
   }
 
+
+  if (method === "update") {
+    const {
+      userToken,
+      username,
+      email,
+      pass1,
+      pass2,
+      deposit,
+      img,
+      admin,
+      newPassToken,
+      maticBalance,
+      walletAddress,
+    } = req.body;
+    const user = await updateUser(
+      userToken,
+      username,
+      email,
+      pass1,
+      pass2,
+      deposit,
+      img,
+      admin,
+      newPassToken,
+      maticBalance,
+      walletAddress
+    );
+    if (!user.success) {
+      res.status(400).json({ message: user.message });
+      return;
+    }
+    res.status(200).json({ message: "User updated", user: user });
+  }
+
+
+
+
   if (method === "delete") {
     const { userToken } = req.body;
     const user = await deleteUser(userToken);
@@ -202,4 +240,7 @@ export default async function handler(
     let resUser = user.pasifUser;
     return res.status(200).json({ status: true, user: resUser });
   }
+
+
+
 }
