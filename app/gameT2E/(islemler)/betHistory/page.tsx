@@ -281,13 +281,38 @@ export default function BetHistoryList() {
                         Recent Bettings
                     </h4>
 
-                    <h4 className=" text-green-500 text-xl font-extrabold">
-                        WIN
-                    </h4>
 
-                    <h4 className=" text-green-500 text-4xl font-extrabold ">
-                    {rows[0]?.prizeAmount - rows[0]?.betAmount} <span className="text-white text-xl font-bold">CRA</span>
-                    </h4>
+
+
+                    {
+                        (rows[0]?.prizeAmount - rows[0]?.betAmount) > 0 &&
+
+                        <div className="w-full flex flex-col items-center justify-center">
+                            <div className=" text-white text-xl font-extrabold">
+                                WIN
+                            </div>
+                            <div className=" text-white text-6xl font-extrabold ">
+                                + {rows[0]?.prizeAmount - rows[0]?.betAmount}
+                            </div>
+                        </div>
+                    }
+
+
+                    {
+                        (rows[0]?.prizeAmount - rows[0]?.betAmount) < 0 &&
+
+                        <div className="w-full flex flex-col items-center justify-center">
+                            <div className=" text-white text-xl font-extrabold">
+                                LOSE
+                            </div>
+                            <div className=" text-white text-6xl font-extrabold ">
+                                {rows[0]?.prizeAmount - rows[0]?.betAmount}
+                            </div>
+                        </div>
+                    }
+
+
+
                     <h4 className=" text-white text-sm font-bold">
                         Betting Time: {rows[0]?.date }
                     </h4>

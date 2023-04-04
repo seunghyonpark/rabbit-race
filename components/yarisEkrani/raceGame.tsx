@@ -630,7 +630,7 @@ export default function Race({socket, username, currentPrice, betPrice}: {socket
 
 
 <div
-    className="w-full h-36 "
+    className="w-full  "
     style={{
         //backgroundImage: `${selectSide === "Long" ? `url('/cracle-banner.png')` : `url('/grass.jpeg')`}`,
         backgroundImage: `${selectedSide === "Long" ? `url('/track.png')` : `url('/grass.jpeg')`}`,
@@ -722,7 +722,6 @@ export default function Race({socket, username, currentPrice, betPrice}: {socket
                             width: `${progress2}%`,
                         }}
                     >
-
                         <Image
                             src={
                                 imageRabbit2
