@@ -146,6 +146,15 @@ export default function BetInputs({ socket, horse1, horse2, currentPrice, setBas
 
 
 
+            if (betAmount > 50000) {
+                alert("You can't bet more than 50000");
+                return;
+            }
+
+            if (betAmount < 100) {
+                alert("You can't bet less than 100");
+                return;
+            }
 
     
 
@@ -468,17 +477,28 @@ export default function BetInputs({ socket, horse1, horse2, currentPrice, setBas
 
                     {user && <button
                         onClick={() => {
-                            setBetAmount(user?.deposit - 0.00001)
+                            ////setBetAmount(user?.deposit - 0.00001)
+                            setBetAmount(50000)
                         }}
                         className=' w-7 btn-circle absolute left-10 z-10 bg-[url(/cion.webp)] bg-contain bg-center bg-no-repeat text-black text-xs'> Max
                         </button>}
                     
                     <input onChange={(e: any) => {
-                        setBetAmount(e.target.value)
+
+                        if (e.target.value > 50000) {
+                          setBetAmount(50000);
+                        } else {
+                          setBetAmount(e.target.value);
+                        }
+
                     }}
-                        value={betAmount === 0 ? '' : betAmount}
+                        value={
+                          ///betAmount < 100 ? 100 : (betAmount > 50000 ? 50000 : betAmount)
+
+                          betAmount === 0 ? '' : betAmount
+                        }
                         type="number"
-                        placeholder='1~10,000 CRA'
+                        placeholder='100~50000 CRA'
                         className='input w-full pl-20 font-bold text-l' />
                     <button onClick={() => { setBetAmount(0) }} className='absolute right-5 z-10 btn btn-xs btn-outline border-gray-700'>Clear</button>
                 </div>
