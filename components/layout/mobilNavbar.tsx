@@ -783,7 +783,7 @@ export default function MobilNavbar({user} : {user: any}) {
                     */}
 
 
-                            {`${Number(user.deposit).toFixed(0)}`}&nbsp;&nbsp;<span className="text-[#9293A6]">{" "}{Coin.symbol}</span>
+                            {`${Number(user?.deposit).toFixed(0)}`}&nbsp;&nbsp;<span className="text-[#9293A6]">{" "}{Coin.symbol}</span>
                         </div>
                     }
 
@@ -918,7 +918,7 @@ export default function MobilNavbar({user} : {user: any}) {
                       <div className='text-xs'>Equity Value (CRA)</div>
 
                       <div className='text-xl font-extrabold'>
-                        {`${user?.deposit.toString()}`}
+                        {`${Number(user?.deposit).toFixed(0)}`}
                       </div>
 
                       {user &&
