@@ -10,6 +10,9 @@ import Image from "next/image";
 import Link from 'next/link';
 import { AiOutlineUser } from "react-icons/ai";
 
+import axios from 'axios';
+import Punklist from "../../../../components/Punklist/Punklist";
+
 
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
@@ -49,6 +52,11 @@ export default function Mynft() {
 
     const [user, setUser] = useState<IUser>();
     const [nftWallet, setNftWallet] = useState<any>(null);;
+
+
+    // Data from OpenSea
+    const [punkListData, setPunkListData] = useState([]);
+    const [selectedPunk, setSelectedPunk] = useState(0);
 
 
     const columns: GridColDef[] = [
@@ -556,8 +564,6 @@ export default function Mynft() {
 
   useEffect(() => {
 
-
-
     const setNftWalletAddress = async () => {
 
       console.log("=====================")
@@ -594,6 +600,52 @@ export default function Mynft() {
 
     }
   }, [wallet, nftWallet]);
+
+
+
+
+  useEffect(() => {
+
+
+    /*
+    https://api.bscscan.com/api
+   ?module=account
+   &action=addresstokennftinventory
+   &address=0x99817ce62abf5b17f58e71071e590cf958e5a1bf
+   &contractaddress=0x5e74094cd416f55179dbd0e45b1a8ed030e396a1
+   &page=1
+   &offset=100
+   &apikey=PYSG4QII57SQD87QESCZXJZ1NC84PBDUVZ 
+   */
+    
+    const getNFTs = async () => {
+      const options = {
+        method: "GET",
+        url: "https://testnets-api.opensea.io/api/v1/assets",
+        params: {
+          order_direction: "asc",
+          offset: "0",
+          limit: "20",
+          asset_contract_address: "0xEb9278Ff741c67880cbD61852A31f4f5BE7B5F46",
+        },
+      };
+
+      axios
+        .request(options)
+        .then(function (response) {
+          
+          console.log("response", response.data.assets);
+
+          setPunkListData(response.data.assets);
+        })
+        .catch(function (error) {
+          console.error("err: ", error);
+        });
+    };
+
+    getNFTs();
+  }, []);
+
 
 
 
@@ -739,9 +791,28 @@ export default function Mynft() {
 
                 
 
+                {punkListData.length > 0 && (
+                  <>
+                  {/*
+                    <Main selectedPunk={selectedPunk} punkListData={punkListData} />
+                  */}
+
+                    <Punklist
+                      punkListData={punkListData}
+                      setSelectedPunk={setSelectedPunk}
+                    />
+                  </>
+                )}
+
+
+                hello....
+
             </div>
 
         
+
+
+
 
 
 

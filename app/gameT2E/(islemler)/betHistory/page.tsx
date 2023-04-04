@@ -36,7 +36,7 @@ export default function BetHistoryList() {
             headerName: "DATE",
             align: "center",
             headerAlign: "center",
-            width: 150,
+            width: 120,
             type: "dateTime",
             minWidth: 100,
             valueFormatter: (params) => {
@@ -55,7 +55,7 @@ export default function BetHistoryList() {
             type: "number",
             headerName: "RESULT",
             flex: 0.1,
-            minWidth: 120,
+            minWidth: 100,
             align: "right",
             headerAlign: "center",
 
@@ -126,7 +126,30 @@ export default function BetHistoryList() {
                 return new Number(params.value).toFixed(2);
             },
         },
+        {
+            field: "winnerHorse",
+            headerName: "END",
+            align: "center",
+            headerAlign: "center",
+            flex: 0.2,
+            minWidth: 100,
 
+            renderCell: (params) => {
+                if (params.value === "Long") {
+                    return (
+                        <div className='font-bold text-green-500'>
+                            LONG
+                        </div>
+                    );
+                } else {
+                    return (
+                        <div className='font-bold text-red-500'>
+                        SHORT
+                    </div>
+                    );
+                }
+            },
+        },
 
         /*
         {
