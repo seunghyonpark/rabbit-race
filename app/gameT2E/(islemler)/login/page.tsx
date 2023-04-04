@@ -49,6 +49,7 @@ export default function LoginPage() {
                 }
             });
     };
+    
     const handleClickSucc = () => {
         setSucc(true);
     };
@@ -128,6 +129,7 @@ export default function LoginPage() {
                         Sign Up Now
                     </Link>
                 </div>
+
                 <Stack spacing={2} sx={{ width: "100%" }}>
                     <Snackbar
                         open={succ}
@@ -152,6 +154,7 @@ export default function LoginPage() {
                         </Alert>
                     </Snackbar>
                 </Stack>
+
             </div>
         </>
     );

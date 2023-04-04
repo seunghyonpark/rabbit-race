@@ -23,7 +23,20 @@ import Modal from '../../components/Modal';
 
 import MyPage from '../MyPage';
 
+//@ts-ignore
+import { io } from "socket.io-client";
+import SocketEnum from '@/libs/enums/socket';
 
+import Stack from "@mui/material/Stack";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert, { AlertProps } from "@mui/material/Alert";
+
+const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
+  props,
+  ref
+) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 
 /*
@@ -659,13 +672,116 @@ export default function MobilNavbar({user} : {user: any}) {
 
     const [showModal, setShowModal] = useState(false);
 
+
+
+
+    useEffect(() => socketInitializer(), []);
+
+    const socketInitializer = () => {
+
+      const socket = io(`${SocketEnum.id}`, {
+          transports: ["websocket"],
+      });
+
+      socket.on("connect", () => {
+          console.log("mobileNavbar connect");
+      });
+
+      socket.on('status', (data: any) => {
+          console.log("mobileNavbar status", data);
+          //setStatus(true);
+      });
+
+      socket.on('time', (data: any) => {
+          console.log("mobileNavbar time", data);
+          //setTime(data)
+      });
+
+      socket.on('horse1Orana', (data: any) => {
+          console.log("mobileNavbar horse1Orana", data);
+          //setHorse1Oran(data)
+      });
+
+      socket.on('horse2Orana', (data: any) => {
+          console.log("mobileNavbar horse2Orana", data);
+          //setHorse2Oran(data)
+      });
+   
+      
+      socket.on('price', (data: any) => {
+          //console.log(socket.id + " mobileNavbar price", data.price);
+          
+          //setCurrentPrice(data.price);
+
+      });
+
+      socket.on('prize', (data: any) => {
+        console.log(socket.id + " mobileNavbar prize", data);
+        
+        setErrMsg(data);
+        setErr(true);
+
+        setSuccessMsg(data.username + ": " + data.amount + "CRA");
+        setSucc(true);
+
+        //setCurrentPrice(data.price);
+
+
+      });
+
+      socket.on('winner', (data: any) => {
+        console.log(socket.id + " mobileNavbar winner", data);
+        
+        //setCurrentPrice(data.price);
+      });
+
+    }
+
+    const [succ, setSucc] = useState(false);
+    const [err, setErr] = useState(false);
+    const [successMsg, setSuccessMsg] = useState<String>("");
+    const [errMsg, setErrMsg] = useState<String>("");
+
+    const handleClickSucc = () => {
+
+      setSuccessMsg("ok");
+      setSucc(true);
+    };
+
+    const handleCloseSucc = (
+        event?: React.SyntheticEvent | Event,
+        reason?: string
+    ) => {
+        if (reason === "clickaway") {
+            return;
+        }
+
+        setSucc(false);
+    };
+
+    const handleClickErr = () => {
+
+        setErrMsg("ok");
+        setErr(true);
+    };
+
+    const handleCloseErr = (
+        event?: React.SyntheticEvent | Event,
+        reason?: string
+    ) => {
+        if (reason === "clickaway") {
+            return;
+        }
+
+        setErr(false);
+    };
+
     return (
         <>
+
             <div className="lg:hidden w-full flex items-center gap-2 px-2 h-20 bg-[#24252F]">
 
-           
-
-
+          
                 <Link href={"/"}>
                     <Image src={"/logo.png"} width={100} height={100} alt="logo" />
                 </Link>
@@ -811,6 +927,8 @@ export default function MobilNavbar({user} : {user: any}) {
                             
                             className={`flex items-center shadow-xl  justify-center rounded-md p-1 gap-2  h-[36px] px-2 text-[#D4D1CB] text-[12px]`}
                             onClick={() => setShowModal(!showModal)}
+                            
+
                         >
                           {user?.username}
 
@@ -835,10 +953,9 @@ export default function MobilNavbar({user} : {user: any}) {
 
               
                 </div>
-                
-
 
             </div>
+
 
 
 
@@ -989,10 +1106,35 @@ export default function MobilNavbar({user} : {user: any}) {
 
             </div>
         
-
-
             </Modal>
-            
+
+
+            <Stack spacing={2} sx={{ width: "100%" }}>
+
+              <Snackbar
+                  open={succ}
+                  autoHideDuration={6000}
+                  onClose={handleCloseSucc}
+              >
+                  <Alert
+                      onClose={handleCloseSucc}
+                      severity="info"
+                      sx={{ width: "100%" }}
+                  >
+                      {successMsg}
+                  </Alert>
+              </Snackbar>
+
+              <Snackbar open={err} autoHideDuration={6000} onClose={handleCloseErr}>
+                  <Alert
+                      onClose={handleCloseErr}
+                      severity="error"
+                      sx={{ width: "100%" }}
+                  >
+                      {errMsg}
+                  </Alert>
+              </Snackbar>
+            </Stack>            
             
         </>
     )
