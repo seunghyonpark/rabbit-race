@@ -722,8 +722,8 @@ export default function MobilNavbar({user} : {user: any}) {
         //setErrMsg(data);
         //setErr(true);
 
-        //setSuccessMsg(data.username + ": " + data.amount + "CRA");
-        //setSucc(true);
+        setSuccessMsg(data.username + ": " + data.amount + "CRA");
+        setSucc(true);
 
         //setCurrentPrice(data.price);
 
