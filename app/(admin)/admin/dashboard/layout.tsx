@@ -14,6 +14,7 @@ export default function RootLayout({
     const [user, setUser] = useState<IUser>()
     const router = useRouter();
     const pathName = usePathname();
+    
     const getUser = async () => {
         const inputs = {
             method: 'getOne',
@@ -33,7 +34,7 @@ export default function RootLayout({
         if (hasCookie("admin") && !user) {
             setInterval(() => {
                 getUser()
-            }, 1000)
+            }, 5000)
         } else if (!hasCookie("admin" || !user)) {
             router.push('/')
         }

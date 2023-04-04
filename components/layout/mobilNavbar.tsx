@@ -783,7 +783,7 @@ export default function MobilNavbar({user} : {user: any}) {
                     */}
 
 
-                            {`${user.deposit.toString()}`}&nbsp;&nbsp;<span className="text-[#9293A6]">{" "}{Coin.symbol}</span>
+                            {`${Number(user.deposit).toFixed(0)}`}&nbsp;&nbsp;<span className="text-[#9293A6]">{" "}{Coin.symbol}</span>
                         </div>
                     }
 
