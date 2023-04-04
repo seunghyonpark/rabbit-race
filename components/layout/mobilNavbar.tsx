@@ -718,11 +718,12 @@ export default function MobilNavbar({user} : {user: any}) {
       socket.on('prize', (data: any) => {
         console.log(socket.id + " mobileNavbar prize", data);
         
-        setErrMsg(data);
-        setErr(true);
 
-        setSuccessMsg(data.username + ": " + data.amount + "CRA");
-        setSucc(true);
+        //setErrMsg(data);
+        //setErr(true);
+
+        //setSuccessMsg(data.username + ": " + data.amount + "CRA");
+        //setSucc(true);
 
         //setCurrentPrice(data.price);
 
