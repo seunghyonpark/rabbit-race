@@ -558,8 +558,8 @@ export default function Mynft() {
 
     if (wallet) {
 
-      console.log("wallet", wallet)
-      console.log("nftWallet", nftWallet)
+      //console.log("wallet", wallet)
+      //console.log("nftWallet", nftWallet)
 
       if (wallet !== nftWallet) {
 
@@ -577,7 +577,7 @@ export default function Mynft() {
           })
           const data = await res.json()
 
-          console.log("data", data);
+          //console.log("data", data);
       
         }
 
