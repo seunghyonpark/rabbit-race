@@ -470,7 +470,8 @@ export default function BetInputs({ socket, horse1, horse2, currentPrice, setBas
                         onClick={() => {
                             setBetAmount(user?.deposit - 0.00001)
                         }}
-                        className=' w-7 btn-circle absolute left-10 z-10 bg-[url(/cion.webp)] bg-contain bg-center bg-no-repeat text-black text-xs'> Max </button>}
+                        className=' w-7 btn-circle absolute left-10 z-10 bg-[url(/cion.webp)] bg-contain bg-center bg-no-repeat text-black text-xs'> Max
+                        </button>}
                     
                     <input onChange={(e: any) => {
                         setBetAmount(e.target.value)
