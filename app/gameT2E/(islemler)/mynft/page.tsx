@@ -16,6 +16,8 @@ import withReactContent from "sweetalert2-react-content";
 
 import { IUser } from "@/libs/interface/user";
 
+import {isMobile} from 'react-device-detect';
+
 
 const Transition = React.forwardRef(function Transition(
     props: TransitionProps & {
@@ -495,7 +497,7 @@ export default function Mynft() {
 
 
 
-  
+  /*
     const updateUserNftWallet = async () => {
       console.log("updateUserNftWallet");
 
@@ -530,7 +532,7 @@ export default function Mynft() {
   
     }
 
-
+    */
 
 
 
@@ -546,6 +548,43 @@ export default function Mynft() {
     }
   }, [Abifile, contractAddress, wallet]);
   */
+
+
+
+
+
+
+  useEffect(() => {
+
+    if (wallet) {
+
+      console.log("wallet", wallet)
+      console.log("nftWallet", nftWallet)
+
+      if (wallet !== nftWallet) {
+
+        async () => {
+          const inputs = {
+              method: 'setNftWalletAddress',
+              API_KEY: process.env.API_KEY,
+              userToken: getCookie('user'),
+              walletAddress: wallet,
+          }
+          const res = await fetch('/api/nft', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(inputs)
+          })
+          const data = await res.json()
+
+          console.log("data", data);
+      
+        }
+
+      }
+
+    }
+  }, [wallet, nftWallet]);
 
 
 
@@ -568,6 +607,7 @@ export default function Mynft() {
     return (
         <>
 
+{/*
       {metamaskview ? (
         <div
           onClick={() => {
@@ -583,6 +623,8 @@ export default function Mynft() {
           />
         </div>
       ) : null}
+*/}
+
 
 
             <div className='flex flex-col p-10 mt-0 text-gray-200'>
@@ -595,6 +637,7 @@ export default function Mynft() {
                     </h4>
 
                 </div>
+
 
 {nftWallet === "0x" &&
 
@@ -625,8 +668,8 @@ export default function Mynft() {
             <Button
               className="w-full text-white text-center justify-center h-500 p-5 items-center bg-[#24252f] hover:bg-[#141111] rounded-md flex flex-col"
               onClick={() => {
-                setNftWallet(wallet);
-                updateUserNftWallet();
+                ///setNftWallet(wallet);
+                ///updateUserNftWallet();
               }}
               >
                 <Image

@@ -202,32 +202,6 @@ export default function Race({socket, username, currentPrice, betPrice}: {socket
 
         console.log("raceGame useEffect socket id", socket.id);
 
-        /*
-        const socketIo = io("http://localhost:8080", {
-            cors: {
-                origin: "http://localhost:8080",
-                credentials: true
-            },
-            transports: ["websocket"],
-            query: {
-                tenant: 'EGU'
-            }
-        });
-        */
-        
-
-        /*
-        const socketIo = io(`${SocketEnum.id}`, {
-            transports: ["websocket"],
-        });
-
-        socketIo.on("connect", () => {
-
-            console.log("raceGame socketInitializer connect socket.id", socketIo.id);
-
-        });
-        */
-
         socket.on('status', (data: any) => {
 
             console.log("raceGame status", data);

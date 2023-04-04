@@ -3,6 +3,7 @@ import {
   makeDepositMatic,
   makeWinDepositCoin,
   swapToMatic,
+  updateNftWalletAddress,
 } from "@/libs/models/user";
 
 import { NextApiRequest, NextApiResponse } from "next";
@@ -16,6 +17,26 @@ export default async function handler(
     res.status(401).json({ message: "Unauthorized" });
     return;
   }
+
+  console.log("api user method", method)
+
+
+  if (method === "setNftWalletAddress") {
+    const { userToken, walletAddress } = req.body;
+    if (!userToken || !walletAddress) {
+      res.status(400).json({ message: "Bad Request" });
+      return;
+    }
+
+    
+
+    const updatedUser = await updateNftWalletAddress(userToken, walletAddress);
+    if (updatedUser.success) {
+      return res.status(200).json({ message: "Success", updatedUser });
+    }
+    return res.status(400).json({ message: "Action Failed" });
+  }
+
 
   if (method === "makeMaticDeposit") {
     const { userToken, amount } = req.body;
@@ -71,4 +92,5 @@ export default async function handler(
 
   if (method === "") {
   }
+
 }

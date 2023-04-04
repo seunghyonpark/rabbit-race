@@ -251,13 +251,13 @@ export const makeWithdrawMatic = async (userToken: string, amount: number) => {
 };
 
 
-export const updateNftWallet = async (userToken: string, nftWallet: string) => {
+export const updateNftWalletAddress = async (userToken: string, nftWalletAddress: string) => {
   const user = await User.findOne({ userToken: userToken });
   if (!user) {
     return { success: false, message: "User not found" };
   }
 
-  user.nftWallet = nftWallet;
+  user.nftWalletAddress = nftWalletAddress;
   await user.save();
   return { success: true, user };
 };
