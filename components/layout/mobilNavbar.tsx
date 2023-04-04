@@ -393,7 +393,6 @@ export default function MobilNavbar({user} : {user: any}) {
 
       setWallet(user?.nftWalletAddress);
 
-    
     }, [user]);
 
     /*

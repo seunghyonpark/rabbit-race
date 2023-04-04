@@ -346,7 +346,7 @@ export default function BetHistoryList() {
                                 WIN
                             </div>
                             <div className=" text-white text-6xl font-extrabold ">
-                                + {rows[0]?.prizeAmount - rows[0]?.betAmount}
+                                + {Number(rows[0]?.prizeAmount - rows[0]?.betAmount).toFixed(0)}
                             </div>
                         </div>
                     }
@@ -360,7 +360,7 @@ export default function BetHistoryList() {
                                 LOSE
                             </div>
                             <div className=" text-white text-6xl font-extrabold ">
-                                {rows[0]?.prizeAmount - rows[0]?.betAmount}
+                                - {Number(rows[0]?.betAmount).toFixed(0)}
                             </div>
                         </div>
                     }

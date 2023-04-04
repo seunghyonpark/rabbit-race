@@ -9,6 +9,13 @@ import { IUser } from '@/libs/interface/user';
 import MobilNavbar from './mobilNavbar';
 import { useRouter } from 'next/navigation';
 
+
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+import Modal from '../../components/Modal';
+
+
 export default function Navbar() {
 
     const router = useRouter();
@@ -32,6 +39,15 @@ export default function Navbar() {
         setUser(user.user.user)
     }
 
+
+
+    const [wallet, setWallet] = useState<any>(null);
+
+
+    const [game, setGame] = useState<any>();
+
+    const [showModal, setShowModal] = useState(false);
+
     useEffect(() => {
         if (hasCookie("user") && !user) {
             setInterval(() => {
@@ -39,6 +55,37 @@ export default function Navbar() {
             }, 5 * 1000)
         }
     })
+
+
+    useEffect(() => {
+
+
+        const getGame = async () => {
+          const res = await fetch('/api/game', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              cache: 'no-store',
+              body: JSON.stringify({
+                  method: "getGameByUsername",
+                  API_KEY: process.env.API_KEY,
+                  username: user?.username,
+              })
+          })
+          const data = await res.json()
+    
+         
+          setGame(data.game)
+        }
+  
+  
+        if (hasCookie("user") && user) {
+                getGame();
+        }
+  
+        setWallet(user?.nftWalletAddress);
+  
+      }, [user]);
+
 
     return (
         <>
@@ -125,10 +172,10 @@ export default function Navbar() {
                             user && <div
                                 className={`flex items-center justify-center  bg-black rounded-md h-[36px] text-center px-5 text-[#BA8E09] border border-[#BA8E09] `}
                             >
-                                {user?.deposit}
+                                {Number(user?.deposit).toFixed(0)}
                                 
                                 
-                                <span className="text-[#9293A6]">{" "}{Coin.symbol}</span>
+                                &nbsp;<span className="text-[#9293A6]">{" "}{Coin.symbol}</span>
                                 
 
                             </div>
@@ -153,49 +200,183 @@ export default function Navbar() {
                                 </Link>
                                 
                         */}
-                            {
-                                user && <div
-                                    // href={"/hipodrom/profile"}
-                                    className={`flex items-center shadow-sm  justify-center rounded-md p-1 gap-2  h-[36px] px-2 text-[#D4D1CB] text-[13px]`}
-                                >
-                                    <div className="flex gap-1">
-
-                                    {/*
-                                        {user && <Image
-                                            src={user.img}
-                                            width={20}
-                                            height={20}
-                                            alt="pp"
-                                            className="rounded-full"
-                                        />}
-                                        */}
-
-                                        {user?.username}
-                                    </div>
-                                </div>
-                                        }
 
 
                             {
                                 user && <button
-                                    className={`text-[13px] text-red-500`}
-                                    onClick={() => {
-                                        deleteCookie('user')
-                                        getUser()
-                                        router.push('/gameT2E')
-                                    }}
+                                    //href={"/gameT2E/profile"}
+                                    
+                                    
+                                    className={`flex items-center shadow-xl  justify-center rounded-md p-1 gap-2  h-[36px] px-2 text-[#D4D1CB] text-l`}
+                                    onClick={() => setShowModal(!showModal)}
                                 >
-                                    Log Out
+                                {user?.username}
+
                                 </button>
-                            }
+                            } 
+
                         </div>
                     </div>
                 </div>
             </div>
 
+
+            <Modal
+              
+              show={showModal}
+              onClose={() => setShowModal(false)}
+                
+            >
+
+            <div className="w-full flex flex-row items-center justify-left gap-1 bg-red-900 ">
+
+              {wallet !== "0x" && 
+
+                  <button
+                    className="w-full text-white text-center justify-left pl-3 p-2 items-left bg-red-900 hover:bg-[#141111] flex flex-row"
+                    onClick={() => {
+                      setShowModal(false), router.push('/gameT2E/mynft')
+                  }}
+                  >
+                      <Image
+                        src={"/metamask-fox.svg"}
+                        alt="meta-svg"
+                        width={20}
+                        height={20}
+                      />
+                    <h2 className="pl-3 text-left text-xs">
+                          <span className="text-[#f5841f]">Connected with</span>
+                          <p className="text-sm text-white">{wallet?.slice(0, 5)}...{wallet?.slice(wallet.length - 5, wallet?.length)}</p>
+                    </h2>
+
+                  </button>
+              }
+              {wallet === "0x" && 
+          
+                    <button
+                      className="w-full text-white text-center justify-center p-5 items-center bg-red-900 hover:bg-[#141111] flex flex-row"
+                      onClick={() => {
+                        setShowModal(false), router.push('/gameT2E/mynft')
+                      }}
+                      >
+                        <Image
+                            src={"/metamask-fox.svg"}
+                            alt="meta-svg"
+                            width={20}
+                            height={20}
+                        />
+                        <h2 className="text-sm pl-3">
+                            <span className="text-[#f5841f]">METAMASK</span> CONNECT
+                        </h2>
+                    </button>
+           
+              }
+
+            </div>
+
+
+            <div className='flex flex-col pl-5 pr-3 mt-3 text-gray-200 '>
+
+
+              <div className="w-full rounded-lg flex flex-col items-center justify-center pt-2 gap-1">                                    
+                  
+                  <div className="w-full rounded-lg flex flex-row items-center justify-left  gap-1 ">
+
+                    {user && <Image
+                        src={user?.img}
+                        width={90}
+                        height={90}
+                        alt="pfp"
+                        className="rounded-md"
+                    />}
+
+                    <div className="w-full rounded-lg flex flex-col items-center justify-left p-2 gap-1 ">
+                      <div className='text-xs'>Equity Value (CRA)</div>
+
+                      <div className='text-xl font-extrabold'>
+                        {`${Number(user?.deposit).toFixed(0)}`}
+                      </div>
+
+                      {user &&
+                      <button
+                          className={`text-[12px] text-red-500`}
+                          onClick={() => {
+                            setShowModal(false);
+                            deleteCookie('user');
+                            //////getUser();
+                            router.push('/gameT2E');
+                          }}
+                      >
+                          Log Out
+                      </button>
+                      }
+                    </div>
+                                                        
+                  </div>
+
+
+                  <button
+                    className={` w-full pt-3 items-left text-xl text-white`}
+                    onClick={() => {
+                        setShowModal(false), router.push('/gameT2E/depositRequests')
+                    }}
+                    >
+                      Deposit
+                  </button>
+
+                  <button
+                    className={`w-full pt-1 items-left text-xl text-white `}
+                    onClick={() => {
+                        setShowModal(false), router.push('/gameT2E/withdrawRequests')
+                    }}
+                    >
+                      Withdrawal
+                  </button>
+
+                  <button
+                    className={`w-full pt-1 items-left text-xl text-white `}
+                    onClick={() => {
+                        setShowModal(false), router.push('/gameT2E/betHistory')
+                    }}
+                    >
+                      Bet History
+                  </button>
+
+                  <button
+                    className={` disabled pt-1 w-full items-left text-xl text-white `}
+                    onClick={() => {
+                        setShowModal(false), router.push('/gameT2E')
+                    }}
+                    >
+                      Game Ranking
+                  </button>
+
+{/*
+                  <button
+                    className={` btn btn-success w-full`}
+                    onClick={() => {
+                      
+                        ///setShowModal(false), deleteCookie('user'), router.push('/gameT2E')
+                    }}
+                    >
+                        How to Bet in T2E Game?
+                  </button>
+                  */}
+
+              </div>
+
+
+            </div>
+        
+
+
+            </Modal>
+
+
             {/* //? Mobil Navbar */}
-            <MobilNavbar user={user} />
             
+            <MobilNavbar user={user} />
+                        
 
 
         </>

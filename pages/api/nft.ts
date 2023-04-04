@@ -148,8 +148,9 @@ export default async function handler(
     const list = nfts?.map((asset:any) => {
       
 
-      ///console.log("asset.token_uri", asset.token_uri)
+      console.log("asset.token_uri", asset.token_uri)
 
+      /*
       async () => {
         const response = await fetch(asset.token_uri);
 
@@ -163,6 +164,8 @@ export default async function handler(
 
         }
       }
+      */
+     
 
     });
 

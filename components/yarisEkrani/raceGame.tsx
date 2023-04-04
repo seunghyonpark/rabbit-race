@@ -426,7 +426,7 @@ export default function Race({socket, username, currentPrice, betPrice}: {socket
 
     setTimeout(() => {
         setFence(fence - 1);
-        setTrack(track + 5);
+        setTrack(track + 3);
     }, 60);
 
 
