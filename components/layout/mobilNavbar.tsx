@@ -315,6 +315,8 @@ export default function MobilNavbar({user} : {user: any}) {
     const [game, setGame] = useState<any>();
 
 
+    const [craUsdt, setCraUsdt] = useState<any>();
+
     /*
     const getUser = async () => {
         if (hasCookie("user")) {
@@ -736,6 +738,17 @@ export default function MobilNavbar({user} : {user: any}) {
         //setCurrentPrice(data.price);
       });
 
+
+      socket.on('cra_usdt', (data: any) => {
+        ///console.log(socket.id + " cra_usdt price", data[0]?.ticker?.latest);
+
+        setCraUsdt(data[0]?.ticker?.latest);
+        
+
+
+      });
+
+
     }
 
     const [succ, setSucc] = useState(false);
@@ -777,14 +790,18 @@ export default function MobilNavbar({user} : {user: any}) {
         setErr(false);
     };
 
+
+
+
     return (
         <>
 
             <div className="lg:hidden w-full flex items-center gap-2 px-2 h-20 bg-[#24252F]">
 
           
-                <Link href={"/"}>
-                    <Image src={"/logo.png"} width={100} height={100} alt="logo" />
+                <Link className='ml-3'
+                  href={"/"}>
+                    <Image src={"/cracle_ci.png"} width={25} height={25} alt="logo" />
                 </Link>
 
 
@@ -879,26 +896,26 @@ export default function MobilNavbar({user} : {user: any}) {
 
                     {
                         user && <div
-                            className={`flex items-center justify-center  bg-black rounded-md h-[32px] text-[13px] text-center px-5 text-[#BA8E09] border border-[#BA8E09] `}
+                            className={`flex items-center justify-center  bg-black rounded-md h-[38px] text-[13px] text-center px-5 text-[#BA8E09] border border-[#BA8E09] `}
                         >
 
-          
-
+{/*
                         <Link
                             href={"/gameT2E/deposit"}
                             className={"pr-3 "}
                         >
                             <Image src={"/wallet-icon-white.png"} width={10} height={40} alt="logo" />
                         </Link>
-
-
-                          {/*
-                            {`${user.deposit.toString().slice(0, 3)}...`}&nbsp;&nbsp;<span className="text-[#9293A6]">{" "}{Coin.symbol}</span>
                     */}
 
+                            {`${Number(user?.deposit).toFixed(0)}`}&nbsp;&nbsp;<span className="text-[8px]  text-red-500">{" "}{Coin.symbol}</span>
 
-                            {`${Number(user?.deposit).toFixed(0)}`}&nbsp;&nbsp;<span className="text-[#9293A6]">{" "}{Coin.symbol}</span>
+                            &nbsp;=&nbsp;{`${Number(user?.deposit * craUsdt).toFixed(2)}`}&nbsp;&nbsp;<span className="text-[8px] text-green-500">{" "}USDT</span>
+                        
+                        
                         </div>
+
+
                     }
 
 
