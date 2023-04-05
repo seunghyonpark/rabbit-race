@@ -119,6 +119,7 @@ export default async function handler(
     }
 
     console.log("Moralis walletAddress====", walletAddress)
+
   
     const address = walletAddress;
   
@@ -130,9 +131,13 @@ export default async function handler(
       chain,
     });
   
-    ////console.log(response.toJSON());
+    console.log(response.toJSON());
 
     const nfts = response.toJSON().result;
+
+
+    console.log("nfts", nfts);
+
 
     ////setNfts(response.toJSON().result);
 
@@ -165,7 +170,7 @@ export default async function handler(
         }
       }
       */
-     
+
 
     });
 

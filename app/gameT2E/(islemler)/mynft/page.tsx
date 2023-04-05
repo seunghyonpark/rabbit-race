@@ -480,6 +480,7 @@ export default function Mynft() {
   }
 
   
+  /********************************************************** 
   useEffect(() => {
     if (isMetaMaskInstalled()) {
       wrongWallet();
@@ -491,6 +492,8 @@ export default function Mynft() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  */
+
   
 
   async function checkAccount() {
