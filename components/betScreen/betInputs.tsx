@@ -562,32 +562,32 @@ export default function BetInputs({ socket, horse1, horse2, currentPrice, setBas
                 <div className='grid grid-cols-5 content-center md:flex w-full gap-6 items-center justify-center text-xs text-white'>
                     <button
                         onClick={() => {
-                            setBetAmount(betAmount + 100)
+                            setBetAmount(parseInt(betAmount) + 100)
                         }}
                         className='btn btn-circle bg-[url(/cion.webp)] bg-contain bg-center bg-no-repeat text-black border'>+100</button>
                     
                     <button
                         onClick={() => {
-                            setBetAmount(betAmount + 500)
+                            setBetAmount(parseInt(betAmount) + 500)
                         }}
                         className='btn btn-circle bg-[url(/cion.webp)] bg-contain bg-center bg-no-repeat text-black border'>+500</button>
                     
                     <button
                         onClick={() => {
-                            setBetAmount(betAmount + 1000)
+                            setBetAmount(parseInt(betAmount) + 1000)
                         }}
                         className='btn btn-circle bg-[url(/cion.webp)] bg-contain bg-center bg-no-repeat text-black border'>+1000</button>
                 
 
                     <button
                         onClick={() => {
-                            setBetAmount(betAmount * 2)
+                            setBetAmount(parseInt(betAmount) * 2)
                         }}
                         className=' btn btn-circle bg-[url(/cion.webp)] bg-contain bg-center bg-no-repeat text-black border'>x2</button>
                     
                     <button
                         onClick={() => {
-                            setBetAmount(betAmount / 2)
+                            setBetAmount(parseInt(betAmount) / 2)
                         }}
                         className='btn btn-circle bg-[url(/cion.webp)] bg-contain bg-center bg-no-repeat text-black border'>/2</button>
                     
