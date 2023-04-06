@@ -6,10 +6,11 @@ import { getCookie, hasCookie } from 'cookies-next';
 import React, { useEffect, useState, useMemo } from 'react';
 import { FaCoins } from 'react-icons/fa';
 
+import { Stack, Snackbar, Alert } from "@mui/material";
+
 //@ts-ignore
 import { io } from "socket.io-client";
 import SocketEnum from '@/libs/enums/socket';
-
 
 
 // code for web3
@@ -51,6 +52,40 @@ export default function BetInputs({ socket, horse1, horse2, currentPrice, setBas
     const [secilenAt, setSecilenAt] = useState<any>(null)
     const [betAmount, setBetAmount] = useState<any>(0)
 
+    const [errMsgSnackbar, setErrMsgSnackbar] = useState<String>("");
+    const [successMsgSnackbar, setSuccessMsgSnackbar] = useState<String>("");
+    const [succ, setSucc] = React.useState(false);
+    const [err, setErr] = React.useState(false);
+
+    const handleClickSucc = () => {
+        setSucc(true);
+    };
+    
+    const handleCloseSucc = (
+        event?: React.SyntheticEvent | Event,
+        reason?: string
+        ) => {
+        if (reason === "clickaway") {
+            return;
+        }
+
+        setSucc(false);
+    };
+
+    const handleClickErr = () => {
+        setErr(true);
+    };
+
+    const handleCloseErr = (
+        event?: React.SyntheticEvent | Event,
+        reason?: string
+        ) => {
+        if (reason === "clickaway") {
+            return;
+        }
+
+        setErr(false);
+    };
 
     const getUser = async () => {
         const inputs = {
@@ -141,18 +176,30 @@ export default function BetInputs({ socket, horse1, horse2, currentPrice, setBas
             if (betAmount < 0) return alert('You cannot bet a negative amount');
             */
 
-            if (secilenAt === null) return alert('You need to select long or short to bet');
+            ////if (secilenAt === null) return alert('You need to select long or short to bet');
+
+            if (secilenAt === null) {
+              setErrMsgSnackbar("You need to select long or short to bet");
+              setErr(true);
+              return;
+            }
 
 
 
 
             if (betAmount > 50000) {
-                alert("You can't bet more than 50000");
+
+                //alert("You can't bet more than 50000");
+                setErrMsgSnackbar("You can't bet more than 50000");
+                setErr(true);
+
                 return;
             }
 
             if (betAmount < 100) {
-                alert("You can't bet less than 100");
+                //alert("You can't bet less than 100");
+                setErrMsgSnackbar("You can't bet less than 100");
+                setErr(true);
                 return;
             }
 
@@ -223,13 +270,21 @@ export default function BetInputs({ socket, horse1, horse2, currentPrice, setBas
 
 
             } else {
-                alert('You have already placed a bet');
+
+                //alert('You have already placed a bet');
+                setErrMsgSnackbar("You have already placed a bet");
+                setErr(true);
+
             }
             
 
 
         } else {
-            alert('You need to login to place a bet');
+
+            ///alert('You need to login to place a bet');
+            setErrMsgSnackbar("You need to login to place a bet");
+            setErr(true);
+
         }
     }
 
@@ -647,6 +702,36 @@ export default function BetInputs({ socket, horse1, horse2, currentPrice, setBas
 */}
 
             </div>
+
+
+
+            <Stack spacing={2} sx={{ width: "100%" }}>
+              <Snackbar
+                open={succ}
+                autoHideDuration={6000}
+                onClose={handleCloseSucc}
+              >
+                <Alert
+                  onClose={handleCloseSucc}
+                  severity="success"
+                  sx={{ width: "100%" }}
+                >
+                  {successMsgSnackbar}
+                </Alert>
+              </Snackbar>
+              <Snackbar open={err} autoHideDuration={6000} onClose={handleCloseErr}>
+                <Alert
+                  onClose={handleCloseErr}
+                  severity="error"
+                  sx={{ width: "100%" }}
+                >
+                  {errMsgSnackbar}
+                </Alert>
+              </Snackbar>
+          </Stack>
+
+
+
         </>
     )
 }

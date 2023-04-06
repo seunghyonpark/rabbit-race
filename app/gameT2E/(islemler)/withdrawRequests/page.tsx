@@ -38,10 +38,12 @@ export default function WithdrawRequestList() {
     const [wallet, setWallet] = useState<any>(null);
     
     const [waiting, setWaiting] = useState<boolean>(false);
-    const [succ, setSucc] = React.useState(false);
+
+
 
     const [errMsgSnackbar, setErrMsgSnackbar] = useState<String>("");
     const [successMsgSnackbar, setSuccessMsgSnackbar] = useState<String>("");
+    const [succ, setSucc] = React.useState(false);
     const [err, setErr] = React.useState(false);
 
 
@@ -346,33 +348,33 @@ export default function WithdrawRequestList() {
 
     const handleClickSucc = () => {
         setSucc(true);
-      };
+    };
     
-      const handleCloseSucc = (
+    const handleCloseSucc = (
         event?: React.SyntheticEvent | Event,
         reason?: string
-      ) => {
+        ) => {
         if (reason === "clickaway") {
-          return;
+            return;
         }
-    
+
         setSucc(false);
-      };
-    
-      const handleClickErr = () => {
+    };
+
+    const handleClickErr = () => {
         setErr(true);
-      };
-    
-      const handleCloseErr = (
+    };
+
+    const handleCloseErr = (
         event?: React.SyntheticEvent | Event,
         reason?: string
-      ) => {
+        ) => {
         if (reason === "clickaway") {
-          return;
+            return;
         }
-    
+
         setErr(false);
-      };
+    };
 
 
     return (
@@ -485,7 +487,7 @@ export default function WithdrawRequestList() {
 
 
 
-<Stack spacing={2} sx={{ width: "100%" }}>
+    <Stack spacing={2} sx={{ width: "100%" }}>
         <Snackbar
           open={succ}
           autoHideDuration={6000}
@@ -508,7 +510,7 @@ export default function WithdrawRequestList() {
             {errMsgSnackbar}
           </Alert>
         </Snackbar>
-      </Stack>
+    </Stack>
 
         </>
     )
