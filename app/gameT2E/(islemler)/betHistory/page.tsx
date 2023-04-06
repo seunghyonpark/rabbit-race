@@ -127,6 +127,18 @@ export default function BetHistoryList() {
             },
         },
         {
+            field: "closePrice",
+            type: "number",
+            headerName: "LAST",
+            flex: 0.1,
+            minWidth: 80,
+            align: "center",
+            headerAlign: "center",
+            valueFormatter: (params) => {
+                return new Number(params.value).toFixed(2);
+            },
+        },
+        {
             field: "winnerHorse",
             headerName: "END",
             align: "center",
@@ -408,7 +420,7 @@ export default function BetHistoryList() {
                 </div>
 
 
-                <h1 className='text-sm mt-5'>YOUR BET HISTROY</h1>
+                <h1 className='text-sm mt-5'>YOUR BET HISORY</h1>
                 <div className="mt-5" style={{ width: "100%", height: 600, color: "white" }}>
                     <DataGrid
                         rows={rows}

@@ -426,7 +426,7 @@ export default function Race({socket, username, currentPrice, betPrice}: {socket
 
     setTimeout(() => {
         setFence(fence - 1);
-        setTrack(track + 3);
+        setTrack(track - 1);
     }, 60);
 
 
@@ -618,30 +618,19 @@ export default function Race({socket, username, currentPrice, betPrice}: {socket
 
 <div className="w-full ">
 
-                    <div className="w-full h-20 mt-0 "
-                    
-                        style={{
-                            backgroundImage: `url('/fence4.png')`,
-                            backgroundSize: "120px",
-                            backgroundRepeat: "repeat-x",
-                            backgroundPosition: `${finishLine ? "0px" : `${fence}%`} 0px`,
-                        }}
-                    >
+    <div className="w-full h-20 mt-0 "
+    
+        style={{
+            backgroundImage: `url('/fence4.png')`,
+            backgroundSize: "120px",
+            backgroundRepeat: "repeat-x",
+            backgroundPosition: `${finishLine ? "0px" : `${fence}%`} 0px`,
+        }}
+    >
+    </div>
 
-                    </div>
 
 
-<div
-    className="w-full  "
-    style={{
-        //backgroundImage: `${selectSide === "Long" ? `url('/cracle-banner.png')` : `url('/grass.jpeg')`}`,
-        backgroundImage: `${selectedSide === "Long" ? `url('/track.png')` : `url('/grass.jpeg')`}`,
-        backgroundSize: "620px",
-        backgroundRepeat: "repeat-x",
-        backgroundPosition: `${finishLine ? "0px" : `${track}%`} 0px`,
-        opacity: 50,
-    }}
->
 
                     <div
                         className="flex min-w-[150px] items-end justify-end -mt-10"
@@ -701,21 +690,24 @@ export default function Race({socket, username, currentPrice, betPrice}: {socket
                         */}
                     </div>
 
+
+<div
+    className="w-full h-10 "
+    style={{
+        //backgroundImage: `${selectSide === "Long" ? `url('/cracle-banner.png')` : `url('/grass.jpeg')`}`,
+        backgroundImage: `${selectedSide === "Long" ? `url('/track.png')` : `url('/grass.jpeg')`}`,
+        backgroundSize: "120px",
+        backgroundRepeat: "repeat-x",
+        backgroundPosition: `${finishLine ? "0px" : `${track}%`} 0px`,
+    }}
+>
 </div>
 
 
-<div
-    className="w-full "
-    style={{
-        //backgroundImage: `${selectSide === "Short" ? `url('/cracle-banner.png')` : `url('/grass.jpeg')`}`,
-        backgroundImage: `${selectedSide === "Short" ? `url('/track.png')` : `url('/grass.jpeg')`}`,
-        backgroundSize: "620px",
-        backgroundRepeat: "repeat-x",
-        backgroundPosition: `${finishLine ? "0px" : `${track}%`} 0px`,
-        opacity: 50,
-    }}
 
->
+
+
+
 
                     <div
                     
@@ -788,7 +780,18 @@ export default function Race({socket, username, currentPrice, betPrice}: {socket
 
 */}
 
+<div
+    className="w-full h-10 "
+    style={{
+        //backgroundImage: `${selectSide === "Short" ? `url('/cracle-banner.png')` : `url('/grass.jpeg')`}`,
+        backgroundImage: `${selectedSide === "Short" ? `url('/track.png')` : `url('/grass.jpeg')`}`,
+        backgroundSize: "120px",
+        backgroundRepeat: "repeat-x",
+        backgroundPosition: `${finishLine ? "0px" : `${track}%`} 0px`,
 
+    }}
+
+>
 </div>
 
 
