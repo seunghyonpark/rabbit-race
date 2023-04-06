@@ -588,9 +588,9 @@ export default function Race({socket, username, currentPrice, betPrice}: {socket
                     </div>
                             */}
 
-<div className="w-full ">
 
-<div className="w-full h-6 mt-0"
+
+<div className="w-full h-8 mt-0"
     style={{
         //backgroundImage: `url('/cracle-banner.png')`,
         backgroundImage: `url('/cracle-banner.png')`,
@@ -600,7 +600,7 @@ export default function Race({socket, username, currentPrice, betPrice}: {socket
     }}
 ></div>
                     
-</div>    
+ 
 
 
                     <div className="w-full h-5 mt-0 mb-5">
