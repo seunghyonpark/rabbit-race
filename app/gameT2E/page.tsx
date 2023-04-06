@@ -724,8 +724,8 @@ useEffect(() => {
                         <Son20Oyun />
                 
 
-                        <div className="bg-center bg-no-repeat bg-contain bg-[url(/back.svg)] h-full">
-                            <div className="flex flex-col items-center justify-center md:gap-14 md:py-10 bg-gradient-radial from-transparent via-[#0C0E1A] to-transparent bg-blend-difference h-full md:px-32 mt-5">
+                        <div className="bg-center bg-no-repeat bg-contain bg-[url(/back.svg)] h-full w-full ">
+                            <div className=" flex flex-col items-center justify-center md:gap-14 md:py-10 bg-gradient-radial from-transparent via-[#0C0E1A] to-transparent bg-blend-difference h-full md:px-32 mt-5">
                                 {/*
                                 <YuruyenAt time={time} horseSrc={'/at.json'} />
                                 */}
@@ -736,14 +736,21 @@ useEffect(() => {
 
 
 
-<div >
+<div className='w-full'>
 
 <HighchartsReact
-  highcharts={Highcharts}
-  constructorType={"stockChart"}
-  options={chartOptions}
+  highcharts = { Highcharts }
+  constructorType = { "stockChart" } // { "mapChart" }
+  options = { chartOptions }
   ///options={options}
-  containerProps={{ style: { height: "250px", width: "300px" } }}
+  //containerProps={{ style: { height: "250px", width: "350px" } }}
+  //containerProps={{ style: { height: "250px", width: "100%", padding: "1px" } }}
+
+  containerProps = {{ className: 'h-[250px] w-full m-0 p-[1px] bg-gray-600 rounded-md ' }}
+  //  containerProps = {{ className: 'chartContainer' }}
+  immutable = { false }
+  allowChartUpdate = { true }
+  ///updateArgs = { [true, true, true] }
 />
 </div>
 
@@ -751,7 +758,7 @@ useEffect(() => {
 
 
                                 <div
-                                    className={`flex items-center justify-center text-l  bg-black rounded-md h-[36px] text-center px-5 text-[#BA8E09] border border-[#BA8E09] mt-1`}
+                                    className={`flex items-center justify-center text-l  bg-black rounded-md h-[36px] text-center px-5 text-[#BA8E09] border border-[#BA8E09] mt-3`}
                                 >
                                    <span className="text-[#ffffff] text-sm">PRICE (ETH):</span>&nbsp;&nbsp;&nbsp;
                                    <span className="text-sm">{Number(currentPrice).toFixed(2)}&nbsp;&nbsp;&nbsp;</span>
