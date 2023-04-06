@@ -658,7 +658,7 @@ export default function Race({socket, username, currentPrice, betPrice}: {socket
                             alt={"at"}
                         />
                         <div
-                        className="font-bold text-sm text-white"
+                        className="font-bold text-sm text-white mb-6"
                         style={{
                             opacity: `${selectedSide === "Long" ? 100 : 0}`
                         }}
@@ -733,7 +733,7 @@ export default function Race({socket, username, currentPrice, betPrice}: {socket
                             alt={"at"}
                         />
                         <div
-                        className="font-bold text-sm text-white"
+                        className="font-bold text-sm text-white mb-6"
                         style={{
                             opacity: `${selectedSide === "Short" ? 100 : 0}`
                         }}
