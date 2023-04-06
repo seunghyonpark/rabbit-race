@@ -420,7 +420,7 @@ export default function BetHistoryList() {
                 </div>
 
 
-                <h1 className='text-sm mt-5'>YOUR BET HISORY</h1>
+                <h1 className='text-sm mt-5'>YOUR BET HISTORY</h1>
                 <div className="mt-5" style={{ width: "100%", height: 600, color: "white" }}>
                     <DataGrid
                         rows={rows}
