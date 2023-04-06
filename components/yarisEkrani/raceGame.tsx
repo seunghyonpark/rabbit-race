@@ -711,7 +711,7 @@ export default function Race({socket, username, currentPrice, betPrice}: {socket
 
                     <div
                     
-                        className="flex min-w-[150px] items-end justify-end mt-10"
+                        className="flex min-w-[150px] items-end justify-end mt-0"
                         style={{
                             width: `${progress2}%`,
                         }}
