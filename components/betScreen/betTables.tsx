@@ -83,7 +83,8 @@ export default function BetTables() {
     return (
         <>
             <div className='flex flex-col w-full lg:w-2/3 items-center'>
-                <div className='grid grid-cols-1 lg:grid-cols-5 w-full gap-3 rounded-lg  text-gray-200'>
+                <div className='grid grid-cols-1 lg:grid-cols-2 w-full gap-3 rounded-lg  text-gray-200'>
+
                     <div className='w-full flex flex-col items-center border p-2 bg-[#16171c] rounded-lg border-black max-h-[350px] overflow-y-hidden'>
                         <h2 className='border-b w-full text-center text-lg  border-black mb-2 '>{Horses.Horse1}</h2>
                         <ul className='flex flex-col list-disc'>

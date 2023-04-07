@@ -405,9 +405,6 @@ export default function WithdrawRequestList() {
                         className="input input-bordered w-full max-w-xs text-gray-800"
                         />
 
-                        <div className='absolute right-5 z-10 btn btn-xs '>
-                        <CC content={wallet} />
-                        </div>
                     </div>
 
                     

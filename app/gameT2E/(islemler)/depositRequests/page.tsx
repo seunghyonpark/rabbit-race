@@ -9,6 +9,12 @@ import { format } from "date-fns";
 import { IUser } from "@/libs/interface/user";
 
 
+import dynamic from "next/dynamic";
+
+const CC = dynamic(() => import("../../../../components/copy-clipboard").then(mod => mod.CopyClipboard), { ssr: false })
+
+
+
 const Transition = React.forwardRef(function Transition(
     props: TransitionProps & {
         children: React.ReactElement<any, any>;
@@ -266,6 +272,7 @@ export default function DepositRequestList() {
                 
                 <div className="w-full border rounded-lg flex flex-col items-center justify-center p-2 gap-5 py-10">
 
+                <div className='w-full max-w-xs md:w-1/2 relative '>
                     <input
                     ///type="number"
                     //disabled="true"
@@ -280,6 +287,10 @@ export default function DepositRequestList() {
 
                     className="input input-bordered w-full max-w-xs text-gray-800"
                     />
+                        <div className='absolute right-5 mt-3 z-10 btn btn-xs '>
+                            <CC content={wallet} />
+                        </div>
+                </div>
 
                     <span className="ml-5 mr-5 content-center text-sm text-green-500">
                     If you send coins to your wallet address, it will be processed automatically.

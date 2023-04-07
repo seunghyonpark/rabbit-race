@@ -82,83 +82,45 @@ export default function BetTables() {
 
     return (
         <>
+
+
+        
             <div className='flex flex-col w-full lg:w-2/3 items-center'>
-                <div className='grid grid-cols-1 lg:grid-cols-5 w-full gap-3 rounded-lg  text-gray-200'>
+                <div className='grid grid-cols-1 lg:grid-cols-1 w-full gap-3 rounded-lg  text-gray-200'>
+                    
                     <div className='w-full flex flex-col items-center border p-2 bg-[#16171c] rounded-lg border-black max-h-[350px] overflow-y-hidden'>
-                        <h2 className='border-b w-full text-center text-lg  border-black mb-2 '>{Horses.Horse1}</h2>
+                        
+                        <h2 className='border-b w-full text-center text-lg  border-black mb-2 '>Games</h2>
+
                         <ul className='flex flex-col list-disc'>
                             {
                                 games?.map((game: IGame, i: number) => {
+                                    /*
                                     if (game.selectedSide === Horses.Horse1) {
                                         return (
                                             <li key={i} >{`${game.username.slice(0, 2)}...${game.username.slice(game.username.length - 2, game.username.length)}`} <span className='text-yellow-500'>{game.betAmount}</span> </li>
                                         )
                                     }
-                                }
-                                )
+                                    */
+
+                                    return (
+                                        <li key={i} >
+                                            {`${game.username}`}
+                                            &nbsp;<span className='text-yellow-500'>{game.betAmount}</span>
+                                            &nbsp;<span className='text-yellow-500'>{game.selectedSide}</span>
+                                      
+                                        </li>
+                                    )
+
+                                })
                             }
                         </ul>
                     </div>
-                    <div className='w-full flex flex-col items-center border p-2 bg-[#16171c] rounded-lg border-black max-h-[350px] overflow-y-hidden'>
-                        <h2 className='border-b w-full text-center text-lg  border-black mb-2 '>{Horses.Horse2}</h2>
-                        <ul className='flex flex-col list-disc'>
-                            {
-                                games?.map((game: IGame, i: number) => {
-                                    if (game.selectedSide === Horses.Horse2) {
-                                        return (
-                                            <li key={i} >{`${game.username.slice(0, 2)}...${game.username.slice(game.username.length - 2, game.username.length)}`} <span className='text-yellow-500'>{game.betAmount}</span> </li>
-                                        )
-                                    }
-                                }
-                                )
-                            }
-                        </ul>
-                    </div>
-                    <div className='w-full flex flex-col items-center border p-2 bg-[#16171c] rounded-lg border-black max-h-[350px] overflow-y-hidden'>
-                        <h2 className='border-b w-full text-center text-lg  border-black mb-2 '>{Horses.Horse3}</h2>
-                        <ul className='flex flex-col list-disc'>
-                            {
-                                games?.map((game: IGame, i: number) => {
-                                    if (game.selectedSide === Horses.Horse3) {
-                                        return (
-                                            <li key={i} >{`${game.username.slice(0, 2)}...${game.username.slice(game.username.length - 2, game.username.length)}`} <span className='text-yellow-500'>{game.betAmount}</span> </li>
-                                        )
-                                    }
-                                }
-                                )
-                            }
-                        </ul>
-                    </div>
-                    <div className='w-full flex flex-col items-center border p-2 bg-[#16171c] rounded-lg border-black max-h-[350px] overflow-y-hidden'>
-                        <h2 className='border-b w-full text-center text-lg  border-black mb-2 '>{Horses.Horse4}</h2>
-                        <ul className='flex flex-col list-disc'>
-                            {
-                                games?.map((game: IGame, i: number) => {
-                                    if (game.selectedSide === Horses.Horse4) {
-                                        return (
-                                            <li key={i} >{`${game.username.slice(0, 2)}...${game.username.slice(game.username.length - 2, game.username.length)}`} <span className='text-yellow-500'>{game.betAmount}</span> </li>
-                                        )
-                                    }
-                                }
-                                )
-                            }
-                        </ul>
-                    </div>
-                    <div className='w-full flex flex-col items-center border p-2 bg-[#16171c] rounded-lg border-black max-h-[350px] overflow-y-hidden'>
-                        <h2 className='border-b w-full text-center text-lg  border-black mb-2 '>{Horses.Horse5}</h2>
-                        <ul className='flex flex-col list-disc'>
-                            {
-                                games?.map((game: IGame, i: number) => {
-                                    if (game.selectedSide === Horses.Horse5) {
-                                        return (
-                                            <li key={i} >{`${game.username.slice(0, 2)}...${game.username.slice(game.username.length - 2, game.username.length)}`} <span className='text-yellow-500'>{game.betAmount}</span> </li>
-                                        )
-                                    }
-                                }
-                                )
-                            }
-                        </ul>
-                    </div>
+
+
+
+
+
                 </div>
             </div>
         </>

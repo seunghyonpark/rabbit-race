@@ -14,6 +14,10 @@ import { IUser } from "@/libs/interface/user";
 import DomainEnum from "@/libs/enums/domain";
 import Link from 'next/link';
 
+import dynamic from "next/dynamic";
+
+const CC = dynamic(() => import("../../../../components/copy-clipboard").then(mod => mod.CopyClipboard), { ssr: false })
+
 
 
 
@@ -569,6 +573,8 @@ export default function Deposit() {
             <h4 className=" ">
               Deposit <span className="text-sm text-red-500">(CRA)</span>{" "}
             </h4>
+
+            <div className='w-full max-w-xs  relative  '>
             <input
               ///type="number"
               //disabled="true"
@@ -581,6 +587,10 @@ export default function Deposit() {
               }}
               className="input input-bordered w-full max-w-xs text-gray-800"
             />
+            <div className='absolute right-5 mt-3 z-10 btn btn-xs '>
+            <CC content={wallet} />
+            </div>
+            </div>
 
 {/*
             <button
