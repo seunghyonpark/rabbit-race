@@ -600,7 +600,7 @@ export default function Deposit() {
             </Link>
 
 
-            <span>
+            <span className="text-l p-5 text-green-500"> 
             If you send coins to your wallet address, it will be processed automatically.
             </span>
 

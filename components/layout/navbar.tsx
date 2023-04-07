@@ -15,11 +15,149 @@ import withReactContent from "sweetalert2-react-content";
 
 import Modal from '../../components/Modal';
 
+//@ts-ignore
+import { io } from "socket.io-client";
+import SocketEnum from '@/libs/enums/socket';
+
+import Stack from "@mui/material/Stack";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert, { AlertProps } from "@mui/material/Alert";
+
+
+const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
+    props,
+    ref
+  ) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
+
 
 export default function Navbar() {
 
     const router = useRouter();
-    const [user, setUser] = useState<IUser>()
+    const [user, setUser] = useState<IUser>();
+
+    const [craUsdt, setCraUsdt] = useState<any>();
+
+
+
+    useEffect(() => socketInitializer(), []);
+
+    const socketInitializer = () => {
+
+      const socket = io(`${SocketEnum.id}`, {
+          transports: ["websocket"],
+      });
+
+      socket.on("connect", () => {
+          console.log("mobileNavbar connect");
+      });
+
+      socket.on('status', (data: any) => {
+          console.log("mobileNavbar status", data);
+          //setStatus(true);
+      });
+
+      socket.on('time', (data: any) => {
+          console.log("mobileNavbar time", data);
+          //setTime(data)
+      });
+
+      socket.on('horse1Orana', (data: any) => {
+          console.log("mobileNavbar horse1Orana", data);
+          //setHorse1Oran(data)
+      });
+
+      socket.on('horse2Orana', (data: any) => {
+          console.log("mobileNavbar horse2Orana", data);
+          //setHorse2Oran(data)
+      });
+   
+      
+      socket.on('price', (data: any) => {
+          //console.log(socket.id + " mobileNavbar price", data.price);
+          
+          //setCurrentPrice(data.price);
+
+      });
+
+      socket.on('prize', (data: any) => {
+        console.log(socket.id + " mobileNavbar prize", data);
+        
+
+        //setErrMsg(data);
+        //setErr(true);
+        //❤️songpalabs❤️
+
+        setSuccessMsg(data.username + ": ❤️" + data.amount + "❤️ CRA");
+        setSucc(true);
+
+        //setCurrentPrice(data.price);
+
+
+      });
+
+      socket.on('winner', (data: any) => {
+        console.log(socket.id + " mobileNavbar winner", data);
+        
+        //setCurrentPrice(data.price);
+      });
+
+
+      socket.on('cra_usdt', (data: any) => {
+        ///console.log(socket.id + " cra_usdt price", data[0]?.ticker?.latest);
+
+        setCraUsdt(data[0]?.ticker?.latest);
+        
+
+
+      });
+
+
+    }
+
+
+
+    const [succ, setSucc] = useState(false);
+    const [err, setErr] = useState(false);
+    const [successMsg, setSuccessMsg] = useState<String>("");
+    const [errMsg, setErrMsg] = useState<String>("");
+
+    const handleClickSucc = () => {
+
+      setSuccessMsg("ok");
+      setSucc(true);
+    };
+
+    const handleCloseSucc = (
+        event?: React.SyntheticEvent | Event,
+        reason?: string
+    ) => {
+        if (reason === "clickaway") {
+            return;
+        }
+
+        setSucc(false);
+    };
+
+    const handleClickErr = () => {
+
+        setErrMsg("ok");
+        setErr(true);
+    };
+
+    const handleCloseErr = (
+        event?: React.SyntheticEvent | Event,
+        reason?: string
+    ) => {
+        if (reason === "clickaway") {
+            return;
+        }
+
+        setErr(false);
+    };
+
+
 
     const getUser = async () => {
         const inputs = {
@@ -131,6 +269,7 @@ export default function Navbar() {
 
                         {
                         user && <Link
+                            className="p-2"
                             href={"/gameT2E/deposit"}
                         >
                             <Image src={"/wallet-icon-white.png"} width={25} height={40} alt="logo" />
@@ -297,6 +436,10 @@ export default function Navbar() {
                         {`${Number(user?.deposit).toFixed(0)}`}
                       </div>
 
+                      <div className='text-sm font-extrabold'>
+                      =&nbsp;{`${Number(user?.deposit * craUsdt).toFixed(0)}`}&nbsp;&nbsp;<span className="text-[8px] text-green-500">USDT</span>
+                      </div>
+
                       {user &&
                       <button
                           className={`text-[12px] text-red-500`}
@@ -316,7 +459,7 @@ export default function Navbar() {
 
 
                   <button
-                    className={` w-full pt-3 items-left text-xl text-white`}
+                    className={` w-full pt-3 items-left text-l text-white`}
                     onClick={() => {
                         setShowModal(false), router.push('/gameT2E/depositRequests')
                     }}
@@ -325,7 +468,7 @@ export default function Navbar() {
                   </button>
 
                   <button
-                    className={`w-full pt-1 items-left text-xl text-white `}
+                    className={`w-full pt-1 items-left text-l text-white `}
                     onClick={() => {
                         setShowModal(false), router.push('/gameT2E/withdrawRequests')
                     }}
@@ -334,7 +477,7 @@ export default function Navbar() {
                   </button>
 
                   <button
-                    className={`w-full pt-1 items-left text-xl text-white `}
+                    className={`w-full pt-1 items-left text-l text-white `}
                     onClick={() => {
                         setShowModal(false), router.push('/gameT2E/betHistory')
                     }}
@@ -343,7 +486,7 @@ export default function Navbar() {
                   </button>
 
                   <button
-                    className={` disabled pt-1 w-full items-left text-xl text-white `}
+                    className={` disabled pt-1 w-full items-left text-l text-white `}
                     onClick={() => {
                         setShowModal(false), router.push('/gameT2E')
                     }}
@@ -365,12 +508,39 @@ export default function Navbar() {
 
               </div>
 
-
             </div>
-        
-
 
             </Modal>
+
+
+
+            <Stack spacing={2} sx={{ width: "100%" }}>
+
+              <Snackbar
+                  open={succ}
+                  autoHideDuration={6000}
+                  onClose={handleCloseSucc}
+              >
+                  <Alert
+                      onClose={handleCloseSucc}
+                      severity="info"
+                      sx={{ width: "100%" }}
+                  >
+                      {successMsg}
+                  </Alert>
+              </Snackbar>
+
+              <Snackbar open={err} autoHideDuration={6000} onClose={handleCloseErr}>
+                  <Alert
+                      onClose={handleCloseErr}
+                      severity="error"
+                      sx={{ width: "100%" }}
+                  >
+                      {errMsg}
+                  </Alert>
+              </Snackbar>
+            </Stack>    
+
 
 
             {/* //? Mobil Navbar */}

@@ -900,19 +900,18 @@ export default function MobilNavbar({user} : {user: any}) {
                             className={`flex items-center justify-center  bg-black rounded-md h-[38px] text-[13px] text-center px-5 text-[#BA8E09] border border-[#BA8E09] `}
                         >
 
-{/*
+
                         <Link
                             href={"/gameT2E/deposit"}
                             className={"pr-3 "}
                         >
-                            <Image src={"/wallet-icon-white.png"} width={10} height={40} alt="logo" />
+                            <Image src={"/wallet-icon-white.png"} width={13} height={40} alt="logo" />
                         </Link>
-                    */}
+                    
 
                             {`${Number(user?.deposit).toFixed(0)}`}&nbsp;&nbsp;<span className="text-[8px]  text-red-500">{" "}{Coin.symbol}</span>
 
-                            &nbsp;=&nbsp;{`${Number(user?.deposit * craUsdt).toFixed(2)}`}&nbsp;&nbsp;<span className="text-[8px] text-green-500">{" "}USDT</span>
-                        
+                           
                         
                         </div>
 
@@ -1041,17 +1040,21 @@ export default function MobilNavbar({user} : {user: any}) {
 
                     {user && <Image
                         src={user?.img}
-                        width={90}
-                        height={90}
+                        width={60}
+                        height={60}
                         alt="pfp"
                         className="rounded-md"
                     />}
 
-                    <div className="w-full rounded-lg flex flex-col items-center justify-left p-2 gap-1 ">
+                    <div className="w-full rounded-lg flex flex-col items-center p-2 gap-1 ">
                       <div className='text-xs'>Equity Value (CRA)</div>
 
                       <div className='text-xl font-extrabold'>
                         {`${Number(user?.deposit).toFixed(0)}`}
+                      </div>
+
+                      <div className='text-sm font-extrabold'>
+                      =&nbsp;{`${Number(user?.deposit * craUsdt).toFixed(0)}`}&nbsp;&nbsp;<span className="text-[8px] text-green-500">USDT</span>
                       </div>
 
                       {user &&
@@ -1073,7 +1076,7 @@ export default function MobilNavbar({user} : {user: any}) {
 
 
                   <div
-                    className={` w-full pt-3 items-left text-xl text-white`}
+                    className={` w-full pt-3 items-left text-l text-white`}
                     onClick={() => {
                         setShowModal(false), router.push('/gameT2E/depositRequests')
                     }}
@@ -1082,7 +1085,7 @@ export default function MobilNavbar({user} : {user: any}) {
                   </div>
 
                   <div
-                    className={`w-full pt-1 items-left text-xl text-white `}
+                    className={`w-full pt-1 items-left text-l text-white `}
                     onClick={() => {
                         setShowModal(false), router.push('/gameT2E/withdrawRequests')
                     }}
@@ -1091,7 +1094,7 @@ export default function MobilNavbar({user} : {user: any}) {
                   </div>
 
                   <div
-                    className={`w-full pt-1 items-left text-xl text-white `}
+                    className={`w-full pt-1 items-left text-l text-white `}
                     onClick={() => {
                         setShowModal(false), router.push('/gameT2E/betHistory')
                     }}
@@ -1100,7 +1103,7 @@ export default function MobilNavbar({user} : {user: any}) {
                   </div>
 
                   <div
-                    className={` disabled pt-1 w-full items-left text-xl text-white `}
+                    className={` disabled pt-1 w-full items-left text-l text-white `}
                     onClick={() => {
                         setShowModal(false), router.push('/gameT2E')
                     }}
