@@ -1054,7 +1054,7 @@ export default function MobilNavbar({user} : {user: any}) {
                       </div>
 
                       <div className='text-sm font-extrabold'>
-                      =&nbsp;{`${Number(user?.deposit * craUsdt).toFixed(0)}`}&nbsp;&nbsp;<span className="text-[8px] text-green-500">USDT</span>
+                      =&nbsp;{ user?.deposit ? `${Number(user?.deposit * craUsdt).toFixed(0)}` : `0` }&nbsp;&nbsp;<span className="text-[8px] text-green-500">USDT</span>
                       </div>
 
                       {user &&
