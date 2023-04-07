@@ -49,14 +49,7 @@ export default function UserList() {
       align: "center",
       headerAlign: "center",
     },
-    {
-      field: "matic",
-      headerName: "BNB Balance",
-      flex: 0.1,
-      minWidth: 150,
-      align: "center",
-      headerAlign: "center",
-    },
+
     {
       field: "admin",
       headerName: "Admin",
@@ -99,6 +92,8 @@ export default function UserList() {
         );
       },
     },
+
+
   ];
 
   function duzenle(e: any) {
@@ -243,24 +238,31 @@ export default function UserList() {
     }
   })
 
+
   return (
     <>
       <>
+
         <div className='flex flex-col p-10 mt-5 text-gray-200'>
           <h1 className='font-bold italic text-2xl'>Users</h1>
-          <div style={{ width: "100%", height: 600, color: "white" }}>
+          <div style={{ width: "100%", height: 1200, color: "white" }}>
             <DataGrid
               rows={rows}
               columns={columns}
-              pageSize={9}
+              pageSize={20}
               rowsPerPageOptions={[10]}
               hideFooterSelectedRowCount
               sx={{
+               
                 color: "white",
+                bgcolor: "black",
+
               }}
+              
             />
           </div>
         </div>
+
         {selectedUser && (
           <Dialog
             open={open}
