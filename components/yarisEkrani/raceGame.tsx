@@ -492,7 +492,7 @@ export default function Race({socket, username, currentPrice, betPrice}: {socket
                                 <span
                                     className="text-[#ffffff]"
                                     style={{
-                                        color: `${(basePrice - currentPrice) > 0 ? "#ff0000" : "#00ff00"}`,
+                                        color: `${ (basePrice - currentPrice) === 0 ? "#ffffff" : (basePrice - currentPrice) > 0 ? "#ff0000" : "#00ff00"}`,
                                     }}
                                 >
                                         {Number(currentPrice).toFixed(2)}
