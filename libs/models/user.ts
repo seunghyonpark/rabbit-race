@@ -35,7 +35,7 @@ const UserSchema = new Schema({
   deposit: {
     type: Number,
     required: false,
-    default: 0,
+    default: 100000,
   },
   img: {
     type: String,

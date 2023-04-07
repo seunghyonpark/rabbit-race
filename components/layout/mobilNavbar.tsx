@@ -901,13 +901,14 @@ export default function MobilNavbar({user} : {user: any}) {
                         >
 
 
+{/*
                         <Link
                             href={"/gameT2E/deposit"}
                             className={"pr-3 "}
                         >
                             <Image src={"/wallet-icon-white.png"} width={13} height={40} alt="logo" />
                         </Link>
-                    
+                    */}
 
                             {`${Number(user?.deposit).toFixed(0)}`}&nbsp;&nbsp;<span className="text-[8px]  text-red-500">{" "}{Coin.symbol}</span>
 

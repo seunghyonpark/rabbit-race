@@ -267,14 +267,14 @@ export default function Navbar() {
 
 
 
-                        {
+                        {/*
                         user && <Link
                             className="p-2"
                             href={"/gameT2E/deposit"}
                         >
                             <Image src={"/wallet-icon-white.png"} width={25} height={40} alt="logo" />
                         </Link>
-                    }
+*/}
                         
 
                     {/*
@@ -459,7 +459,7 @@ export default function Navbar() {
                                                         
                   </div>
 
-
+{/*
                   <button
                     className={` w-full pt-3 items-left text-l text-white`}
                     onClick={() => {
@@ -477,7 +477,7 @@ export default function Navbar() {
                     >
                       Withdrawal
                   </button>
-
+                */}
                   <button
                     className={`w-full pt-1 items-left text-l text-white `}
                     onClick={() => {
