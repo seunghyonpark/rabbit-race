@@ -801,7 +801,7 @@ export default function MobilNavbar({user} : {user: any}) {
 
           
                 <Link className='ml-3'
-                  href={"/"}>
+                  href={"https://craclegamez.io"}>
                     <Image src={"/cracle_ci.png"} width={25} height={25} alt="logo" />
                 </Link>
 
