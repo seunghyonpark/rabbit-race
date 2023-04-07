@@ -11,6 +11,11 @@ import { IUser } from "@/libs/interface/user";
 import DomainEnum from "@/libs/enums/domain";
 import { Stack, Snackbar, Alert } from "@mui/material";
 
+import dynamic from "next/dynamic";
+
+const textToCopy = "hello Ali"
+
+ const CC = dynamic(() => import("../../../../components/copy-clipboard").then(mod => mod.CopyClipboard), { ssr: false })
 
 
 
@@ -386,16 +391,27 @@ export default function WithdrawRequestList() {
                 </h1>
 
 
+  
 
                 <div className="w-full border rounded-lg flex flex-col items-center p-2 justify-center gap-5 py-10">
 
-                    <input
-                    placeholder="Wallet Address"
-                    onChange={(e) => {
-                        setWallet(e.target.value);
-                    }}
-                    className="input input-bordered w-full max-w-xs text-gray-800"
-                    />
+                    <div className='w-full max-w-xs md:w-1/2 relative'>
+                        
+                        <input
+                        placeholder="Wallet Address"
+                        onChange={(e) => {
+                            setWallet(e.target.value);
+                        }}
+                        className="input input-bordered w-full max-w-xs text-gray-800"
+                        />
+
+                        <div className='absolute right-5 z-10 btn btn-xs '>
+                        <CC content={wallet} />
+                        </div>
+                    </div>
+
+                    
+
                     <input
                     type="number"
                     placeholder="Type Amount"

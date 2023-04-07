@@ -48,8 +48,8 @@ export default function Home() {
                     <p className='text-white text-center w-full text-lg font-bebasNeue md:text-3xl'>
                       Mint your CRACLE Rabbit NFT.
                     </p>
-                    <Link href={"https://nft.nuklabs.xyz/"} className="w-64 h-16 bg-gradient-to-r from-[#08FF08] to-[#008013] rounded-lg flex items-center justify-center">
-                      <span className="text-gray-200 text-2xl ">Mint Now</span>
+                    <Link href={"/"} className="w-64 h-16 bg-gradient-to-r from-[#08FF08] to-[#008013] rounded-lg flex items-center justify-center">
+                      <span className="text-gray-200 text-2xl ">Comming Soon</span>
                     </Link>
 
                   </div>
@@ -105,7 +105,7 @@ export default function Home() {
                     <p className='text-white text-center w-full text-lg font-bebasNeue md:text-3xl'>
                       Clumsy Bird is a casual game.<br></br>You can earn more $CRA by playing this game.
                     </p>
-                    <Link href={"https://bird.nuklabs.xyz/"} className="w-64 h-16 bg-gradient-to-r from-[#08FF08] to-[#008013] rounded-lg flex items-center justify-center">
+                    <Link href={"/"} className="w-64 h-16 bg-gradient-to-r from-[#08FF08] to-[#008013] rounded-lg flex items-center justify-center">
                       <span className="text-gray-200 text-2xl ">Comming Soon</span>
                     </Link>
 
@@ -120,7 +120,7 @@ export default function Home() {
                     <p className='text-white text-center w-full text-lg font-bebasNeue md:text-3xl'>
                       Crypto Plinko is a casual game.<br></br>You can earn more $CRA by playing this game.
                     </p>
-                    <Link href={"https://crypto.nuklabs.xyz/"} className="w-64 h-16 bg-gradient-to-r from-[#08FF08] to-[#008013] rounded-lg flex items-center justify-center">
+                    <Link href={"/"} className="w-64 h-16 bg-gradient-to-r from-[#08FF08] to-[#008013] rounded-lg flex items-center justify-center">
                       <span className="text-gray-200 text-2xl ">Comming Soon</span>
                     </Link>
 
